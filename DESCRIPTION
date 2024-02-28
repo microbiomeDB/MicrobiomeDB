@@ -1,12 +1,31 @@
 Package: MicrobiomeDB
-Title: What the Package Does (One Line, Title Case)
+Title: Curated Data and Analysis Tools from MicrobiomeDB.org
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    c(person(given = "Danielle",
+           family = "Callan",
+           role = c("aut", "cre"),
+           email = "dcallan@upenn.edu"))
+biocViews: 
+Imports:
+    data.table,
+    igraph,
+    microbiomeComputations,
+    microbiomeData,
+    phyloseq,
+    S4Vectors,
+    veupathUtils
+Remotes:
+    VEuPathDB/veupathUtils,
+    microbiomeDB/microbiomeComputations,
+    microbiomeDB/microbiomeData
+URL: https://github.com/microbiomeDB/MicrobiomeDB
+BugReports: https://github.com/microbiomeDB/MicrobiomeDB/issues
+Description: This package is intended to be used to explore the curated datasets from MicrobiomeDB.org, 
+as well as your own datasets. It comes pre-packaged with the same functions used to power the analysis tools from the website. 
+It also contains functions to facilitate easily transforming data between our custom objects, phyloseq objects, 
+and .biom files that you can upload to the website.
+License: Apache License (= 2.0)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
