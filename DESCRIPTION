@@ -10,21 +10,19 @@ biocViews:
 Imports:
     data.table,
     igraph,
-    microbiomeComputations,
-    microbiomeData,
     phyloseq,
     S4Vectors,
     veupathUtils
+Depends:
+    microbiomeComputations,
+    microbiomeData
 Remotes:
     VEuPathDB/veupathUtils,
     microbiomeDB/microbiomeComputations,
     microbiomeDB/microbiomeData
 URL: https://github.com/microbiomeDB/MicrobiomeDB
 BugReports: https://github.com/microbiomeDB/MicrobiomeDB/issues
-Description: This package is intended to be used to explore the curated datasets from MicrobiomeDB.org, 
-as well as your own datasets. It comes pre-packaged with the same functions used to power the analysis tools from the website. 
-It also contains functions to facilitate easily transforming data between our custom objects, phyloseq objects, 
-and .biom files that you can upload to the website.
+Description: This package is intended to be used to explore the curated datasets from MicrobiomeDB.org, as well as your own datasets. It comes pre-packaged with the same functions used to power the analysis tools from the website. It also contains functions to facilitate easily transforming data between our custom objects, phyloseq objects, and .biom files that you can upload to the website.
 License: Apache License (= 2.0)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
