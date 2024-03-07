@@ -1,11 +1,5 @@
 test_that("we can get compute results in different formats", {
-    dataFile1 <- '../../inst/extdata/DiabImmune/DiabImmune_entity_16SRRNAV4Assay.txt'
-    metadataFile1 <- '../../inst/extdata/DiabImmune/DiabImmune_ParticipantRepeatedMeasure.txt'
-    dataFile2 <- '../../inst/extdata/DiabImmune/DiabImmune_MetagenomicSequencingAssay.txt'
-    metadataFile2 <- '../../inst/extdata/DiabImmune/DiabImmune_Participant.txt'
-    metadataFile3 <- '../../inst/extdata/DiabImmune/DiabImmune_Sample.txt'
-    ontologyFile <- '../../inst/extdata/DiabImmune/DiabImmune_OntologyMetadata.txt'
-    mbioDataset <- MbioDataset(list(dataFile1, dataFile2), list(metadataFile1, metadataFile2, metadataFile3), ontologyFile)
+    mbioDataset <- microbiomeData::DiabImmune
     genus <- getCollection(mbioDataset, "16S Genus", continuousMetadataOnly = TRUE)
 
     # make sure metadata dont contain IRIs

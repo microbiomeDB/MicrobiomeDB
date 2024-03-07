@@ -1,3 +1,6 @@
+## TODO should import and reexport a bunch of functions and data from the data and computes package
+## TODO should think some about how to organize these methods and the others into files etc.
+
 #' Get Microbiome Dataset Compute Result
 #' 
 #' Get the compute result from a Microbiome Dataset in a particular format.
@@ -47,11 +50,16 @@ setMethod("getComputeResult", "DifferentialAbundanceResult", function(object, fo
     return(data.table::setDT(object@statistics))
 })
 
+#' @importFrom microbiomeData getSampleMetadata
+#' @importFrom microbiomeData getSampleMetadataIdColumns
 mergeComputeResultAndMetadata <- function(computeResult, dataset, metadataVariables) {
     dt <- getComputeResult(computeResult, "data.table")
-    metadata <- getSampleMetadata(dataset, metadataVariables)
+    metadata <- microbiomeData::getSampleMetadata(dataset, includeIds = TRUE, metadataVariables = metadataVariables)
 
-    metadataIdColumns <- getSampleMetadataIdColumnNames(dataset)
+    metadataIdColumns <- microbiomeData::getSampleMetadataIdColumns(dataset)
+    print(metadataIdColumns)
+    print(head(names(dt)))
+    print(head(names(metadata)))
     dt <- merge(dt, metadata, by = metadataIdColumns, all.x = TRUE)
 
     return(dt)
