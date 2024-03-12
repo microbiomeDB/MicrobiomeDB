@@ -8,13 +8,13 @@
 #' @export
 getCuratedDatasetNames <- function() {
 	c(
-	  'DiabImmune',
-	  'FARMM',
-	  'Bangladesh',
-	  'HMP_WGS',
-	  'BONUS',
-	  'NICU_NEC'
-	 )
+	    'DiabImmune',
+	    'FARMM',
+	    'Bangladesh',
+	    'HMP_WGS',
+	    'BONUS',
+	    'NICU_NEC'
+	)
 }
 
 #' @importFrom microbiomeData DiabImmune
