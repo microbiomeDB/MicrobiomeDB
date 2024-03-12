@@ -17,33 +17,26 @@ getCuratedDatasetNames <- function() {
 	 )
 }
 
-
+#' @importFrom microbiomeData DiabImmune
 #' @export
-DiabImmune <- function() {
-	microbiomeData::DiabImmune
-}
+microbiomeData::DiabImmune
 
+#' @importFrom microbiomeData FARMM
 #' @export
-FARMM <- function() {
-	microbiomeData::FARMM
-}
+microbiomeData::FARMM
 
+#' @importFrom microbiomeData Bangladesh
 #' @export
-Bangladesh <- function() {
-	microbiomeData::Bangladesh
-}
+microbiomeData::Bangladesh
 
+#' @importFrom microbiomeData HMP_WGS
 #' @export
-HMP_WGS <- function() {
-	microbiomeData::HMP_WGS
-}
+microbiomeData::HMP_WGS
 
+#' @importFrom microbiomeData BONUS
 #' @export
-BONUS <- function() {
-	microbiomeData::BONUS
-}
+microbiomeData::BONUS
 
+#' @importFrom microbiomeData NICU_NEC
 #' @export
-NICU_NEC <- function() {
-	microbiomeData::NICU_NEC
-}
+microbiomeData::NICU_NEC
