@@ -10,8 +10,6 @@ biocViews:
 Imports:
     data.table,
     igraph,
-    phyloseq,
-    S4Vectors,
     veupathUtils,
     microbiomeComputations,
     microbiomeData

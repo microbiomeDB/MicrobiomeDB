@@ -7,7 +7,7 @@ test_that("we can get compute results in different formats", {
     # and that that means diff abund works now
     comparatorVariable <- microbiomeComputations::Comparator(
                         variable = veupathUtils::VariableMetadata(
-                            variableSpec = vuepathUtils::VariableSpec(
+                            variableSpec = veupathUtils::VariableSpec(
                                 variableId = 'delivery_mode',
                                 entityId = ''
                             ),

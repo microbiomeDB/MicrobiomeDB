@@ -59,9 +59,6 @@ mergeComputeResultAndMetadata <- function(computeResult, dataset, metadataVariab
     metadata <- microbiomeData::getSampleMetadata(dataset, includeIds = TRUE, metadataVariables = metadataVariables)
 
     metadataIdColumns <- microbiomeData::getSampleMetadataIdColumns(dataset)
-    print(metadataIdColumns)
-    print(head(names(dt)))
-    print(head(names(metadata)))
     dt <- merge(dt, metadata, by = metadataIdColumns, all.x = TRUE)
 
     return(dt)
