@@ -2,11 +2,35 @@
 % Please edit documentation in R/methods.R
 \name{getComputeResultWithMetadata}
 \alias{getComputeResultWithMetadata}
+\alias{getComputeResultWithMetadata,ComputeResult,MbioDataset-method}
+\alias{getComputeResultWithMetadata,ComputeResult,Collection-method}
+\alias{getComputeResultWithMetadata,ComputeResult,AbundanceData-method}
 \title{Get Microbiome Dataset Compute Result With Metadata}
 \usage{
 getComputeResultWithMetadata(
   object,
   dataset,
+  format = c("data.table"),
+  metadataVariables = NULL
+)
+
+\S4method{getComputeResultWithMetadata}{ComputeResult,MbioDataset}(
+  object,
+  dataset = NULL,
+  format = c("data.table"),
+  metadataVariables = NULL
+)
+
+\S4method{getComputeResultWithMetadata}{ComputeResult,Collection}(
+  object,
+  dataset = NULL,
+  format = c("data.table"),
+  metadataVariables = NULL
+)
+
+\S4method{getComputeResultWithMetadata}{ComputeResult,AbundanceData}(
+  object,
+  dataset = NULL,
   format = c("data.table"),
   metadataVariables = NULL
 )
@@ -16,7 +40,7 @@ getComputeResultWithMetadata(
 
 \item{dataset}{The MbioDataset, AbundanceData or Collection object from which the compute result was obtained.}
 
-\item{format}{The format of the compute result. Currently only "data.table" is supported.}
+\item{format}{The format you want the compute result in. Currently only "data.table" is supported.}
 
 \item{metadataVariables}{The metadata variables to include in the compute result. If NULL, no metadata variables will be included.}
 }

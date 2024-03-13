@@ -7,9 +7,12 @@
 #' @return The compute result in the specified format
 #' @importFrom veupathUtils matchArg ComputeResult
 #' @export
+#' @rdname getComputeResult
 setGeneric("getComputeResult", function(object, format = c("data.table"), ...) standardGeneric("getComputeResult"))
 
-#' @export
+
+#' @rdname getComputeResult
+#' @aliases getComputeResult,ComputeResult-method
 setMethod("getComputeResult", "ComputeResult", function(object, format = c("data.table", "igraph")) {
     format <- veupathUtils::matchArg(format)
 
@@ -27,7 +30,8 @@ setMethod("getComputeResult", "ComputeResult", function(object, format = c("data
 })
 
 #' @importFrom veupathUtils CorrelationResult
-#' @export
+#' @rdname getComputeResult
+#' @aliases getComputeResult,CorrelationResult-method
 setMethod("getComputeResult", "CorrelationResult", function(object, format = c("data.table", "igraph")) {
     format <- veupathUtils::matchArg(format)
 
@@ -41,7 +45,8 @@ setMethod("getComputeResult", "CorrelationResult", function(object, format = c("
 })
 
 #' @importFrom microbiomeComputations DifferentialAbundanceResult
-#' @export
+#' @rdname getComputeResult
+#' @aliases getComputeResult,DifferentialAbundanceResult-method
 setMethod("getComputeResult", "DifferentialAbundanceResult", function(object, format = c("data.table")) {
     format <- veupathUtils::matchArg(format) 
     return(data.table::setDT(object@statistics))
@@ -67,17 +72,19 @@ mergeComputeResultAndMetadata <- function(computeResult, dataset, metadataVariab
 #' Get the compute result from a Microbiome Dataset in a particular format with metadata.
 #' @param object A Microbiome Dataset
 #' @param dataset The MbioDataset, AbundanceData or Collection object from which the compute result was obtained.
-#' @param format The format of the compute result. Currently only "data.table" is supported.
+#' @param format The format you want the compute result in. Currently only "data.table" is supported.
 #' @param metadataVariables The metadata variables to include in the compute result. If NULL, no metadata variables will be included.
 #' @return The compute result in the specified format
 #' @export
+#' @rdname getComputeResultWithMetadata
 setGeneric("getComputeResultWithMetadata", 
 function(object, dataset, format = c("data.table"), metadataVariables = NULL) 
     standardGeneric("getComputeResultWithMetadata"), 
     signature = c("object", "dataset")
 )
 
-#' @export
+#' @rdname getComputeResultWithMetadata
+#' @aliases getComputeResultWithMetadata,ComputeResult,MbioDataset-method
 setMethod("getComputeResultWithMetadata", signature = c("ComputeResult", "MbioDataset"), 
 function(object, dataset = NULL, format = c("data.table"), metadataVariables = NULL) {
     format <- veupathUtils::matchArg(format)
@@ -86,7 +93,8 @@ function(object, dataset = NULL, format = c("data.table"), metadataVariables = N
     return(dt)
 })
 
-#' @export
+#' @rdname getComputeResultWithMetadata
+#' @aliases getComputeResultWithMetadata,ComputeResult,Collection-method
 setMethod("getComputeResultWithMetadata", signature = c("ComputeResult", "Collection"), 
 function(object, dataset = NULL, format = c("data.table"), metadataVariables = NULL) {
     format <- veupathUtils::matchArg(format)
@@ -95,7 +103,8 @@ function(object, dataset = NULL, format = c("data.table"), metadataVariables = N
     return(dt)
 })
 
-#' @export 
+#' @rdname getComputeResultWithMetadata
+#' @aliases getComputeResultWithMetadata,ComputeResult,AbundanceData-method
 setMethod("getComputeResultWithMetadata", signature = c("ComputeResult", "AbundanceData"), 
 function(object, dataset = NULL, format = c("data.table"), metadataVariables = NULL) {
     format <- veupathUtils::matchArg(format)

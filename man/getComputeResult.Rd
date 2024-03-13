@@ -2,9 +2,18 @@
 % Please edit documentation in R/methods.R
 \name{getComputeResult}
 \alias{getComputeResult}
+\alias{getComputeResult,ComputeResult-method}
+\alias{getComputeResult,CorrelationResult-method}
+\alias{getComputeResult,DifferentialAbundanceResult-method}
 \title{Get Microbiome Dataset Compute Result}
 \usage{
 getComputeResult(object, format = c("data.table"), ...)
+
+\S4method{getComputeResult}{ComputeResult}(object, format = c("data.table", "igraph"))
+
+\S4method{getComputeResult}{CorrelationResult}(object, format = c("data.table", "igraph"))
+
+\S4method{getComputeResult}{DifferentialAbundanceResult}(object, format = c("data.table"))
 }
 \arguments{
 \item{object}{A Microbiome Dataset}
