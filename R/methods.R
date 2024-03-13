@@ -1,6 +1,3 @@
-## TODO should import and reexport a bunch of functions and data from the data and computes package
-## TODO should think some about how to organize these methods and the others into files etc.
-
 #' Get Microbiome Dataset Compute Result
 #' 
 #' Get the compute result from a Microbiome Dataset in a particular format.
