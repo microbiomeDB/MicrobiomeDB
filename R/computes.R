@@ -14,10 +14,12 @@ microbiomeComputations::betaDiv
 #' @export
 microbiomeComputations::differentialAbundance
 
+#' @importFrom veupathUtils correlation
 #' @importFrom microbiomeComputations correlation
 #' @export
-microbiomeComputations::correlation
+veupathUtils::correlation
 
+#' @importFrom veupathUtils selfCorrelation
 #' @importFrom microbiomeComputations selfCorrelation
 #' @export
-microbiomeComputations::selfCorrelation
+veupathUtils::selfCorrelation

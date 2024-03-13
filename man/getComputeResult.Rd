@@ -7,7 +7,7 @@
 \alias{getComputeResult,DifferentialAbundanceResult-method}
 \title{Get Microbiome Dataset Compute Result}
 \usage{
-getComputeResult(object, format = c("data.table"), ...)
+getComputeResult(object, format = c("data.table"))
 
 \S4method{getComputeResult}{ComputeResult}(object, format = c("data.table", "igraph"))
 

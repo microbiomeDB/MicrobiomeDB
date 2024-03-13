@@ -27,8 +27,10 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{microbiomeComputations}{\code{\link[microbiomeComputations]{alphaDiv}}, \code{\link[microbiomeComputations]{betaDiv}}, \code{\link[microbiomeComputations]{correlation}}, \code{\link[microbiomeComputations]{differentialAbundance}}, \code{\link[microbiomeComputations]{rankedAbundance}}, \code{\link[microbiomeComputations]{selfCorrelation}}}
+  \item{microbiomeComputations}{\code{\link[microbiomeComputations:alphaDiv-methods]{alphaDiv}}, \code{\link[microbiomeComputations:betaDiv-methods]{betaDiv}}, \code{\link[microbiomeComputations:differentialAbundance-methods]{differentialAbundance}}, \code{\link[microbiomeComputations:rankedAbundance-methods]{rankedAbundance}}}
 
   \item{microbiomeData}{\code{\link[microbiomeData]{Bangladesh}}, \code{\link[microbiomeData]{BONUS}}, \code{\link[microbiomeData]{DiabImmune}}, \code{\link[microbiomeData]{FARMM}}, \code{\link[microbiomeData]{getCollection}}, \code{\link[microbiomeData]{getCollectionNames}}, \code{\link[microbiomeData]{getMetadataVariableNames}}, \code{\link[microbiomeData]{getSampleMetadata}}, \code{\link[microbiomeData]{HMP_WGS}}, \code{\link[microbiomeData]{NICU_NEC}}, \code{\link[microbiomeData]{updateCollectionName}}}
+
+  \item{veupathUtils}{\code{\link[veupathUtils]{correlation}}, \code{\link[veupathUtils]{selfCorrelation}}}
 }}
 
