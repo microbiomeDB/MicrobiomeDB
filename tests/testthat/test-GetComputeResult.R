@@ -1,5 +1,5 @@
 test_that("we can get compute results in different formats", {
-    mbioDataset <- microbiomeData::DiabImmune
+    mbioDataset <- MicrobiomeDB::DiabImmune
     genus <- getCollection(mbioDataset, "16S Genus", continuousMetadataOnly = TRUE)
 
     # make sure metadata dont contain IRIs
@@ -28,23 +28,23 @@ test_that("we can get compute results in different formats", {
                             )
                         )
     )
-    diffAbundOutput <- microbiomeComputations::differentialAbundance(getCollection(mbioDataset, "16S Genus"), comparatorVariable, method='Maaslin', verbose=FALSE)
+    diffAbundOutput <- MicrobiomeDB::differentialAbundance(getCollection(mbioDataset, "16S Genus"), comparatorVariable, method='Maaslin', verbose=FALSE)
     expect_equal(inherits(diffAbundOutput, "ComputeResult"), TRUE)
 
-    correlationOutput <- microbiomeComputations::selfCorrelation(getCollection(mbioDataset, "16S Genus"), method='spearman', verbose=FALSE)
+    correlationOutput <- MicrobiomeDB::selfCorrelation(getCollection(mbioDataset, "16S Genus"), method='spearman', verbose=FALSE)
     correlationDT <- getComputeResult(correlationOutput, "data.table")
     expect_equal(inherits(correlationDT, "data.table"), TRUE)
     expect_equal(all(c('data1', 'data2', 'correlationCoef', 'pValue') %in% names(correlationDT)), TRUE)
 
     # make sure continuousMetadataOnly flag works so we can do taxa X metadata correlations   
-    correlationOutput <- microbiomeComputations::correlation(genus, method='spearman', verbose=FALSE)
+    correlationOutput <- MicrobiomeDB::correlation(genus, method='spearman', verbose=FALSE)
     expect_equal(inherits(correlationOutput, "ComputeResult"), TRUE)
 
     correlationIGraph <- getComputeResult(correlationOutput, "igraph")
     expect_equal(inherits(correlationIGraph, "igraph"), TRUE)
 
     # make sure getComputeResultWithMetadata works
-    alphaDivOutput <- microbiomeComputations::alphaDiv(getCollection(mbioDataset, "16S Genus"), method='shannon', verbose=FALSE)
+    alphaDivOutput <- MicrobiomeDB::alphaDiv(getCollection(mbioDataset, "16S Genus"), method='shannon', verbose=FALSE)
     expect_equal(inherits(alphaDivOutput, "ComputeResult"), TRUE)
     alphaDivDT <- getComputeResultWithMetadata(alphaDivOutput, mbioDataset, metadataVariables = c('country', 'delivery_mode'))
     expect_equal(inherits(alphaDivDT, "data.table"), TRUE)

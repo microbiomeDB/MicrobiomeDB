@@ -8,6 +8,7 @@
 \alias{betaDiv}
 \alias{differentialAbundance}
 \alias{correlation}
+\alias{selfCorrelation}
 \alias{DiabImmune}
 \alias{FARMM}
 \alias{Bangladesh}
@@ -21,7 +22,7 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{microbiomeComputations}{\code{\link[microbiomeComputations]{alphaDiv}}, \code{\link[microbiomeComputations]{betaDiv}}, \code{\link[microbiomeComputations]{correlation}}, \code{\link[microbiomeComputations]{differentialAbundance}}, \code{\link[microbiomeComputations]{rankedAbundance}}}
+  \item{microbiomeComputations}{\code{\link[microbiomeComputations]{alphaDiv}}, \code{\link[microbiomeComputations]{betaDiv}}, \code{\link[microbiomeComputations]{correlation}}, \code{\link[microbiomeComputations]{differentialAbundance}}, \code{\link[microbiomeComputations]{rankedAbundance}}, \code{\link[microbiomeComputations]{selfCorrelation}}}
 
   \item{microbiomeData}{\code{\link[microbiomeData]{Bangladesh}}, \code{\link[microbiomeData]{BONUS}}, \code{\link[microbiomeData]{DiabImmune}}, \code{\link[microbiomeData]{FARMM}}, \code{\link[microbiomeData]{HMP_WGS}}, \code{\link[microbiomeData]{NICU_NEC}}}
 }}

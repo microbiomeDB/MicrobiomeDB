@@ -17,3 +17,7 @@ microbiomeComputations::differentialAbundance
 #' @importFrom microbiomeComputations correlation
 #' @export
 microbiomeComputations::correlation
+
+#' @importFrom microbiomeComputations selfCorrelation
+#' @export
+microbiomeComputations::selfCorrelation
