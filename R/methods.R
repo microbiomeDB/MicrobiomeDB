@@ -8,7 +8,7 @@
 #' @importFrom veupathUtils matchArg ComputeResult
 #' @export
 #' @rdname getComputeResult
-setGeneric("getComputeResult", function(object, format = c("data.table"), ...) standardGeneric("getComputeResult"))
+setGeneric("getComputeResult", function(object, format = c("data.table")) standardGeneric("getComputeResult"))
 
 
 #' @rdname getComputeResult

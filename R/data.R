@@ -2,13 +2,21 @@
 ## we make available to users when they attach this package. To that end, Im explicitly importing
 ## and re-exporting some things, rather than addings these two packages in Depends in DESCRIPTION
 
-# TODO figure a way to not have to specify these manually.. 
-# maybe write this in the data package and reexport? then itd have access to sysdata.rda directly
+
 #' List Curated Datasets
 #'
 #' This function lists curated datasets from MicrobiomeDB.org which are available in this package.
 #' @export
 getCuratedDatasetNames <- function() {
+
+	## TODO try this instead, though idk if attaching the monster is a good idea
+	# also better to put it in the data package, import and reexport here
+	#.filename <- system.file("R", "sysdata.rda", package = "microbiomeData")
+	#attached_filename <- paste0("file:", .filename, "")
+    #suppressMessages(do.call("attach", list(what = .filename, name = attached_filename)))
+    #on.exit(eval(substitute(detach(name), list(name = attached_filename))))
+    #return(ls(envir = as.environment(attached_filename)))
+	
 	c(
 	    'DiabImmune',
 	    'FARMM',
