@@ -71,7 +71,7 @@ myCorrelationDT <- getComputeResult(correlationResults)
 myCorrelationGraph <- getComputeResult(correlationResults, format = 'igraph')
 MicrobiomeDB::network(myCorrelationDT) # will render a network visualization of the results using widgets from our own `corGraph` project
 
-getMetadataColumnNames(DiabImmune) # will print names of metadata variables you can ask for
+getMetadataVariableNames(DiabImmune) # will print names of metadata variables you can ask for
 myAlphaDivDT <- getComputeResultWithMetadata(alphaDivResults, DiabImmune, 'host_body_site')
 ```
 
