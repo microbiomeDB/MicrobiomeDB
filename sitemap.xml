@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/404.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/authors.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/index.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/MicrobiomeDB-package.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/getComputeResult.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/getComputeResultWithMetadata.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/getCuratedDatasetNames.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/reexports.html</loc>
+  </url>
+</urlset>
