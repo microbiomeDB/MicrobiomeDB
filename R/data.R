@@ -50,3 +50,59 @@ microbiomeData::BONUS
 #' @importFrom microbiomeData NICU_NEC
 #' @export
 microbiomeData::NICU_NEC
+
+#' @importFrom microbiomeData GEMS1
+#' @export
+microbiomeData::GEMS1
+
+#' @importFrom microbiomeData DailyBaby
+#' @export
+microbiomeData::DailyBaby
+
+#' @importFrom microbiomeData HMP_V1V3
+#' @export
+microbiomeData::HMP_V1V3
+
+#' @importFrom microbiomeData HMP_V3V5
+#' @export
+microbiomeData::HMP_V3V5
+
+#' @importFrom microbiomeData Anopheles_albimanus
+#' @export
+microbiomeData::Anopheles_albimanus
+
+#' @importFrom microbiomeData ECAM
+#' @export
+microbiomeData::ECAM
+
+#' @importFrom microbiomeData MORDOR
+#' @export
+microbiomeData::MORDOR
+
+#' @importFrom microbiomeData EcoCF
+#' @export
+microbiomeData::EcoCF
+
+#' @importFrom microbiomeData Leishmaniasis
+#' @export
+microbiomeData::Leishmaniasis
+
+#' @importFrom microbiomeData MALED_2yr
+#' @export
+microbiomeData::MALED_2yr
+
+#' @importFrom microbiomeData MALED_diarrhea
+#' @export
+microbiomeData::MALED_diarrhea
+
+#' @importFrom microbiomeData Malaysia_helminth
+#' @export
+microbiomeData::Malaysia_helminth
+
+#' @importFrom microbiomeData PIH_Uganda
+#' @export
+microbiomeData::PIH_Uganda
+
+#' @importFrom microbiomeData PretermInfantResistome1
+#' @export
+microbiomeData::PretermInfantResistome1

@@ -15,6 +15,20 @@
 \alias{HMP_WGS}
 \alias{BONUS}
 \alias{NICU_NEC}
+\alias{GEMS1}
+\alias{DailyBaby}
+\alias{HMP_V1V3}
+\alias{HMP_V3V5}
+\alias{Anopheles_albimanus}
+\alias{ECAM}
+\alias{MORDOR}
+\alias{EcoCF}
+\alias{Leishmaniasis}
+\alias{MALED_2yr}
+\alias{MALED_diarrhea}
+\alias{Malaysia_helminth}
+\alias{PIH_Uganda}
+\alias{PretermInfantResistome1}
 \alias{getCollection}
 \alias{getCollectionNames}
 \alias{updateCollectionName}
@@ -29,7 +43,7 @@ below to see their documentation.
 \describe{
   \item{microbiomeComputations}{\code{\link[microbiomeComputations:alphaDiv-methods]{alphaDiv}}, \code{\link[microbiomeComputations:betaDiv-methods]{betaDiv}}, \code{\link[microbiomeComputations:differentialAbundance-methods]{differentialAbundance}}, \code{\link[microbiomeComputations:rankedAbundance-methods]{rankedAbundance}}}
 
-  \item{microbiomeData}{\code{\link[microbiomeData]{Bangladesh}}, \code{\link[microbiomeData]{BONUS}}, \code{\link[microbiomeData]{DiabImmune}}, \code{\link[microbiomeData]{FARMM}}, \code{\link[microbiomeData]{getCollection}}, \code{\link[microbiomeData]{getCollectionNames}}, \code{\link[microbiomeData]{getMetadataVariableNames}}, \code{\link[microbiomeData]{getSampleMetadata}}, \code{\link[microbiomeData]{HMP_WGS}}, \code{\link[microbiomeData]{NICU_NEC}}, \code{\link[microbiomeData]{updateCollectionName}}}
+  \item{microbiomeData}{\code{\link[microbiomeData]{Anopheles_albimanus}}, \code{\link[microbiomeData]{Bangladesh}}, \code{\link[microbiomeData]{BONUS}}, \code{\link[microbiomeData]{DailyBaby}}, \code{\link[microbiomeData]{DiabImmune}}, \code{\link[microbiomeData]{ECAM}}, \code{\link[microbiomeData]{EcoCF}}, \code{\link[microbiomeData]{FARMM}}, \code{\link[microbiomeData]{GEMS1}}, \code{\link[microbiomeData]{getCollection}}, \code{\link[microbiomeData]{getCollectionNames}}, \code{\link[microbiomeData]{getMetadataVariableNames}}, \code{\link[microbiomeData]{getSampleMetadata}}, \code{\link[microbiomeData]{HMP_V1V3}}, \code{\link[microbiomeData]{HMP_V3V5}}, \code{\link[microbiomeData]{HMP_WGS}}, \code{\link[microbiomeData]{Leishmaniasis}}, \code{\link[microbiomeData]{Malaysia_helminth}}, \code{\link[microbiomeData]{MALED_2yr}}, \code{\link[microbiomeData]{MALED_diarrhea}}, \code{\link[microbiomeData]{MORDOR}}, \code{\link[microbiomeData]{NICU_NEC}}, \code{\link[microbiomeData]{PIH_Uganda}}, \code{\link[microbiomeData]{PretermInfantResistome1}}, \code{\link[microbiomeData]{updateCollectionName}}}
 
   \item{veupathUtils}{\code{\link[veupathUtils]{correlation}}, \code{\link[veupathUtils]{selfCorrelation}}}
 }}
