@@ -8,16 +8,16 @@
 #' @importFrom veupathUtils matchArg ComputeResult
 #' @export
 #' @rdname getComputeResult
-setGeneric("getComputeResult", function(object, format = c("data.table")) standardGeneric("getComputeResult"))
+setGeneric("getComputeResult", function(object, format = c("data.table"), ...) standardGeneric("getComputeResult"))
 
 
 #' @rdname getComputeResult
 #' @aliases getComputeResult,ComputeResult-method
-setMethod("getComputeResult", "ComputeResult", function(object, format = c("data.table", "igraph")) {
+setMethod("getComputeResult", "ComputeResult", function(object, format = c("data.table", "igraph"), ...) {
     format <- veupathUtils::matchArg(format)
 
     if (!!length(object@statistics)) {
-        return(getComputeResult(object@statistics, format))
+        return(getComputeResult(object@statistics, format, ...))
     } else {
         if (format == "igraph") {
             stop("igraph not yet supported")
@@ -31,11 +31,16 @@ setMethod("getComputeResult", "ComputeResult", function(object, format = c("data
 
 #' @importFrom veupathUtils CorrelationResult
 #' @rdname getComputeResult
+#' @param correlationCoefThreshold threshold to filter edges by correlation coefficient. 
+#' Edges with correlation coefficients below this threshold will be removed. Default is .5
+#' @param pValueThreshold threshold to filter edges by p-value. Edges with p-values above this threshold will be removed. Default is .05
 #' @aliases getComputeResult,CorrelationResult-method
-setMethod("getComputeResult", "CorrelationResult", function(object, format = c("data.table", "igraph")) {
+setMethod("getComputeResult", "CorrelationResult", function(object, format = c("data.table", "igraph"), correlationCoefThreshold = .5, pValueThreshold = .05) {
     format <- veupathUtils::matchArg(format)
 
     result <- data.table::setDT(object@statistics)
+
+    result <- result[result$correlationCoef >= correlationCoefThreshold & result$pValue <= pValueThreshold, ]
 
     if (format == "igraph") {
         result <- igraph::graph_from_data_frame(result)
