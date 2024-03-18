@@ -16,6 +16,8 @@ correlationNetwork(object, ...)
 \item{object}{A ComputeResult or data.frame}
 
 \item{...}{additional arguments specific to particular methods of correlationNetwork}
+
+\item{bipartiteNetwork}{Should the network use a bipartite or unipartite layout? Defaults to unipartite.}
 }
 \description{
 Visualize a correlation result as a network

@@ -145,6 +145,7 @@ setMethod("correlationNetwork", "ComputeResult", function(object) {
 })
 
 #' @rdname correlationNetwork
+#' @param bipartiteNetwork Should the network use a bipartite or unipartite layout? Defaults to unipartite.
 #' @aliases correlationNetwork,data.frame-method
 setMethod("correlationNetwork", "data.frame", function(object, bipartiteNetwork = c(FALSE, TRUE)) {
     bipartiteNetwork <- veupathUtils::matchArg(bipartiteNetwork)
