@@ -134,9 +134,9 @@ setMethod("correlationNetwork", "data.frame", function(object) {
     
     sources <- unique(object$source)
     targets <- unique(object$target)
-    
+
     #are all sources different from targets?
-    if (all(setdiff(sources,targets) %in% sources)) {
+    if (all(sources %in% setdiff(sources,targets))) {
         net <- corGraph::bipartiteNetwork(object)
     } else {
         net <- corGraph::unipartiteNetwork(object)
