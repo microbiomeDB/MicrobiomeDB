@@ -36,6 +36,7 @@ setMethod("getComputeResult", "ComputeResult", function(object, format = c("data
 #' Edges with correlation coefficients below this threshold will be removed. Default is .5
 #' @param pValueThreshold threshold to filter edges by p-value. Edges with p-values above this threshold will be removed. Default is .05
 #' @aliases getComputeResult,CorrelationResult-method
+#' @importFrom igraph graph_from_data_frame
 setMethod("getComputeResult", "CorrelationResult", function(object, format = c("data.table", "igraph"), correlationCoefThreshold = .5, pValueThreshold = .05) {
     format <- veupathUtils::matchArg(format)
 
@@ -147,6 +148,8 @@ setMethod("correlationNetwork", "ComputeResult", function(object) {
 #' @rdname correlationNetwork
 #' @param bipartiteNetwork Should the network use a bipartite or unipartite layout? Defaults to unipartite.
 #' @aliases correlationNetwork,data.frame-method
+#' @importFrom corGraph bipartiteNetwork
+#' @importFrom corGraph unipartiteNetwork
 setMethod("correlationNetwork", "data.frame", function(object, bipartiteNetwork = c(FALSE, TRUE)) {
     bipartiteNetwork <- veupathUtils::matchArg(bipartiteNetwork)
 
