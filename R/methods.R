@@ -4,20 +4,21 @@
 #' Some formats may not be supported for all compute results.
 #' @param object A Microbiome Dataset
 #' @param format The format of the compute result. Currently only "data.table" and "igraph" are supported.
+#' @param ... additional arguments passed to getComputeResult method of the subclasses of ComputeResult
 #' @return The compute result in the specified format
 #' @importFrom veupathUtils matchArg ComputeResult
 #' @export
 #' @rdname getComputeResult
-setGeneric("getComputeResult", function(object, format = c("data.table")) standardGeneric("getComputeResult"))
+setGeneric("getComputeResult", function(object, format = c("data.table"), ...) standardGeneric("getComputeResult"))
 
 
 #' @rdname getComputeResult
 #' @aliases getComputeResult,ComputeResult-method
-setMethod("getComputeResult", "ComputeResult", function(object, format = c("data.table", "igraph")) {
+setMethod("getComputeResult", "ComputeResult", function(object, format = c("data.table", "igraph"), ...) {
     format <- veupathUtils::matchArg(format)
 
     if (!!length(object@statistics)) {
-        return(getComputeResult(object@statistics, format))
+        return(getComputeResult(object@statistics, format, ...))
     } else {
         if (format == "igraph") {
             stop("igraph not yet supported")
@@ -31,11 +32,17 @@ setMethod("getComputeResult", "ComputeResult", function(object, format = c("data
 
 #' @importFrom veupathUtils CorrelationResult
 #' @rdname getComputeResult
+#' @param correlationCoefThreshold threshold to filter edges by correlation coefficient. 
+#' Edges with correlation coefficients below this threshold will be removed. Default is .5
+#' @param pValueThreshold threshold to filter edges by p-value. Edges with p-values above this threshold will be removed. Default is .05
 #' @aliases getComputeResult,CorrelationResult-method
-setMethod("getComputeResult", "CorrelationResult", function(object, format = c("data.table", "igraph")) {
+#' @importFrom igraph graph_from_data_frame
+setMethod("getComputeResult", "CorrelationResult", function(object, format = c("data.table", "igraph"), correlationCoefThreshold = .5, pValueThreshold = .05) {
     format <- veupathUtils::matchArg(format)
 
     result <- data.table::setDT(object@statistics)
+
+    result <- result[result$correlationCoef >= correlationCoefThreshold & result$pValue <= pValueThreshold, ]
 
     if (format == "igraph") {
         result <- igraph::graph_from_data_frame(result)
@@ -114,21 +121,38 @@ function(object, dataset = NULL, format = c("data.table"), metadataVariables = N
 #' 
 #' Visualize a correlation result as a network
 #' @param object A ComputeResult or data.frame
+#' @param ... additional arguments specific to particular methods of correlationNetwork
 #' @export
 #' @rdname correlationNetwork
-setGeneric("correlationNetwork", function(object) standardGeneric("correlationNetwork"))
+setGeneric("correlationNetwork", function(object, ...) standardGeneric("correlationNetwork"))
 
 #' @rdname correlationNetwork
 #' @aliases correlationNetwork,ComputeResult-method
 setMethod("correlationNetwork", "ComputeResult", function(object) {
-    edgeList <- getComputeResult(object)
+    if (!length(object@statistics)) {
+        stop("ComputeResult has no statistics")
+    }
+    if (!inherits(object@statistics, "CorrelationResult")) {
+        stop("ComputeResult statistics must be a CorrelationResult")
+    }
 
-    return(correlationNetwork(edgeList))
+    edgeList <- getComputeResult(object)
+    isBipartite <- FALSE
+    if (object@computationDetails != "selfCorrelation") {
+        isBipartite <- TRUE
+    }
+
+    return(correlationNetwork(edgeList, isBipartite))
 })
 
 #' @rdname correlationNetwork
+#' @param bipartiteNetwork Should the network use a bipartite or unipartite layout? Defaults to unipartite.
 #' @aliases correlationNetwork,data.frame-method
-setMethod("correlationNetwork", "data.frame", function(object) {
+#' @importFrom corGraph bipartiteNetwork
+#' @importFrom corGraph unipartiteNetwork
+setMethod("correlationNetwork", "data.frame", function(object, bipartiteNetwork = c(FALSE, TRUE)) {
+    bipartiteNetwork <- veupathUtils::matchArg(bipartiteNetwork)
+
     warning("data.frame input assumes the first two columns are source and target.")
     names(object) <- c("source", "target", "value", "pValue")
     
@@ -136,7 +160,7 @@ setMethod("correlationNetwork", "data.frame", function(object) {
     targets <- unique(object$target)
 
     #are all sources different from targets?
-    if (all(sources %in% setdiff(sources,targets))) {
+    if (bipartiteNetwork) {
         net <- corGraph::bipartiteNetwork(object)
     } else {
         net <- corGraph::unipartiteNetwork(object)
