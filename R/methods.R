@@ -4,6 +4,7 @@
 #' Some formats may not be supported for all compute results.
 #' @param object A Microbiome Dataset
 #' @param format The format of the compute result. Currently only "data.table" and "igraph" are supported.
+#' @param ... additional arguments passed to getComputeResult method of the subclasses of ComputeResult
 #' @return The compute result in the specified format
 #' @importFrom veupathUtils matchArg ComputeResult
 #' @export
@@ -119,21 +120,35 @@ function(object, dataset = NULL, format = c("data.table"), metadataVariables = N
 #' 
 #' Visualize a correlation result as a network
 #' @param object A ComputeResult or data.frame
+#' @param ... additional arguments specific to particular methods of correlationNetwork
 #' @export
 #' @rdname correlationNetwork
-setGeneric("correlationNetwork", function(object) standardGeneric("correlationNetwork"))
+setGeneric("correlationNetwork", function(object, ...) standardGeneric("correlationNetwork"))
 
 #' @rdname correlationNetwork
 #' @aliases correlationNetwork,ComputeResult-method
 setMethod("correlationNetwork", "ComputeResult", function(object) {
-    edgeList <- getComputeResult(object)
+    if (!length(object@statistics)) {
+        stop("ComputeResult has no statistics")
+    }
+    if (!inherits(object@statistics, "CorrelationResult")) {
+        stop("ComputeResult statistics must be a CorrelationResult")
+    }
 
-    return(correlationNetwork(edgeList))
+    edgeList <- getComputeResult(object)
+    isBipartite <- FALSE
+    if (object@computationDetails != "selfCorrelation") {
+        isBipartite <- TRUE
+    }
+
+    return(correlationNetwork(edgeList, isBipartite))
 })
 
 #' @rdname correlationNetwork
 #' @aliases correlationNetwork,data.frame-method
-setMethod("correlationNetwork", "data.frame", function(object) {
+setMethod("correlationNetwork", "data.frame", function(object, bipartiteNetwork = c(FALSE, TRUE)) {
+    bipartiteNetwork <- veupathUtils::matchArg(bipartiteNetwork)
+
     warning("data.frame input assumes the first two columns are source and target.")
     names(object) <- c("source", "target", "value", "pValue")
     
@@ -141,7 +156,7 @@ setMethod("correlationNetwork", "data.frame", function(object) {
     targets <- unique(object$target)
 
     #are all sources different from targets?
-    if (all(sources %in% setdiff(sources,targets))) {
+    if (bipartiteNetwork) {
         net <- corGraph::bipartiteNetwork(object)
     } else {
         net <- corGraph::unipartiteNetwork(object)
