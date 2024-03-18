@@ -8,6 +8,7 @@ Authors@R:
             email = "dcallan@upenn.edu"))
 biocViews:
 Imports:
+    corGraph,
     data.table,
     igraph,
     veupathUtils,
@@ -16,6 +17,7 @@ Imports:
     microbiomeData
 Remotes:
     VEuPathDB/veupathUtils,
+    microbiomeDB/corGraph,
     microbiomeDB/microbiomeComputations,
     microbiomeDB/microbiomeData
 URL: https://github.com/microbiomeDB/MicrobiomeDB, https://microbiomedb.github.io/MicrobiomeDB/

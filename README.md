@@ -69,7 +69,7 @@ This will give you a `ComputeResult` object, with slots for `data` and `statisti
 ```R
 myCorrelationDT <- getComputeResult(correlationResults)
 myCorrelationGraph <- getComputeResult(correlationResults, format = 'igraph')
-MicrobiomeDB::network(myCorrelationDT) # will render a network visualization of the results using widgets from our own `corGraph` project
+MicrobiomeDB::correlationNetwork(myCorrelationDT) # will render a network visualization of the results using widgets from our own `corGraph` project
 
 getMetadataVariableNames(DiabImmune) # will print names of metadata variables you can ask for
 myAlphaDivDT <- getComputeResultWithMetadata(alphaDivResults, DiabImmune, 'host_body_site')

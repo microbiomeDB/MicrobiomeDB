@@ -109,3 +109,38 @@ function(object, dataset = NULL, format = c("data.table"), metadataVariables = N
 
     return(dt)
 })
+
+#' Correlation Network Visualization
+#' 
+#' Visualize a correlation result as a network
+#' @param object A ComputeResult or data.frame
+#' @export
+#' @rdname correlationNetwork
+setGeneric("correlationNetwork", function(object) standardGeneric("correlationNetwork"))
+
+#' @rdname correlationNetwork
+#' @aliases correlationNetwork,ComputeResult-method
+setMethod("correlationNetwork", "ComputeResult", function(object) {
+    edgeList <- getComputeResult(object)
+
+    return(correlationNetwork(edgeList))
+})
+
+#' @rdname correlationNetwork
+#' @aliases correlationNetwork,data.frame-method
+setMethod("correlationNetwork", "data.frame", function(object) {
+    warning("data.frame input assumes the first two columns are source and target.")
+    names(object) <- c("source", "target", "value", "pValue")
+    
+    sources <- unique(object$source)
+    targets <- unique(object$target)
+
+    #are all sources different from targets?
+    if (all(sources %in% setdiff(sources,targets))) {
+        net <- corGraph::bipartiteNetwork(object)
+    } else {
+        net <- corGraph::unipartiteNetwork(object)
+    }
+
+    return(net)
+})

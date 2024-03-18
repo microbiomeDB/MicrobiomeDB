@@ -43,6 +43,15 @@ test_that("we can get compute results in different formats", {
     correlationIGraph <- getComputeResult(correlationOutput, "igraph")
     expect_equal(inherits(correlationIGraph, "igraph"), TRUE)
 
+    correlationBipartiteWidget <- correlationNetwork(correlationOutput)
+    expect_equal(inherits(correlationBipartiteWidget, "htmlwidget"), TRUE)
+    expect_equal(inherits(correlationBipartiteWidget, "bipartitenetwork"), TRUE)
+
+    selfCorrelationOutput <- MicrobiomeDB::selfCorrelation(genus, method='spearman', verbose=FALSE)
+    correlationUnipartiteWidget <- correlationNetwork(selfCorrelationOutput)
+    expect_equal(inherits(correlationUnipartiteWidget, "htmlwidget"), TRUE)
+    expect_equal(inherits(correlationUnipartiteWidget, "unipartitenetwork"), TRUE)
+
     # make sure getComputeResultWithMetadata works
     alphaDivOutput <- MicrobiomeDB::alphaDiv(getCollection(mbioDataset, "16S Genus"), method='shannon', verbose=FALSE)
     expect_equal(inherits(alphaDivOutput, "ComputeResult"), TRUE)
