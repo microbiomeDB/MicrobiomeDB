@@ -12,6 +12,7 @@ This package is intended to be used to explore the curated datasets from Microbi
 Useful links:
 \itemize{
   \item \url{https://github.com/microbiomeDB/MicrobiomeDB}
+  \item \url{https://microbiomedb.github.io/MicrobiomeDB/}
   \item Report bugs at \url{https://github.com/microbiomeDB/MicrobiomeDB/issues}
 }
 
