@@ -25,6 +25,8 @@ getComputeResult(object, format = c("data.table"), ...)
 
 \item{format}{The format of the compute result. Currently only "data.table" and "igraph" are supported.}
 
+\item{...}{additional arguments passed to getComputeResult method of the subclasses of ComputeResult}
+
 \item{correlationCoefThreshold}{threshold to filter edges by correlation coefficient.
 Edges with correlation coefficients below this threshold will be removed. Default is .5}
 

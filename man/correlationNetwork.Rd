@@ -6,14 +6,16 @@
 \alias{correlationNetwork,data.frame-method}
 \title{Correlation Network Visualization}
 \usage{
-correlationNetwork(object)
+correlationNetwork(object, ...)
 
 \S4method{correlationNetwork}{ComputeResult}(object)
 
-\S4method{correlationNetwork}{data.frame}(object)
+\S4method{correlationNetwork}{data.frame}(object, bipartiteNetwork = c(FALSE, TRUE))
 }
 \arguments{
 \item{object}{A ComputeResult or data.frame}
+
+\item{...}{additional arguments specific to particular methods of correlationNetwork}
 }
 \description{
 Visualize a correlation result as a network
