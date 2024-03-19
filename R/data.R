@@ -23,7 +23,21 @@ getCuratedDatasetNames <- function() {
 	    'Bangladesh',
 	    'HMP_WGS',
 	    'BONUS',
-	    'NICU_NEC'
+	    'NICU_NEC',
+	    'GEMS1',
+	    'DailyBaby',
+	    'HMP_V1V3',
+	    'HMP_V3V5',
+	    'Anopheles_albimanus',
+	    'ECAM',
+	    'Leishmaniasis',
+	    'MALED_2yr',
+	    'MALED_diarrhea',
+	    'MORDOR',
+	    'Malaysia_helminth',
+	    'PretermInfantResistome1',
+	    'EcoCF',
+		'PIH_Uganda'
 	)
 }
 
