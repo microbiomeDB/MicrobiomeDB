@@ -145,7 +145,7 @@ setMethod("correlationNetwork", "ComputeResult", function(object, correlationCoe
         isBipartite <- TRUE
     }
 
-    return(correlationNetwork(edgeList, bipartiteNetwork = isBipartite))
+    return(suppressWarnings(correlationNetwork(edgeList, bipartiteNetwork = isBipartite)))
 })
 
 #' @rdname correlationNetwork
