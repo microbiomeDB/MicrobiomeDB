@@ -121,14 +121,17 @@ function(object, dataset = NULL, format = c("data.table"), metadataVariables = N
 #' 
 #' Visualize a correlation result as a network
 #' @param object A ComputeResult or data.frame
-#' @param ... additional arguments specific to particular methods of correlationNetwork
+#' @param correlationCoefThreshold threshold to filter edges by correlation coefficient.
+#' Edges with correlation coefficients below this threshold will be removed. Default is .5
+#' @param pValueThreshold threshold to filter edges by p-value. Edges with p-values above this threshold will be removed. Default is .05
+#' @param ... additional arguments
 #' @export
 #' @rdname correlationNetwork
-setGeneric("correlationNetwork", function(object, ...) standardGeneric("correlationNetwork"))
+setGeneric("correlationNetwork", function(object, correlationCoefThreshold = .5, pValueThreshold = .05, ...) standardGeneric("correlationNetwork"))
 
 #' @rdname correlationNetwork
 #' @aliases correlationNetwork,ComputeResult-method
-setMethod("correlationNetwork", "ComputeResult", function(object) {
+setMethod("correlationNetwork", "ComputeResult", function(object, correlationCoefThreshold = .5, pValueThreshold = .05, ...) {
     if (!length(object@statistics)) {
         stop("ComputeResult has no statistics")
     }
@@ -136,13 +139,13 @@ setMethod("correlationNetwork", "ComputeResult", function(object) {
         stop("ComputeResult statistics must be a CorrelationResult")
     }
 
-    edgeList <- getComputeResult(object)
+    edgeList <- getComputeResult(object, correlationCoefThreshold = correlationCoefThreshold, pValueThreshold = pValueThreshold)
     isBipartite <- FALSE
     if (object@computationDetails != "selfCorrelation") {
         isBipartite <- TRUE
     }
 
-    return(correlationNetwork(edgeList, isBipartite))
+    return(correlationNetwork(edgeList, bipartiteNetwork = isBipartite))
 })
 
 #' @rdname correlationNetwork
@@ -150,12 +153,19 @@ setMethod("correlationNetwork", "ComputeResult", function(object) {
 #' @aliases correlationNetwork,data.frame-method
 #' @importFrom corGraph bipartiteNetwork
 #' @importFrom corGraph unipartiteNetwork
-setMethod("correlationNetwork", "data.frame", function(object, bipartiteNetwork = c(FALSE, TRUE)) {
+setMethod("correlationNetwork", "data.frame", function(
+    object, 
+    correlationCoefThreshold = .5, 
+    pValueThreshold = .05, 
+    bipartiteNetwork = c(FALSE, TRUE)
+) {
     bipartiteNetwork <- veupathUtils::matchArg(bipartiteNetwork)
 
-    warning("data.frame input assumes the first two columns are source and target.")
+    warning("data.frame input assumes the columns are in the following order: source, target, correlationCoef, pValue.")
     names(object) <- c("source", "target", "value", "pValue")
-    
+
+    object <- object[object$value >= correlationCoefThreshold & object$pValue <= pValueThreshold, ]
+
     sources <- unique(object$source)
     targets <- unique(object$target)
 

@@ -6,16 +6,36 @@
 \alias{correlationNetwork,data.frame-method}
 \title{Correlation Network Visualization}
 \usage{
-correlationNetwork(object, ...)
+correlationNetwork(
+  object,
+  correlationCoefThreshold = 0.5,
+  pValueThreshold = 0.05,
+  ...
+)
 
-\S4method{correlationNetwork}{ComputeResult}(object)
+\S4method{correlationNetwork}{ComputeResult}(
+  object,
+  correlationCoefThreshold = 0.5,
+  pValueThreshold = 0.05,
+  ...
+)
 
-\S4method{correlationNetwork}{data.frame}(object, bipartiteNetwork = c(FALSE, TRUE))
+\S4method{correlationNetwork}{data.frame}(
+  object,
+  correlationCoefThreshold = 0.5,
+  pValueThreshold = 0.05,
+  bipartiteNetwork = c(FALSE, TRUE)
+)
 }
 \arguments{
 \item{object}{A ComputeResult or data.frame}
 
-\item{...}{additional arguments specific to particular methods of correlationNetwork}
+\item{correlationCoefThreshold}{threshold to filter edges by correlation coefficient.
+Edges with correlation coefficients below this threshold will be removed. Default is .5}
+
+\item{pValueThreshold}{threshold to filter edges by p-value. Edges with p-values above this threshold will be removed. Default is .05}
+
+\item{...}{additional arguments}
 
 \item{bipartiteNetwork}{Should the network use a bipartite or unipartite layout? Defaults to unipartite.}
 }
