@@ -5,6 +5,7 @@ collectionNamesGeneric <- getGeneric("getCollectionNames", "veupathUtils")
 #' @param object An MbioDataset
 #' @return A character vector of collection names
 #' @export
+#' @importFrom veupathUtils getCollectionNames
 setMethod(collectionNamesGeneric, "MbioDataset", function(object) return(unname(getCollectionNames(object@collections))))
 
 metadataVarNamesGeneric <- getGeneric("getMetadataVariableNames", "veupathUtils")
@@ -14,6 +15,7 @@ metadataVarNamesGeneric <- getGeneric("getMetadataVariableNames", "veupathUtils"
 #' @param object An MbioDataset
 #' @return a character vector of metadata variable names
 #' @export
+#' @importFrom veupathUtils getMetadataVariableNames
 setMethod(metadataVarNamesGeneric, "MbioDataset", function(object) return(names(object@metadata@data)))
 
 sampleMetadataGeneric <- getGeneric("getSampleMetadata", "veupathUtils")
@@ -93,7 +95,7 @@ setMethod("updateCollectionName", "MbioDataset", function(object, oldName, newNa
 #' @param continuousMetadataOnly If TRUE, only continuous metadata will be returned. If FALSE, all metadata will be returned.
 #' @return An AbundanceData, phyloseq, or Collection object representing the collection and any associated study metadata
 #' @importFrom phyloseq phyloseq
-#' @include class-AbundanceData.R
+#' @importFrom microbiomeComputations AbundanceData
 #' @rdname getCollection
 #' @export
 setGeneric("getCollection", function(object, collectionName, format = c("AbundanceData", "phyloseq", "Collection"), continuousMetadataOnly = c(FALSE, TRUE)) standardGeneric("getCollection"))
