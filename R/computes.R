@@ -15,7 +15,6 @@ microbiomeComputations::betaDiv
 microbiomeComputations::differentialAbundance
 
 #' @importFrom veupathUtils correlation
-#' @importFrom microbiomeComputations correlation
 #' @export
 veupathUtils::correlation
 

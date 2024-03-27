@@ -59,13 +59,13 @@ setMethod("getComputeResult", "DifferentialAbundanceResult", function(object, fo
     return(data.table::setDT(object@statistics))
 })
 
-#' @importFrom microbiomeData getSampleMetadata
-#' @importFrom microbiomeData getSampleMetadataIdColumns
+#' @importFrom veupathUtils getSampleMetadata
+#' @importFrom veupathUtils getSampleMetadataIdColumns
 mergeComputeResultAndMetadata <- function(computeResult, dataset, metadataVariables) {
     dt <- getComputeResult(computeResult, "data.table")
-    metadata <- microbiomeData::getSampleMetadata(dataset, includeIds = TRUE, metadataVariables = metadataVariables)
+    metadata <- veupathUtils::getSampleMetadata(dataset, includeIds = TRUE, metadataVariables = metadataVariables)
 
-    metadataIdColumns <- microbiomeData::getSampleMetadataIdColumns(dataset)
+    metadataIdColumns <- veupathUtils::getSampleMetadataIdColumns(dataset)
     dt <- merge(dt, metadata, by = metadataIdColumns, all.x = TRUE)
 
     return(dt)
