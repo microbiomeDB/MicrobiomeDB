@@ -163,13 +163,25 @@ setMethod("getCollection", "MbioDataset", function(object, collectionName = char
     
     if (format == "AbundanceData") {
 
-        abundanceData <- AbundanceData(
-            name = collection@name,
-            data = collectionDT, 
-            sampleMetadata = sampleMetadata, 
-            recordIdColumn = collection@recordIdColumn,
-            ancestorIdColumns = collection@ancestorIdColumns
-        )
+        collectionDataDT <- collectionDT[, -collectionIdColumns, with = FALSE]
+        if (all(collectionDataDT == round(collectionDataDT), na.rm = TRUE)) {
+            veupathUtils::logWithTime("Integer values detected. Converting collection to AbsoluteAbundanceData", verbose = TRUE)
+            abundanceData <- AbsoluteAbundanceData(
+                name = collection@name,
+                data = collectionDT, 
+                sampleMetadata = sampleMetadata, 
+                recordIdColumn = collection@recordIdColumn,
+                ancestorIdColumns = collection@ancestorIdColumns
+            )
+        } else {
+            abundanceData <- AbundanceData(
+                name = collection@name,
+                data = collectionDT, 
+                sampleMetadata = sampleMetadata, 
+                recordIdColumn = collection@recordIdColumn,
+                ancestorIdColumns = collection@ancestorIdColumns
+            )
+        }       
 
     } else if (format == "phyloseq") {
 
