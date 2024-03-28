@@ -46,7 +46,12 @@ test_that("we can create a new MbioDataset", {
 
 test_that("we can update collection names and get collections", {
     mbioDataset <- MbioDataset(
-        Collection("my collection", data.frame(entity.id = 1, entity.collection_x = 1, entity.collection_y = 2, ancestor.y = 1), "entity.id", "ancestor.y"), 
+        list(
+            Collection("my collection", 
+                data.frame(entity.id = 1, entity.collection_x = 1, entity.collection_y = 2, ancestor.y = 1), "entity.id", "ancestor.y"), 
+            Collection("my collection 2", 
+                data.frame(entity.id = 1, entity.collection_x = .1, entity.collection_y = .2, ancestor.y = 1), "entity.id", "ancestor.y")
+        ),
         SampleMetadata()
     )
 
@@ -56,8 +61,14 @@ test_that("we can update collection names and get collections", {
     expect_equal(getCollectionNames(testDataset)[[1]], "My Collection")
 
     testCollection <- getCollection(testDataset, "My Collection")
-    expect_s4_class(testCollection, "AbundanceData")
+    expect_s4_class(testCollection, "AbsoluteAbundanceData")
     expect_equal(testCollection@data, data.table::data.table(entity.id = 1, entity.collection_x = 1, entity.collection_y = 2, ancestor.y = 1))
+    expect_equal(testCollection@recordIdColumn, "entity.id")
+    expect_equal(testCollection@ancestorIdColumns, "ancestor.y")
+
+    testCollection <- getCollection(testDataset, "my collection 2")
+    expect_s4_class(testCollection, "AbundanceData")
+    expect_equal(testCollection@data, data.table::data.table(entity.id = 1, entity.collection_x = .1, entity.collection_y = .2, ancestor.y = 1))
     expect_equal(testCollection@recordIdColumn, "entity.id")
     expect_equal(testCollection@ancestorIdColumns, "ancestor.y")
 
