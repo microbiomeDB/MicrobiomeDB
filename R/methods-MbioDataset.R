@@ -91,18 +91,18 @@ setMethod("updateCollectionName", "MbioDataset", function(object, oldName, newNa
 #' as an AbundanceData, phyloseq, or Collection object.
 #' @param object A Microbiome Dataset
 #' @param collectionName The name of the collection to return
-#' @param format The format of the collection to return. Currently supported options are "AbundanceData", "phyloseq", "DESeqDataSet", and "Collection".
+#' @param format The format of the collection to return. Currently supported options are "AbundanceData", "phyloseq" and "Collection".
 #' @param continuousMetadataOnly If TRUE, only continuous metadata will be returned. If FALSE, all metadata will be returned.
 #' @return An AbundanceData, phyloseq, or Collection object representing the collection and any associated study metadata
 #' @importFrom phyloseq phyloseq
 #' @importFrom microbiomeComputations AbundanceData
 #' @rdname getCollection
 #' @export
-setGeneric("getCollection", function(object, collectionName, format = c("AbundanceData", "phyloseq", "Collection", "DESeqDataSet"), continuousMetadataOnly = c(FALSE, TRUE)) standardGeneric("getCollection"))
+setGeneric("getCollection", function(object, collectionName, format = c("AbundanceData", "phyloseq", "Collection"), continuousMetadataOnly = c(FALSE, TRUE)) standardGeneric("getCollection"))
 
 #' @rdname getCollection
 #' @aliases getCollection,MbioDataset,character-method
-setMethod("getCollection", "MbioDataset", function(object, collectionName = character(0), format = c("AbundanceData", "phyloseq", "Collection", "DESeqDataSet"), continuousMetadataOnly = c(FALSE, TRUE)) {
+setMethod("getCollection", "MbioDataset", function(object, collectionName = character(0), format = c("AbundanceData", "phyloseq", "Collection"), continuousMetadataOnly = c(FALSE, TRUE)) {
     format <- veupathUtils::matchArg(format)
     continuousMetadataOnly <- veupathUtils::matchArg(continuousMetadataOnly)
     
@@ -181,12 +181,7 @@ setMethod("getCollection", "MbioDataset", function(object, collectionName = char
                 recordIdColumn = collection@recordIdColumn,
                 ancestorIdColumns = collection@ancestorIdColumns
             )
-        }   
-
-        if (format == "DESeqDataSet") {
-            abundanceData <- MicrobiomeDB::DESeqDataSetFromCollection(abundanceData)
-        }    
-
+        }
     } else if (format == "phyloseq") {
 
         sampleNames <- collectionDT[[collection@recordIdColumn]]

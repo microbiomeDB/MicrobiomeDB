@@ -9,14 +9,14 @@
 getCollection(
   object,
   collectionName,
-  format = c("AbundanceData", "phyloseq", "Collection", "DESeqDataSet"),
+  format = c("AbundanceData", "phyloseq", "Collection"),
   continuousMetadataOnly = c(FALSE, TRUE)
 )
 
 \S4method{getCollection}{MbioDataset}(
   object,
   collectionName = character(0),
-  format = c("AbundanceData", "phyloseq", "Collection", "DESeqDataSet"),
+  format = c("AbundanceData", "phyloseq", "Collection"),
   continuousMetadataOnly = c(FALSE, TRUE)
 )
 }
@@ -25,7 +25,7 @@ getCollection(
 
 \item{collectionName}{The name of the collection to return}
 
-\item{format}{The format of the collection to return. Currently supported options are "AbundanceData", "phyloseq", "DESeqDataSet", and "Collection".}
+\item{format}{The format of the collection to return. Currently supported options are "AbundanceData", "phyloseq" and "Collection".}
 
 \item{continuousMetadataOnly}{If TRUE, only continuous metadata will be returned. If FALSE, all metadata will be returned.}
 }
