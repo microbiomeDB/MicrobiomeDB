@@ -14,10 +14,10 @@ assignGroups <- function(x, groupAPredicate, groupBPredicate = NULL) {
     if (!is.null(groupBPredicate)) {
         groupBIndexes <- which(groupBPredicate(x))
     } else {
-        groupBIndexes <- !which(groupAPredicate(x))
+        groupBIndexes <- which(!groupAPredicate(x))
     }
 
-    if (intersect(groupAIndexes, groupBIndexes)) {
+    if (length(intersect(groupAIndexes, groupBIndexes)) > 0) {
         stop("Arguments 'groupAPredicate' and 'groupBPredicate' must not return the same indexes")
     }
 
@@ -80,48 +80,54 @@ function(data, covariate, groupAPredicate, groupBPredicate, method = c("Maaslin2
 
 #' @rdname differentialAbundance-methods
 #' @aliases differentialAbundance,CollectionWithMetadata,character,missingOrNULL,missingOrNULL-method
-setMethod("differentialAbundance", signature("CollectionWithMetadata", "character", missingOrNULL, missingOrNULL), 
+setMethod("differentialAbundance", signature("CollectionWithMetadata", "character", "missingOrNULL", "missingOrNULL"), 
 function(data, covariate, groupAPredicate, groupBPredicate, method = c("Maaslin2", "DESeq2"), verbose = c(TRUE, FALSE)) {
-    if (data.table::uniqueN(data@metadata[[covariate]]) < 2) {
+    verbose <- veupathUtils::matchArg(verbose)
+
+    if (data.table::uniqueN(data@sampleMetadata@data[[covariate]]) < 2) {
         stop("Argument 'covariate' must have at least two unique values")
-    } else if (data.table::uniqueN(data@metadata[[covariate]]) > 2) {
+    } else if (data.table::uniqueN(data@sampleMetadata@data[[covariate]]) > 2) {
         stop("Argument 'covariate' must have exactly two unique values if no 'groupAPredicate' is provided.")
     }
 
-    groupALabel <- unique(data@metadata[[covariate]])[1]
-    groupBLabel <- unique(data@metadata[[covariate]])[2]
+    groupALabel <- unique(data@sampleMetadata@data[[covariate]])[1]
+    groupBLabel <- unique(data@sampleMetadata@data[[covariate]])[2]
     comparator <- buildBinaryComparator(covariate, groupALabel, groupBLabel)
     
-    return(microbiomeComputations::differentialAbundance(data, comparator, method, verbose))
+    return(microbiomeComputations::differentialAbundance(data, comparator = comparator, method = method, verbose = verbose))
 })
 
 #' @rdname differentialAbundance-methods
 #' @aliases differentialAbundance,CollectionWithMetadata,character,function,missingOrNULL-method
-setMethod("differentialAbundance", signature("CollectionWithMetadata", "character", "function", missingOrNULL),
+setMethod("differentialAbundance", signature("CollectionWithMetadata", "character", "function", "missingOrNULL"),
 function(data, covariate, groupAPredicate, groupBPredicate, method = c("Maaslin2", "DESeq2"), verbose = c(TRUE, FALSE)) {
-    if (data.table::uniqueN(data@metadata[[covariate]]) < 2) {
+    verbose <- veupathUtils::matchArg(verbose)
+
+    if (data.table::uniqueN(data@sampleMetadata@data[[covariate]]) < 2) {
         stop("Argument 'covariate' must have at least two unique values")
     }
 
-    data@metadata[[covariate]] <- assignGroups(data@metadata[[covariate]], groupAPredicate, NULL)
+    data@sampleMetadata@data[[covariate]] <- assignGroups(data@sampleMetadata@data[[covariate]], groupAPredicate, NULL)
     comparator <- buildBinaryComparator(covariate, 'groupA', 'groupB')
 
-    return(microbiomeComputations::differentialAbundance(data, comparator, method, verbose))
+    return(microbiomeComputations::differentialAbundance(data, comparator = comparator, method = method, verbose = verbose))
 })
 
 #' @rdname differentialAbundance-methods
 #' @aliases differentialAbundance,CollectionWithMetadata,character,function,function-method
 setMethod("differentialAbundance", signature("CollectionWithMetadata", "character", "function", "function"),
 function(data, covariate, groupAPredicate, groupBPredicate, method = c("Maaslin2", "DESeq2"), verbose = c(TRUE, FALSE)) {
-    if (data.table::uniqueN(data@metadata[[covariate]]) < 2) {
+    verbose <- veupathUtils::matchArg(verbose)
+    
+    if (data.table::uniqueN(data@sampleMetadata@data[[covariate]]) < 2) {
         stop("Argument 'covariate' must have at least two unique values")
     }
 
-    data@metadata[[covariate]] <- assignGroups(data@metadata[[covariate]], groupAPredicate, groupBPredicate)
+    data@sampleMetadata@data[[covariate]] <- assignGroups(data@sampleMetadata@data[[covariate]], groupAPredicate, groupBPredicate)
     comparator <- buildBinaryComparator(covariate, 'groupA', 'groupB')
 
     ## microbiomeComputations will remove for us rows not in either group, and provide validation
-    return(microbiomeComputations::differentialAbundance(data, comparator, method, verbose))
+    return(microbiomeComputations::differentialAbundance(data, comparator = comparator, method = method, verbose = verbose))
 })
 
 #### NOTE: While i think its important for people to be able to recreate the computes from the site, and tried to make
@@ -141,21 +147,25 @@ function(data, covariate, groupAPredicate, groupBPredicate, method = c("Maaslin2
 #' @param verbose boolean indicating if timed logging is desired
 #' @param ... additional arguments to pass to Maaslin2::Maaslin2
 #' @importFrom Maaslin2 Maaslin2
+#' @import data.table
 #' @rdname Maaslin2
 #' @export
 setGeneric("Maaslin2", function(data, verbose = c(TRUE,FALSE), ...) standardGeneric("Maaslin2"), signature = c("data"))
 
 #' @rdname Maaslin2
 #' @aliases Maaslin2,CollectionWithMetadata-method
-setMethod("Maaslin2", signature(CollectionWithMetadata), function(data, verbose = c(TRUE,FALSE), ...) {
+setMethod("Maaslin2", signature("CollectionWithMetadata"), function(data, verbose = c(TRUE,FALSE), ...) {
+    verbose <- veupathUtils::matchArg(verbose)
+    
     recordIdColumn <- data@recordIdColumn
     ancestorIdColumns <- data@ancestorIdColumns
     allIdColumns <- c(recordIdColumn, ancestorIdColumns)
     sampleMetadata <- veupathUtils::getSampleMetadata(data)
     abundances <- microbiomeComputations::getAbundances(data)
+    print(class(abundances))
 
     # First, remove id columns and any columns that are all 0s.
-    cleanedData <- purrr::discard(abundances[, -..allIdColumns], function(col) {identical(union(unique(col), c(0, NA)), c(0, NA))})
+    cleanedData <- purrr::discard(abundances[, -allIdColumns, with=FALSE], function(col) {identical(union(unique(col), c(0, NA)), c(0, NA))})
     rownames(cleanedData) <- abundances[[recordIdColumn]]
     rownames(sampleMetadata) <- sampleMetadata[[recordIdColumn]]
 
@@ -188,7 +198,9 @@ setGeneric("DESeqDataSetFromCollection", function(data, verbose = c(TRUE,FALSE),
 
 #' @rdname DESeqDataSetFromCollection
 #' @aliases DESeqDataSetFromCollection,AbsoluteAbundanceData-method
-setMethod("DESeqDataSetFromCollection", signature(AbsoluteAbundanceData), function(data, verbose = c(TRUE,FALSE), ...) {
+setMethod("DESeqDataSetFromCollection", signature("AbsoluteAbundanceData"), function(data, verbose = c(TRUE,FALSE), ...) {
+    verbose <- veupathUtils::matchArg(verbose)
+    
     recordIdColumn <- data@recordIdColumn
     ancestorIdColumns <- data@ancestorIdColumns
     allIdColumns <- c(recordIdColumn, ancestorIdColumns)
