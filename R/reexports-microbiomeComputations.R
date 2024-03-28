@@ -10,10 +10,6 @@ microbiomeComputations::alphaDiv
 #' @export
 microbiomeComputations::betaDiv
 
-#' @importFrom microbiomeComputations differentialAbundance
-#' @export
-microbiomeComputations::differentialAbundance
-
 #' @importFrom veupathUtils correlation
 #' @export
 veupathUtils::correlation
