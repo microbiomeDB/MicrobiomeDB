@@ -51,6 +51,8 @@ sampleMetadataFromDataSources <- function(dataSources) {
 #' @param ontology An data.frame containing the ontology of the dataset, or a character vector
 #'  containing a file path to a data.frame
 #' @export
+#' @importFrom veupathUtils Collection
+#' @importFrom veupathUtils Collections
 #' @rdname MbioDataset-methods
 setGeneric("MbioDataset", function(collections, metadata, ontology) standardGeneric("MbioDataset"))
 
