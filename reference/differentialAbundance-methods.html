@@ -149,41 +149,6 @@ Default is 'Maaslin2', as 'DESeq2' only supports counts.</p></dd>
 <p>ComputeResult object</p>
     </div>
 
-    <div class="section level2">
-    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## Find the DiabImmune dataset in our microbiomeData package at https://github.com/microbiomeDB/microbiomeData!!</span></span></span>
-<span class="r-in"><span><span class="co">## a continuous variable</span></span></span>
-<span class="r-in"><span><span class="va">diffAbundOutput</span> <span class="op">&lt;-</span> <span class="fu">MicrobiomeDB</span><span class="fu">::</span><span class="fu">differentialAbundance</span><span class="op">(</span></span></span>
-<span class="r-in"><span>       <span class="fu"><a href="getCollection.html">getCollection</a></span><span class="op">(</span><span class="va">DiabImmune</span>, <span class="st">'16S Genus'</span><span class="op">)</span>, </span></span>
-<span class="r-in"><span>       <span class="st">"breastfed_duration_days"</span>, </span></span>
-<span class="r-in"><span>       groupA <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span><span class="op">&lt;</span><span class="fl">300</span><span class="op">}</span>,</span></span>
-<span class="r-in"><span>       groupB <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span><span class="op">&gt;=</span><span class="fl">300</span><span class="op">}</span>,</span></span>
-<span class="r-in"><span>       method<span class="op">=</span><span class="st">'Maaslin2'</span>, </span></span>
-<span class="r-in"><span>       verbose<span class="op">=</span><span class="cn">TRUE</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in h(simpleError(msg, call)):</span> error in evaluating the argument 'data' in selecting a method for function 'differentialAbundance': error in evaluating the argument 'object' in selecting a method for function 'getCollection': object 'DiabImmune' not found</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## a categorical variable with 3 values, one of which we exclude</span></span></span>
-<span class="r-in"><span><span class="va">diffAbundOutput</span> <span class="op">&lt;-</span> <span class="fu">MicrobiomeDB</span><span class="fu">::</span><span class="fu">differentialAbundance</span><span class="op">(</span></span></span>
-<span class="r-in"><span>       <span class="fu"><a href="getCollection.html">getCollection</a></span><span class="op">(</span><span class="va">DiabImmune</span>, <span class="st">'16S Genus'</span><span class="op">)</span>, </span></span>
-<span class="r-in"><span>       <span class="st">"country"</span>, </span></span>
-<span class="r-in"><span>       groupA <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span><span class="op">==</span><span class="st">"Russia"</span><span class="op">}</span>,</span></span>
-<span class="r-in"><span>       groupB <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span><span class="op">==</span><span class="st">"Finland"</span><span class="op">}</span>,</span></span>
-<span class="r-in"><span>       method<span class="op">=</span><span class="st">'Maaslin2'</span>, </span></span>
-<span class="r-in"><span>       verbose<span class="op">=</span><span class="cn">FALSE</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in h(simpleError(msg, call)):</span> error in evaluating the argument 'data' in selecting a method for function 'differentialAbundance': error in evaluating the argument 'object' in selecting a method for function 'getCollection': object 'DiabImmune' not found</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## a categorical variable with 2 values</span></span></span>
-<span class="r-in"><span><span class="va">diffAbundOutput</span> <span class="op">&lt;-</span> <span class="fu">MicrobiomeDB</span><span class="fu">::</span><span class="fu">differentialAbundance</span><span class="op">(</span></span></span>
-<span class="r-in"><span>       <span class="fu"><a href="getCollection.html">getCollection</a></span><span class="op">(</span><span class="va">DiabImmune</span>, <span class="st">'16S Genus'</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>       <span class="st">"delivery_mode"</span>,</span></span>
-<span class="r-in"><span>       method<span class="op">=</span><span class="st">'Maaslin2'</span>, </span></span>
-<span class="r-in"><span>       verbose<span class="op">=</span><span class="cn">FALSE</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in h(simpleError(msg, call)):</span> error in evaluating the argument 'data' in selecting a method for function 'differentialAbundance': error in evaluating the argument 'object' in selecting a method for function 'getCollection': object 'DiabImmune' not found</span>
-</code></pre></div>
-    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 
