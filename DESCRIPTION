@@ -10,10 +10,14 @@ biocViews:
 Imports:
     corGraph,
     data.table,
+    DESeq2,
     igraph,
     veupathUtils,
+    Maaslin2,
     methods,
-    microbiomeComputations
+    microbiomeComputations,
+    phyloseq,
+    purrr
 Remotes:
     VEuPathDB/veupathUtils,
     microbiomeDB/corGraph,
