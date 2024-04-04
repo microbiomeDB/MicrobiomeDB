@@ -13,10 +13,31 @@
     <loc>https://microbiomedb.github.io/MicrobiomeDB/index.html</loc>
   </url>
   <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/DESeqDataSetFromCollection.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/Maaslin2.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/MbioDataset-class.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/MbioDataset-methods.html</loc>
+  </url>
+  <url>
     <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/MicrobiomeDB-package.html</loc>
   </url>
   <url>
     <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/correlationNetwork.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/differentialAbundance-methods.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/getCollection.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/getCollectionNames-MbioDataset-method.html</loc>
   </url>
   <url>
     <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/getComputeResult.html</loc>
@@ -25,12 +46,21 @@
     <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/getComputeResultWithMetadata.html</loc>
   </url>
   <url>
-    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/getCuratedDatasetNames.html</loc>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/getMetadataVariableNames-MbioDataset-method.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/getSampleMetadata-MbioDataset-method.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/getSampleMetadataIdColumns-MbioDataset-method.html</loc>
   </url>
   <url>
     <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/index.html</loc>
   </url>
   <url>
     <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/reexports.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/updateCollectionName.html</loc>
   </url>
 </urlset>
