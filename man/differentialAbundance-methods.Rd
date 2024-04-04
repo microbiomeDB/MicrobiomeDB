@@ -74,33 +74,3 @@ about the data which may not be valid in other contexts. For better support of
 longitudinal studies or metabolomic data, for example, please see our wrapper/ helper methods
 for Maaslin2 (\code{MicrobiomeDB::Maaslin2}) and DESeq2 (\code{DESeqDataSetFromCollection}).
 }
-\examples{
-## Find the DiabImmune dataset in our microbiomeData package at https://github.com/microbiomeDB/microbiomeData!!
-## a continuous variable
-diffAbundOutput <- MicrobiomeDB::differentialAbundance(
-       getCollection(DiabImmune, '16S Genus'), 
-       "breastfed_duration_days", 
-       groupA = function(x) {x<300},
-       groupB = function(x) {x>=300},
-       method='Maaslin2', 
-       verbose=TRUE
-)
-
-## a categorical variable with 3 values, one of which we exclude
-diffAbundOutput <- MicrobiomeDB::differentialAbundance(
-       getCollection(DiabImmune, '16S Genus'), 
-       "country", 
-       groupA = function(x) {x=="Russia"},
-       groupB = function(x) {x=="Finland"},
-       method='Maaslin2', 
-       verbose=FALSE
-)
-
-## a categorical variable with 2 values
-diffAbundOutput <- MicrobiomeDB::differentialAbundance(
-       getCollection(DiabImmune, '16S Genus'),
-       "delivery_mode",
-       method='Maaslin2', 
-       verbose=FALSE
-)
-}
