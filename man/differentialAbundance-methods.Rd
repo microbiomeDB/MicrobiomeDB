@@ -10,8 +10,8 @@
 differentialAbundance(
   data,
   covariate,
-  groupAPredicate,
-  groupBPredicate,
+  groupA,
+  groupB,
   method = c("Maaslin2", "DESeq2"),
   verbose = c(TRUE, FALSE)
 )
@@ -19,8 +19,8 @@ differentialAbundance(
 \S4method{differentialAbundance}{CollectionWithMetadata,character,missingOrNULL,missingOrNULL}(
   data,
   covariate,
-  groupAPredicate,
-  groupBPredicate,
+  groupA,
+  groupB,
   method = c("Maaslin2", "DESeq2"),
   verbose = c(TRUE, FALSE)
 )
@@ -28,8 +28,8 @@ differentialAbundance(
 \S4method{differentialAbundance}{CollectionWithMetadata,character,function,missingOrNULL}(
   data,
   covariate,
-  groupAPredicate,
-  groupBPredicate,
+  groupA,
+  groupB,
   method = c("Maaslin2", "DESeq2"),
   verbose = c(TRUE, FALSE)
 )
@@ -37,8 +37,8 @@ differentialAbundance(
 \S4method{differentialAbundance}{CollectionWithMetadata,character,function,function}(
   data,
   covariate,
-  groupAPredicate,
-  groupBPredicate,
+  groupA,
+  groupB,
   method = c("Maaslin2", "DESeq2"),
   verbose = c(TRUE, FALSE)
 )
@@ -46,9 +46,17 @@ differentialAbundance(
 \arguments{
 \item{data}{AbundanceData object}
 
-\item{covariate}{character vector giving the name of a metadata variable of interest}
+\item{covariate}{character vector giving the name of a metadata variable of interest. If this
+variable has only two values, you do not need to provide functions for arguments \code{groupA} and \code{groupB}.}
 
-\item{method}{string defining the the differential abundance method. Accepted values are 'DESeq2' and 'Maaslin2'.}
+\item{groupA}{A function that takes a vector of values and returns TRUE or FALSE for each value. This will
+be used to assign samples to groupA.}
+
+\item{groupB}{A function that takes a vector of values and returns TRUE or FALSE for each value. This will
+be used to assign samples to groupB. If not provided, groupB will be the complement of groupA.}
+
+\item{method}{string defining the the differential abundance method. Accepted values are 'DESeq2' and 'Maaslin2'.
+Default is 'Maaslin2', as 'DESeq2' only supports counts.}
 
 \item{verbose}{boolean indicating if timed logging is desired}
 }
@@ -57,10 +65,41 @@ ComputeResult object
 }
 \description{
 This function returns the fold change and associated p value for
-a differential abundance analysis comparing samples in two groups.
-It is useful for recreating the results of differential abundance analyses
-from MicrobiomeDB.org, but we recognize makes some assumptions about the data
-which may not be valid in other contexts. For better support of longitudinal studies
-or metabolomic data, for example, please see our wrapper/ helper methods for
-Maaslin2 (\code{MicrobiomeDB::Maaslin2}) and DESeq2 (\code{DESeqDataSetFromCollection}).
+a differential abundance analysis. It is useful for finding taxa with
+an abundance that strongly differs between two groups of samples,
+such as finding taxa with abundance that differs between skin and saliva samples.
+This function allows one to recreate the results of differential abundance analysis
+from MicrobiomeDB.org. However, we recognize that this function makes some assumptions
+about the data which may not be valid in other contexts. For better support of
+longitudinal studies or metabolomic data, for example, please see our wrapper/ helper methods
+for Maaslin2 (\code{MicrobiomeDB::Maaslin2}) and DESeq2 (\code{DESeqDataSetFromCollection}).
+}
+\examples{
+## a continuous variable
+diffAbundOutput <- MicrobiomeDB::differentialAbundance(
+       getCollection(microbiomeData::DiabImmune, '16S Genus'), 
+       "breastfed_duration_days", 
+       groupA = function(x) {x<300},
+       groupB = function(x) {x>=300},
+       method='Maaslin2', 
+       verbose=TRUE
+)
+
+## a categorical variable with 3 values, one of which we exclude
+diffAbundOutput <- MicrobiomeDB::differentialAbundance(
+       getCollection(microbiomeData::DiabImmune, '16S Genus'), 
+       "country", 
+       groupA = function(x) {x=="Russia"},
+       groupB = function(x) {x=="Finland"},
+       method='Maaslin2', 
+       verbose=FALSE
+)
+
+## a categorical variable with 2 values
+diffAbundOutput <- MicrobiomeDB::differentialAbundance(
+       getCollection(microbiomeData::DiabImmune, '16S Genus'),
+       "delivery_mode",
+       method='Maaslin2', 
+       verbose=FALSE
+)
 }

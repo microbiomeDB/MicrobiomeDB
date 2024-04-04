@@ -1,6 +1,10 @@
 setClassUnion("missingOrNULL", c("missing", "NULL"))
 
-assignGroups <- function(x, groupAPredicate, groupBPredicate = NULL) {
+## Helper functions
+## will relabel values in X to groupA and groupB based on predicate 
+## functions groupAPredicate and groupBPredicate. If groupBPredicate is
+## not provided, groupB will be the complement of groupA.
+assignToBinaryGroups <- function(x, groupAPredicate, groupBPredicate = NULL) {
     if (!inherits(groupAPredicate, "function")) {
         stop("Argument 'groupAPredicate' must be a function")
     }
@@ -18,7 +22,7 @@ assignGroups <- function(x, groupAPredicate, groupBPredicate = NULL) {
     }
 
     if (length(intersect(groupAIndexes, groupBIndexes)) > 0) {
-        stop("Arguments 'groupAPredicate' and 'groupBPredicate' must not return the same indexes")
+        stop("Arguments 'groupA' and 'groupB' must be functions which do not both return true for any given value. They must be made mutually exclusive.")
     }
 
     x[groupAIndexes] <- "groupA"
@@ -57,37 +61,73 @@ buildBinaryComparator <- function(covariate, groupAValue, groupBValue) {
 
 #' Differential abundance
 #'
-#' This function returns the fold change and associated p value for 
-#' a differential abundance analysis comparing samples in two groups.
-#' It is useful for recreating the results of differential abundance analyses
-#' from MicrobiomeDB.org, but we recognize makes some assumptions about the data
-#' which may not be valid in other contexts. For better support of longitudinal studies
-#' or metabolomic data, for example, please see our wrapper/ helper methods for 
-#' Maaslin2 (\code{MicrobiomeDB::Maaslin2}) and DESeq2 (\code{DESeqDataSetFromCollection}).
+#' This function returns the fold change and associated p value for
+#' a differential abundance analysis. It is useful for finding taxa with
+#' an abundance that strongly differs between two groups of samples,
+#' such as finding taxa with abundance that differs between skin and saliva samples.
+#' This function allows one to recreate the results of differential abundance analysis
+#' from MicrobiomeDB.org. However, we recognize that this function makes some assumptions 
+#' about the data which may not be valid in other contexts. For better support of 
+#' longitudinal studies or metabolomic data, for example, please see our wrapper/ helper methods 
+#' for Maaslin2 (\code{MicrobiomeDB::Maaslin2}) and DESeq2 (\code{DESeqDataSetFromCollection}).
 #' 
+#' @examples 
+#' ## a continuous variable
+#' diffAbundOutput <- MicrobiomeDB::differentialAbundance(
+#'        getCollection(microbiomeData::DiabImmune, '16S Genus'), 
+#'        "breastfed_duration_days", 
+#'        groupA = function(x) {x<300},
+#'        groupB = function(x) {x>=300},
+#'        method='Maaslin2', 
+#'        verbose=TRUE
+#' )
+#' 
+#' ## a categorical variable with 3 values, one of which we exclude
+#' diffAbundOutput <- MicrobiomeDB::differentialAbundance(
+#'        getCollection(microbiomeData::DiabImmune, '16S Genus'), 
+#'        "country", 
+#'        groupA = function(x) {x=="Russia"},
+#'        groupB = function(x) {x=="Finland"},
+#'        method='Maaslin2', 
+#'        verbose=FALSE
+#' )
+#' 
+#' ## a categorical variable with 2 values
+#' diffAbundOutput <- MicrobiomeDB::differentialAbundance(
+#'        getCollection(microbiomeData::DiabImmune, '16S Genus'),
+#'        "delivery_mode",
+#'        method='Maaslin2', 
+#'        verbose=FALSE
+#' )
 #' @param data AbundanceData object
-#' @param covariate character vector giving the name of a metadata variable of interest
-#' @param method string defining the the differential abundance method. Accepted values are 'DESeq2' and 'Maaslin2'.
+#' @param covariate character vector giving the name of a metadata variable of interest. If this 
+#' variable has only two values, you do not need to provide functions for arguments `groupA` and `groupB`.
+#' @param groupA A function that takes a vector of values and returns TRUE or FALSE for each value. This will 
+#' be used to assign samples to groupA.
+#' @param groupB A function that takes a vector of values and returns TRUE or FALSE for each value. This will 
+#' be used to assign samples to groupB. If not provided, groupB will be the complement of groupA.
+#' @param method string defining the the differential abundance method. Accepted values are 'DESeq2' and 'Maaslin2'. 
+#' Default is 'Maaslin2', as 'DESeq2' only supports counts.
 #' @param verbose boolean indicating if timed logging is desired
 #' @return ComputeResult object
 #' @rdname differentialAbundance-methods
 #' @importFrom microbiomeComputations differentialAbundance Comparator
 #' @export
 setGeneric("differentialAbundance", 
-function(data, covariate, groupAPredicate, groupBPredicate, method = c("Maaslin2", "DESeq2"), verbose = c(TRUE, FALSE)) {
+function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verbose = c(TRUE, FALSE)) {
     standardGeneric("differentialAbundance")
-}, signature = c("data", "covariate", "groupAPredicate", "groupBPredicate"))
+}, signature = c("data", "covariate", "groupA", "groupB"))
 
 #' @rdname differentialAbundance-methods
 #' @aliases differentialAbundance,CollectionWithMetadata,character,missingOrNULL,missingOrNULL-method
 setMethod("differentialAbundance", signature("CollectionWithMetadata", "character", "missingOrNULL", "missingOrNULL"), 
-function(data, covariate, groupAPredicate, groupBPredicate, method = c("Maaslin2", "DESeq2"), verbose = c(TRUE, FALSE)) {
+function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verbose = c(TRUE, FALSE)) {
     verbose <- veupathUtils::matchArg(verbose)
 
     if (data.table::uniqueN(data@sampleMetadata@data[[covariate]]) < 2) {
         stop("Argument 'covariate' must have at least two unique values")
     } else if (data.table::uniqueN(data@sampleMetadata@data[[covariate]]) > 2) {
-        stop("Argument 'covariate' must have exactly two unique values if no 'groupAPredicate' is provided.")
+        stop("Argument 'covariate' must have exactly two unique values if no 'groupA' is provided.")
     }
 
     groupALabel <- unique(data@sampleMetadata@data[[covariate]])[1]
@@ -100,14 +140,14 @@ function(data, covariate, groupAPredicate, groupBPredicate, method = c("Maaslin2
 #' @rdname differentialAbundance-methods
 #' @aliases differentialAbundance,CollectionWithMetadata,character,function,missingOrNULL-method
 setMethod("differentialAbundance", signature("CollectionWithMetadata", "character", "function", "missingOrNULL"),
-function(data, covariate, groupAPredicate, groupBPredicate, method = c("Maaslin2", "DESeq2"), verbose = c(TRUE, FALSE)) {
+function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verbose = c(TRUE, FALSE)) {
     verbose <- veupathUtils::matchArg(verbose)
 
     if (data.table::uniqueN(data@sampleMetadata@data[[covariate]]) < 2) {
         stop("Argument 'covariate' must have at least two unique values")
     }
 
-    data@sampleMetadata@data[[covariate]] <- assignGroups(data@sampleMetadata@data[[covariate]], groupAPredicate, NULL)
+    data@sampleMetadata@data[[covariate]] <- assignToBinaryGroups(data@sampleMetadata@data[[covariate]], groupA, NULL)
     comparator <- buildBinaryComparator(covariate, 'groupA', 'groupB')
 
     return(microbiomeComputations::differentialAbundance(data, comparator = comparator, method = method, verbose = verbose))
@@ -116,14 +156,14 @@ function(data, covariate, groupAPredicate, groupBPredicate, method = c("Maaslin2
 #' @rdname differentialAbundance-methods
 #' @aliases differentialAbundance,CollectionWithMetadata,character,function,function-method
 setMethod("differentialAbundance", signature("CollectionWithMetadata", "character", "function", "function"),
-function(data, covariate, groupAPredicate, groupBPredicate, method = c("Maaslin2", "DESeq2"), verbose = c(TRUE, FALSE)) {
+function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verbose = c(TRUE, FALSE)) {
     verbose <- veupathUtils::matchArg(verbose)
     
     if (data.table::uniqueN(data@sampleMetadata@data[[covariate]]) < 2) {
         stop("Argument 'covariate' must have at least two unique values")
     }
 
-    data@sampleMetadata@data[[covariate]] <- assignGroups(data@sampleMetadata@data[[covariate]], groupAPredicate, groupBPredicate)
+    data@sampleMetadata@data[[covariate]] <- assignToBinaryGroups(data@sampleMetadata@data[[covariate]], groupA, groupB)
     comparator <- buildBinaryComparator(covariate, 'groupA', 'groupB')
 
     ## microbiomeComputations will remove for us rows not in either group, and provide validation
@@ -164,7 +204,7 @@ setMethod("Maaslin2", signature("CollectionWithMetadata"), function(data, verbos
     abundances <- microbiomeComputations::getAbundances(data)
     print(class(abundances))
 
-    # First, remove id columns and any columns that are all 0s.
+    # remove id columns and any columns that are all 0s.
     cleanedData <- purrr::discard(abundances[, -allIdColumns, with=FALSE], function(col) {identical(union(unique(col), c(0, NA)), c(0, NA))})
     rownames(cleanedData) <- abundances[[recordIdColumn]]
     rownames(sampleMetadata) <- sampleMetadata[[recordIdColumn]]

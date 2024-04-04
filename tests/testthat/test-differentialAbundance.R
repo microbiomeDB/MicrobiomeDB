@@ -20,7 +20,7 @@ genusCounts <- AbsoluteAbundanceData(
     ancestorIdColumns = genus@ancestorIdColumns
 )
 
-## TODO tests for assignGroups and buildBinaryComparator directly?
+## TODO tests for assignToBinaryGroups and buildBinaryComparator directly?
 
 test_that("differentialAbundance wrapper works", {    
     # using a variable thats already binary works
@@ -30,19 +30,19 @@ test_that("differentialAbundance wrapper works", {
     expect_equal(inherits(diffAbundOutput@statistics@statistics, "data.frame"), TRUE)
     expect_equal(nrow(diffAbundOutput@statistics@statistics) > 0, TRUE)
 
-    # making a variable binary by passing a groupAPredicate works
-    diffAbundOutput <- MicrobiomeDB::differentialAbundance(genus, "country", groupAPredicate = function(x) {x=="Russia"}, method='Maaslin2', verbose=FALSE)
+    # making a variable binary by passing a groupA works
+    diffAbundOutput <- MicrobiomeDB::differentialAbundance(genus, "country", groupA = function(x) {x=="Russia"}, method='Maaslin2', verbose=FALSE)
     expect_equal(inherits(diffAbundOutput, "ComputeResult"), TRUE)
     expect_equal(inherits(diffAbundOutput@statistics, "DifferentialAbundanceResult"), TRUE)
     expect_equal(inherits(diffAbundOutput@statistics@statistics, "data.frame"), TRUE)
     expect_equal(nrow(diffAbundOutput@statistics@statistics) > 0, TRUE)
 
-    # making a variable binary by passing groupAPredicate and groupBPredicate works
+    # making a variable binary by passing groupA and groupB works
     diffAbundOutput <- MicrobiomeDB::differentialAbundance(
         genus, 
         "country", 
-        groupAPredicate = function(x) {x=="Russia"},
-        groupBPredicate = function(x) {x %in% c("Finland", "Estonia")},
+        groupA = function(x) {x=="Russia"},
+        groupB = function(x) {x %in% c("Finland", "Estonia")},
         method='Maaslin2', 
         verbose=FALSE
     )
@@ -55,8 +55,8 @@ test_that("differentialAbundance wrapper works", {
     diffAbundOutput <- MicrobiomeDB::differentialAbundance(
         genus, 
         "country", 
-        groupAPredicate = function(x) {x=="Russia"},
-        groupBPredicate = function(x) {x %in% c("Finland")},
+        groupA = function(x) {x=="Russia"},
+        groupB = function(x) {x %in% c("Finland")},
         method='Maaslin2', 
         verbose=FALSE
     )
@@ -69,8 +69,8 @@ test_that("differentialAbundance wrapper works", {
     diffAbundOutput <- MicrobiomeDB::differentialAbundance(
         genus, 
         "breastfed_duration_days", 
-        groupAPredicate = function(x) {x<300},
-        groupBPredicate = function(x) {x>=300},
+        groupA = function(x) {x<300},
+        groupB = function(x) {x>=300},
         method='Maaslin2', 
         verbose=FALSE
     )
@@ -90,24 +90,24 @@ test_that("differentialAbundance wrapper works", {
     # passing a variable w 1 value fails
     expect_error(diffAbundOutput <- MicrobiomeDB::differentialAbundance(genus, "host_body_site", method='Maaslin', verbose=FALSE))
 
-    # passing overlapping groupAPredicate and groupBPredicate fails
+    # passing overlapping groupA and groupB fails
     expect_error(
         diffAbundOutput <- MicrobiomeDB::differentialAbundance(
         genus, 
         "breastfed_duration_days", 
-        groupAPredicate = function(x) {x<300},
-        groupBPredicate = function(x) {x>=100},
+        groupA = function(x) {x<300},
+        groupB = function(x) {x>=100},
         method='Maaslin2', 
         verbose=FALSE
     )
     )
 
-    # passing only groupAPredicate, but where groupAPredicate is TRUE for all values fails
+    # passing only groupA, but where groupA is TRUE for all values fails
     expect_error(
         diffAbundOutput <- MicrobiomeDB::differentialAbundance(
         genus, 
         "breastfed_duration_days", 
-        groupAPredicate = function(x) {x>=0},
+        groupA = function(x) {x>=0},
         method='Maaslin2', 
         verbose=FALSE
     )
