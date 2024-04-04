@@ -110,7 +110,7 @@
 <span>                            <span class="op">)</span></span>
 <span>                          <span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="va">differentialAbundanceResults</span> <span class="op">&lt;-</span> <span class="fu">differentialAbundance</span><span class="op">(</span><span class="va">myCollection</span>, <span class="va">comparatorVariable</span><span class="op">)</span>  </span></code></pre></div>
+<span><span class="va">differentialAbundanceResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/differentialAbundance-methods.html">differentialAbundance</a></span><span class="op">(</span><span class="va">myCollection</span>, <span class="va">comparatorVariable</span><span class="op">)</span>  </span></code></pre></div>
 <p>This will give you a <code>ComputeResult</code> object, with slots for <code>data</code> and <code>statistics</code> that you can explore. These objects can be difficult to parse, so we’ve added some functions to help format these results in more usable and exciting ways! They are called <code>getComputeResult</code> and <code>getComputeResultWithMetadata</code> which will return data.tables (and sometimes igraph objects) which you can use like this:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">myCorrelationDT</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/getComputeResult.html">getComputeResult</a></span><span class="op">(</span><span class="va">correlationResults</span><span class="op">)</span></span>
