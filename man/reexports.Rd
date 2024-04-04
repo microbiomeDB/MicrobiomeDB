@@ -6,7 +6,6 @@
 \alias{rankedAbundance}
 \alias{alphaDiv}
 \alias{betaDiv}
-\alias{differentialAbundance}
 \alias{correlation}
 \alias{selfCorrelation}
 \title{Objects exported from other packages}
@@ -16,7 +15,7 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{microbiomeComputations}{\code{\link[microbiomeComputations:alphaDiv-methods]{alphaDiv}}, \code{\link[microbiomeComputations:betaDiv-methods]{betaDiv}}, \code{\link[microbiomeComputations:differentialAbundance-methods]{differentialAbundance}}, \code{\link[microbiomeComputations:rankedAbundance-methods]{rankedAbundance}}}
+  \item{microbiomeComputations}{\code{\link[microbiomeComputations:alphaDiv-methods]{alphaDiv}}, \code{\link[microbiomeComputations:betaDiv-methods]{betaDiv}}, \code{\link[microbiomeComputations:rankedAbundance-methods]{rankedAbundance}}}
 
   \item{veupathUtils}{\code{\link[veupathUtils]{correlation}}, \code{\link[veupathUtils]{selfCorrelation}}}
 }}
