@@ -31,6 +31,7 @@ assignToBinaryGroups <- function(x, groupAPredicate, groupBPredicate = NULL) {
     return(x)
 }
 
+#' @importFrom veupathUtils VariableSpec
 buildBinaryComparator <- function(covariate, groupAValue, groupBValue) {
 
     binA <- veupathUtils::Bin(binLabel=groupAValue)
@@ -202,6 +203,7 @@ setMethod("Maaslin2", signature("CollectionWithMetadata"), function(data, verbos
 #' @param verbose boolean indicating if timed logging is desired
 #' @param ... additional arguments passed to DESeq2::DESeqDataSetFromMatrix
 #' @importFrom DESeq2 DESeqDataSetFromMatrix
+#' @importFrom microbiomeComputations AbsoluteAbundanceData
 #' @rdname DESeqDataSetFromCollection
 #' @export
 setGeneric("DESeqDataSetFromCollection", function(data, verbose = c(TRUE,FALSE), ...) {
