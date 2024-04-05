@@ -16,10 +16,11 @@ remotes::install_github('microbiomeDB/MicrobiomeDB')
 ## Usage
 This package is intended to be used to explore the curated datasets from MicrobiomeDB.org, as well as your own datasets. It comes pre-packaged with the same functions used to power the analysis tools from the website. It also contains functions to facilitate easily transforming data between our custom objects, phyloseq objects, and .biom files that you can upload to the website.
 
-This package includes a number of pre-built `MbioDataset` objects representing the curated data from the MicrobiomeDB.org website. You can see their names like:
+This package is paired with a dedicated data package called micribomeData which includes a number of pre-built `MbioDataset` objects representing the curated data from the MicrobiomeDB.org website. You can see their names like:
 
 ```R
-MicrobiomeDB::getCuratedDatasetNames()
+remotes::install_github('microbiomeDB/microbiomeData')
+microbiomeData::getCuratedDatasetNames()
 ```
 This will return a list of names of data objects which were installed with the package. One such dataset is 'DiabImmune', which we'll use in the following example. `MbioDataset` objects contain two things `metadata` and `collections`. Metadata typically include details about samples in the dataset, such as the age of the person they were collected from. Collections can be any group of variables which represent a unified biological concept measured over a consistent or comparable range of values. An example might be relative abundances of various genera. 
 
