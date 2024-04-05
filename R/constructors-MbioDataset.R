@@ -1,10 +1,13 @@
 
 
+#' @importFrom veupathUtils findRecordIdColumn
+#' @importFrom veupathUtils findAncestorIdColumns
+#' @importFrom veupathUtils getDataFromSource
 sampleMetadataBuilder <- function(dataSource) {
-    dt <- getDataFromSource(dataSource, keepIdsAndNumbersOnly=FALSE, cleanColumnNames=TRUE)
+    dt <- veupathUtils::getDataFromSource(dataSource, keepIdsAndNumbersOnly=FALSE, cleanColumnNames=TRUE)
     dataColNames <- names(dt)
-    recordIdColumn <- findRecordIdColumn(dataColNames)
-    ancestorIdColumns <- findAncestorIdColumns(dataColNames)
+    recordIdColumn <- veupathUtils::findRecordIdColumn(dataColNames)
+    ancestorIdColumns <- veupathUtils::findAncestorIdColumns(dataColNames)
 
     sampleMetadata <- new("SampleMetadata",
         data=dt,
