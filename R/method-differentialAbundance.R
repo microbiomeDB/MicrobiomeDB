@@ -32,6 +32,7 @@ assignToBinaryGroups <- function(x, groupAPredicate, groupBPredicate = NULL) {
 }
 
 #' @importFrom veupathUtils VariableSpec
+#' @importFrom veupathUtils getIdColumns
 buildBinaryComparator <- function(covariate, groupAValue, groupBValue) {
 
     binA <- veupathUtils::Bin(binLabel=groupAValue)

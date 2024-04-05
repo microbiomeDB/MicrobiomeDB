@@ -9,7 +9,7 @@ mbioDataset <- MbioDataset(list(dataFile1, dataFile2), list(metadataFile2, metad
 
 genus <- getCollection(mbioDataset, "16S Genus")
 
-genusIdCols <- getIdColumns(genus)
+genusIdCols <- veupathUtils::getIdColumns(genus)
 counts <- round(microbiomeComputations::getAbundances(genus, includeIds=FALSE)*1000)
 counts <- cbind(genus@data[, genusIdCols, with=FALSE], counts)
 genusCounts <- AbsoluteAbundanceData(
