@@ -22,7 +22,7 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light" data-bs-theme="light"><div class="container">
     
     <a class="navbar-brand me-2" href="index.html">MicrobiomeDB</a>
 
@@ -85,33 +85,12 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">alphaDivResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://microbiomedb.github.io/microbiomeComputations/reference/alphaDiv-methods.html" class="external-link">alphaDiv</a></span><span class="op">(</span><span class="va">myCollection</span><span class="op">)</span></span>
 <span><span class="va">correlationResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/veupathUtils/man/correlation.html" class="external-link">correlation</a></span><span class="op">(</span><span class="va">myCollection</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">## for differential abundance you'll need a Comparator. </span></span>
-<span><span class="co">## Hopefully we can make it easier to build these soon. For now, see example below:</span></span>
-<span><span class="va">comparatorVariable</span> <span class="op">&lt;-</span> <span class="fu">microbiomeComputations</span><span class="fu">::</span><span class="fu"><a href="https://microbiomedb.github.io/microbiomeComputations/reference/Comparator-class.html" class="external-link">Comparator</a></span><span class="op">(</span></span>
-<span>                          variable <span class="op">=</span> <span class="fu">veupathUtils</span><span class="fu">::</span><span class="fu">VariableMetadata</span><span class="op">(</span></span>
-<span>                            variableSpec <span class="op">=</span> <span class="fu">VariableSpec</span><span class="op">(</span> </span>
-<span>                              variableId <span class="op">=</span> <span class="st">'binA'</span>, <span class="co"># column header</span></span>
-<span>                              entityId <span class="op">=</span> <span class="st">''</span> <span class="co"># leave empty</span></span>
-<span>                            <span class="op">)</span>,</span>
-<span>                            dataShape <span class="op">=</span> <span class="fu">veupathUtils</span><span class="fu">::</span><span class="fu">DataShape</span><span class="op">(</span>value<span class="op">=</span><span class="st">"BINARY"</span><span class="op">)</span></span>
-<span>                          <span class="op">)</span>,</span>
-<span>                          groupA <span class="op">=</span> <span class="fu">veupathUtils</span><span class="fu">::</span><span class="fu">BinList</span><span class="op">(</span></span>
-<span>                            <span class="fu">S4Vectors</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/SimpleList-class.html" class="external-link">SimpleList</a></span><span class="op">(</span></span>
-<span>                              <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu">veupathUtils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/veupathUtils/man/Bin-class.html" class="external-link">Bin</a></span><span class="op">(</span></span>
-<span>                                binLabel<span class="op">=</span><span class="st">"binA_a"</span> <span class="co"># a value of interest in groupA</span></span>
-<span>                              <span class="op">)</span><span class="op">)</span></span>
-<span>                            <span class="op">)</span></span>
-<span>                          <span class="op">)</span>,</span>
-<span>                          groupB <span class="op">=</span> <span class="fu">veupathUtils</span><span class="fu">::</span><span class="fu">BinList</span><span class="op">(</span></span>
-<span>                            <span class="fu">S4Vectors</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/SimpleList-class.html" class="external-link">SimpleList</a></span><span class="op">(</span></span>
-<span>                              <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu">veupathUtils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/veupathUtils/man/Bin-class.html" class="external-link">Bin</a></span><span class="op">(</span></span>
-<span>                                binLabel<span class="op">=</span><span class="st">"binA_b"</span> <span class="co"># a value of interest in groupB</span></span>
-<span>                              <span class="op">)</span><span class="op">)</span></span>
-<span>                            <span class="op">)</span></span>
-<span>                          <span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="va">differentialAbundanceResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/differentialAbundance-methods.html">differentialAbundance</a></span><span class="op">(</span><span class="va">myCollection</span>, <span class="va">comparatorVariable</span><span class="op">)</span>  </span></code></pre></div>
+<span><span class="va">differentialAbundanceResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/differentialAbundance-methods.html">differentialAbundance</a></span><span class="op">(</span></span>
+<span>  <span class="va">myCollection</span>, </span>
+<span>  <span class="st">"breastfed_duration_days"</span>, <span class="co"># see getMetadataVariableNames()</span></span>
+<span>  groupA <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span> <span class="op">&lt;</span> <span class="fl">300</span><span class="op">}</span>,</span>
+<span>  groupB <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span> <span class="op">&gt;=</span> <span class="fl">300</span><span class="op">}</span>,</span>
+<span>  method <span class="op">=</span> <span class="st">'Maaslin2'</span><span class="op">)</span>  </span></code></pre></div>
 <p>This will give you a <code>ComputeResult</code> object, with slots for <code>data</code> and <code>statistics</code> that you can explore. These objects can be difficult to parse, so we’ve added some functions to help format these results in more usable and exciting ways! They are called <code>getComputeResult</code> and <code>getComputeResultWithMetadata</code> which will return data.tables (and sometimes igraph objects) which you can use like this:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">myCorrelationDT</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/getComputeResult.html">getComputeResult</a></span><span class="op">(</span><span class="va">correlationResults</span><span class="op">)</span></span>
@@ -184,7 +163,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
 </div>
 
     </footer>
