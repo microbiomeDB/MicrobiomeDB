@@ -34,35 +34,12 @@ Once you have `myCollection`, you can start using our `microbiomeComputations` p
 ```R
 alphaDivResults <- alphaDiv(myCollection)
 correlationResults <- correlation(myCollection)
-
-## for differential abundance you'll need a Comparator. 
-## Hopefully we can make it easier to build these soon. For now, see example below:
-comparatorVariable <- microbiomeComputations::Comparator(
-                          variable = veupathUtils::VariableMetadata(
-                            variableSpec = VariableSpec( 
-                              variableId = 'binA', # column header
-                              entityId = '' # leave empty
-                            ),
-                            dataShape = veupathUtils::DataShape(value="BINARY")
-                          ),
-                          groupA = veupathUtils::BinList(
-                            S4Vectors::SimpleList(
-                              c(veupathUtils::Bin(
-                                binLabel="binA_a" # a value of interest in groupA
-                              ))
-                            )
-                          ),
-                          groupB = veupathUtils::BinList(
-                            S4Vectors::SimpleList(
-                              c(veupathUtils::Bin(
-                                binLabel="binA_b" # a value of interest in groupB
-                              ))
-                            )
-                          )
-  )
-differentialAbundanceResults <- differentialAbundance(myCollection, comparatorVariable)  
-
-
+differentialAbundanceResults <- differentialAbundance(
+  myCollection, 
+  "breastfed_duration_days", # see getMetadataVariableNames()
+  groupA = function(x) {x < 300},
+  groupB = function(x) {x >= 300},
+  method = 'Maaslin2')  
 ```
 
 This will give you a `ComputeResult` object, with slots for `data` and `statistics` that you can explore. These objects can be difficult to parse, so we've added some functions to help format these results in more usable and exciting ways! They are called `getComputeResult` and `getComputeResultWithMetadata` which will return data.tables (and sometimes igraph objects) which you can use like this:
