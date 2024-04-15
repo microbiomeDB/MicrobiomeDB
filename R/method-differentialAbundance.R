@@ -96,6 +96,7 @@ function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verb
 #' @aliases differentialAbundance,CollectionWithMetadata,character,missingOrNULL,missingOrNULL-method
 setMethod("differentialAbundance", signature("CollectionWithMetadata", "character", "missingOrNULL", "missingOrNULL"), 
 function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verbose = c(TRUE, FALSE)) {
+    method <- veupathUtils::matchArg(method)
     verbose <- veupathUtils::matchArg(verbose)
 
     if (data.table::uniqueN(data@sampleMetadata@data[[covariate]]) < 2) {
@@ -115,6 +116,7 @@ function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verb
 #' @aliases differentialAbundance,CollectionWithMetadata,character,function,missingOrNULL-method
 setMethod("differentialAbundance", signature("CollectionWithMetadata", "character", "function", "missingOrNULL"),
 function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verbose = c(TRUE, FALSE)) {
+    method <- veupathUtils::matchArg(method)
     verbose <- veupathUtils::matchArg(verbose)
 
     if (data.table::uniqueN(data@sampleMetadata@data[[covariate]]) < 2) {
@@ -131,6 +133,7 @@ function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verb
 #' @aliases differentialAbundance,CollectionWithMetadata,character,function,function-method
 setMethod("differentialAbundance", signature("CollectionWithMetadata", "character", "function", "function"),
 function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verbose = c(TRUE, FALSE)) {
+    method <- veupathUtils::matchArg(method)
     verbose <- veupathUtils::matchArg(verbose)
     
     if (data.table::uniqueN(data@sampleMetadata@data[[covariate]]) < 2) {
