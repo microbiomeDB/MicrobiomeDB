@@ -15,3 +15,6 @@ A character vector of collection names
 \description{
 Get the names of the collections in a MbioDataset object
 }
+\examples{
+getCollectionNames(microbiomeData::DiabImmune)
+}

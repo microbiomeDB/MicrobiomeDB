@@ -23,3 +23,7 @@ A Microbiome Dataset with the updated collection name
 \description{
 Update the name of a collection in the Microbiome Dataset.
 }
+\examples{
+myCopyOfDiabImmune <- microbiomeData::DiabImmune
+myCopyOfDiabImmune <- updateCollectionName(myCopyOfDiabImmune, "16S (V4) Genus", "16S Genus")
+}
