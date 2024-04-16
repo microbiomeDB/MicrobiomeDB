@@ -28,6 +28,11 @@ metadataVarSummaryGeneric <- getGeneric("getMetadataVariableSummary", "veupathUt
 #' Get Summary of Metadata Variables
 #' 
 #' Get a summary of the requested metadata variable in an MbioDataset.
+#' 
+#' @examples 
+#' getMetadataVariableSummary(microbiomeData::DiabImmune, "age_years")
+#' getMetadataVariableSummary(microbiomeData::DiabImmune, "sex")
+#' getMetadataVariableSummary(microbiomeData::DiabImmune, "country")
 #' @param object An MbioDataset
 #' @param variable A character vector representing the name of the metadata variable to summarize
 #' @return a table summarizing the values of the requested metadata variable
