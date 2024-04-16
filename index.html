@@ -87,7 +87,7 @@
 <span><span class="va">correlationResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/veupathUtils/man/correlation.html" class="external-link">correlation</a></span><span class="op">(</span><span class="va">myCollection</span><span class="op">)</span></span>
 <span><span class="va">differentialAbundanceResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/differentialAbundance-methods.html">differentialAbundance</a></span><span class="op">(</span></span>
 <span>  <span class="va">myCollection</span>, </span>
-<span>  <span class="st">"breastfed_duration_days"</span>, <span class="co"># see getMetadataVariableNames()</span></span>
+<span>  <span class="st">"breastfed_duration_days"</span>, <span class="co"># see getMetadataVariableNames() and getMetadataVariableSummary()</span></span>
 <span>  groupA <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span> <span class="op">&lt;</span> <span class="fl">300</span><span class="op">}</span>,</span>
 <span>  groupB <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span> <span class="op">&gt;=</span> <span class="fl">300</span><span class="op">}</span>,</span>
 <span>  method <span class="op">=</span> <span class="st">'Maaslin2'</span><span class="op">)</span>  </span></code></pre></div>
