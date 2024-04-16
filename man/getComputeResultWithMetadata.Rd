@@ -50,3 +50,11 @@ The compute result in the specified format
 \description{
 Get the compute result from a Microbiome Dataset in a particular format with metadata.
 }
+\examples{
+alphaDivOutput <- MicrobiomeDB::alphaDiv(
+     getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), 
+     method='shannon', 
+     verbose=FALSE
+)
+alphaDivDT <- getComputeResultWithMetadata(alphaDivOutput, mbioDataset, metadataVariables = c('country', 'delivery_mode'))
+}
