@@ -18,6 +18,31 @@ metadataVarNamesGeneric <- getGeneric("getMetadataVariableNames", "veupathUtils"
 #' @importFrom veupathUtils getMetadataVariableNames
 setMethod(metadataVarNamesGeneric, "MbioDataset", function(object) return(names(object@metadata@data)))
 
+metadataVarSummaryGeneric <- getGeneric("getMetadataVariableSummary", "veupathUtils")
+#' Get Summary of Metadata Variables
+#' 
+#' Get a summary of the requested metadata variable in an MbioDataset.
+#' @param object An MbioDataset
+#' @param variable A character vector representing the name of the metadata variable to summarize
+#' @return a table summarizing the values of the requested metadata variable
+#' @export
+#' @importFrom veupathUtils getMetadataVariableSummary
+setMethod(metadataVarSummaryGeneric, "MbioDataset", function(object, variable) {
+    if (!variable %in% getMetadataVariableNames(object)) {
+        stop("Variable ", variable, " not found in sample metadata. Available variables: ", paste(getMetadataVariableNames(object), collapse = ", "))
+    }
+
+    varData <- object@metadata@data[[variable]]
+
+    if (class(varData) %in% c('factor','character')) {
+        out <- table(varData)
+        dimnames(out) <- unname(dimnames(out))
+        return(out)
+    } else {
+        return(summary(varData))
+    }
+})
+
 sampleMetadataGeneric <- getGeneric("getSampleMetadata", "veupathUtils")
 #' Get data.table of sample metadata from MbioDataset
 #'
