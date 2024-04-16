@@ -36,7 +36,7 @@ alphaDivResults <- alphaDiv(myCollection)
 correlationResults <- correlation(myCollection)
 differentialAbundanceResults <- differentialAbundance(
   myCollection, 
-  "breastfed_duration_days", # see getMetadataVariableNames()
+  "breastfed_duration_days", # see getMetadataVariableNames() and getMetadataVariableSummary()
   groupA = function(x) {x < 300},
   groupB = function(x) {x >= 300},
   method = 'Maaslin2')  
