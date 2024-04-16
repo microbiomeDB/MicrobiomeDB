@@ -14,6 +14,7 @@ Imports:
     igraph,
     veupathUtils,
     Maaslin2,
+    methods,
     microbiomeComputations,
     phyloseq,
     purrr
