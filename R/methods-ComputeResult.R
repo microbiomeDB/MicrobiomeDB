@@ -140,7 +140,7 @@ function(object, dataset = NULL, format = c("data.table"), metadataVariables = N
 #' 
 #' @examples 
 #' correlationOutput <- MicrobiomeDB::correlation(
-#'      getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), 
+#'      getCollection(microbiomeData::DiabImmune, "16S (V4) Genus", continuousMetadataOnly = TRUE), 
 #'      method='spearman', 
 #'      verbose=FALSE
 #' )
