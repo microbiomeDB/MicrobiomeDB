@@ -50,10 +50,10 @@ that account for the compositional nature of microbiome data.
 ```{r}
 ## first lets find some interesting data
 microbiomeData::getCuratedDatasetNames()
-getCollectionNames(microbiomeData::HMP_WGS)
+getCollectionNames(microbiomeData::Bangladesh)
 
 ## grab a collection of interest
-Bangladesh_genus <- getCollection(Bangladesh, "16S (V4) Genus")
+Bangladesh_genus <- getCollection(microbiomeData::Bangladesh, "16S (V4) Genus")
 
 ## get a self correlation ComputeResult
 ## methods spearman and pearson are options here as well, for data known to not be compositional

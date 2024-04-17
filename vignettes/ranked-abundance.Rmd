@@ -62,7 +62,7 @@ microbiomeData::getCuratedDatasetNames()
 getCollectionNames(microbiomeData::HMP_WGS)
 
 ## grab a collection of interest
-HMP_WGS_species <- getCollection(HMP_WGS, "WGS Species")
+HMP_WGS_species <- getCollection(microbiomeData::HMP_WGS, "WGS Species")
 
 ## get a ranked abundance ComputeResult
 ## top 10 taxa by mean relative abundance across all samples
