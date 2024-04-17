@@ -60,7 +60,7 @@ responses to environmental changes or perturbations.
 
 ## How are Correlations Calculated?
 
-This app employs correlation analysis between microbial taxonomic abundances and sample metadata 
+This package employs correlation analysis between microbial taxonomic abundances and sample metadata 
 or abundances of pathways or other functional data using the following approach:
 
 Users can choose either Spearman or Pearson correlation for the analysis. Both will produce
@@ -133,12 +133,11 @@ You can also visualize them with custom htmlwidgets:
 ```{r}
 ## now plot the network
 ## filters can be applied based on correlation coefficient and p-value
-## renders an interactive htmlwidget
+## renders an interactive htmlwidget, using a predetermined layout
 correlationNetwork(
   pathway_vs_species,
   correlationCoefThreshold = 0.5,
-  pValueThreshold = 0.05,
-  bipartiteNetwork = TRUE
+  pValueThreshold = 0.05
 )
 ```
 
