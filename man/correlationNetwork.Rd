@@ -42,3 +42,11 @@ Edges with correlation coefficients below this threshold will be removed. Defaul
 \description{
 Visualize a correlation result as a network
 }
+\examples{
+correlationOutput <- MicrobiomeDB::correlation(
+     getCollection(microbiomeData::DiabImmune, "16S (V4) Genus", continuousMetadataOnly = TRUE), 
+     method='spearman', 
+     verbose=FALSE
+)
+correlationNetwork(correlationOutput) ## renders html widget
+}

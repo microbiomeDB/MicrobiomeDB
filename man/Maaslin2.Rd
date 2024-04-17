@@ -23,3 +23,15 @@ epidemiological studies. The software includes multiple
 analysis methods (including support for multiple covariates and repeated measures)
 filtering, normalization, and transform options to customize analysis for your specific study.
 }
+\examples{
+maaslinOutput <- MicrobiomeDB::Maaslin2(
+       data = getCollection(microbiomeData::DiabImmune, '16S (V4) Genus'), 
+       output = tempfile("maaslin"),
+       #min_prevalence = 0,
+       fixed_effects = 'delivery_mode',
+       analysis_method = "LM", # default LM
+       normalization = "TSS", # default TSS
+       transform = "LOG", # default LOG
+       plot_heatmap = FALSE,
+       plot_scatter = FALSE)
+}

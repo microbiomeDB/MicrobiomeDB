@@ -15,3 +15,6 @@ a character vector of metadata variable names
 \description{
 Get the names of the metadata variables in an MbioDataset.
 }
+\examples{
+getMetadataVariableNames(microbiomeData::DiabImmune)
+}

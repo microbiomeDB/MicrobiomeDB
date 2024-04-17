@@ -1,0 +1,142 @@
+---
+title: "Beta Diversity"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Beta Diversity}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(MicrobiomeDB)
+library(tidyverse)
+```
+
+## What is Beta Diversity?
+
+Beta diversity measures the dissimilarity or diversity between different microbial communities. 
+In the context of microbiome studies, it quantifies how microbial compositions vary across samples. 
+Understanding beta diversity allows researchers to explore the unique features of each sample and identify 
+patterns in microbial community structure.
+
+## Why Care About Beta Diversity?
+
+Researchers are interested in beta diversity for several reasons:
+
+**Ecological Insights**: Beta diversity helps uncover the ecological differences between microbial communities 
+in different environments or conditions.
+
+**Disease Studies**: In medical research, beta diversity can highlight variations in microbial communities associated
+with health or disease states.
+
+**Community Dynamics**: Studying beta diversity provides information about how microbial communities change over 
+time or in response to specific factors.
+
+## How is Beta Diversity Calculated?
+
+Beta Diversity can be calculated by first producing a dissimilarity matrix for all samples and then applying a dimensional 
+reduction technique to the dissimilarity matrix.
+
+This package offers flexibility in calculating beta diversity by providing multiple dissimilarity matrix options:
+
+#### Bray-Curtis Dissimilarity
+
+The Bray-Curtis algorithm measures compositional dissimilarity based on both the presence and abundance of taxa. 
+It calculates the normalized absolute differences in taxon abundance between two samples, providing a metric that 
+ranges from 0 (complete similarity) to 1 (complete dissimilarity).
+
+```{r}
+## first lets find some interesting data
+microbiomeData::getCuratedDatasetNames()
+getCollectionNames(microbiomeData::HMP_WGS)
+
+## grab a collection we like
+HMP_WGS_species <- getCollection(microbiomeData::HMP_WGS, 'WGS Species')
+
+## get a betaDiv ComputeResult
+betaDiv <- betaDiv(HMP_WGS_species, method = "bray")
+```
+
+#### Jaccard Dissimilarity
+
+Measures dissimilarity based on the presence-absence of taxa. It quantifies the proportion of taxa that are
+not shared between two samples.
+
+```{r}
+HMP_WGS_species <- getCollection(microbiomeData::HMP_WGS, 'WGS Species')
+betaDiv <- betaDiv(HMP_WGS_species, method = "jaccard")
+```
+
+#### Jensen-Shannon Divergence (JSD)
+
+Captures dissimilarity considering both abundance and presence-absence information. It is a symmetric version 
+of the Kullback-Leibler Divergence, providing a measure of dissimilarity between probability distributions.
+
+```{r}
+HMP_WGS_species <- getCollection(microbiomeData::HMP_WGS, 'WGS Species')
+betaDiv <- betaDiv(HMP_WGS_species, method = "jsd")
+```
+
+
+### Principal Coordinate Analysis (PCoA):
+
+PCoA is a dimensional reduction technique applied to the dissimilarity matrix, providing a visual representation of the
+relationships between samples in a lower-dimensional space. It transforms the dissimilarity matrix into a set of orthogonal 
+axes (principal coordinates) that capture the maximum variance in the data. The PCoA plot allows researchers to visualize 
+the spatial arrangement of samples, aiding in the interpretation of beta diversity. The **MicrobiomeDB** package performs
+PCoA as part of the `betaDiv` method.
+
+## Interpreting PCoA Results
+
+The following code will produce a PCoA plot:
+
+```{r}
+## choose one or more metadata variables to integrate with the compute result
+betaDiv_withMetadata <- getComputeResultWithMetadata(
+  betaDiv, 
+  microbiomeData::HMP_WGS, 
+  metadataVariables = c('host_body_habitat'))
+
+## plot beta diversity
+ggplot2::ggplot(betaDiv_withMetadata) +
+  aes(x=Axis1, y=Axis2, color=host_body_habitat) +
+  geom_point() +
+  labs(y= "Axis 2", x = "Axis 1",
+        title="Beta diversity by body site",
+        caption=paste0("produced on ", Sys.time())) +
+  theme_bw()
+```
+
+The PCoA plot visually represents the dissimilarity between samples. Each point on the plot corresponds to a sample, 
+and the position of the points reflects their relationships based on beta diversity. Here's how to interpret the PCoA plot:
+
+### Axes Representation:
+
+The axes (principal coordinates) on the PCoA plot represent the dimensions of maximum variance in the dissimilarity matrix.
+
+The distance between points on the plot reflects the dissimilarity between corresponding samples.
+
+Each axis explains a certain percentage of the total variation in the data.
+
+### Interpreting Axis Direction:
+
+The direction of the axes indicates the major patterns of dissimilarity in the data.
+
+Samples that cluster together on the plot are more similar to each other, while those farther apart are more dissimilar.
+
+### Percentage of Variance:
+
+Check the percentage of variance explained by each axis. Higher percentages indicate that the axis captures more information 
+about the dissimilarity between samples.
+
+### Biological Interpretation:
+
+Interpret the biological meaning of the sample clustering. Are there distinct groups or trends in the data?  
+Color the PCoA plot with another variable to learn more about these patterns!

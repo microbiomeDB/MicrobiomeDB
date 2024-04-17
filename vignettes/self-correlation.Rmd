@@ -1,0 +1,116 @@
+---
+title: "Self Correlation"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Self Correlation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(MicrobiomeDB)
+library(tidyverse)
+library(igraph)
+```
+
+## What is a Correlation Analysis?
+
+Correlations are useful for identifying relationships between variables. When you correlate taxonomic
+abundance variables against themselves, it essentially produces a microbial network. Producing and
+analyzing these networks is complicated by the fact that microbiome data is inherently compositional.
+If not properly accounted for, that can result in a lot of spurious negative correlations. 
+
+## Why Care About Microbial Network Analysis?
+
+Scientists delve into microbial network analysis for a large number of reasons:
+
+**Unraveling Complex Interactions**: Microbial network analysis unveils intricate relationships between 
+microorganisms, shedding light on their interconnectedness within ecosystems.
+
+**Diagnostic Potential**: Identifying key nodes in microbial networks can unveil potential diagnostic 
+markers, offering a glimpse into microbial dynamics associated with various diseases or environmental 
+conditions.
+
+**Insights into Functionality**: Microbial network analysis elucidates functional roles within microbial 
+communities, offering valuable insights into their ecological and physiological significance.
+
+From unraveling ecological mysteries to informing medical diagnoses, microbial network analysis proves 
+indispensable in understanding the intricate world of microorganisms.
+
+## How are Correlations Calculated?
+
+This package employs SPARCC for correlation analysis between microbial taxa. SPARCC calculates correlations 
+that account for the compositional nature of microbiome data.
+
+```{r}
+## first lets find some interesting data
+microbiomeData::getCuratedDatasetNames()
+getCollectionNames(microbiomeData::Bangladesh)
+
+## grab a collection of interest
+Bangladesh_genus <- getCollection(microbiomeData::Bangladesh, "16S (V4) Genus")
+
+## get a self correlation ComputeResult
+## methods spearman and pearson are options here as well, for data known to not be compositional
+selfCorrelation_genus <- selfCorrelation(Bangladesh_genus, method='sparcc')
+```
+
+## Interpreting Results
+
+**Correlation Coefficients**: Assess the strength and direction of correlations. Positive coefficients 
+indicate positive correlations, while negative coefficients indicate negative correlations.
+
+**p-values and Adjusted p-values**: Identify biomarkers with statistically significant correlations, 
+considering adjustments for multiple testing.
+
+You can extract these metrics and sort and filter results by them:
+```{r}
+## you can extract network metrics 
+selfCorrelation_genus.metrics <- as_tibble(
+    getComputeResult(
+        selfCorrelation_genus,
+        correlationCoefThreshold = 0.5,
+        pValueThreshold = 0.05
+    )
+)
+
+## it's also easy to sort and filter these network metrics
+## begin by renaming columns
+colnames(selfCorrelation_genus.metrics) <- c('taxa1', 'taxa2', 'correlationCoef', 'pValue')
+selfCorrelation_genus.metrics %>%
+    filter(correlationCoef > 0.5) %>%
+    arrange(desc(correlationCoef))
+```
+
+You can also visualize them with custom htmlwidgets:
+
+```{r}
+## now plot the network
+## filters can be applied based on correlation coefficient and p-value
+## renders an interactive htmlwidget, using a predetermined layout
+correlationNetwork(
+    selfCorrelation_genus,
+    correlationCoefThreshold = 0.5,
+    pValueThreshold = 0.05
+)
+```
+
+Finally, for more advanced analysis of the network, you can extract it as an igraph object:
+
+```{r}
+## if you extract the network as an igraph object, you can get more detailed metrics
+selfCorrelation_genus.igraph <- getComputeResult(selfCorrelation_genus, format = 'igraph')
+degree <- degree(selfCorrelation_genus.igraph)
+edgeBT <- edge_betweenness(selfCorrelation_genus.igraph)
+pgRank <- page_rank(selfCorrelation_genus.igraph)
+layout <- layout_with_kk(selfCorrelation_genus.igraph)
+
+layout
+```

@@ -2,6 +2,15 @@
 #' 
 #' Get the compute result from a Microbiome Dataset in a particular format.
 #' Some formats may not be supported for all compute results.
+#' 
+#' @examples 
+#' correlationOutput <- MicrobiomeDB::selfCorrelation(
+#'      getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), 
+#'      method='spearman', 
+#'      verbose=FALSE
+#' )
+#' correlationDT <- getComputeResult(correlationOutput, "data.table")
+#' correlationIGraph <- getComputeResult(correlationOutput, "igraph")
 #' @param object A Microbiome Dataset
 #' @param format The format of the compute result. Currently only "data.table" and "igraph" are supported.
 #' @param ... additional arguments passed to getComputeResult method of the subclasses of ComputeResult
@@ -74,6 +83,19 @@ mergeComputeResultAndMetadata <- function(computeResult, dataset, metadataVariab
 #' Get Microbiome Dataset Compute Result With Metadata
 #' 
 #' Get the compute result from a Microbiome Dataset in a particular format with metadata.
+#' 
+#' @examples 
+#' alphaDivOutput <- MicrobiomeDB::alphaDiv(
+#'      getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), 
+#'      method='shannon', 
+#'      verbose=FALSE
+#' )
+#' 
+#' alphaDivDT <- getComputeResultWithMetadata(
+#'      alphaDivOutput, 
+#'      microbiomeData::DiabImmune, 
+#'      metadataVariables = c('country', 'delivery_mode')
+#' )
 #' @param object A Microbiome Dataset
 #' @param dataset The MbioDataset, AbundanceData or Collection object from which the compute result was obtained.
 #' @param format The format you want the compute result in. Currently only "data.table" is supported.
@@ -120,6 +142,14 @@ function(object, dataset = NULL, format = c("data.table"), metadataVariables = N
 #' Correlation Network Visualization
 #' 
 #' Visualize a correlation result as a network
+#' 
+#' @examples 
+#' correlationOutput <- MicrobiomeDB::correlation(
+#'      getCollection(microbiomeData::DiabImmune, "16S (V4) Genus", continuousMetadataOnly = TRUE), 
+#'      method='spearman', 
+#'      verbose=FALSE
+#' )
+#' correlationNetwork(correlationOutput) ## renders html widget
 #' @param object A ComputeResult or data.frame
 #' @param correlationCoefThreshold threshold to filter edges by correlation coefficient.
 #' Edges with correlation coefficients below this threshold will be removed. Default is .5

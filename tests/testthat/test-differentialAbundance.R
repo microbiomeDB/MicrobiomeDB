@@ -7,7 +7,7 @@ metadataFile3 <- test_path('testdata','DiabImmune/DiabImmune_Sample.txt')
 ontologyFile <- test_path('testdata','DiabImmune/DiabImmune_OntologyMetadata.txt')
 mbioDataset <- MbioDataset(list(dataFile1, dataFile2), list(metadataFile2, metadataFile1, metadataFile3), ontologyFile)
 
-genus <- getCollection(mbioDataset, "16S Genus")
+genus <- getCollection(mbioDataset, "16S (V4) Genus")
 
 genusIdCols <- veupathUtils::getIdColumns(genus)
 counts <- round(microbiomeComputations::getAbundances(genus, includeIds=FALSE)*1000)

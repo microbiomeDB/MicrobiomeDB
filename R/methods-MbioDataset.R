@@ -2,6 +2,9 @@ collectionNamesGeneric <- getGeneric("getCollectionNames", "veupathUtils")
 #' Get Names of Collections
 #' 
 #' Get the names of the collections in a MbioDataset object
+#' 
+#' @examples 
+#' getCollectionNames(microbiomeData::DiabImmune)
 #' @param object An MbioDataset
 #' @return A character vector of collection names
 #' @export
@@ -12,6 +15,9 @@ metadataVarNamesGeneric <- getGeneric("getMetadataVariableNames", "veupathUtils"
 #' Get Variable Names of Metadata
 #' 
 #' Get the names of the metadata variables in an MbioDataset.
+#' 
+#' @examples 
+#' getMetadataVariableNames(microbiomeData::DiabImmune)
 #' @param object An MbioDataset
 #' @return a character vector of metadata variable names
 #' @export
@@ -22,6 +28,11 @@ metadataVarSummaryGeneric <- getGeneric("getMetadataVariableSummary", "veupathUt
 #' Get Summary of Metadata Variables
 #' 
 #' Get a summary of the requested metadata variable in an MbioDataset.
+#' 
+#' @examples 
+#' getMetadataVariableSummary(microbiomeData::DiabImmune, "age_months")
+#' getMetadataVariableSummary(microbiomeData::DiabImmune, "sex")
+#' getMetadataVariableSummary(microbiomeData::DiabImmune, "country")
 #' @param object An MbioDataset
 #' @param variable A character vector representing the name of the metadata variable to summarize
 #' @return a table summarizing the values of the requested metadata variable
@@ -48,6 +59,9 @@ sampleMetadataGeneric <- getGeneric("getSampleMetadata", "veupathUtils")
 #'
 #' Returns a data.table of sample metadata
 #' 
+#' @examples
+#' getSampleMetadata(microbiomeData::DiabImmune)
+#' getSampleMetadata(microbiomeData::DiabImmune, metadataVariables = c("age_months", "sex"))
 #' @param object MbioDataset
 #' @param asCopy boolean indicating whether to return the data as a copy or by reference
 #' @param includeIds boolean indicating whether we should include recordIdColumn and ancestorIdColumns
@@ -95,6 +109,10 @@ setMethod(metadataIdColsGeneric, "MbioDataset", function(object) veupathUtils::g
 #' Update Microbiome Dataset Collection Name
 #' 
 #' Update the name of a collection in the Microbiome Dataset.
+#' 
+#' @examples
+#' myCopyOfDiabImmune <- microbiomeData::DiabImmune
+#' myCopyOfDiabImmune <- updateCollectionName(myCopyOfDiabImmune, "16S (V4) Genus", "16S Genus")
 #' @param object A Microbiome Dataset
 #' @param oldName The name of the collection to update
 #' @param newName The new name of the collection
@@ -114,6 +132,32 @@ setMethod("updateCollectionName", "MbioDataset", function(object, oldName, newNa
 #' 
 #' Get a collection from the Microbiome Dataset. The collection will be returned
 #' as an AbundanceData, phyloseq, or Collection object.
+#' 
+#' @examples
+#' genus <- getCollection(
+#'      microbiomeData::DiabImmune, 
+#'      "16S (V4) Genus"
+#' )
+#' 
+#' genus_phyloseq <- getCollection(
+#'      microbiomeData::DiabImmune, 
+#'      "16S (V4) Genus", 
+#'      format = "phyloseq"
+#' )
+#' 
+#' ## to pass to correlation method, we want only continuous metadata
+#' genus_continuous <- getCollection(
+#'      microbiomeData::DiabImmune, 
+#'      "16S (V4) Genus", 
+#'      continuousMetadataOnly = TRUE
+#' ) 
+#' 
+#' ## with no metadata
+#' genus_collection <- getCollection(
+#'      microbiomeData::DiabImmune, 
+#'      "16S (V4) Genus", 
+#'      format = "Collection"
+#' )
 #' @param object A Microbiome Dataset
 #' @param collectionName The name of the collection to return
 #' @param format The format of the collection to return. Currently supported options are "AbundanceData", "phyloseq" and "Collection".

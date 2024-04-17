@@ -72,7 +72,35 @@ buildBinaryComparator <- function(covariate, groupAValue, groupBValue) {
 #' about the data which may not be valid in other contexts. For better support of 
 #' longitudinal studies or metabolomic data, for example, please see our wrapper/ helper methods 
 #' for Maaslin2 (\code{MicrobiomeDB::Maaslin2}) and DESeq2 (\code{DESeqDataSetFromCollection}).
+#'
+#' @examples 
+#' ## a continuous variable
+#' diffAbundOutput <- MicrobiomeDB::differentialAbundance(
+#'        getCollection(microbiomeData::DiabImmune, '16S (V4) Genus'), 
+#'        "breastfed_duration_days", 
+#'        groupA = function(x) {x<300},
+#'        groupB = function(x) {x>=300},
+#'        method='Maaslin2', 
+#'        verbose=TRUE
+#' )
 #' 
+#' ## a categorical variable with 3 values, one of which we exclude
+#' diffAbundOutput <- MicrobiomeDB::differentialAbundance(
+#'        getCollection(microbiomeData::DiabImmune, '16S (V4) Genus'), 
+#'        "country", 
+#'        groupA = function(x) {x=="Russia"},
+#'        groupB = function(x) {x=="Finland"},
+#'        method='Maaslin2', 
+#'        verbose=FALSE
+#' )
+#' 
+#' ## a categorical variable with 2 values
+#' diffAbundOutput <- MicrobiomeDB::differentialAbundance(
+#'        getCollection(microbiomeData::DiabImmune, '16S (V4) Genus'),
+#'        "delivery_mode",
+#'        method='Maaslin2', 
+#'        verbose=FALSE
+#' ) 
 #' @param data AbundanceData object
 #' @param covariate character vector giving the name of a metadata variable of interest. If this 
 #' variable has only two values, you do not need to provide functions for arguments `groupA` and `groupB`.
@@ -160,6 +188,17 @@ function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verb
 #' analysis methods (including support for multiple covariates and repeated measures)
 #' filtering, normalization, and transform options to customize analysis for your specific study.
 #' 
+#' @examples
+#' maaslinOutput <- MicrobiomeDB::Maaslin2(
+#'        data = getCollection(microbiomeData::DiabImmune, '16S (V4) Genus'), 
+#'        output = tempfile("maaslin"),
+#'        #min_prevalence = 0,
+#'        fixed_effects = 'delivery_mode',
+#'        analysis_method = "LM", # default LM
+#'        normalization = "TSS", # default TSS
+#'        transform = "LOG", # default LOG
+#'        plot_heatmap = FALSE,
+#'        plot_scatter = FALSE)
 #' @param data a CollectionWithMetadata
 #' @param verbose boolean indicating if timed logging is desired
 #' @param ... additional arguments to pass to Maaslin2::Maaslin2

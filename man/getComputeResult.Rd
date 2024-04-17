@@ -39,3 +39,12 @@ The compute result in the specified format
 Get the compute result from a Microbiome Dataset in a particular format.
 Some formats may not be supported for all compute results.
 }
+\examples{
+correlationOutput <- MicrobiomeDB::selfCorrelation(
+     getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), 
+     method='spearman', 
+     verbose=FALSE
+)
+correlationDT <- getComputeResult(correlationOutput, "data.table")
+correlationIGraph <- getComputeResult(correlationOutput, "igraph")
+}

@@ -1,0 +1,104 @@
+---
+title: "Ranked Relative Abundances"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Ranked Relative Abundances}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(MicrobiomeDB)
+library(tidyverse)
+```
+
+## What are Relative Abundances
+
+Relative abundances refer to the proportion or percentage of each taxonomic group or microbial species 
+within a given sample or ecosystem. It quantifies the contribution of each taxon to the overall microbial
+community, providing insights into the distribution and dominance of different organisms. Relative 
+abundances are typically determined through techniques like amplicon sequencing or metagenomic analysis, 
+allowing researchers to compare the prevalence of various taxa across different samples or conditions. 
+This information is crucial for understanding the structure, dynamics, and ecological roles of microbial 
+communities.
+
+## Why Compare or Find Taxa Based on Relative Abundances?
+
+Researchers are drawn to comparing or finding taxa based on relative abundances for a multitude of reasons:
+
+**Ecosystem Dynamics**: Assessing relative abundances allows researchers to unravel shifts in microbial 
+community structures over time or in response to environmental changes, offering insights into ecosystem 
+dynamics and stability.
+
+**Biological Significance**: Identifying taxa with significant shifts in relative abundances can unveil 
+their roles in ecosystem functions, providing valuable clues about their ecological significance and 
+potential impacts on ecosystem processes.
+
+**Disease Associations**: Comparing taxa based on relative abundances can reveal microbial signatures 
+associated with various diseases or health conditions, paving the way for potential biomarker discovery 
+and diagnostic insights.
+
+**Taxonomic Profiling**: Understanding the relative abundances of different taxa provides a comprehensive 
+snapshot of microbial community compositions, aiding in taxonomic profiling and classification efforts.
+
+From deciphering ecological shifts to uncovering disease markers, comparing or finding taxa based on 
+relative abundances offers a powerful lens through which researchers can explore the intricate world of 
+microbial communities.
+
+## How to Find Ranked Relative Abundances?
+
+This package offers a convenience function for finding taxa by ranking their relative abundances by some
+metric of interest. Available metrics are `max`, `median`, `q3` and `variance`.
+
+```{r}
+## first lets find some interesting data
+microbiomeData::getCuratedDatasetNames()
+getCollectionNames(microbiomeData::HMP_WGS)
+
+## grab a collection of interest
+HMP_WGS_species <- getCollection(microbiomeData::HMP_WGS, "WGS Species")
+
+## get a ranked abundance ComputeResult
+## top 10 taxa by max relative abundance across all samples
+rankedAbund <- rankedAbundance(HMP_WGS_species, method = "max", cutoff = 10) 
+## top 8 taxa by median relative abundance across all samples
+rankedAbund <- rankedAbundance(HMP_WGS_species, method = "median", cutoff = 8)
+## top 20 taxa by third quartile relative abundance across all samples
+rankedAbund <- rankedAbundance(HMP_WGS_species, method = "q3", cutoff = 20)
+## top 10 taxa by greatest variance in relative abundance across all samples
+rankedAbund <- rankedAbundance(HMP_WGS_species, method = "variance", cutoff = 10)
+```
+
+## Visualizing Ranked Relative Abundances
+
+Abundances are frequently visualized as scatter and box plots. Creating these types of plots can be done like the following:
+
+```{r}
+## combine ranked abundance result with sample metadata of interest
+rankedAbund_withMetadata <- getComputeResultWithMetadata(
+    rankedAbund, 
+    microbiomeData::HMP_WGS, 
+    metadataVariables = c('host_body_habitat'))
+
+## pivot the dataframe to be able to plot it
+rankedAbund_withMetadata.pivot <- pivot_longer(rankedAbund_withMetadata, # dataframe to be pivoted
+                                    cols = 4:13, # column names to be stored as a SINGLE variable
+                                    names_to = "taxa", # name of that new variable (column)
+                                    values_to = "abundance") # name of new variable (column) storing all the values (data)
+
+## plot the compute result with integrated metadata
+ggplot2::ggplot(rankedAbund_withMetadata.pivot) +
+    aes(x=abundance, y=taxa, fill = factor(host_body_habitat)) +
+    geom_boxplot() +
+    labs(y= "Taxon", x = "Relative abundance",
+        title="Relative abudnace of top taxa",
+        caption=paste0("produced on ", Sys.time())) +
+    theme_bw()
+```

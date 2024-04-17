@@ -36,3 +36,29 @@ An AbundanceData, phyloseq, or Collection object representing the collection and
 Get a collection from the Microbiome Dataset. The collection will be returned
 as an AbundanceData, phyloseq, or Collection object.
 }
+\examples{
+genus <- getCollection(
+     microbiomeData::DiabImmune, 
+     "16S (V4) Genus"
+)
+
+genus_phyloseq <- getCollection(
+     microbiomeData::DiabImmune, 
+     "16S (V4) Genus", 
+     format = "phyloseq"
+)
+
+## to pass to correlation method, we want only continuous metadata
+genus_continuous <- getCollection(
+     microbiomeData::DiabImmune, 
+     "16S (V4) Genus", 
+     continuousMetadataOnly = TRUE
+) 
+
+## with no metadata
+genus_collection <- getCollection(
+     microbiomeData::DiabImmune, 
+     "16S (V4) Genus", 
+     format = "Collection"
+)
+}

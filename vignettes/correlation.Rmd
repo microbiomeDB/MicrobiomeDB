@@ -1,0 +1,158 @@
+---
+title: "Correlation"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Correlation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(MicrobiomeDB)
+library(tidyverse)
+library(igraph)
+```
+
+## What is a Correlation Analysis?
+
+Correlations are useful for identifying relationships between variables. They are very helpful
+for identifying biomarkers and functional associations, among other things.
+
+Biomarkers in microbiome data are microbial taxa or features that exhibit a significant correlation
+with particular conditions, traits, or variables in sample metadata. Identifying these biomarkers
+allows researchers to uncover associations between the microbiome and external factors, such as age, 
+disease status, or environmental conditions. Biomarkers serve as indicators of specific biological 
+or clinical phenomena within microbial communities.
+
+Functional associations in microbiome data refer to relationships between taxonomic relative abundances 
+and abundances of specific pathways or other functional features. Understanding these associations 
+allows researchers to explore how the taxonomic composition of microbial communities influences 
+functional capabilities.
+
+## Why Care About Biomarker Discovery?
+
+Researchers are interested in biomarker discovery for several reasons:
+
+**Diagnostic Insights**: Biomarkers can serve as potential diagnostic indicators, helping identify 
+microbial patterns associated with specific conditions.
+
+**Predictive Modeling**: Understanding biomarker correlations enables predictive modeling of microbial 
+responses to external factors.
+
+**Biological Significance**: Biomarkers provide insights into the biological significance of microbial 
+community variations in response to different conditions.
+
+## Why Care About Functional Associations?
+
+**Biological Insights**: Explore how changes in taxonomic composition may impact the functional potential 
+of microbial communities.
+
+**Pathway-Level Analysis**: Understand how specific pathways or functional features correlate with 
+taxonomic abundance, providing pathway-level insights.
+
+**Predictive Modeling**: Assessing functional associations aids in predicting microbial functional 
+responses to environmental changes or perturbations.
+
+## How are Correlations Calculated?
+
+This package employs correlation analysis between microbial taxonomic abundances and sample metadata 
+or abundances of pathways or other functional data using the following approach:
+
+Users can choose either Spearman or Pearson correlation for the analysis. Both will produce
+a correlation coefficient and a p-value indicating statistical significance.
+
+### Spearman Correlation
+
+Use when the relationship between variables is monotonic but not necessarily linear. Suitable for 
+non-linear associations.
+
+```{r}
+## first lets find some interesting data
+microbiomeData::getCuratedDatasetNames()
+getCollectionNames(microbiomeData::HMP_WGS)
+
+## grab a collection of interest
+HMP_WGS_species <- getCollection(microbiomeData::HMP_WGS, "WGS Species", continuousMetadataOnly = TRUE)
+
+## get a correlation ComputeResult
+## this is not necessarily to recommend spearman for metadata. 
+## it is simply exemplary. Always look at your data!
+species_vs_metadata <- correlation(HMP_WGS_species, method = 'spearman') 
+```
+
+### Pearson Correlation
+
+Use when the relationship between variables is linear. Suitable for assessing linear associations.
+
+```{r}
+## grab two collections of interest, in this case species level data and pathway abundance data
+HMP_WGS_species <- getCollection(microbiomeData::HMP_WGS, "WGS Species")
+HMP_WGS_pathways <- getCollection(microbiomeData::HMP_WGS, "WGS Metagenome enzyme pathway abundance data" )
+
+## get a correlation ComputeResult
+## this is not necessarily to recommend pearson for functional data.
+## it is simply exemplary. Always look at your data!
+pathway_vs_species <- correlation(HMP_WGS_species, HMP_WGS_pathways, method = 'pearson')
+```
+
+## Interpreting Results
+
+**Correlation Coefficients**: Assess the strength and direction of correlations. Positive coefficients 
+indicate positive correlations, while negative coefficients indicate negative correlations.
+
+**p-values and Adjusted p-values**: Identify biomarkers with statistically significant correlations, 
+considering adjustments for multiple testing.
+
+You can extract these metrics and sort and filter results by them:
+```{r}
+## you can extract network metrics 
+pathway_vs_species.metrics <- as_tibble(
+  getComputeResult(
+    pathway_vs_species,
+    correlationCoefThreshold = 0.5,
+    pValueThreshold = 0.05
+  )
+)
+
+## it's also easy to sort and filter these network metrics
+## begin by renaming columns
+colnames(pathway_vs_species.metrics) <- c('species', 'pathway', 'correlationCoef', 'pValue')
+pathway_vs_species.metrics %>%
+  filter(species == "Faecalibacterium prausnitzii") %>%
+  filter(correlationCoef > 0.5) %>%
+  arrange(desc(correlationCoef))
+```
+
+You can also visualize them with custom htmlwidgets:
+
+```{r}
+## now plot the network
+## filters can be applied based on correlation coefficient and p-value
+## renders an interactive htmlwidget, using a predetermined layout
+correlationNetwork(
+  pathway_vs_species,
+  correlationCoefThreshold = 0.5,
+  pValueThreshold = 0.05
+)
+```
+
+Finally, for more advanced analysis of the network, you can extract it as an igraph object:
+
+```{r}
+## if you extract the network as an igraph object, you can get more detailed metrics
+pathway_vs_species.igraph <- getComputeResult(pathway_vs_species, format = 'igraph')
+degree <- degree(pathway_vs_species.igraph)
+edgeBT <- edge_betweenness(pathway_vs_species.igraph)
+pgRank <- page_rank(pathway_vs_species.igraph)
+layout <- layout_with_kk(pathway_vs_species.igraph)
+
+layout
+```
+

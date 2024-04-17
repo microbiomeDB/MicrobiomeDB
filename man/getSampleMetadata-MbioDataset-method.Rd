@@ -26,3 +26,7 @@ data.table of sample metadata
 \description{
 Returns a data.table of sample metadata
 }
+\examples{
+getSampleMetadata(microbiomeData::DiabImmune)
+getSampleMetadata(microbiomeData::DiabImmune, metadataVariables = c("age_months", "sex"))
+}
