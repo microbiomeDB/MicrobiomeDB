@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(MicrobiomeDB)
+library(tidyverse)
 ```
 
 ## What is Alpha Diversity?
@@ -90,7 +91,7 @@ alphaDiv_withMetadata <- getComputeResultWithMetadata(
 )
 
 ## plot the compute result with integrated metadata
-ggplot2::ggplot(alphaDiv_withMetadata) +
+ggplot(alphaDiv_withMetadata) +
   aes(x=alphaDiversity, y=host_body_habitat, fill=host_body_habitat) +
   geom_boxplot() +
   labs(y= "Body site", x = "Alpha diversity (Shannon)",
