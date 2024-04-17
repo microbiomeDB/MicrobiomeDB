@@ -38,6 +38,16 @@
 <li class="nav-item">
   <a class="nav-link" href="reference/index.html">Reference</a>
 </li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="articles/alphadiv.html">Alpha Diversity</a>
+    <a class="dropdown-item" href="articles/betadiv.html">Beta Diversity</a>
+    <a class="dropdown-item" href="articles/correlation.html">Correlation</a>
+    <a class="dropdown-item" href="articles/ranked-abundance.html">Ranked Relative Abundances</a>
+    <a class="dropdown-item" href="articles/self-correlation.html">Self Correlation</a>
+  </div>
+</li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off">
@@ -76,15 +86,15 @@
 <p>This package is paired with a dedicated data package called micribomeData which includes a number of pre-built <code>MbioDataset</code> objects representing the curated data from the MicrobiomeDB.org website. You can see their names like:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">'microbiomeDB/microbiomeData'</span><span class="op">)</span></span>
-<span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="fu">getCuratedDatasetNames</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="fu"><a href="https://microbiomedb.github.io/microbiomeData/reference/getCuratedDatasetNames.html" class="external-link">getCuratedDatasetNames</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>This will return a list of names of data objects which were installed with the package. One such dataset is ‘DiabImmune’, which we’ll use in the following example. <code>MbioDataset</code> objects contain two things <code>metadata</code> and <code>collections</code>. Metadata typically include details about samples in the dataset, such as the age of the person they were collected from. Collections can be any group of variables which represent a unified biological concept measured over a consistent or comparable range of values. An example might be relative abundances of various genera.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">getCollectionNames</span><span class="op">(</span><span class="va">DiabImmune</span><span class="op">)</span> <span class="co"># will print the names of collections</span></span>
 <span><span class="va">myCollection</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="va">DiabImmune</span>, <span class="st">'16S Species'</span><span class="op">)</span> <span class="co"># NOTE: you can also use the `format` argument here to get these as phyloseq objects</span></span></code></pre></div>
 <p>Once you have <code>myCollection</code>, you can start using our <code>microbiomeComputations</code> package (which was installed for you when you installed this one) to do fun things like:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">alphaDivResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://microbiomedb.github.io/microbiomeComputations/reference/alphaDiv-methods.html" class="external-link">alphaDiv</a></span><span class="op">(</span><span class="va">myCollection</span><span class="op">)</span></span>
-<span><span class="va">correlationResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/veupathUtils/man/correlation.html" class="external-link">correlation</a></span><span class="op">(</span><span class="va">myCollection</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">alphaDivResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/alphaDiv-methods.html">alphaDiv</a></span><span class="op">(</span><span class="va">myCollection</span><span class="op">)</span></span>
+<span><span class="va">correlationResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/correlation-methods.html">correlation</a></span><span class="op">(</span><span class="va">myCollection</span><span class="op">)</span></span>
 <span><span class="va">differentialAbundanceResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/differentialAbundance-methods.html">differentialAbundance</a></span><span class="op">(</span></span>
 <span>  <span class="va">myCollection</span>, </span>
 <span>  <span class="st">"breastfed_duration_days"</span>, <span class="co"># see getMetadataVariableNames() and getMetadataVariableSummary()</span></span>

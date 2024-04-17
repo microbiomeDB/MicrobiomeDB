@@ -7,6 +7,24 @@
     <loc>https://microbiomedb.github.io/MicrobiomeDB/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/articles/alphadiv.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/articles/betadiv.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/articles/correlation.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/articles/ranked-abundance.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/articles/self-correlation.html</loc>
+  </url>
+  <url>
     <loc>https://microbiomedb.github.io/MicrobiomeDB/authors.html</loc>
   </url>
   <url>
@@ -26,6 +44,15 @@
   </url>
   <url>
     <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/MicrobiomeDB-package.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/alphaDiv-methods.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/betaDiv-methods.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/correlation-methods.html</loc>
   </url>
   <url>
     <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/correlationNetwork.html</loc>
@@ -49,6 +76,9 @@
     <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/getMetadataVariableNames-MbioDataset-method.html</loc>
   </url>
   <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/getMetadataVariableSummary-MbioDataset-method.html</loc>
+  </url>
+  <url>
     <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/getSampleMetadata-MbioDataset-method.html</loc>
   </url>
   <url>
@@ -58,7 +88,10 @@
     <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/reexports.html</loc>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/rankedAbundance-methods.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/selfCorrelation-methods.html</loc>
   </url>
   <url>
     <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/updateCollectionName.html</loc>

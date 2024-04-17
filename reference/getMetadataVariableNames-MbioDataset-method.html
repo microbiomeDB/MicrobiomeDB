@@ -21,6 +21,16 @@
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/alphadiv.html">Alpha Diversity</a>
+    <a class="dropdown-item" href="../articles/betadiv.html">Beta Diversity</a>
+    <a class="dropdown-item" href="../articles/correlation.html">Correlation</a>
+    <a class="dropdown-item" href="../articles/ranked-abundance.html">Ranked Relative Abundances</a>
+    <a class="dropdown-item" href="../articles/self-correlation.html">Self Correlation</a>
+  </div>
+</li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -65,6 +75,73 @@
 <p>a character vector of metadata variable names</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">getMetadataVariableNames</span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/DiabImmune.html" class="external-link">DiabImmune</a></span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "Participant_Id"                                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "Participant_repeated_measure_Id"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "age_1st_animal_milk_or_solids_given_days"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "age_1st_given_apple_months"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "age_1st_given_banana_months"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "age_1st_given_barley_months"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "age_1st_given_beef_months"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "age_1st_given_berries_months"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "age_1st_given_cabbs_months"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "age_1st_given_carrot_months"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "age_1st_given_corn_months"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [12] "age_1st_given_cowsmilk_months"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "age_1st_given_egg_months"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [14] "age_1st_given_fish_months"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [15] "age_1st_given_milk_products_months"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [16] "age_1st_given_oat_months"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "age_1st_given_pear_months"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [18] "age_1st_given_peas_months"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "age_1st_given_plum_months"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [20] "age_1st_given_pork_months"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [21] "age_1st_given_potato_months"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [22] "age_1st_given_poultry_months"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [23] "age_1st_given_rice_months"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [24] "age_1st_given_rye_months"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [25] "age_1st_given_sweet_potato_months"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [26] "age_1st_given_tomato_months"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [27] "age_1st_given_wheat_months"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [28] "age_at_anthropometry_days"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [29] "age_at_two_autoantibodies_positive_days"             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [30] "age_at_type_1_diabetes_diagnosis_days"               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [31] "antibiotics_before_delivery_by_maternal_report"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [32] "bmi_minus_for_minus_age_z_minus_score"               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [33] "breastfed_duration_days"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [34] "country"                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [35] "delivery_mode"                                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [36] "diet_in_first_three_days"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [37] "exclusive_breastfed_duration_days"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [38] "gestational_diabetes_by_maternal_report"             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [39] "glutamic_acid_decarboxylase_autoantibodies"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [40] "hla_risk_by_hla_haplotyping"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [41] "height_minus_for_minus_age_z_minus_score"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [42] "insulin_autoantibodies"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [43] "insulinoma_minus_associated_protein_2_autoantibodies"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [44] "islet_cell_autoantibodies"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [45] "linear_growth_during_1st_year_cm"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [46] "maternal_age_at_birth_months"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [47] "mean_linear_growth_during_1st_3_years"               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [48] "mean_weight_gain_during_1st_3_years"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [49] "sex"                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [50] "study_group"                                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [51] "type_1_diabetes_diagnosed"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [52] "urban_or_rural_site"                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [53] "weight_gain_during_1st_year_kg"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [54] "weight_minus_for_minus_age_z_minus_score"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [55] "zinc_transporter_8_autoantibodies"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [56] "age_months"                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [57] "Sample_Id"                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [58] "habitat"                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [59] "host_body_habitat"                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [60] "host_body_product"                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [61] "host_body_site"                                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [62] "sample_type"                                         </span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 

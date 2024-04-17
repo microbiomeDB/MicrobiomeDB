@@ -1,8 +1,13 @@
 pandoc: 3.1.11
 pkgdown: 2.0.8
 pkgdown_sha: ~
-articles: {}
-last_built: 2024-04-16T18:20Z
+articles:
+  alphadiv: alphadiv.html
+  betadiv: betadiv.html
+  correlation: correlation.html
+  ranked-abundance: ranked-abundance.html
+  self-correlation: self-correlation.html
+last_built: 2024-04-17T19:43Z
 urls:
   reference: https://microbiomedb.github.io/MicrobiomeDB/reference
   article: https://microbiomedb.github.io/MicrobiomeDB/articles
