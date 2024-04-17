@@ -35,7 +35,8 @@ data.frame with correlation coefficients or a ComputeResult object
 This function returns correlation coefficients for variables in one dataset against variables in a second dataset
 }
 \examples{
-correlationDT <- correlation(getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), method = 'spearman', format = 'data.table')
-correlationOutput <- correlation(getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), method = 'spearman', format = 'ComputeResult')
+diabImmune_genus <- getCollection(microbiomeData::DiabImmune, "16S (V4) Genus", continuousMetadataOnly = TRUE)
+correlationDT <- correlation(diabImmune_genus, method = 'spearman', format = 'data.table')
+correlationOutput <- correlation(diabImmune_genus, method = 'spearman', format = 'ComputeResult')
 alsoCorrelationDT <- getComputeResult(correlationOutput, "data.table")
 }

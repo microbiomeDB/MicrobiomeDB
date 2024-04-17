@@ -50,8 +50,9 @@ microbiomeComputations::betaDiv
 #' This function returns correlation coefficients for variables in one dataset against variables in a second dataset
 #' 
 #' @examples
-#' correlationDT <- correlation(getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), method = 'spearman', format = 'data.table')
-#' correlationOutput <- correlation(getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), method = 'spearman', format = 'ComputeResult')
+#' diabImmune_genus <- getCollection(microbiomeData::DiabImmune, "16S (V4) Genus", continuousMetadataOnly = TRUE)
+#' correlationDT <- correlation(diabImmune_genus, method = 'spearman', format = 'data.table')
+#' correlationOutput <- correlation(diabImmune_genus, method = 'spearman', format = 'ComputeResult')
 #' alsoCorrelationDT <- getComputeResult(correlationOutput, "data.table")
 #' @param data1 first dataset. A data.table
 #' @param data2 second dataset. A data.table
@@ -80,9 +81,6 @@ veupathUtils::correlation
 #' @param method string defining the type of correlation to run. The currently supported values are 'spearman','pearson' and 'sparcc'
 #' @param format string defining the desired format of the result. The currently supported values are 'data.table' and 'ComputeResult'.
 #' @param verbose boolean indicating if timed logging is desired
-#' @param proportionNonZeroThreshold numeric threshold to filter features by proportion of non-zero values across samples
-#' @param varianceThreshold numeric threshold to filter features by variance across samples
-#' @param stdDevThreshold numeric threshold to filter features by standard deviation across samples
 #' @param ... additional parameters
 #' @return ComputeResult object
 #' @importFrom veupathUtils selfCorrelation
