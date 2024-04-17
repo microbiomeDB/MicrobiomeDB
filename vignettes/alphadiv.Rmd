@@ -51,7 +51,7 @@ getCollectionNames(microbiomeData::HMP_WGS)
 genus <- getCollection(microbiomeData::HMP_WGS, 'WGS Genus')
 
 ## get an alpha diversity ComputeResult
-alphaDivOutput <- alphaDiversity(genus, method = 'shannon')
+alphaDivOutput <- alphaDiv(genus, method = 'shannon')
 ```
 
 ### Simpson Diversity Index
@@ -63,7 +63,7 @@ It can be calculated as follows:
 ```{r}
 ## get an alpha diversity ComputeResult
 genus <- getCollection(microbiomeData::HMP_WGS, 'WGS Genus')
-alphaDivOutput <- alphaDiversity(genus, method = 'simpson')
+alphaDivOutput <- alphaDiv(genus, method = 'simpson')
 ```
 
 ### Species Evenness
@@ -74,7 +74,7 @@ Species evenness is highest when all species in a sample have the same abundance
 ```{r}
 ## get an alpha diversity ComputeResult
 genus <- getCollection(microbiomeData::HMP_WGS, 'WGS Genus')
-alphaDivOutput <- alphaDiversity(genus, method = 'evenness')
+alphaDivOutput <- alphaDiv(genus, method = 'evenness')
 ```
 
 ## Visualizing Alpha Diversity

@@ -100,7 +100,7 @@ The following code will produce a PCoA plot:
 ## choose one or more metadata variables to integrate with the compute result
 betaDiv_withMetadata <- getComputeResultWithMetadata(
   betaDiv, 
-  HMP_WGS, 
+  microbiomeData::HMP_WGS, 
   metadataVariables = c('host_body_habitat'))
 
 ## plot beta diversity

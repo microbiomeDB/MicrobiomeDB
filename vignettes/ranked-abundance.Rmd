@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(MicrobiomeDB)
+library(tidyverse)
 ```
 
 ## What are Relative Abundances
@@ -54,7 +55,7 @@ microbial communities.
 ## How to Find Ranked Relative Abundances?
 
 This package offers a convenience function for finding taxa by ranking their relative abundances by some
-metric of interest. Available metrics are `mean`, `median`, `q3` and `variance`.
+metric of interest. Available metrics are `max`, `median`, `q3` and `variance`.
 
 ```{r}
 ## first lets find some interesting data
@@ -65,8 +66,8 @@ getCollectionNames(microbiomeData::HMP_WGS)
 HMP_WGS_species <- getCollection(microbiomeData::HMP_WGS, "WGS Species")
 
 ## get a ranked abundance ComputeResult
-## top 10 taxa by mean relative abundance across all samples
-rankedAbund <- rankedAbundance(HMP_WGS_species, method = "mean", cutoff = 10) 
+## top 10 taxa by max relative abundance across all samples
+rankedAbund <- rankedAbundance(HMP_WGS_species, method = "max", cutoff = 10) 
 ## top 8 taxa by median relative abundance across all samples
 rankedAbund <- rankedAbundance(HMP_WGS_species, method = "median", cutoff = 8)
 ## top 20 taxa by third quartile relative abundance across all samples

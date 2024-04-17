@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(MicrobiomeDB)
+library(tidyverse)
 ```
 
 ## What is a Correlation Analysis?
@@ -77,7 +78,7 @@ microbiomeData::getCuratedDatasetNames()
 getCollectionNames(microbiomeData::HMP_WGS)
 
 ## grab a collection of interest
-HMP_WGS_species <- getCollection(microbiomeData::HMP_WGS, "WGS Species")
+HMP_WGS_species <- getCollection(microbiomeData::HMP_WGS, "WGS Species", continuousMetadataOnly = TRUE)
 
 ## get a correlation ComputeResult
 ## this is not necessarily to recommend spearman for metadata. 
