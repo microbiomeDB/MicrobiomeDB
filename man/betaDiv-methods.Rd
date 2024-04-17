@@ -27,5 +27,9 @@ ComputeResult object
 This function returns pcoa coordinates calculated from the beta diversity dissimilarity matrix.
 }
 \examples{
-betaDivOutput <- betaDiv(getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), method = "bray", k = 2)
+betaDivOutput <- betaDiv(
+     getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), 
+     method = "bray", 
+     k = 2
+)
 }

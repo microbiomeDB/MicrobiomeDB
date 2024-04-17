@@ -24,5 +24,8 @@ ComputeResult object
 This function returns alpha diversity values for each sample.
 }
 \examples{
-alphaDivOutput <- alphaDiv(getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), method = "shannon")
+alphaDivOutput <- alphaDiv(
+     getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), 
+     method = "shannon"
+)
 }

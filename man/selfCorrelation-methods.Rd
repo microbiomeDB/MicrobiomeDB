@@ -31,7 +31,20 @@ This function returns correlation coefficients for variables in one AbundanceDat
 convenience wrapper around veupathUtils::correlation, with the exception that it additionally supports sparcc.
 }
 \examples{
-correlationDT <- selfCorrelation(getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), method = 'sparcc', format = 'data.table')
-correlationOutput <- selfCorrelation(getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), method = 'sparcc', format = 'ComputeResult')
-alsoCorrelationDT <- getComputeResult(correlationOutput, "data.table")
+correlationDT <- selfCorrelation(
+     getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), 
+     method = 'sparcc', 
+     format = 'data.table'
+)
+
+correlationOutput <- selfCorrelation(
+     getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), 
+     method = 'sparcc', 
+     format = 'ComputeResult'
+)
+
+alsoCorrelationDT <- getComputeResult(
+     correlationOutput, 
+     "data.table"
+)
 }

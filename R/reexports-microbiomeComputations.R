@@ -3,7 +3,10 @@
 #' This function returns abundances, ranked by a selected ranking function
 #' 
 #' @examples
-#' rankedAbundOutput <- rankedAbundance(getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), method = "median")
+#' rankedAbundOutput <- rankedAbundance(
+#'      getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), 
+#'      method = "median"
+#' )
 #' @param data AbundanceData object
 #' @param method string defining the ranking strategy by which to order the taxa. Accepted values are 'median','max','q3',and 'variance'. Note that taxa that return a value of 0 for a given method will not be included in the results.
 #' @param cutoff integer indicating the maximium number of taxa to be kept after ranking.
@@ -19,7 +22,10 @@ microbiomeComputations::rankedAbundance
 #' This function returns alpha diversity values for each sample.
 #' 
 #' @examples
-#' alphaDivOutput <- alphaDiv(getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), method = "shannon")
+#' alphaDivOutput <- alphaDiv(
+#'      getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), 
+#'      method = "shannon"
+#' )
 #' @param data AbundanceData object
 #' @param method string defining the the alpha diversity method. Accepted values are 'shannon','simpson', and 'evenness'
 #' @param verbose boolean indicating if timed logging is desired
@@ -34,7 +40,11 @@ microbiomeComputations::alphaDiv
 #' This function returns pcoa coordinates calculated from the beta diversity dissimilarity matrix.
 #' 
 #' @examples 
-#' betaDivOutput <- betaDiv(getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), method = "bray", k = 2)
+#' betaDivOutput <- betaDiv(
+#'      getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), 
+#'      method = "bray", 
+#'      k = 2
+#' )
 #' @param data AbundanceData object
 #' @param method string defining the the beta diversity dissimilarity method. Accepted values are 'bray','jaccard', and 'jsd'
 #' @param k integer determining the number of pcoa axes to return
@@ -50,10 +60,28 @@ microbiomeComputations::betaDiv
 #' This function returns correlation coefficients for variables in one dataset against variables in a second dataset
 #' 
 #' @examples
-#' diabImmune_genus <- getCollection(microbiomeData::DiabImmune, "16S (V4) Genus", continuousMetadataOnly = TRUE)
-#' correlationDT <- correlation(diabImmune_genus, method = 'spearman', format = 'data.table')
-#' correlationOutput <- correlation(diabImmune_genus, method = 'spearman', format = 'ComputeResult')
-#' alsoCorrelationDT <- getComputeResult(correlationOutput, "data.table")
+#' diabImmune_genus <- getCollection(
+#'      microbiomeData::DiabImmune, 
+#'      "16S (V4) Genus", 
+#'      continuousMetadataOnly = TRUE
+#' )
+#' 
+#' correlationDT <- correlation(
+#'      diabImmune_genus, 
+#'      method = 'spearman', 
+#'      format = 'data.table'
+#' )
+#' 
+#' correlationOutput <- correlation(
+#'      diabImmune_genus, 
+#'      method = 'spearman', 
+#'      format = 'ComputeResult'
+#' )
+#' 
+#' alsoCorrelationDT <- getComputeResult(
+#'      correlationOutput, 
+#'      "data.table"
+#' )
 #' @param data1 first dataset. A data.table
 #' @param data2 second dataset. A data.table
 #' @param method string defining the type of correlation to run. 
@@ -74,9 +102,22 @@ veupathUtils::correlation
 #' convenience wrapper around veupathUtils::correlation, with the exception that it additionally supports sparcc.
 #' 
 #' @examples
-#' correlationDT <- selfCorrelation(getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), method = 'sparcc', format = 'data.table')
-#' correlationOutput <- selfCorrelation(getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), method = 'sparcc', format = 'ComputeResult')
-#' alsoCorrelationDT <- getComputeResult(correlationOutput, "data.table")
+#' correlationDT <- selfCorrelation(
+#'      getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), 
+#'      method = 'sparcc', 
+#'      format = 'data.table'
+#' )
+#' 
+#' correlationOutput <- selfCorrelation(
+#'      getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), 
+#'      method = 'sparcc', 
+#'      format = 'ComputeResult'
+#' )
+#' 
+#' alsoCorrelationDT <- getComputeResult(
+#'      correlationOutput, 
+#'      "data.table"
+#' )
 #' @param data An AbundanceData object
 #' @param method string defining the type of correlation to run. The currently supported values are 'spearman','pearson' and 'sparcc'
 #' @param format string defining the desired format of the result. The currently supported values are 'data.table' and 'ComputeResult'.

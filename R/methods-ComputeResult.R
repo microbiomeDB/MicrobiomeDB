@@ -90,7 +90,12 @@ mergeComputeResultAndMetadata <- function(computeResult, dataset, metadataVariab
 #'      method='shannon', 
 #'      verbose=FALSE
 #' )
-#' alphaDivDT <- getComputeResultWithMetadata(alphaDivOutput, microbiomeData::DiabImmune, metadataVariables = c('country', 'delivery_mode'))
+#' 
+#' alphaDivDT <- getComputeResultWithMetadata(
+#'      alphaDivOutput, 
+#'      microbiomeData::DiabImmune, 
+#'      metadataVariables = c('country', 'delivery_mode')
+#' )
 #' @param object A Microbiome Dataset
 #' @param dataset The MbioDataset, AbundanceData or Collection object from which the compute result was obtained.
 #' @param format The format you want the compute result in. Currently only "data.table" is supported.

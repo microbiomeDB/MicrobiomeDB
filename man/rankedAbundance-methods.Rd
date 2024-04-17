@@ -27,5 +27,8 @@ ComputeResult object
 This function returns abundances, ranked by a selected ranking function
 }
 \examples{
-rankedAbundOutput <- rankedAbundance(getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), method = "median")
+rankedAbundOutput <- rankedAbundance(
+     getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), 
+     method = "median"
+)
 }

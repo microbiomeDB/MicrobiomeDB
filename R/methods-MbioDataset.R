@@ -133,11 +133,31 @@ setMethod("updateCollectionName", "MbioDataset", function(object, oldName, newNa
 #' Get a collection from the Microbiome Dataset. The collection will be returned
 #' as an AbundanceData, phyloseq, or Collection object.
 #' 
-#' @examples 
-#' genus <- getCollection(microbiomeData::DiabImmune, "16S (V4) Genus")
-#' genus_phyloseq <- getCollection(microbiomeData::DiabImmune, "16S (V4) Genus", format = "phyloseq")
-#' genus_continuous <- getCollection(microbiomeData::DiabImmune, "16S (V4) Genus", continuousMetadataOnly = TRUE) ## to pass to correlation method
-#' genus_collection <- getCollection(microbiomeData::DiabImmune, "16S (V4) Genus", format = "Collection") ## with no metadata
+#' @examples
+#' genus <- getCollection(
+#'      microbiomeData::DiabImmune, 
+#'      "16S (V4) Genus"
+#' )
+#' 
+#' genus_phyloseq <- getCollection(
+#'      microbiomeData::DiabImmune, 
+#'      "16S (V4) Genus", 
+#'      format = "phyloseq"
+#' )
+#' 
+#' ## to pass to correlation method, we want only continuous metadata
+#' genus_continuous <- getCollection(
+#'      microbiomeData::DiabImmune, 
+#'      "16S (V4) Genus", 
+#'      continuousMetadataOnly = TRUE
+#' ) 
+#' 
+#' ## with no metadata
+#' genus_collection <- getCollection(
+#'      microbiomeData::DiabImmune, 
+#'      "16S (V4) Genus", 
+#'      format = "Collection"
+#' )
 #' @param object A Microbiome Dataset
 #' @param collectionName The name of the collection to return
 #' @param format The format of the collection to return. Currently supported options are "AbundanceData", "phyloseq" and "Collection".
