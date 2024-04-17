@@ -1,0 +1,100 @@
+---
+title: "Alpha Diversity"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Alpha Diversity}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(MicrobiomeDB)
+```
+
+## What is Alpha Diversity?
+
+Alpha diversity measures the diversity of microbial taxa within a single sample or community. It takes into account both the number of different taxa (richness) and their distribution (evenness). Understanding alpha diversity provides insights into the complexity and structure of microbial communities at a local level.
+
+##Why Care About Alpha Diversity?
+
+Researchers are interested in alpha diversity for several reasons:
+
+**Community Comparisons**: Compare the diversity of microbial communities across different samples or conditions.
+
+**Health Assessments**: Assess the health or stability of microbial communities within specific environments or host systems.
+
+**Ecological Understanding**: Gain insights into the ecological dynamics of microbial communities at a local scale.
+
+## How is Alpha Diversity Calculated?
+
+This package offers three diversity indices for calculation: Shannon, Simpson and Evenness.
+
+### Shannon Diversity Index
+
+The Shannon diversity index measures the entropy or uncertainty in predicting the identity of a randomly chosen taxon within a sample.
+
+It can be calculated as follows:
+
+```{r}
+## first lets find some interesting data
+microbiomeData::getCuratedDatasetNames()
+getCollectionNames(microbiomeData::HMP_WGS)
+
+## grab a collection we like
+genus <- getCollection(microbiomeData::HMP_WGS, 'WGS Genus')
+
+## get an alpha diversity ComputeResult
+alphaDivOutput <- alphaDiversity(genus, method = 'shannon')
+```
+
+### Simpson Diversity Index
+
+The Simpson diversity index measures the probability that two individuals randomly selected from the sample will belong to different taxa.
+
+It can be calculated as follows:
+
+```{r}
+## get an alpha diversity ComputeResult
+genus <- getCollection(microbiomeData::HMP_WGS, 'WGS Genus')
+alphaDivOutput <- alphaDiversity(genus, method = 'simpson')
+```
+
+### Species Evenness
+
+Species evenness describes the distribution of abundances across the species in a sample.
+Species evenness is highest when all species in a sample have the same abundance and approaches zero as relative abundances vary.
+
+```{r}
+## get an alpha diversity ComputeResult
+genus <- getCollection(microbiomeData::HMP_WGS, 'WGS Genus')
+alphaDivOutput <- alphaDiversity(genus, method = 'evenness')
+```
+
+## Visualizing Alpha Diversity
+
+Alpha Diversity is frequently visualized as scatter and box plots. Creating these types of plots can be done like the following:
+
+```{r}
+## choose one or more metadata variables to integrate with the compute result
+alphaDiv_withMetadata <- getComputeResultWithMetadata(
+  alphaDivOutput,
+  microbiomeData::HMP_WGS,
+  metadataVariables = c('host_body_habitat')
+)
+
+## plot the compute result with integrated metadata
+ggplot(alphaDiv_withMetadata) +
+  aes(x=alphaDiversity, y=host_body_habitat, fill=host_body_habitat) +
+  geom_boxplot() +
+  labs(y= "Body site", x = "Alpha diversity (Shannon)",
+        title="Alpha diversity by body site",
+        caption=paste0("produced on ", Sys.time())) +
+  theme_bw()
+```
