@@ -56,5 +56,5 @@ alphaDivOutput <- MicrobiomeDB::alphaDiv(
      method='shannon', 
      verbose=FALSE
 )
-alphaDivDT <- getComputeResultWithMetadata(alphaDivOutput, mbioDataset, metadataVariables = c('country', 'delivery_mode'))
+alphaDivDT <- getComputeResultWithMetadata(alphaDivOutput, microbiomeData::DiabImmune, metadataVariables = c('country', 'delivery_mode'))
 }
