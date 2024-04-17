@@ -18,7 +18,7 @@ a table summarizing the values of the requested metadata variable
 Get a summary of the requested metadata variable in an MbioDataset.
 }
 \examples{
-getMetadataVariableSummary(microbiomeData::DiabImmune, "age_years")
+getMetadataVariableSummary(microbiomeData::DiabImmune, "age_months")
 getMetadataVariableSummary(microbiomeData::DiabImmune, "sex")
 getMetadataVariableSummary(microbiomeData::DiabImmune, "country")
 }

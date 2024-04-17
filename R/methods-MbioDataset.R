@@ -30,7 +30,7 @@ metadataVarSummaryGeneric <- getGeneric("getMetadataVariableSummary", "veupathUt
 #' Get a summary of the requested metadata variable in an MbioDataset.
 #' 
 #' @examples 
-#' getMetadataVariableSummary(microbiomeData::DiabImmune, "age_years")
+#' getMetadataVariableSummary(microbiomeData::DiabImmune, "age_months")
 #' getMetadataVariableSummary(microbiomeData::DiabImmune, "sex")
 #' getMetadataVariableSummary(microbiomeData::DiabImmune, "country")
 #' @param object An MbioDataset
@@ -61,7 +61,7 @@ sampleMetadataGeneric <- getGeneric("getSampleMetadata", "veupathUtils")
 #' 
 #' @examples
 #' getSampleMetadata(microbiomeData::DiabImmune)
-#' getSampleMetadata(microbiomeData::DiabImmune, metadataVariables = c("age_years", "sex"))
+#' getSampleMetadata(microbiomeData::DiabImmune, metadataVariables = c("age_months", "sex"))
 #' @param object MbioDataset
 #' @param asCopy boolean indicating whether to return the data as a copy or by reference
 #' @param includeIds boolean indicating whether we should include recordIdColumn and ancestorIdColumns
