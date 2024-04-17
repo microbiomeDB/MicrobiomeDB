@@ -146,7 +146,7 @@ Finally, for more advanced analysis of the network, you can extract it as an igr
 
 ```{r}
 ## if you extract the network as an igraph object, you can get more detailed metrics
-pathway_vs_species.igraph <- getComputeesult(pathway_vs_species, format = 'igraph')
+pathway_vs_species.igraph <- getComputeResult(pathway_vs_species, format = 'igraph')
 degree <- degree(pathway_vs_species.igraph)
 edgeBT <- edge_betweenness(pathway_vs_species.igraph)
 pgRank <- page_rank(pathway_vs_species.igraph)

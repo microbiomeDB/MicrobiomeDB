@@ -105,7 +105,7 @@ Finally, for more advanced analysis of the network, you can extract it as an igr
 
 ```{r}
 ## if you extract the network as an igraph object, you can get more detailed metrics
-selfCorrelation_genus.igraph <- getComputeesult(selfCorrelation_genus, format = 'igraph')
+selfCorrelation_genus.igraph <- getComputeResult(selfCorrelation_genus, format = 'igraph')
 degree <- degree(selfCorrelation_genus.igraph)
 edgeBT <- edge_betweenness(selfCorrelation_genus.igraph)
 pgRank <- page_rank(selfCorrelation_genus.igraph)

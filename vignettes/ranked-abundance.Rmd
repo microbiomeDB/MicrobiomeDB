@@ -84,7 +84,7 @@ Abundances are frequently visualized as scatter and box plots. Creating these ty
 ## combine ranked abundance result with sample metadata of interest
 rankedAbund_withMetadata <- getComputeResultWithMetadata(
     rankedAbund, 
-    HMP_WGS, 
+    microbiomeData::HMP_WGS, 
     metadataVariables = c('host_body_habitat'))
 
 ## pivot the dataframe to be able to plot it
@@ -94,7 +94,7 @@ rankedAbund_withMetadata.pivot <- pivot_longer(rankedAbund_withMetadata, # dataf
                                     values_to = "abundance") # name of new variable (column) storing all the values (data)
 
 ## plot the compute result with integrated metadata
-ggplot(rankedAbund_withMetadata.pivot) +
+ggplot2::ggplot(rankedAbund_withMetadata.pivot) +
     aes(x=abundance, y=taxa, fill = factor(host_body_habitat)) +
     geom_boxplot() +
     labs(y= "Taxon", x = "Relative abundance",

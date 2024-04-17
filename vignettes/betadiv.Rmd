@@ -104,7 +104,7 @@ betaDiv_withMetadata <- getComputeResultWithMetadata(
   metadataVariables = c('host_body_habitat'))
 
 ## plot beta diversity
-ggplot(betaDiv_withMetadata) +
+ggplot2::ggplot(betaDiv_withMetadata) +
   aes(x=Axis1, y=Axis2, color=host_body_habitat) +
   geom_point() +
   labs(y= "Axis 2", x = "Axis 1",
