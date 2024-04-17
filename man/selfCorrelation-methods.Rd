@@ -21,6 +21,8 @@ selfCorrelation(
 
 \item{verbose}{boolean indicating if timed logging is desired}
 
+\item{...}{additional parameters}
+
 \item{proportionNonZeroThreshold}{numeric threshold to filter features by proportion of non-zero values across samples}
 
 \item{varianceThreshold}{numeric threshold to filter features by variance across samples}

@@ -32,6 +32,6 @@ maaslinOutput <- MicrobiomeDB::Maaslin2(
        analysis_method = "LM", # default LM
        normalization = "TSS", # default TSS
        transform = "LOG", # default LOG
-       plot_heatmap = F,
-       plot_scatter = F)
+       plot_heatmap = FALSE,
+       plot_scatter = FALSE)
 }

@@ -25,6 +25,8 @@ The currently supported values are specific to the class of data1 and data2.}
 The currently supported values are 'data.table' and 'ComputeResult'.}
 
 \item{verbose}{boolean indicating if timed logging is desired}
+
+\item{...}{additional parameters}
 }
 \value{
 data.frame with correlation coefficients or a ComputeResult object

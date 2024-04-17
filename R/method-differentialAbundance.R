@@ -197,8 +197,8 @@ function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verb
 #'        analysis_method = "LM", # default LM
 #'        normalization = "TSS", # default TSS
 #'        transform = "LOG", # default LOG
-#'        plot_heatmap = F,
-#'        plot_scatter = F)
+#'        plot_heatmap = FALSE,
+#'        plot_scatter = FALSE)
 #' @param data a CollectionWithMetadata
 #' @param verbose boolean indicating if timed logging is desired
 #' @param ... additional arguments to pass to Maaslin2::Maaslin2

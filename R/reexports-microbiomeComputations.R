@@ -60,6 +60,7 @@ microbiomeComputations::betaDiv
 #' @param format string defining the desired format of the result. 
 #' The currently supported values are 'data.table' and 'ComputeResult'.
 #' @param verbose boolean indicating if timed logging is desired
+#' @param ... additional parameters
 #' @return data.frame with correlation coefficients or a ComputeResult object
 #' @importFrom veupathUtils correlation
 #' @export
@@ -82,6 +83,7 @@ veupathUtils::correlation
 #' @param proportionNonZeroThreshold numeric threshold to filter features by proportion of non-zero values across samples
 #' @param varianceThreshold numeric threshold to filter features by variance across samples
 #' @param stdDevThreshold numeric threshold to filter features by standard deviation across samples
+#' @param ... additional parameters
 #' @return ComputeResult object
 #' @importFrom veupathUtils selfCorrelation
 #' @importFrom microbiomeComputations selfCorrelation
