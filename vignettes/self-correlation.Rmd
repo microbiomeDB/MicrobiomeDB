@@ -114,5 +114,5 @@ edgeBT <- edge_betweenness(selfCorrelation_metabolomics.igraph)
 pgRank <- page_rank(selfCorrelation_metabolomics.igraph)
 coords <- layout_with_kk(selfCorrelation_metabolomics.igraph)
 
-plot(selfCorrelation_metabolomics.igraph, coords)
+#plot(selfCorrelation_metabolomics.igraph, coords)
 ```

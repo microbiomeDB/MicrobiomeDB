@@ -154,6 +154,6 @@ edgeBT <- edge_betweenness(pathway_vs_species.igraph)
 pgRank <- page_rank(pathway_vs_species.igraph)
 coords <- layout_with_kk(pathway_vs_species.igraph)
 
-plot(pathway_vs_species.igraph, layout = coords)
+#plot(pathway_vs_species.igraph, layout = coords)
 ```
 
