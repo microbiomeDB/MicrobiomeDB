@@ -15,8 +15,8 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(MicrobiomeDB)
-library(tidyverse)
+library(MicrobiomeDB, quietly = TRUE)
+library(tidyverse, quietly = TRUE)
 ```
 
 ## What is Beta Diversity?
@@ -55,6 +55,7 @@ ranges from 0 (complete similarity) to 1 (complete dissimilarity).
 ```{r}
 ## first lets find some interesting data
 microbiomeData::getCuratedDatasetNames()
+
 getCollectionNames(microbiomeData::HMP_WGS)
 
 ## grab a collection we like

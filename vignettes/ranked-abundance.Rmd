@@ -15,8 +15,8 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(MicrobiomeDB)
-library(tidyverse)
+library(MicrobiomeDB, quietly = TRUE)
+library(tidyverse, quietly = TRUE)
 ```
 
 ## What are Relative Abundances
@@ -60,6 +60,7 @@ metric of interest. Available metrics are `max`, `median`, `q3` and `variance`.
 ```{r}
 ## first lets find some interesting data
 microbiomeData::getCuratedDatasetNames()
+
 getCollectionNames(microbiomeData::HMP_WGS)
 
 ## grab a collection of interest

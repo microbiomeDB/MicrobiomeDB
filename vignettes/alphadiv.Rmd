@@ -15,15 +15,15 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(MicrobiomeDB)
-library(tidyverse)
+library(MicrobiomeDB, quietly = TRUE)
+library(tidyverse, quietly = TRUE)
 ```
 
 ## What is Alpha Diversity?
 
 Alpha diversity measures the diversity of microbial taxa within a single sample or community. It takes into account both the number of different taxa (richness) and their distribution (evenness). Understanding alpha diversity provides insights into the complexity and structure of microbial communities at a local level.
 
-##Why Care About Alpha Diversity?
+## Why Care About Alpha Diversity?
 
 Researchers are interested in alpha diversity for several reasons:
 
@@ -46,6 +46,7 @@ It can be calculated as follows:
 ```{r}
 ## first lets find some interesting data
 microbiomeData::getCuratedDatasetNames()
+
 getCollectionNames(microbiomeData::HMP_WGS)
 
 ## grab a collection we like

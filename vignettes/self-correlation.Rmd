@@ -15,9 +15,9 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(MicrobiomeDB)
-library(tidyverse)
-library(igraph)
+library(MicrobiomeDB, quietly = TRUE)
+library(tidyverse, quietly = TRUE)
+library(igraph, quietly = TRUE)
 ```
 
 ## What is a Correlation Analysis?
@@ -52,14 +52,16 @@ that account for the compositional nature of microbiome data.
 ```{r}
 ## first lets find some interesting data
 microbiomeData::getCuratedDatasetNames()
-getCollectionNames(microbiomeData::Bangladesh)
+
+getCollectionNames(microbiomeData::FARMM)
 
 ## grab a collection of interest
-Bangladesh_genus <- getCollection(microbiomeData::Bangladesh, "16S (V4) Genus")
+## these methods can be used with other data types as well
+farmm_metabolomics <- getCollection(microbiomeData::FARMM, "Metabolomics Mass spectrometry assay")
 
 ## get a self correlation ComputeResult
 ## methods spearman and pearson are options here as well, for data known to not be compositional
-selfCorrelation_genus <- selfCorrelation(Bangladesh_genus, method='sparcc')
+selfCorrelation_metabolomics <- selfCorrelation(farmm_metabolomics, method='spearman')
 ```
 
 ## Interpreting Results
@@ -73,9 +75,9 @@ considering adjustments for multiple testing.
 You can extract these metrics and sort and filter results by them:
 ```{r}
 ## you can extract network metrics 
-selfCorrelation_genus.metrics <- as_tibble(
+selfCorrelation_metabolomics.metrics <- as_tibble(
     getComputeResult(
-        selfCorrelation_genus,
+        selfCorrelation_metabolomics,
         correlationCoefThreshold = 0.5,
         pValueThreshold = 0.05
     )
@@ -83,8 +85,8 @@ selfCorrelation_genus.metrics <- as_tibble(
 
 ## it's also easy to sort and filter these network metrics
 ## begin by renaming columns
-colnames(selfCorrelation_genus.metrics) <- c('taxa1', 'taxa2', 'correlationCoef', 'pValue')
-selfCorrelation_genus.metrics %>%
+colnames(selfCorrelation_metabolomics.metrics) <- c('metabolite1', 'metabolite2', 'correlationCoef', 'pValue')
+selfCorrelation_metabolomics.metrics %>%
     filter(correlationCoef > 0.5) %>%
     arrange(desc(correlationCoef))
 ```
@@ -96,7 +98,7 @@ You can also visualize them with custom htmlwidgets:
 ## filters can be applied based on correlation coefficient and p-value
 ## renders an interactive htmlwidget, using a predetermined layout
 correlationNetwork(
-    selfCorrelation_genus,
+    selfCorrelation_metabolomics,
     correlationCoefThreshold = 0.5,
     pValueThreshold = 0.05
 )
@@ -106,11 +108,11 @@ Finally, for more advanced analysis of the network, you can extract it as an igr
 
 ```{r}
 ## if you extract the network as an igraph object, you can get more detailed metrics
-selfCorrelation_genus.igraph <- getComputeResult(selfCorrelation_genus, format = 'igraph')
-degree <- degree(selfCorrelation_genus.igraph)
-edgeBT <- edge_betweenness(selfCorrelation_genus.igraph)
-pgRank <- page_rank(selfCorrelation_genus.igraph)
-layout <- layout_with_kk(selfCorrelation_genus.igraph)
+selfCorrelation_metabolomics.igraph <- getComputeResult(selfCorrelation_metabolomics, format = 'igraph')
+degree <- degree(selfCorrelation_metabolomics.igraph)
+edgeBT <- edge_betweenness(selfCorrelation_metabolomics.igraph)
+pgRank <- page_rank(selfCorrelation_metabolomics.igraph)
+coords <- layout_with_kk(selfCorrelation_metabolomics.igraph)
 
-layout
+plot(selfCorrelation_metabolomics.igraph, coords)
 ```

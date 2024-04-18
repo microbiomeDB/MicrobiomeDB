@@ -15,9 +15,9 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(MicrobiomeDB)
-library(tidyverse)
-library(igraph)
+library(MicrobiomeDB, quietly = TRUE)
+library(tidyverse, quietly = TRUE)
+library(igraph, quietly = TRUE)
 ```
 
 ## What is a Correlation Analysis?
@@ -76,6 +76,7 @@ non-linear associations.
 ```{r}
 ## first lets find some interesting data
 microbiomeData::getCuratedDatasetNames()
+
 getCollectionNames(microbiomeData::HMP_WGS)
 
 ## grab a collection of interest
@@ -116,7 +117,7 @@ You can extract these metrics and sort and filter results by them:
 pathway_vs_species.metrics <- as_tibble(
   getComputeResult(
     pathway_vs_species,
-    correlationCoefThreshold = 0.5,
+    correlationCoefThreshold = 0.8,
     pValueThreshold = 0.05
   )
 )
@@ -138,7 +139,7 @@ You can also visualize them with custom htmlwidgets:
 ## renders an interactive htmlwidget, using a predetermined layout
 correlationNetwork(
   pathway_vs_species,
-  correlationCoefThreshold = 0.5,
+  correlationCoefThreshold = 0.8,
   pValueThreshold = 0.05
 )
 ```
@@ -151,8 +152,8 @@ pathway_vs_species.igraph <- getComputeResult(pathway_vs_species, format = 'igra
 degree <- degree(pathway_vs_species.igraph)
 edgeBT <- edge_betweenness(pathway_vs_species.igraph)
 pgRank <- page_rank(pathway_vs_species.igraph)
-layout <- layout_with_kk(pathway_vs_species.igraph)
+coords <- layout_with_kk(pathway_vs_species.igraph)
 
-layout
+plot(pathway_vs_species.igraph, layout = coords)
 ```
 
