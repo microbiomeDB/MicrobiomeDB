@@ -82,10 +82,10 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/microbiomeDB/MicrobiomeDB" class="external-link">MicrobiomeDB</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/microbiomeDB/MicrobiomeDB" class="external-link">MicrobiomeDB</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: replacing previous import 'S4Arrays::makeNindexFromArrayViewport' by</span></span>
 <span><span class="co">#&gt; 'DelayedArray::makeNindexFromArrayViewport' when loading 'SummarizedExperiment'</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ── <span style="font-weight: bold;">Attaching core tidyverse packages</span> ──────────────────────── tidyverse 2.0.0 ──</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">dplyr    </span> 1.1.4     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">readr    </span> 2.1.5</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">forcats  </span> 1.0.0     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">stringr  </span> 1.5.1</span></span>
@@ -104,7 +104,10 @@ single sample or community. It takes into account both the number of
 different taxa (richness) and their distribution (evenness).
 Understanding alpha diversity provides insights into the complexity and
 structure of microbial communities at a local level.</p>
-<p>##Why Care About Alpha Diversity?</p>
+</div>
+<div class="section level2">
+<h2 id="why-care-about-alpha-diversity">Why Care About Alpha Diversity?<a class="anchor" aria-label="anchor" href="#why-care-about-alpha-diversity"></a>
+</h2>
 <p>Researchers are interested in alpha diversity for several
 reasons:</p>
 <p><strong>Community Comparisons</strong>: Compare the diversity of
@@ -140,6 +143,7 @@ predicting the identity of a randomly chosen taxon within a sample.</p>
 <span><span class="co">#&gt; [17] "Malaysia_helminth"       "NICU_NEC"               </span></span>
 <span><span class="co">#&gt; [19] "PIH_Uganda"              "PretermInfantResistome1"</span></span>
 <span><span class="co">#&gt; [21] "PretermInfantResistome2" "UgandaMaternal"</span></span>
+<span></span>
 <span><span class="fu">getCollectionNames</span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_WGS.html" class="external-link">HMP_WGS</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "WGS 4th level EC metagenome abundance data"              </span></span>
 <span><span class="co">#&gt;  [2] "WGS Metagenome enzyme pathway abundance data"            </span></span>
@@ -159,11 +163,11 @@ predicting the identity of a randomly chosen taxon within a sample.</p>
 <span><span class="co">## get an alpha diversity ComputeResult</span></span>
 <span><span class="va">alphaDivOutput</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alphaDiv-methods.html">alphaDiv</a></span><span class="op">(</span><span class="va">genus</span>, method <span class="op">=</span> <span class="st">'shannon'</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-17 20:37:43.154107 Received df table with 741 samples and 226 taxa.</span></span>
+<span><span class="co">#&gt; 2024-04-18 11:10:11.370356 Received df table with 741 samples and 226 taxa.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-17 20:37:43.176748 shannon alpha diversity computation complete.</span></span>
+<span><span class="co">#&gt; 2024-04-18 11:10:11.406793 shannon alpha diversity computation complete.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-17 20:37:43.191183 Alpha diversity computation completed with parameters method= shannon</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-04-18 11:10:11.421717 Alpha diversity computation completed with parameters method= shannon</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="simpson-diversity-index">Simpson Diversity Index<a class="anchor" aria-label="anchor" href="#simpson-diversity-index"></a>
@@ -177,11 +181,11 @@ taxa.</p>
 <span><span class="va">genus</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_WGS.html" class="external-link">HMP_WGS</a></span>, <span class="st">'WGS Genus'</span><span class="op">)</span></span>
 <span><span class="va">alphaDivOutput</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alphaDiv-methods.html">alphaDiv</a></span><span class="op">(</span><span class="va">genus</span>, method <span class="op">=</span> <span class="st">'simpson'</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-17 20:37:43.287314 Received df table with 741 samples and 226 taxa.</span></span>
+<span><span class="co">#&gt; 2024-04-18 11:10:11.514318 Received df table with 741 samples and 226 taxa.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-17 20:37:43.325025 simpson alpha diversity computation complete.</span></span>
+<span><span class="co">#&gt; 2024-04-18 11:10:11.543884 simpson alpha diversity computation complete.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-17 20:37:43.330125 Alpha diversity computation completed with parameters method= simpson</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-04-18 11:10:11.549101 Alpha diversity computation completed with parameters method= simpson</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="species-evenness">Species Evenness<a class="anchor" aria-label="anchor" href="#species-evenness"></a>
@@ -195,11 +199,11 @@ abundances vary.</p>
 <span><span class="va">genus</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_WGS.html" class="external-link">HMP_WGS</a></span>, <span class="st">'WGS Genus'</span><span class="op">)</span></span>
 <span><span class="va">alphaDivOutput</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alphaDiv-methods.html">alphaDiv</a></span><span class="op">(</span><span class="va">genus</span>, method <span class="op">=</span> <span class="st">'evenness'</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-17 20:37:43.414482 Received df table with 741 samples and 226 taxa.</span></span>
+<span><span class="co">#&gt; 2024-04-18 11:10:11.635449 Received df table with 741 samples and 226 taxa.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-17 20:37:43.432271 evenness alpha diversity computation complete.</span></span>
+<span><span class="co">#&gt; 2024-04-18 11:10:11.653666 evenness alpha diversity computation complete.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-17 20:37:43.435406 Alpha diversity computation completed with parameters method= evenness</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-04-18 11:10:11.656981 Alpha diversity computation completed with parameters method= evenness</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
