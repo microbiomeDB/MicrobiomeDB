@@ -78,3 +78,71 @@ test_that("we can update collection names and get collections", {
     testCollection <- getCollection(testDataset, "My Collection", "phyloseq")
     expect_s4_class(testCollection, "phyloseq")
 })
+
+test_that("we can get arbitrary variables", {
+    dataFile1 <- test_path('testdata','DiabImmune/DiabImmune_entity_16SRRNAV4Assay.txt')
+    metadataFile1 <- test_path('testdata','DiabImmune/DiabImmune_ParticipantRepeatedMeasure.txt')
+    dataFile2 <- test_path('testdata','DiabImmune/DiabImmune_MetagenomicSequencingAssay.txt')
+    metadataFile2 <- test_path('testdata','DiabImmune/DiabImmune_Participant.txt')
+    metadataFile3 <- test_path('testdata','DiabImmune/DiabImmune_Sample.txt')
+    ontologyFile <- test_path('testdata','DiabImmune/DiabImmune_OntologyMetadata.txt')
+    mbioDataset <- MbioDataset(list(dataFile1, dataFile2), list(metadataFile2, metadataFile1, metadataFile3), ontologyFile)
+
+    # try a sensible thing w vars on different 1:1 entities
+    variablesDT <- getVariables(
+        mbioDataset, 
+        list("metadata" = c("age_months", "sex"),
+            "16S (V4) Genus" = "Bacteroides",
+            "WGS Metagenome enzyme pathway abundance data" = "ANAGLYCOLYSIS-PWY: glycolysis III (from glucose)"
+            )
+    )
+    # expect a data.table w four columns
+    expect_s3_class(variablesDT, "data.table")
+    expect_equal(length(variablesDT), 9) # 4 vars + 5 ids
+    expect_equal(all(c("age_months", "sex", "Bacteroides", "ANAGLYCOLYSIS-PWY: glycolysis III (from glucose)") %in% names(variablesDT)), TRUE)
+    expect_equal(nrow(variablesDT) > 0, TRUE)
+
+    # try a var that doesnt exist
+    expect_error(
+        variablesDT <- getVariables(
+            mbioDataset, 
+            list("metadata" = c("age_months", "sex"),
+                "16S (V4) Genus" = "Bacteroides",
+                "WGS Metagenome enzyme pathway abundance data" = "ANAGLYCOLYSIS-PWY: glycolysis III (from glucose)",
+                "WGS Genus" = "doesntexist"
+                )
+        )
+    )
+    
+
+    # try a collection that doesnt exist
+    expect_error(
+        variablesDT <- getVariables(
+            mbioDataset, 
+            list("metadata" = c("age_months", "sex"),
+                "16S (V4) Genus" = "Bacteroides",
+                "doesntexist" = "ANAGLYCOLYSIS-PWY: glycolysis III (from glucose)"
+                )
+        )
+    )
+    
+    # try the same named variable on two different collections
+    variablesDT <- getVariables(
+        mbioDataset, 
+        list("metadata" = c("age_months", "sex"),
+            "16S (V4) Genus" = "Bacteroides",
+            "WGS Genus" = "Bacteroides"
+            )
+    )
+
+    expect_s3_class(variablesDT, "data.table")
+    expect_equal(length(variablesDT), 9) # 4 vars + 5 ids
+    expect_equal(all(c("age_months", "sex", "16S (V4) Genus Bacteroides", "WGS Genus Bacteroides") %in% names(variablesDT)), TRUE)
+    expect_equal(nrow(variablesDT) > 0, TRUE)
+
+    # pass something other than a named list
+    expect_error(variablesDT <- getVariables(mbioDataset, "16S (V4) Genus"))
+    expect_error(variablesDT <- getVariables(mbioDataset, list("16S (V4) Genus)")))
+
+    # find an ex where assays arent 1:1 w ancestors
+})
