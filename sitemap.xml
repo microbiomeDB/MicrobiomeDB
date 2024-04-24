@@ -67,6 +67,9 @@
     <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/getCollectionNames-MbioDataset-method.html</loc>
   </url>
   <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/getCollectionVariableNames-MbioDataset-method.html</loc>
+  </url>
+  <url>
     <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/getComputeResult.html</loc>
   </url>
   <url>
@@ -83,6 +86,9 @@
   </url>
   <url>
     <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/getSampleMetadataIdColumns-MbioDataset-method.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/getVariables.html</loc>
   </url>
   <url>
     <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/index.html</loc>
