@@ -13,7 +13,7 @@ getVariables(object, variables)
 \arguments{
 \item{object}{A Microbiome Dataset}
 
-\item{variables}{The names of the variables to return. this should be a named list
+\item{variables}{The names of the variables to return. This should be a named list
 where the names are collection names and the values are variable names for that collection.
 For the case of metadata variables, the name should be "metadata".}
 }
@@ -24,8 +24,9 @@ a data.table of the requested variables
 Get the variables in the Microbiome Dataset by their names.
 The requested variables could belong to any collection or
 to the metadata. The returned data.table will contain the
-requested variables as columns. If one of the requested
-variables cannot be returned, a warning will be printed.
+requested variables as columns and any appropriate identifiers.
+If one of the requested variables cannot be returned, a warning
+will be printed.
 }
 \examples{
 getCollectionVariableNames(microbiomeData::DiabImmune, "16S (V4) Genus")

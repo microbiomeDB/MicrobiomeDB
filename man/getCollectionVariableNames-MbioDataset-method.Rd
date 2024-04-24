@@ -2,7 +2,6 @@
 % Please edit documentation in R/methods-MbioDataset.R
 \name{getCollectionVariableNames,MbioDataset-method}
 \alias{getCollectionVariableNames,MbioDataset-method}
-\alias{getCollectionVariableNames,MbioDataset,character-method}
 \title{Get Microbiome Dataset Collection Variable Names}
 \usage{
 \S4method{getCollectionVariableNames}{MbioDataset}(object, collectionName)
