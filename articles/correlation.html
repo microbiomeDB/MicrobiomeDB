@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">MicrobiomeDB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -224,17 +224,17 @@ necessarily linear. Suitable for non-linear associations.</p>
 <span><span class="co">## it is simply exemplary. Always look at your data!</span></span>
 <span><span class="va">species_vs_metadata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/correlation-methods.html">correlation</a></span><span class="op">(</span><span class="va">HMP_WGS_species</span>, method <span class="op">=</span> <span class="st">'spearman'</span><span class="op">)</span> </span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:12:03.565216 Removed 7 records with no data.</span></span>
+<span><span class="co">#&gt; 2024-04-24 17:37:37.301624 Removed 7 records with no data.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:12:03.593909 Removed 7 records with no data.</span></span>
+<span><span class="co">#&gt; 2024-04-24 17:37:37.331011 Removed 7 records with no data.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:12:03.62961 Removed 7 records with no data.</span></span>
+<span><span class="co">#&gt; 2024-04-24 17:37:37.367011 Removed 7 records with no data.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:12:04.960872 Completed correlation with method=spearman. Formatting results.</span></span>
+<span><span class="co">#&gt; 2024-04-24 17:37:38.706018 Completed correlation with method=spearman. Formatting results.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:12:04.96186 Received df table with 734 samples and 316 features with values.</span></span>
+<span><span class="co">#&gt; 2024-04-24 17:37:38.707003 Received df table with 734 samples and 316 features with values.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:12:04.966443 Correlation computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method =  spearman</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-04-24 17:37:38.711433 Correlation computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method =  spearman</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="pearson-correlation">Pearson Correlation<a class="anchor" aria-label="anchor" href="#pearson-correlation"></a>
@@ -251,21 +251,21 @@ assessing linear associations.</p>
 <span><span class="co">## it is simply exemplary. Always look at your data!</span></span>
 <span><span class="va">pathway_vs_species</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/correlation-methods.html">correlation</a></span><span class="op">(</span><span class="va">HMP_WGS_species</span>, <span class="va">HMP_WGS_pathways</span>, method <span class="op">=</span> <span class="st">'pearson'</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:12:05.911691 Removed 7 records with no data.</span></span>
+<span><span class="co">#&gt; 2024-04-24 17:37:39.633612 Removed 7 records with no data.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:12:05.948013 Removed 7 records with no data.</span></span>
+<span><span class="co">#&gt; 2024-04-24 17:37:39.670784 Removed 7 records with no data.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:12:06.087085 Removed 7 records with no data.</span></span>
+<span><span class="co">#&gt; 2024-04-24 17:37:39.823658 Removed 7 records with no data.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:12:06.097721 Received first df table with 734 samples and 319 features with values.</span></span>
+<span><span class="co">#&gt; 2024-04-24 17:37:39.834297 Received first df table with 734 samples and 319 features with values.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:12:06.098063 Received second df table with 741 samples and 371 features with values.</span></span>
+<span><span class="co">#&gt; 2024-04-24 17:37:39.834609 Received second df table with 741 samples and 371 features with values.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:12:06.098324 Found 734 samples in common between data1 and data2. Only these samples will be used.</span></span>
+<span><span class="co">#&gt; 2024-04-24 17:37:39.834852 Found 734 samples in common between data1 and data2. Only these samples will be used.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:12:06.515177 Completed correlation with method=pearson. Formatting results.</span></span>
+<span><span class="co">#&gt; 2024-04-24 17:37:40.250861 Completed correlation with method=pearson. Formatting results.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:12:06.521023 Correlation computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method =  pearson</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-04-24 17:37:40.256431 Correlation computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method =  pearson</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
