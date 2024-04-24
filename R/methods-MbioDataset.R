@@ -296,6 +296,7 @@ collectionVarNamesGeneric <- getGeneric("getCollectionVariableNames", "veupathUt
 #' @param collectionName The name of the collection to return the variable names for
 #' @return a character vector of the variable names in the requested collection
 #' @export
+#' @importFrom veupathUtils getCollectionVariableNames
 setMethod(collectionVarNamesGeneric, "MbioDataset", function(object, collectionName) {
     return(veupathUtils::getCollectionVariableNames(getCollection(object, collectionName)))
 })
