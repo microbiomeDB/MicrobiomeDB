@@ -307,8 +307,9 @@ setMethod(collectionVarNamesGeneric, "MbioDataset", function(object, collectionN
 #' Get the variables in the Microbiome Dataset by their names.
 #' The requested variables could belong to any collection or
 #' to the metadata. The returned data.table will contain the 
-#' requested variables as columns. If one of the requested
-#' variables cannot be returned, a warning will be printed.
+#' requested variables as columns and any appropriate identifiers. 
+#' If one of the requested variables cannot be returned, a warning
+#' will be printed.
 #' 
 #' @examples
 #' getCollectionVariableNames(microbiomeData::DiabImmune, "16S (V4) Genus")
@@ -321,7 +322,7 @@ setMethod(collectionVarNamesGeneric, "MbioDataset", function(object, collectionN
 #'      )
 #' )
 #' @param object A Microbiome Dataset
-#' @param variables The names of the variables to return. this should be a named list
+#' @param variables The names of the variables to return. This should be a named list
 #' where the names are collection names and the values are variable names for that collection.
 #' For the case of metadata variables, the name should be "metadata".
 #' @return a data.table of the requested variables
@@ -379,15 +380,6 @@ setMethod("getVariables", "MbioDataset", function(object, variables) {
     ## this kind of assumes that metadata are always on ancestor entities of assays
     ## this will break for user data, when we get there
     mergeCols <- getSampleMetadataIdColumns(object)
-    mergeCollectionVariables <- function(x, y) {
-        if (!length(x)) {
-            return(y)
-        } else if (!length(y)) {
-            return(x)
-        } else {
-            return(merge(x, y, by = mergeCols))
-        }
-    }
 
     if (length(variables) == 0) {
         return(data.table::data.table())
@@ -395,7 +387,30 @@ setMethod("getVariables", "MbioDataset", function(object, variables) {
 
     collectionVarDTs <- lapply(1:length(variables), fetchCollectionVariables)
     names(collectionVarDTs) <- names(variables)
-    collectionVarDT <- purrr::reduce(collectionVarDTs, mergeCollectionVariables)
+    collectionVarDT <- purrr::reduce(collectionVarDTs, customMerge, mergeCols = mergeCols)
 
     return(collectionVarDT)
 })
+
+## a helper that merges two collections of variables
+## if either input is empty, returns the other
+## use this w some caution. It is barely a general
+## purpose function, and isnt really tested.
+customMerge <- function(x, y, mergeCols = NULL) {
+    if (!inherits(x, "data.table")) {
+        stop("Argument 'x' must be a data.table")
+    } else if (!inherits(y, "data.table")) {
+        stop("Argument 'y' must be a data.table")
+    }
+
+    if (!length(x)) {
+        return(y)
+    } else if (!length(y)) {
+        return(x)
+    } else {
+        if (is.null(mergeCols)) {
+            return(merge(x, y))
+        }
+        return(merge(x, y, by = mergeCols))
+    }
+}
