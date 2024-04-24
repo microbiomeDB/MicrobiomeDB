@@ -284,3 +284,132 @@ setMethod("getCollection", "MbioDataset", function(object, collectionName = char
 
     return(abundanceData)
 })
+
+collectionVarNamesGeneric <- getGeneric("getCollectionVariableNames", "veupathUtils")
+#' Get Microbiome Dataset Collection Variable Names
+#' 
+#' Get the variable names in a collection in the Microbiome Dataset.
+#' 
+#' @examples
+#' variableNames <- getCollectionVariableNames(microbiomeData::DiabImmune, "16S (V4) Genus")
+#' @param object A Microbiome Dataset
+#' @param collectionName The name of the collection to return the variable names for
+#' @return a character vector of the variable names in the requested collection
+#' @export
+#' @importFrom veupathUtils getCollectionVariableNames
+setMethod(collectionVarNamesGeneric, "MbioDataset", function(object, collectionName) {
+    return(veupathUtils::getCollectionVariableNames(getCollection(object, collectionName)))
+})
+
+#' Get Microbiome Dataset Variables
+#' 
+#' Get the variables in the Microbiome Dataset by their names.
+#' The requested variables could belong to any collection or
+#' to the metadata. The returned data.table will contain the 
+#' requested variables as columns and any appropriate identifiers. 
+#' If one of the requested variables cannot be returned, a warning
+#' will be printed.
+#' 
+#' @examples
+#' getCollectionVariableNames(microbiomeData::DiabImmune, "16S (V4) Genus")
+#' getMetadataVariableNames(microbiomeData::DiabImmune)
+#' variablesDT <- getVariables(
+#'      microbiomeData::DiabImmune, 
+#'      list("metadata" = c("age_months", "sex"),
+#'           "16S (V4) Genus" = "Bacteroides", 
+#'           "WGS Metagenome enzyme pathway abundance data" = "ANAGLYCOLYSIS-PWY: glycolysis III (from glucose)"
+#'      )
+#' )
+#' @param object A Microbiome Dataset
+#' @param variables The names of the variables to return. This should be a named list
+#' where the names are collection names and the values are variable names for that collection.
+#' For the case of metadata variables, the name should be "metadata".
+#' @return a data.table of the requested variables
+#' @rdname getVariables
+#' @export
+setGeneric("getVariables", function(object, variables) standardGeneric("getVariables"), signature = "object")
+
+#' @rdname getVariables
+#' @aliases getVariables,MbioDataset,character-method
+setMethod("getVariables", "MbioDataset", function(object, variables) {
+
+    if (!is.list(variables)) {
+        stop("variables argument must be a list")
+    }
+    if (is.null(names(variables))) {
+        stop("variables argument must be a named list")
+    }
+
+    ## identify variables w identical names early
+    flattenedVars <- unlist(variables)
+    dups <- unname(flattenedVars[duplicated(flattenedVars)])
+    collectionsWithDups <- lapply(variables, function(x) {dups %in% x})
+    collectionsWithDupsIndexes <- unname(which(collectionsWithDups == TRUE))
+
+    fetchCollectionVariables <- function(collectionIndex) {
+        variableNames <- variables[[collectionIndex]]
+        collectionName <- names(variables)[collectionIndex]
+
+        if (collectionName == "metadata") {
+            return(getSampleMetadata(object, metadataVariables = variableNames))
+        }
+
+        if (!collectionName %in% getCollectionNames(object)) {
+            stop(sprintf("Collection '%s' does not exist", collectionName))
+        }
+
+        if (any(variableNames %in% getCollectionVariableNames(object, collectionName))) {
+            collection <- getCollection(object, collectionName)
+            presentVars <- variableNames[variableNames %in% getCollectionVariableNames(collection)]
+            if (veupathUtils::isOneToManyWithAncestor(collection)) {
+                warning("Unable to return the following variables: ", presentVars)
+                return(data.table::data.table())
+            }
+            dt <- veupathUtils::getCollectionData(collection, presentVars)
+            if (collectionIndex %in% collectionsWithDupsIndexes) {
+                ## rename variables to prepend the collection name
+                names(dt)[names(dt) %in% presentVars] <- paste(collectionName, presentVars)
+            }
+            return(dt)
+        } else {
+            stop(sprintf("Collection '%s' does not contain the following variables: %s", collectionName, paste(variableNames, collapse = ", ")))
+        }
+    }
+
+    ## this kind of assumes that metadata are always on ancestor entities of assays
+    ## this will break for user data, when we get there
+    mergeCols <- getSampleMetadataIdColumns(object)
+
+    if (length(variables) == 0) {
+        return(data.table::data.table())
+    }
+
+    collectionVarDTs <- lapply(1:length(variables), fetchCollectionVariables)
+    names(collectionVarDTs) <- names(variables)
+    collectionVarDT <- purrr::reduce(collectionVarDTs, customMerge, mergeCols = mergeCols)
+
+    return(collectionVarDT)
+})
+
+## a helper that merges two collections of variables
+## if either input is empty, returns the other
+## use this w some caution. It is barely a general
+## purpose function, and isnt really tested.
+customMerge <- function(x, y, mergeCols = NULL) {
+    if (!inherits(x, "data.table")) {
+        stop("Argument 'x' must be a data.table")
+    } else if (!inherits(y, "data.table")) {
+        stop("Argument 'y' must be a data.table")
+    }
+
+    if (!length(x)) {
+        return(y)
+    } else if (!length(y)) {
+        return(x)
+    } else {
+        if (is.null(mergeCols)) {
+            return(merge(x, y))
+        }
+        return(merge(x, y, by = mergeCols))
+    }
+}
