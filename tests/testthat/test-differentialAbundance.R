@@ -20,8 +20,6 @@ genusCounts <- AbsoluteAbundanceData(
     ancestorIdColumns = genus@ancestorIdColumns
 )
 
-## TODO tests for assignToBinaryGroups and buildBinaryComparator directly?
-
 test_that("differentialAbundance wrapper works", {    
     # using a variable thats already binary works
     diffAbundOutput <- MicrobiomeDB::differentialAbundance(genus, "delivery_mode", method='Maaslin2', verbose=FALSE)
@@ -50,6 +48,32 @@ test_that("differentialAbundance wrapper works", {
     expect_equal(inherits(diffAbundOutput@statistics, "DifferentialAbundanceResult"), TRUE)
     expect_equal(inherits(diffAbundOutput@statistics@statistics, "data.frame"), TRUE)
     expect_equal(nrow(diffAbundOutput@statistics@statistics) > 0, TRUE)
+
+    # character vector of values works for categorical vars
+    diffAbundOutput <- MicrobiomeDB::differentialAbundance(
+        genus, 
+        "country", 
+        groupA = "Russia",
+        groupB = c("Finland", "Estonia"),
+        method='Maaslin2', 
+        verbose=FALSE
+    )
+    expect_equal(inherits(diffAbundOutput, "ComputeResult"), TRUE)
+    expect_equal(inherits(diffAbundOutput@statistics, "DifferentialAbundanceResult"), TRUE)
+    expect_equal(inherits(diffAbundOutput@statistics@statistics, "data.frame"), TRUE)
+    expect_equal(nrow(diffAbundOutput@statistics@statistics) > 0, TRUE)
+
+    # character vector of values works for continuous vars errs
+    expect_error(
+        diffAbundOutput <- MicrobiomeDB::differentialAbundance(
+            genus, 
+            "breastfed_duration_days", 
+            groupA = "100",
+            groupB = "300",
+            method='Maaslin2', 
+            verbose=FALSE
+        )
+    )
 
     # excluding some values from both predicates works
     diffAbundOutput <- MicrobiomeDB::differentialAbundance(
@@ -93,13 +117,13 @@ test_that("differentialAbundance wrapper works", {
     # passing overlapping groupA and groupB fails
     expect_error(
         diffAbundOutput <- MicrobiomeDB::differentialAbundance(
-        genus, 
-        "breastfed_duration_days", 
-        groupA = function(x) {x<300},
-        groupB = function(x) {x>=100},
-        method='Maaslin2', 
-        verbose=FALSE
-    )
+            genus, 
+            "breastfed_duration_days", 
+            groupA = function(x) {x<300},
+            groupB = function(x) {x>=100},
+            method='Maaslin2', 
+            verbose=FALSE
+        )
     )
 
     # passing only groupA, but where groupA is TRUE for all values fails

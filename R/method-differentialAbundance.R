@@ -94,6 +94,16 @@ buildBinaryComparator <- function(covariate, groupAValue, groupBValue) {
 #'        verbose=FALSE
 #' )
 #' 
+#' ## this case of categorical variables also has a 'short cut'
+#' diffAbundOutput <- MicrobiomeDB::differentialAbundance(
+#'        getCollection(microbiomeData::DiabImmune, '16S (V4) Genus'), 
+#'        "country", 
+#'        groupA = "Russia",
+#'        groupB = c("Finland","Estonia"),
+#'        method='Maaslin2', 
+#'        verbose=FALSE
+#' )
+#' 
 #' ## a categorical variable with 2 values
 #' diffAbundOutput <- MicrobiomeDB::differentialAbundance(
 #'        getCollection(microbiomeData::DiabImmune, '16S (V4) Genus'),
@@ -105,9 +115,11 @@ buildBinaryComparator <- function(covariate, groupAValue, groupBValue) {
 #' @param covariate character vector giving the name of a metadata variable of interest. If this 
 #' variable has only two values, you do not need to provide functions for arguments `groupA` and `groupB`.
 #' @param groupA A function that takes a vector of values and returns TRUE or FALSE for each value. This will 
-#' be used to assign samples to groupA.
+#' be used to assign samples to groupA. In the specific case of `covariate` being a categorical variable,
+#' this can be a character vector of values to be included in groupA.
 #' @param groupB A function that takes a vector of values and returns TRUE or FALSE for each value. This will 
-#' be used to assign samples to groupB. If not provided, groupB will be the complement of groupA.
+#' be used to assign samples to groupB. If not provided, groupB will be the complement of groupA. In the specific
+#' case of `covariate` being a categorical variable, this can be a character vector of values to be included in groupB.
 #' @param method string defining the the differential abundance method. Accepted values are 'DESeq2' and 'Maaslin2'. 
 #' Default is 'Maaslin2', as 'DESeq2' only supports counts.
 #' @param verbose boolean indicating if timed logging is desired
@@ -158,6 +170,23 @@ function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verb
 })
 
 #' @rdname differentialAbundance-methods
+#' @aliases differentialAbundance,CollectionWithMetadata,character,character,missingOrNULL-method
+setMethod("differentialAbundance", signature("CollectionWithMetadata", "character", "character", "missingOrNULL"),
+function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verbose = c(TRUE, FALSE)) {
+    method <- veupathUtils::matchArg(method)
+    verbose <- veupathUtils::matchArg(verbose)
+
+    covariateDataType <- class(data@sampleMetadata@data[[covariate]])
+    if (!covariateDataType %in% c("factor", "character")) {
+        stop("Argument 'groupA' must be a function when 'covariate' is not a factor or character")
+    }
+
+    groupAFxn <- function(x) {x %in% groupA}
+
+    return(differentialAbundance(data, covariate, groupAFxn, groupB, method, verbose))
+})
+
+#' @rdname differentialAbundance-methods
 #' @aliases differentialAbundance,CollectionWithMetadata,character,function,function-method
 setMethod("differentialAbundance", signature("CollectionWithMetadata", "character", "function", "function"),
 function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verbose = c(TRUE, FALSE)) {
@@ -173,6 +202,24 @@ function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verb
 
     ## microbiomeComputations will remove for us rows not in either group, and provide validation
     return(microbiomeComputations::internalDiffAbund(data, comparator = comparator, method = method, verbose = verbose))
+})
+
+#' @rdname differentialAbundance-methods
+#' @aliases differentialAbundance,CollectionWithMetadata,character,character,character-method
+setMethod("differentialAbundance", signature("CollectionWithMetadata", "character", "character", "character"),
+function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verbose = c(TRUE, FALSE)) {
+    method <- veupathUtils::matchArg(method)
+    verbose <- veupathUtils::matchArg(verbose)
+
+    covariateDataType <- class(data@sampleMetadata@data[[covariate]])
+    if (!covariateDataType %in% c("factor", "character")) {
+        stop("Arguments 'groupA' and 'groupB' must be functions when 'covariate' is not a factor or character")
+    }
+
+    groupAFxn <- function(x) {x %in% groupA}
+    groupBFxn <- function(x) {x %in% groupB}
+
+    return(differentialAbundance(data, covariate, groupAFxn, groupBFxn, method, verbose))
 })
 
 #### NOTE: While i think its important for people to be able to recreate the computes from the site, and tried to make
