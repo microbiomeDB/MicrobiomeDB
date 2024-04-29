@@ -93,7 +93,7 @@ test_that("we can get arbitrary variables", {
         mbioDataset, 
         list("metadata" = c("age_months", "sex"),
             "16S (V4) Genus" = "Bacteroides",
-            "WGS Metagenome enzyme pathway abundance data" = "ANAGLYCOLYSIS-PWY: glycolysis III (from glucose)"
+            "Shotgun metagenomics Metagenome enzyme pathway abundance data" = "ANAGLYCOLYSIS-PWY: glycolysis III (from glucose)"
             )
     )
     # expect a data.table w four columns
@@ -108,8 +108,8 @@ test_that("we can get arbitrary variables", {
             mbioDataset, 
             list("metadata" = c("age_months", "sex"),
                 "16S (V4) Genus" = "Bacteroides",
-                "WGS Metagenome enzyme pathway abundance data" = "ANAGLYCOLYSIS-PWY: glycolysis III (from glucose)",
-                "WGS Genus" = "doesntexist"
+                "Shotgun metagenomics Metagenome enzyme pathway abundance data" = "ANAGLYCOLYSIS-PWY: glycolysis III (from glucose)",
+                "Shotgun metagenomics Genus" = "doesntexist"
                 )
         )
     )
@@ -131,13 +131,13 @@ test_that("we can get arbitrary variables", {
         mbioDataset, 
         list("metadata" = c("age_months", "sex"),
             "16S (V4) Genus" = "Bacteroides",
-            "WGS Genus" = "Bacteroides"
+            "Shotgun metagenomics Genus" = "Bacteroides"
             )
     )
 
     expect_s3_class(variablesDT, "data.table")
     expect_equal(length(variablesDT), 9) # 4 vars + 5 ids
-    expect_equal(all(c("age_months", "sex", "16S (V4) Genus Bacteroides", "WGS Genus Bacteroides") %in% names(variablesDT)), TRUE)
+    expect_equal(all(c("age_months", "sex", "16S (V4) Genus Bacteroides", "Shotgun metagenomics Genus Bacteroides") %in% names(variablesDT)), TRUE)
     expect_equal(nrow(variablesDT) > 0, TRUE)
 
     # pass something other than a named list
