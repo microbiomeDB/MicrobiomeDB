@@ -188,6 +188,9 @@ function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verb
 #' analysis methods (including support for multiple covariates and repeated measures)
 #' filtering, normalization, and transform options to customize analysis for your specific study.
 #' 
+#' The MicrobiomeDB wrapper for Maaslin2 will ignore samples where the `fixed_effects` variable
+#' has a value of `NA`. 
+#' 
 #' @examples
 #' maaslinOutput <- MicrobiomeDB::Maaslin2(
 #'        data = getCollection(microbiomeData::DiabImmune, '16S (V4) Genus'), 
