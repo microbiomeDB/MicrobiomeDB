@@ -317,7 +317,7 @@ setMethod(collectionVarNamesGeneric, "MbioDataset", function(object, collectionN
 #'      microbiomeData::DiabImmune, 
 #'      list("metadata" = c("age_months", "sex"),
 #'           "16S (V4) Genus" = "Bacteroides", 
-#'           "WGS Metagenome enzyme pathway abundance data" = "ANAGLYCOLYSIS-PWY: glycolysis III (from glucose)"
+#'           "Shotgun metagenomics Metagenome enzyme pathway abundance data" = "ANAGLYCOLYSIS-PWY: glycolysis III (from glucose)"
 #'      )
 #' )
 #' @param object A Microbiome Dataset

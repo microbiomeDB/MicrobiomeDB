@@ -56,13 +56,13 @@ ranges from 0 (complete similarity) to 1 (complete dissimilarity).
 ## first lets find some interesting data
 microbiomeData::getCuratedDatasetNames()
 
-getCollectionNames(microbiomeData::HMP_WGS)
+getCollectionNames(microbiomeData::HMP_MGX)
 
 ## grab a collection we like
-HMP_WGS_species <- getCollection(microbiomeData::HMP_WGS, 'WGS Species')
+HMP_MGX_species <- getCollection(microbiomeData::HMP_MGX, 'Shotgun metagenomics Species')
 
 ## get a betaDiv ComputeResult
-betaDiv <- betaDiv(HMP_WGS_species, method = "bray")
+betaDiv <- betaDiv(HMP_MGX_species, method = "bray")
 ```
 
 #### Jaccard Dissimilarity
@@ -71,8 +71,8 @@ Measures dissimilarity based on the presence-absence of taxa. It quantifies the 
 not shared between two samples.
 
 ```{r}
-HMP_WGS_species <- getCollection(microbiomeData::HMP_WGS, 'WGS Species')
-betaDiv <- betaDiv(HMP_WGS_species, method = "jaccard")
+HMP_MGX_species <- getCollection(microbiomeData::HMP_MGX, 'Shotgun metagenomics Species')
+betaDiv <- betaDiv(HMP_MGX_species, method = "jaccard")
 ```
 
 #### Jensen-Shannon Divergence (JSD)
@@ -81,8 +81,8 @@ Captures dissimilarity considering both abundance and presence-absence informati
 of the Kullback-Leibler Divergence, providing a measure of dissimilarity between probability distributions.
 
 ```{r}
-HMP_WGS_species <- getCollection(microbiomeData::HMP_WGS, 'WGS Species')
-betaDiv <- betaDiv(HMP_WGS_species, method = "jsd")
+HMP_MGX_species <- getCollection(microbiomeData::HMP_MGX, 'Shotgun metagenomics Species')
+betaDiv <- betaDiv(HMP_MGX_species, method = "jsd")
 ```
 
 
@@ -102,7 +102,7 @@ The following code will produce a PCoA plot:
 ## choose one or more metadata variables to integrate with the compute result
 betaDiv_withMetadata <- getComputeResultWithMetadata(
   betaDiv, 
-  microbiomeData::HMP_WGS, 
+  microbiomeData::HMP_MGX, 
   metadataVariables = c('host_body_habitat'))
 
 ## plot beta diversity
