@@ -218,7 +218,17 @@ setMethod("Maaslin2", signature("CollectionWithMetadata"), function(data, verbos
     allIdColumns <- c(recordIdColumn, ancestorIdColumns)
     sampleMetadata <- veupathUtils::getSampleMetadata(data)
     abundances <- microbiomeComputations::getAbundances(data)
-    print(class(abundances))
+
+    # remove rows in sampleMetadata where covariate is NA
+    additionalArgs <- as.list(match.call()[-1])
+    argsOfInterest <- c('fixed_effects', 'random_effects')
+    covariateAndFriends <- unname(unlist(sapply(additionalArgs[argsOfInterest],eval)))
+    sampleMetadata <- sampleMetadata[complete.cases(sampleMetadata[, covariateAndFriends, with=F]),]
+
+    # remove rows in abundances which were removed in the sampleMetadata filtering
+    # this assumes that sampleMetadata always and only occur on ancestor entities
+    presentIds <- unique(sampleMetadata[, ancestorIdColumns, with=F])
+    abundances <- abundances[presentIds, on=ancestorIdColumns]
 
     # remove id columns and any columns that are all 0s.
     cleanedData <- purrr::discard(abundances[, -allIdColumns, with=FALSE], function(col) {identical(union(unique(col), c(0, NA)), c(0, NA))})
