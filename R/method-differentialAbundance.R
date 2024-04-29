@@ -113,7 +113,7 @@ buildBinaryComparator <- function(covariate, groupAValue, groupBValue) {
 #' @param verbose boolean indicating if timed logging is desired
 #' @return ComputeResult object
 #' @rdname differentialAbundance-methods
-#' @importFrom microbiomeComputations differentialAbundance Comparator
+#' @importFrom microbiomeComputations internalDiffAbund Comparator
 #' @export
 setGeneric("differentialAbundance", 
 function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verbose = c(TRUE, FALSE)) {
@@ -137,7 +137,7 @@ function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verb
     groupBLabel <- unique(data@sampleMetadata@data[[covariate]])[2]
     comparator <- buildBinaryComparator(covariate, groupALabel, groupBLabel)
     
-    return(microbiomeComputations::differentialAbundance(data, comparator = comparator, method = method, verbose = verbose))
+    return(microbiomeComputations::internalDiffAbund(data, comparator = comparator, method = method, verbose = verbose))
 })
 
 #' @rdname differentialAbundance-methods
@@ -154,7 +154,7 @@ function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verb
     data@sampleMetadata@data[[covariate]] <- assignToBinaryGroups(data@sampleMetadata@data[[covariate]], groupA, NULL)
     comparator <- buildBinaryComparator(covariate, 'groupA', 'groupB')
 
-    return(microbiomeComputations::differentialAbundance(data, comparator = comparator, method = method, verbose = verbose))
+    return(microbiomeComputations::internalDiffAbund(data, comparator = comparator, method = method, verbose = verbose))
 })
 
 #' @rdname differentialAbundance-methods
@@ -172,7 +172,7 @@ function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verb
     comparator <- buildBinaryComparator(covariate, 'groupA', 'groupB')
 
     ## microbiomeComputations will remove for us rows not in either group, and provide validation
-    return(microbiomeComputations::differentialAbundance(data, comparator = comparator, method = method, verbose = verbose))
+    return(microbiomeComputations::internalDiffAbund(data, comparator = comparator, method = method, verbose = verbose))
 })
 
 #### NOTE: While i think its important for people to be able to recreate the computes from the site, and tried to make
