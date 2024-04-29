@@ -47,10 +47,10 @@ It can be calculated as follows:
 ## first lets find some interesting data
 microbiomeData::getCuratedDatasetNames()
 
-getCollectionNames(microbiomeData::HMP_WGS)
+getCollectionNames(microbiomeData::HMP_MGX)
 
 ## grab a collection we like
-genus <- getCollection(microbiomeData::HMP_WGS, 'WGS Genus')
+genus <- getCollection(microbiomeData::HMP_MGX, 'Shotgun metagenomics Genus')
 
 ## get an alpha diversity ComputeResult
 alphaDivOutput <- alphaDiv(genus, method = 'shannon')
@@ -64,7 +64,7 @@ It can be calculated as follows:
 
 ```{r}
 ## get an alpha diversity ComputeResult
-genus <- getCollection(microbiomeData::HMP_WGS, 'WGS Genus')
+genus <- getCollection(microbiomeData::HMP_MGX, 'Shotgun metagenomics Genus')
 alphaDivOutput <- alphaDiv(genus, method = 'simpson')
 ```
 
@@ -75,7 +75,7 @@ Species evenness is highest when all species in a sample have the same abundance
 
 ```{r}
 ## get an alpha diversity ComputeResult
-genus <- getCollection(microbiomeData::HMP_WGS, 'WGS Genus')
+genus <- getCollection(microbiomeData::HMP_MGX, 'Shotgun metagenomics Genus')
 alphaDivOutput <- alphaDiv(genus, method = 'evenness')
 ```
 
@@ -87,7 +87,7 @@ Alpha Diversity is frequently visualized as scatter and box plots. Creating thes
 ## choose one or more metadata variables to integrate with the compute result
 alphaDiv_withMetadata <- getComputeResultWithMetadata(
   alphaDivOutput,
-  microbiomeData::HMP_WGS,
+  microbiomeData::HMP_MGX,
   metadataVariables = c('host_body_habitat')
 )
 
