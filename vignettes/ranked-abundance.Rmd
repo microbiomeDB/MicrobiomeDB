@@ -61,20 +61,20 @@ metric of interest. Available metrics are `max`, `median`, `q3` and `variance`.
 ## first lets find some interesting data
 microbiomeData::getCuratedDatasetNames()
 
-getCollectionNames(microbiomeData::HMP_WGS)
+getCollectionNames(microbiomeData::HMP_MGX)
 
 ## grab a collection of interest
-HMP_WGS_species <- getCollection(microbiomeData::HMP_WGS, "WGS Species")
+HMP_MGX_species <- getCollection(microbiomeData::HMP_MGX, "Shotgun metagenomics Species")
 
 ## get a ranked abundance ComputeResult
 ## top 10 taxa by max relative abundance across all samples
-rankedAbund <- rankedAbundance(HMP_WGS_species, method = "max", cutoff = 10) 
+rankedAbund <- rankedAbundance(HMP_MGX_species, method = "max", cutoff = 10) 
 ## top 8 taxa by median relative abundance across all samples
-rankedAbund <- rankedAbundance(HMP_WGS_species, method = "median", cutoff = 8)
+rankedAbund <- rankedAbundance(HMP_MGX_species, method = "median", cutoff = 8)
 ## top 20 taxa by third quartile relative abundance across all samples
-rankedAbund <- rankedAbundance(HMP_WGS_species, method = "q3", cutoff = 20)
+rankedAbund <- rankedAbundance(HMP_MGX_species, method = "q3", cutoff = 20)
 ## top 10 taxa by greatest variance in relative abundance across all samples
-rankedAbund <- rankedAbundance(HMP_WGS_species, method = "variance", cutoff = 10)
+rankedAbund <- rankedAbundance(HMP_MGX_species, method = "variance", cutoff = 10)
 ```
 
 ## Visualizing Ranked Relative Abundances
@@ -85,7 +85,7 @@ Abundances are frequently visualized as scatter and box plots. Creating these ty
 ## combine ranked abundance result with sample metadata of interest
 rankedAbund_withMetadata <- getComputeResultWithMetadata(
     rankedAbund, 
-    microbiomeData::HMP_WGS, 
+    microbiomeData::HMP_MGX, 
     metadataVariables = c('host_body_habitat'))
 
 ## pivot the dataframe to be able to plot it

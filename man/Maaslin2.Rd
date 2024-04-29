@@ -23,6 +23,10 @@ epidemiological studies. The software includes multiple
 analysis methods (including support for multiple covariates and repeated measures)
 filtering, normalization, and transform options to customize analysis for your specific study.
 }
+\details{
+The MicrobiomeDB wrapper for Maaslin2 will ignore samples where the \code{fixed_effects} variable
+has a value of \code{NA} or the empty string ("").
+}
 \examples{
 maaslinOutput <- MicrobiomeDB::Maaslin2(
        data = getCollection(microbiomeData::DiabImmune, '16S (V4) Genus'), 

@@ -77,15 +77,15 @@ non-linear associations.
 ## first lets find some interesting data
 microbiomeData::getCuratedDatasetNames()
 
-getCollectionNames(microbiomeData::HMP_WGS)
+getCollectionNames(microbiomeData::HMP_MGX)
 
 ## grab a collection of interest
-HMP_WGS_species <- getCollection(microbiomeData::HMP_WGS, "WGS Species", continuousMetadataOnly = TRUE)
+HMP_MGX_species <- getCollection(microbiomeData::HMP_MGX, "Shotgun metagenomics Species", continuousMetadataOnly = TRUE)
 
 ## get a correlation ComputeResult
 ## this is not necessarily to recommend spearman for metadata. 
 ## it is simply exemplary. Always look at your data!
-species_vs_metadata <- correlation(HMP_WGS_species, method = 'spearman') 
+species_vs_metadata <- correlation(HMP_MGX_species, method = 'spearman') 
 ```
 
 ### Pearson Correlation
@@ -94,13 +94,13 @@ Use when the relationship between variables is linear. Suitable for assessing li
 
 ```{r}
 ## grab two collections of interest, in this case species level data and pathway abundance data
-HMP_WGS_species <- getCollection(microbiomeData::HMP_WGS, "WGS Species")
-HMP_WGS_pathways <- getCollection(microbiomeData::HMP_WGS, "WGS Metagenome enzyme pathway abundance data" )
+HMP_MGX_species <- getCollection(microbiomeData::HMP_MGX, "Shotgun metagenomics Species")
+HMP_MGX_pathways <- getCollection(microbiomeData::HMP_MGX, "Shotgun metagenomics Metagenome enzyme pathway abundance data" )
 
 ## get a correlation ComputeResult
 ## this is not necessarily to recommend pearson for functional data.
 ## it is simply exemplary. Always look at your data!
-pathway_vs_species <- correlation(HMP_WGS_species, HMP_WGS_pathways, method = 'pearson')
+pathway_vs_species <- correlation(HMP_MGX_species, HMP_MGX_pathways, method = 'pearson')
 ```
 
 ## Interpreting Results
