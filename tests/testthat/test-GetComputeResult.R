@@ -35,7 +35,7 @@ test_that("we can get compute results in different formats", {
                             )
                         )
     )
-    diffAbundOutput <- microbiomeComputations::differentialAbundance(getCollection(mbioDataset, "16S (V4) Genus"), comparatorVariable, method='Maaslin2', verbose=FALSE)
+    diffAbundOutput <- microbiomeComputations::internalDiffAbund(getCollection(mbioDataset, "16S (V4) Genus"), comparatorVariable, method='Maaslin2', verbose=FALSE)
     expect_equal(inherits(diffAbundOutput, "ComputeResult"), TRUE)
 
     correlationOutput <- MicrobiomeDB::selfCorrelation(getCollection(mbioDataset, "16S (V4) Genus"), method='spearman', verbose=FALSE)
