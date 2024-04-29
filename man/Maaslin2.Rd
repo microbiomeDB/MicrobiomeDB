@@ -25,7 +25,7 @@ filtering, normalization, and transform options to customize analysis for your s
 }
 \details{
 The MicrobiomeDB wrapper for Maaslin2 will ignore samples where the \code{fixed_effects} variable
-has a value of \code{NA}.
+has a value of \code{NA} or the empty string ("").
 }
 \examples{
 maaslinOutput <- MicrobiomeDB::Maaslin2(

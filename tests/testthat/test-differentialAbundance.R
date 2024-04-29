@@ -145,6 +145,23 @@ test_that("Maaslin2 wrapper works", {
         plot_scatter = F)
     # maaslin just dumps a named list, and i dont want to write a test too specific to it in case they change things
     expect_equal(nrow(maaslinOutput$results) > 0, TRUE)
+
+    # make sure we ignore empty string values in the fixed_effects variable
+    # this should not fail is the main thing
+    genus@sampleMetadata@data$delivery_mode[2] <- ''
+
+    maaslinOutput <- MicrobiomeDB::Maaslin2(
+        data = genus, 
+        output = tempfile("maaslin"),
+        #min_prevalence = 0,
+        fixed_effects = 'delivery_mode',
+        analysis_method = "LM", # default LM
+        normalization = "TSS", # default TSS
+        transform = "LOG", # default LOG
+        plot_heatmap = F,
+        plot_scatter = F)
+    # maaslin just dumps a named list, and i dont want to write a test too specific to it in case they change things
+    expect_equal(nrow(maaslinOutput$results) > 0, TRUE)
 })
 
 test_that("DESeq2 wrapper works", {
