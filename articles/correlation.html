@@ -195,46 +195,46 @@ necessarily linear. Suitable for non-linear associations.</p>
 <span><span class="co">#&gt;  [3] "Bangladesh"              "DailyBaby"              </span></span>
 <span><span class="co">#&gt;  [5] "DiabImmune"              "ECAM"                   </span></span>
 <span><span class="co">#&gt;  [7] "EcoCF"                   "FARMM"                  </span></span>
-<span><span class="co">#&gt;  [9] "GEMS1"                   "HMP_V1V3"               </span></span>
-<span><span class="co">#&gt; [11] "HMP_V3V5"                "HMP_WGS"                </span></span>
+<span><span class="co">#&gt;  [9] "GEMS1"                   "HMP_MGX"                </span></span>
+<span><span class="co">#&gt; [11] "HMP_V1V3"                "HMP_V3V5"               </span></span>
 <span><span class="co">#&gt; [13] "Leishmaniasis"           "MALED_2yr"              </span></span>
 <span><span class="co">#&gt; [15] "MALED_diarrhea"          "MORDOR"                 </span></span>
 <span><span class="co">#&gt; [17] "Malaysia_helminth"       "NICU_NEC"               </span></span>
 <span><span class="co">#&gt; [19] "PIH_Uganda"              "PretermInfantResistome1"</span></span>
 <span><span class="co">#&gt; [21] "PretermInfantResistome2" "UgandaMaternal"</span></span>
 <span></span>
-<span><span class="fu">getCollectionNames</span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_WGS.html" class="external-link">HMP_WGS</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt;  [1] "WGS 4th level EC metagenome abundance data"              </span></span>
-<span><span class="co">#&gt;  [2] "WGS Metagenome enzyme pathway abundance data"            </span></span>
-<span><span class="co">#&gt;  [3] "WGS Metagenome enzyme pathway coverage data"             </span></span>
-<span><span class="co">#&gt;  [4] "WGS Genus"                                               </span></span>
-<span><span class="co">#&gt;  [5] "WGS Species"                                             </span></span>
-<span><span class="co">#&gt;  [6] "WGS Family"                                              </span></span>
-<span><span class="co">#&gt;  [7] "WGS Order"                                               </span></span>
-<span><span class="co">#&gt;  [8] "WGS Phylum"                                              </span></span>
-<span><span class="co">#&gt;  [9] "WGS Class"                                               </span></span>
-<span><span class="co">#&gt; [10] "WGS Normalized number of taxon-specific sequence matches"</span></span>
-<span><span class="co">#&gt; [11] "WGS Kingdom"</span></span>
+<span><span class="fu">getCollectionNames</span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1] "Shotgun metagenomics 4th level EC metagenome abundance data"              </span></span>
+<span><span class="co">#&gt;  [2] "Shotgun metagenomics Metagenome enzyme pathway abundance data"            </span></span>
+<span><span class="co">#&gt;  [3] "Shotgun metagenomics Metagenome enzyme pathway coverage data"             </span></span>
+<span><span class="co">#&gt;  [4] "Shotgun metagenomics Genus"                                               </span></span>
+<span><span class="co">#&gt;  [5] "Shotgun metagenomics Species"                                             </span></span>
+<span><span class="co">#&gt;  [6] "Shotgun metagenomics Family"                                              </span></span>
+<span><span class="co">#&gt;  [7] "Shotgun metagenomics Order"                                               </span></span>
+<span><span class="co">#&gt;  [8] "Shotgun metagenomics Phylum"                                              </span></span>
+<span><span class="co">#&gt;  [9] "Shotgun metagenomics Class"                                               </span></span>
+<span><span class="co">#&gt; [10] "Shotgun metagenomics Normalized number of taxon-specific sequence matches"</span></span>
+<span><span class="co">#&gt; [11] "Shotgun metagenomics Kingdom"</span></span>
 <span></span>
 <span><span class="co">## grab a collection of interest</span></span>
-<span><span class="va">HMP_WGS_species</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_WGS.html" class="external-link">HMP_WGS</a></span>, <span class="st">"WGS Species"</span>, continuousMetadataOnly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">HMP_MGX_species</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span>, <span class="st">"Shotgun metagenomics Species"</span>, continuousMetadataOnly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## get a correlation ComputeResult</span></span>
 <span><span class="co">## this is not necessarily to recommend spearman for metadata. </span></span>
 <span><span class="co">## it is simply exemplary. Always look at your data!</span></span>
-<span><span class="va">species_vs_metadata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/correlation-methods.html">correlation</a></span><span class="op">(</span><span class="va">HMP_WGS_species</span>, method <span class="op">=</span> <span class="st">'spearman'</span><span class="op">)</span> </span>
+<span><span class="va">species_vs_metadata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/correlation-methods.html">correlation</a></span><span class="op">(</span><span class="va">HMP_MGX_species</span>, method <span class="op">=</span> <span class="st">'spearman'</span><span class="op">)</span> </span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:37:37.301624 Removed 7 records with no data.</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:10:28.497136 Removed 7 records with no data.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:37:37.331011 Removed 7 records with no data.</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:10:28.525182 Removed 7 records with no data.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:37:37.367011 Removed 7 records with no data.</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:10:29.307075 Removed 7 records with no data.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:37:38.706018 Completed correlation with method=spearman. Formatting results.</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:10:30.64428 Completed correlation with method=spearman. Formatting results.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:37:38.707003 Received df table with 734 samples and 316 features with values.</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:10:30.645244 Received df table with 734 samples and 316 features with values.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:37:38.711433 Correlation computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method =  spearman</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-04-30 20:10:30.649673 Correlation computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method =  spearman</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="pearson-correlation">Pearson Correlation<a class="anchor" aria-label="anchor" href="#pearson-correlation"></a>
@@ -243,29 +243,29 @@ necessarily linear. Suitable for non-linear associations.</p>
 assessing linear associations.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## grab two collections of interest, in this case species level data and pathway abundance data</span></span>
-<span><span class="va">HMP_WGS_species</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_WGS.html" class="external-link">HMP_WGS</a></span>, <span class="st">"WGS Species"</span><span class="op">)</span></span>
-<span><span class="va">HMP_WGS_pathways</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_WGS.html" class="external-link">HMP_WGS</a></span>, <span class="st">"WGS Metagenome enzyme pathway abundance data"</span> <span class="op">)</span></span>
+<span><span class="va">HMP_MGX_species</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span>, <span class="st">"Shotgun metagenomics Species"</span><span class="op">)</span></span>
+<span><span class="va">HMP_MGX_pathways</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span>, <span class="st">"Shotgun metagenomics Metagenome enzyme pathway abundance data"</span> <span class="op">)</span></span>
 <span></span>
 <span><span class="co">## get a correlation ComputeResult</span></span>
 <span><span class="co">## this is not necessarily to recommend pearson for functional data.</span></span>
 <span><span class="co">## it is simply exemplary. Always look at your data!</span></span>
-<span><span class="va">pathway_vs_species</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/correlation-methods.html">correlation</a></span><span class="op">(</span><span class="va">HMP_WGS_species</span>, <span class="va">HMP_WGS_pathways</span>, method <span class="op">=</span> <span class="st">'pearson'</span><span class="op">)</span></span>
+<span><span class="va">pathway_vs_species</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/correlation-methods.html">correlation</a></span><span class="op">(</span><span class="va">HMP_MGX_species</span>, <span class="va">HMP_MGX_pathways</span>, method <span class="op">=</span> <span class="st">'pearson'</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:37:39.633612 Removed 7 records with no data.</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:10:30.877898 Removed 7 records with no data.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:37:39.670784 Removed 7 records with no data.</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:10:30.905652 Removed 7 records with no data.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:37:39.823658 Removed 7 records with no data.</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:10:31.033148 Removed 7 records with no data.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:37:39.834297 Received first df table with 734 samples and 319 features with values.</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:10:31.043667 Received first df table with 734 samples and 319 features with values.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:37:39.834609 Received second df table with 741 samples and 371 features with values.</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:10:31.043944 Received second df table with 741 samples and 371 features with values.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:37:39.834852 Found 734 samples in common between data1 and data2. Only these samples will be used.</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:10:31.044187 Found 734 samples in common between data1 and data2. Only these samples will be used.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:37:40.250861 Completed correlation with method=pearson. Formatting results.</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:10:31.466357 Completed correlation with method=pearson. Formatting results.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:37:40.256431 Correlation computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method =  pearson</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-04-30 20:10:31.473696 Correlation computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method =  pearson</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">

@@ -170,8 +170,8 @@ compositional nature of microbiome data.</p>
 <span><span class="co">#&gt;  [3] "Bangladesh"              "DailyBaby"              </span></span>
 <span><span class="co">#&gt;  [5] "DiabImmune"              "ECAM"                   </span></span>
 <span><span class="co">#&gt;  [7] "EcoCF"                   "FARMM"                  </span></span>
-<span><span class="co">#&gt;  [9] "GEMS1"                   "HMP_V1V3"               </span></span>
-<span><span class="co">#&gt; [11] "HMP_V3V5"                "HMP_WGS"                </span></span>
+<span><span class="co">#&gt;  [9] "GEMS1"                   "HMP_MGX"                </span></span>
+<span><span class="co">#&gt; [11] "HMP_V1V3"                "HMP_V3V5"               </span></span>
 <span><span class="co">#&gt; [13] "Leishmaniasis"           "MALED_2yr"              </span></span>
 <span><span class="co">#&gt; [15] "MALED_diarrhea"          "MORDOR"                 </span></span>
 <span><span class="co">#&gt; [17] "Malaysia_helminth"       "NICU_NEC"               </span></span>
@@ -179,34 +179,34 @@ compositional nature of microbiome data.</p>
 <span><span class="co">#&gt; [21] "PretermInfantResistome2" "UgandaMaternal"</span></span>
 <span></span>
 <span><span class="fu">getCollectionNames</span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/FARMM.html" class="external-link">FARMM</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt;  [1] "Metabolomics Mass spectrometry assay"                    </span></span>
-<span><span class="co">#&gt;  [2] "WGS 4th level EC metagenome abundance data"              </span></span>
-<span><span class="co">#&gt;  [3] "WGS Metagenome enzyme pathway abundance data"            </span></span>
-<span><span class="co">#&gt;  [4] "WGS Metagenome enzyme pathway coverage data"             </span></span>
-<span><span class="co">#&gt;  [5] "WGS Genus"                                               </span></span>
-<span><span class="co">#&gt;  [6] "WGS Species"                                             </span></span>
-<span><span class="co">#&gt;  [7] "WGS Family"                                              </span></span>
-<span><span class="co">#&gt;  [8] "WGS Order"                                               </span></span>
-<span><span class="co">#&gt;  [9] "WGS Phylum"                                              </span></span>
-<span><span class="co">#&gt; [10] "WGS Class"                                               </span></span>
-<span><span class="co">#&gt; [11] "WGS Normalized number of taxon-specific sequence matches"</span></span>
-<span><span class="co">#&gt; [12] "WGS Kingdom"</span></span>
+<span><span class="co">#&gt;  [1] "Metabolomics Mass spectrometry assay"                                     </span></span>
+<span><span class="co">#&gt;  [2] "Shotgun metagenomics 4th level EC metagenome abundance data"              </span></span>
+<span><span class="co">#&gt;  [3] "Shotgun metagenomics Metagenome enzyme pathway abundance data"            </span></span>
+<span><span class="co">#&gt;  [4] "Shotgun metagenomics Metagenome enzyme pathway coverage data"             </span></span>
+<span><span class="co">#&gt;  [5] "Shotgun metagenomics Genus"                                               </span></span>
+<span><span class="co">#&gt;  [6] "Shotgun metagenomics Species"                                             </span></span>
+<span><span class="co">#&gt;  [7] "Shotgun metagenomics Family"                                              </span></span>
+<span><span class="co">#&gt;  [8] "Shotgun metagenomics Order"                                               </span></span>
+<span><span class="co">#&gt;  [9] "Shotgun metagenomics Phylum"                                              </span></span>
+<span><span class="co">#&gt; [10] "Shotgun metagenomics Class"                                               </span></span>
+<span><span class="co">#&gt; [11] "Shotgun metagenomics Normalized number of taxon-specific sequence matches"</span></span>
+<span><span class="co">#&gt; [12] "Shotgun metagenomics Kingdom"</span></span>
 <span></span>
 <span><span class="co">## grab a collection of interest</span></span>
 <span><span class="co">## these methods can be used with other data types as well</span></span>
 <span><span class="va">farmm_metabolomics</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/FARMM.html" class="external-link">FARMM</a></span>, <span class="st">"Metabolomics Mass spectrometry assay"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:38:08.623847 Integer values detected. Converting collection to AbsoluteAbundanceData</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:10:59.377333 Integer values detected. Converting collection to AbsoluteAbundanceData</span></span>
 <span></span>
 <span><span class="co">## get a self correlation ComputeResult</span></span>
 <span><span class="co">## methods spearman and pearson are options here as well, for data known to not be compositional</span></span>
 <span><span class="va">selfCorrelation_metabolomics</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/selfCorrelation-methods.html">selfCorrelation</a></span><span class="op">(</span><span class="va">farmm_metabolomics</span>, method<span class="op">=</span><span class="st">'spearman'</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:38:09.960696 Completed correlation with method=spearman. Formatting results.</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:11:01.407306 Completed correlation with method=spearman. Formatting results.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:38:10.821158 Received df table with 150 samples and 479 features with abundances.</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:11:01.551728 Received df table with 150 samples and 479 features with abundances.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:38:10.825808 Correlation computation completed with parameters recordIdColumn= Mass_spectrometry_assay_Id , method =  spearman</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-04-30 20:11:01.556154 Correlation computation completed with parameters recordIdColumn= Mass_spectrometry_assay_Id , method =  spearman</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="interpreting-results">Interpreting Results<a class="anchor" aria-label="anchor" href="#interpreting-results"></a>

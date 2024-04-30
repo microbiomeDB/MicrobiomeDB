@@ -136,38 +136,38 @@ predicting the identity of a randomly chosen taxon within a sample.</p>
 <span><span class="co">#&gt;  [3] "Bangladesh"              "DailyBaby"              </span></span>
 <span><span class="co">#&gt;  [5] "DiabImmune"              "ECAM"                   </span></span>
 <span><span class="co">#&gt;  [7] "EcoCF"                   "FARMM"                  </span></span>
-<span><span class="co">#&gt;  [9] "GEMS1"                   "HMP_V1V3"               </span></span>
-<span><span class="co">#&gt; [11] "HMP_V3V5"                "HMP_WGS"                </span></span>
+<span><span class="co">#&gt;  [9] "GEMS1"                   "HMP_MGX"                </span></span>
+<span><span class="co">#&gt; [11] "HMP_V1V3"                "HMP_V3V5"               </span></span>
 <span><span class="co">#&gt; [13] "Leishmaniasis"           "MALED_2yr"              </span></span>
 <span><span class="co">#&gt; [15] "MALED_diarrhea"          "MORDOR"                 </span></span>
 <span><span class="co">#&gt; [17] "Malaysia_helminth"       "NICU_NEC"               </span></span>
 <span><span class="co">#&gt; [19] "PIH_Uganda"              "PretermInfantResistome1"</span></span>
 <span><span class="co">#&gt; [21] "PretermInfantResistome2" "UgandaMaternal"</span></span>
 <span></span>
-<span><span class="fu">getCollectionNames</span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_WGS.html" class="external-link">HMP_WGS</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt;  [1] "WGS 4th level EC metagenome abundance data"              </span></span>
-<span><span class="co">#&gt;  [2] "WGS Metagenome enzyme pathway abundance data"            </span></span>
-<span><span class="co">#&gt;  [3] "WGS Metagenome enzyme pathway coverage data"             </span></span>
-<span><span class="co">#&gt;  [4] "WGS Genus"                                               </span></span>
-<span><span class="co">#&gt;  [5] "WGS Species"                                             </span></span>
-<span><span class="co">#&gt;  [6] "WGS Family"                                              </span></span>
-<span><span class="co">#&gt;  [7] "WGS Order"                                               </span></span>
-<span><span class="co">#&gt;  [8] "WGS Phylum"                                              </span></span>
-<span><span class="co">#&gt;  [9] "WGS Class"                                               </span></span>
-<span><span class="co">#&gt; [10] "WGS Normalized number of taxon-specific sequence matches"</span></span>
-<span><span class="co">#&gt; [11] "WGS Kingdom"</span></span>
+<span><span class="fu">getCollectionNames</span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1] "Shotgun metagenomics 4th level EC metagenome abundance data"              </span></span>
+<span><span class="co">#&gt;  [2] "Shotgun metagenomics Metagenome enzyme pathway abundance data"            </span></span>
+<span><span class="co">#&gt;  [3] "Shotgun metagenomics Metagenome enzyme pathway coverage data"             </span></span>
+<span><span class="co">#&gt;  [4] "Shotgun metagenomics Genus"                                               </span></span>
+<span><span class="co">#&gt;  [5] "Shotgun metagenomics Species"                                             </span></span>
+<span><span class="co">#&gt;  [6] "Shotgun metagenomics Family"                                              </span></span>
+<span><span class="co">#&gt;  [7] "Shotgun metagenomics Order"                                               </span></span>
+<span><span class="co">#&gt;  [8] "Shotgun metagenomics Phylum"                                              </span></span>
+<span><span class="co">#&gt;  [9] "Shotgun metagenomics Class"                                               </span></span>
+<span><span class="co">#&gt; [10] "Shotgun metagenomics Normalized number of taxon-specific sequence matches"</span></span>
+<span><span class="co">#&gt; [11] "Shotgun metagenomics Kingdom"</span></span>
 <span></span>
 <span><span class="co">## grab a collection we like</span></span>
-<span><span class="va">genus</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_WGS.html" class="external-link">HMP_WGS</a></span>, <span class="st">'WGS Genus'</span><span class="op">)</span></span>
+<span><span class="va">genus</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span>, <span class="st">'Shotgun metagenomics Genus'</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## get an alpha diversity ComputeResult</span></span>
 <span><span class="va">alphaDivOutput</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alphaDiv-methods.html">alphaDiv</a></span><span class="op">(</span><span class="va">genus</span>, method <span class="op">=</span> <span class="st">'shannon'</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:37:00.644513 Received df table with 741 samples and 226 taxa.</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:09:52.056237 Received df table with 741 samples and 226 taxa.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:37:00.669897 shannon alpha diversity computation complete.</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:09:52.078821 shannon alpha diversity computation complete.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:37:00.685402 Alpha diversity computation completed with parameters method= shannon</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-04-30 20:09:52.094359 Alpha diversity computation completed with parameters method= shannon</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="simpson-diversity-index">Simpson Diversity Index<a class="anchor" aria-label="anchor" href="#simpson-diversity-index"></a>
@@ -178,14 +178,14 @@ taxa.</p>
 <p>It can be calculated as follows:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## get an alpha diversity ComputeResult</span></span>
-<span><span class="va">genus</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_WGS.html" class="external-link">HMP_WGS</a></span>, <span class="st">'WGS Genus'</span><span class="op">)</span></span>
+<span><span class="va">genus</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span>, <span class="st">'Shotgun metagenomics Genus'</span><span class="op">)</span></span>
 <span><span class="va">alphaDivOutput</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alphaDiv-methods.html">alphaDiv</a></span><span class="op">(</span><span class="va">genus</span>, method <span class="op">=</span> <span class="st">'simpson'</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:37:00.779723 Received df table with 741 samples and 226 taxa.</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:09:52.192573 Received df table with 741 samples and 226 taxa.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:37:00.802822 simpson alpha diversity computation complete.</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:09:52.968733 simpson alpha diversity computation complete.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:37:00.808237 Alpha diversity computation completed with parameters method= simpson</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-04-30 20:09:52.974112 Alpha diversity computation completed with parameters method= simpson</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="species-evenness">Species Evenness<a class="anchor" aria-label="anchor" href="#species-evenness"></a>
@@ -196,14 +196,14 @@ sample have the same abundance and approaches zero as relative
 abundances vary.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## get an alpha diversity ComputeResult</span></span>
-<span><span class="va">genus</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_WGS.html" class="external-link">HMP_WGS</a></span>, <span class="st">'WGS Genus'</span><span class="op">)</span></span>
+<span><span class="va">genus</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span>, <span class="st">'Shotgun metagenomics Genus'</span><span class="op">)</span></span>
 <span><span class="va">alphaDivOutput</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alphaDiv-methods.html">alphaDiv</a></span><span class="op">(</span><span class="va">genus</span>, method <span class="op">=</span> <span class="st">'evenness'</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:37:00.894878 Received df table with 741 samples and 226 taxa.</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:09:53.060431 Received df table with 741 samples and 226 taxa.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:37:00.913373 evenness alpha diversity computation complete.</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:09:53.08174 evenness alpha diversity computation complete.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-24 17:37:00.916953 Alpha diversity computation completed with parameters method= evenness</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-04-30 20:09:53.085252 Alpha diversity computation completed with parameters method= evenness</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -215,7 +215,7 @@ Creating these types of plots can be done like the following:</p>
 <code class="sourceCode R"><span><span class="co">## choose one or more metadata variables to integrate with the compute result</span></span>
 <span><span class="va">alphaDiv_withMetadata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getComputeResultWithMetadata.html">getComputeResultWithMetadata</a></span><span class="op">(</span></span>
 <span>  <span class="va">alphaDivOutput</span>,</span>
-<span>  <span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_WGS.html" class="external-link">HMP_WGS</a></span>,</span>
+<span>  <span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span>,</span>
 <span>  metadataVariables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'host_body_habitat'</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
