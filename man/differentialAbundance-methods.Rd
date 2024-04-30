@@ -4,7 +4,9 @@
 \alias{differentialAbundance}
 \alias{differentialAbundance,CollectionWithMetadata,character,missingOrNULL,missingOrNULL-method}
 \alias{differentialAbundance,CollectionWithMetadata,character,function,missingOrNULL-method}
+\alias{differentialAbundance,CollectionWithMetadata,character,character,missingOrNULL-method}
 \alias{differentialAbundance,CollectionWithMetadata,character,function,function-method}
+\alias{differentialAbundance,CollectionWithMetadata,character,character,character-method}
 \title{Differential abundance}
 \usage{
 differentialAbundance(
@@ -34,7 +36,25 @@ differentialAbundance(
   verbose = c(TRUE, FALSE)
 )
 
+\S4method{differentialAbundance}{CollectionWithMetadata,character,character,missingOrNULL}(
+  data,
+  covariate,
+  groupA,
+  groupB,
+  method = c("Maaslin2", "DESeq2"),
+  verbose = c(TRUE, FALSE)
+)
+
 \S4method{differentialAbundance}{CollectionWithMetadata,character,function,function}(
+  data,
+  covariate,
+  groupA,
+  groupB,
+  method = c("Maaslin2", "DESeq2"),
+  verbose = c(TRUE, FALSE)
+)
+
+\S4method{differentialAbundance}{CollectionWithMetadata,character,character,character}(
   data,
   covariate,
   groupA,
@@ -50,10 +70,12 @@ differentialAbundance(
 variable has only two values, you do not need to provide functions for arguments \code{groupA} and \code{groupB}.}
 
 \item{groupA}{A function that takes a vector of values and returns TRUE or FALSE for each value. This will
-be used to assign samples to groupA.}
+be used to assign samples to groupA. In the specific case of \code{covariate} being a categorical variable,
+this can be a character vector of values to be included in groupA.}
 
 \item{groupB}{A function that takes a vector of values and returns TRUE or FALSE for each value. This will
-be used to assign samples to groupB. If not provided, groupB will be the complement of groupA.}
+be used to assign samples to groupB. If not provided, groupB will be the complement of groupA. In the specific
+case of \code{covariate} being a categorical variable, this can be a character vector of values to be included in groupB.}
 
 \item{method}{string defining the the differential abundance method. Accepted values are 'DESeq2' and 'Maaslin2'.
 Default is 'Maaslin2', as 'DESeq2' only supports counts.}
@@ -91,6 +113,16 @@ diffAbundOutput <- MicrobiomeDB::differentialAbundance(
        "country", 
        groupA = function(x) {x=="Russia"},
        groupB = function(x) {x=="Finland"},
+       method='Maaslin2', 
+       verbose=FALSE
+)
+
+## this case of categorical variables also has a 'short cut'
+diffAbundOutput <- MicrobiomeDB::differentialAbundance(
+       getCollection(microbiomeData::DiabImmune, '16S (V4) Genus'), 
+       "country", 
+       groupA = "Russia",
+       groupB = c("Finland","Estonia"),
        method='Maaslin2', 
        verbose=FALSE
 )
