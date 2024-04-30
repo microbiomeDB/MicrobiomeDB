@@ -178,7 +178,12 @@ function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verb
 
     covariateDataType <- class(data@sampleMetadata@data[[covariate]])
     if (!covariateDataType %in% c("factor", "character")) {
-        stop("Argument 'groupA' must be a function when 'covariate' is not a factor or character")
+        stop("Argument 'groupA' must be a function when the variable specified by 'covariate' is not a factor or character")
+    }
+    covariateUniqueValues <- unique(data@sampleMetadata@data[[covariate]])
+    if (!any(groupA %in% covariateUniqueValues)) {
+        # should warn the specified values arent in the covariate
+        warning("Specified values in 'groupA' are not in the variable specified by 'covariate'")
     }
 
     groupAFxn <- function(x) {x %in% groupA}
@@ -214,6 +219,15 @@ function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verb
     covariateDataType <- class(data@sampleMetadata@data[[covariate]])
     if (!covariateDataType %in% c("factor", "character")) {
         stop("Arguments 'groupA' and 'groupB' must be functions when 'covariate' is not a factor or character")
+    }
+    covariateUniqueValues <- unique(data@sampleMetadata@data[[covariate]])
+    if (!any(groupA %in% covariateUniqueValues)) {
+        # should warn the specified values arent in the covariate
+        warning("Specified values in 'groupA' are not in the variable specified by 'covariate'")
+    }
+    if (!any(groupB %in% covariateUniqueValues)) {
+        # should warn the specified values arent in the covariate
+        warning("Specified values in 'groupB' are not in the variable specified by 'covariate'")
     }
 
     groupAFxn <- function(x) {x %in% groupA}
