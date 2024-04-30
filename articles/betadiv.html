@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">MicrobiomeDB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -170,13 +170,13 @@ dissimilarity).</p>
 <span><span class="co">## get a betaDiv ComputeResult</span></span>
 <span><span class="va">betaDiv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/betaDiv-methods.html">betaDiv</a></span><span class="op">(</span><span class="va">HMP_MGX_species</span>, method <span class="op">=</span> <span class="st">"bray"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-30 20:10:06.344483 Received df table with 741 samples and 704 taxa.</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:34:53.035062 Received df table with 741 samples and 704 taxa.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-30 20:10:06.660504 Computed dissimilarity matrix.</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:34:53.365596 Computed dissimilarity matrix.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-30 20:10:07.59087 Finished ordination step.</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:34:54.287918 Finished ordination step.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-30 20:10:07.619991 Beta diversity computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method = bray , k = 2 , verbose = TRUE</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-04-30 20:34:54.31758 Beta diversity computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method = bray , k = 2 , verbose = TRUE</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="jaccard-dissimilarity">Jaccard Dissimilarity<a class="anchor" aria-label="anchor" href="#jaccard-dissimilarity"></a>
@@ -188,13 +188,13 @@ samples.</p>
 <code class="sourceCode R"><span><span class="va">HMP_MGX_species</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span>, <span class="st">'Shotgun metagenomics Species'</span><span class="op">)</span></span>
 <span><span class="va">betaDiv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/betaDiv-methods.html">betaDiv</a></span><span class="op">(</span><span class="va">HMP_MGX_species</span>, method <span class="op">=</span> <span class="st">"jaccard"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-30 20:10:07.772798 Received df table with 741 samples and 704 taxa.</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:34:54.472469 Received df table with 741 samples and 704 taxa.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-30 20:10:08.074779 Computed dissimilarity matrix.</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:34:54.781961 Computed dissimilarity matrix.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-30 20:10:08.265896 Finished ordination step.</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:34:54.953741 Finished ordination step.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-30 20:10:08.276397 Beta diversity computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method = jaccard , k = 2 , verbose = TRUE</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-04-30 20:34:54.965028 Beta diversity computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method = jaccard , k = 2 , verbose = TRUE</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="jensen-shannon-divergence-jsd">Jensen-Shannon Divergence (JSD)<a class="anchor" aria-label="anchor" href="#jensen-shannon-divergence-jsd"></a>
@@ -207,13 +207,13 @@ between probability distributions.</p>
 <code class="sourceCode R"><span><span class="va">HMP_MGX_species</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span>, <span class="st">'Shotgun metagenomics Species'</span><span class="op">)</span></span>
 <span><span class="va">betaDiv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/betaDiv-methods.html">betaDiv</a></span><span class="op">(</span><span class="va">HMP_MGX_species</span>, method <span class="op">=</span> <span class="st">"jsd"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-30 20:10:08.421031 Received df table with 741 samples and 704 taxa.</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:34:55.109542 Received df table with 741 samples and 704 taxa.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-30 20:10:15.18809 Computed dissimilarity matrix.</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:35:01.818146 Computed dissimilarity matrix.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-30 20:10:15.381123 Finished ordination step.</span></span>
+<span><span class="co">#&gt; 2024-04-30 20:35:02.006882 Finished ordination step.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-30 20:10:15.387807 Beta diversity computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method = jsd , k = 2 , verbose = TRUE</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-04-30 20:35:02.013305 Beta diversity computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method = jsd , k = 2 , verbose = TRUE</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="principal-coordinate-analysis-pcoa">Principal Coordinate Analysis (PCoA):<a class="anchor" aria-label="anchor" href="#principal-coordinate-analysis-pcoa"></a>
