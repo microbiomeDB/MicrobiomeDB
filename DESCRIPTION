@@ -19,7 +19,7 @@ Imports:
     phyloseq,
     purrr
 Remotes:
-    VEuPathDB/veupathUtils,
+    microbiomeDB/veupathUtils,
     microbiomeDB/corGraph,
     microbiomeDB/microbiomeComputations,
     microbiomeDB/microbiomeData
