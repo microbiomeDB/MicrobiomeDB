@@ -83,8 +83,6 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/microbiomeDB/MicrobiomeDB" class="external-link">MicrobiomeDB</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: replacing previous import 'S4Arrays::makeNindexFromArrayViewport' by</span></span>
-<span><span class="co">#&gt; 'DelayedArray::makeNindexFromArrayViewport' when loading 'SummarizedExperiment'</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ── <span style="font-weight: bold;">Attaching core tidyverse packages</span> ──────────────────────── tidyverse 2.0.0 ──</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">dplyr    </span> 1.1.4     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">readr    </span> 2.1.5</span></span>
@@ -95,8 +93,9 @@
 <span><span class="co">#&gt; ── <span style="font-weight: bold;">Conflicts</span> ────────────────────────────────────────── tidyverse_conflicts() ──</span></span>
 <span><span class="co">#&gt; <span style="color: #BB0000;">✖</span> <span style="color: #0000BB;">dplyr</span>::<span style="color: #00BB00;">filter()</span> masks <span style="color: #0000BB;">stats</span>::filter()</span></span>
 <span><span class="co">#&gt; <span style="color: #BB0000;">✖</span> <span style="color: #0000BB;">dplyr</span>::<span style="color: #00BB00;">lag()</span>    masks <span style="color: #0000BB;">stats</span>::lag()</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use the conflicted package (<span style="color: #0000BB; font-style: italic;">&lt;http://conflicted.r-lib.org/&gt;</span>) to force all conflicts to become errors</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r.igraph.org/" class="external-link">igraph</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use the conflicted package (<span style="color: #0000BB; font-style: italic;">&lt;http://conflicted.r-lib.org/&gt;</span>) to force all conflicts to become errors</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r.igraph.org/" class="external-link">igraph</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Attaching package: 'igraph'</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -188,7 +187,7 @@ indicating statistical significance.</p>
 </h3>
 <p>Use when the relationship between variables is monotonic but not
 necessarily linear. Suitable for non-linear associations.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## first lets find some interesting data</span></span>
 <span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="fu"><a href="https://microbiomedb.github.io/microbiomeData/reference/getCuratedDatasetNames.html" class="external-link">getCuratedDatasetNames</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "Anopheles_albimanus"     "BONUS"                  </span></span>
@@ -201,8 +200,9 @@ necessarily linear. Suitable for non-linear associations.</p>
 <span><span class="co">#&gt; [15] "MALED_diarrhea"          "MORDOR"                 </span></span>
 <span><span class="co">#&gt; [17] "Malaysia_helminth"       "NICU_NEC"               </span></span>
 <span><span class="co">#&gt; [19] "PIH_Uganda"              "PretermInfantResistome1"</span></span>
-<span><span class="co">#&gt; [21] "PretermInfantResistome2" "UgandaMaternal"</span></span>
-<span></span>
+<span><span class="co">#&gt; [21] "PretermInfantResistome2" "UgandaMaternal"</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="fu">getCollectionNames</span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "Shotgun metagenomics 4th level EC metagenome abundance data"              </span></span>
 <span><span class="co">#&gt;  [2] "Shotgun metagenomics Metagenome enzyme pathway abundance data"            </span></span>
@@ -214,8 +214,9 @@ necessarily linear. Suitable for non-linear associations.</p>
 <span><span class="co">#&gt;  [8] "Shotgun metagenomics Phylum"                                              </span></span>
 <span><span class="co">#&gt;  [9] "Shotgun metagenomics Class"                                               </span></span>
 <span><span class="co">#&gt; [10] "Shotgun metagenomics Normalized number of taxon-specific sequence matches"</span></span>
-<span><span class="co">#&gt; [11] "Shotgun metagenomics Kingdom"</span></span>
-<span></span>
+<span><span class="co">#&gt; [11] "Shotgun metagenomics Kingdom"</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co">## grab a collection of interest</span></span>
 <span><span class="va">HMP_MGX_species</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span>, <span class="st">"Shotgun metagenomics Species"</span>, continuousMetadataOnly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
@@ -224,24 +225,24 @@ necessarily linear. Suitable for non-linear associations.</p>
 <span><span class="co">## it is simply exemplary. Always look at your data!</span></span>
 <span><span class="va">species_vs_metadata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/correlation-methods.html">correlation</a></span><span class="op">(</span><span class="va">HMP_MGX_species</span>, method <span class="op">=</span> <span class="st">'spearman'</span><span class="op">)</span> </span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-30 20:35:14.851015 Removed 7 records with no data.</span></span>
+<span><span class="co">#&gt; 2024-05-23 16:20:01.17511 Removed 7 records with no data.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-30 20:35:14.879276 Removed 7 records with no data.</span></span>
+<span><span class="co">#&gt; 2024-05-23 16:20:01.208922 Removed 7 records with no data.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-30 20:35:15.615444 Removed 7 records with no data.</span></span>
+<span><span class="co">#&gt; 2024-05-23 16:20:01.250555 Removed 7 records with no data.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-30 20:35:16.957757 Completed correlation with method=spearman. Formatting results.</span></span>
+<span><span class="co">#&gt; 2024-05-23 16:20:02.585544 Completed correlation with method=spearman. Formatting results.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-30 20:35:16.958728 Received df table with 734 samples and 316 features with values.</span></span>
+<span><span class="co">#&gt; 2024-05-23 16:20:02.586487 Received df table with 734 samples and 316 features with values.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-30 20:35:16.963088 Correlation computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method =  spearman</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-05-23 16:20:02.590663 Correlation computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method =  spearman</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="pearson-correlation">Pearson Correlation<a class="anchor" aria-label="anchor" href="#pearson-correlation"></a>
 </h3>
 <p>Use when the relationship between variables is linear. Suitable for
 assessing linear associations.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## grab two collections of interest, in this case species level data and pathway abundance data</span></span>
 <span><span class="va">HMP_MGX_species</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span>, <span class="st">"Shotgun metagenomics Species"</span><span class="op">)</span></span>
 <span><span class="va">HMP_MGX_pathways</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span>, <span class="st">"Shotgun metagenomics Metagenome enzyme pathway abundance data"</span> <span class="op">)</span></span>
@@ -251,21 +252,21 @@ assessing linear associations.</p>
 <span><span class="co">## it is simply exemplary. Always look at your data!</span></span>
 <span><span class="va">pathway_vs_species</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/correlation-methods.html">correlation</a></span><span class="op">(</span><span class="va">HMP_MGX_species</span>, <span class="va">HMP_MGX_pathways</span>, method <span class="op">=</span> <span class="st">'pearson'</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-30 20:35:17.182265 Removed 7 records with no data.</span></span>
+<span><span class="co">#&gt; 2024-05-23 16:20:02.783298 Removed 7 records with no data.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-30 20:35:17.209767 Removed 7 records with no data.</span></span>
+<span><span class="co">#&gt; 2024-05-23 16:20:02.810986 Removed 7 records with no data.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-30 20:35:17.340699 Removed 7 records with no data.</span></span>
+<span><span class="co">#&gt; 2024-05-23 16:20:02.953594 Removed 7 records with no data.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-30 20:35:17.351412 Received first df table with 734 samples and 319 features with values.</span></span>
+<span><span class="co">#&gt; 2024-05-23 16:20:02.964409 Received first df table with 734 samples and 319 features with values.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-30 20:35:17.351691 Received second df table with 741 samples and 371 features with values.</span></span>
+<span><span class="co">#&gt; 2024-05-23 16:20:02.964655 Received second df table with 741 samples and 371 features with values.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-30 20:35:17.351933 Found 734 samples in common between data1 and data2. Only these samples will be used.</span></span>
+<span><span class="co">#&gt; 2024-05-23 16:20:02.964895 Found 734 samples in common between data1 and data2. Only these samples will be used.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-30 20:35:17.770926 Completed correlation with method=pearson. Formatting results.</span></span>
+<span><span class="co">#&gt; 2024-05-23 16:20:03.38223 Completed correlation with method=pearson. Formatting results.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-04-30 20:35:17.776606 Correlation computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method =  pearson</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-05-23 16:20:03.387836 Correlation computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method =  pearson</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -280,7 +281,7 @@ with statistically significant correlations, considering adjustments for
 multiple testing.</p>
 <p>You can extract these metrics and sort and filter results by
 them:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## you can extract network metrics </span></span>
 <span><span class="va">pathway_vs_species.metrics</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html" class="external-link">as_tibble</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="../reference/getComputeResult.html">getComputeResult</a></span><span class="op">(</span></span>
@@ -302,7 +303,7 @@ them:</p>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                        <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Faecalibacterium prausnitzii PWY-5177: glutaryl-CoA de…           0.825      0</span></span></code></pre></div>
 <p>You can also visualize them with custom htmlwidgets:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## now plot the network</span></span>
 <span><span class="co">## filters can be applied based on correlation coefficient and p-value</span></span>
 <span><span class="co">## renders an interactive htmlwidget, using a predetermined layout</span></span>
@@ -314,7 +315,7 @@ them:</p>
 <div class="bipartitenetwork html-widget html-fill-item" id="htmlwidget-ac96cb3ee4656e2e9ec3" style="width:700px;height:432.632880098888px;"></div>
 <script type="application/json" data-for="htmlwidget-ac96cb3ee4656e2e9ec3">{"x":{"data":{"links":[{"source":"Escherichia coli","target":"ARG+POLYAMINE-SYN: superpathway of arginine and polyamine biosynthesis","value":0.8378910219553921,"pValue":0},{"source":"Escherichia coli","target":"FAO-PWY: fatty acid &beta;-oxidation I","value":0.9986457672087068,"pValue":0},{"source":"Escherichia coli","target":"FUC-RHAMCAT-PWY: superpathway of fucose and rhamnose degradation","value":0.9523425242599398,"pValue":0},{"source":"Escherichia coli","target":"FUCCAT-PWY: fucose degradation","value":0.843447580867717,"pValue":0},{"source":"Escherichia coli","target":"GALACTARDEG-PWY: D-galactarate degradation I","value":0.9969776783312223,"pValue":0},{"source":"Escherichia coli","target":"GLUCARDEG-PWY: D-glucarate degradation I","value":0.9985291706441431,"pValue":0},{"source":"Escherichia coli","target":"GLUCARGALACTSUPER-PWY: superpathway of D-glucarate and D-galactarate degradation","value":0.9969776783312223,"pValue":0},{"source":"Escherichia coli","target":"GLYCOL-GLYOXDEG-PWY: superpathway of glycol metabolism and degradation","value":0.8574128838069022,"pValue":0},{"source":"Escherichia coli","target":"GLYOXYLATE-BYPASS: glyoxylate cycle","value":0.9373168137910555,"pValue":0},{"source":"Escherichia coli","target":"KDO-NAGLIPASYN-PWY: superpathway of (Kdo)2-lipid A biosynthesis","value":0.9002132023263255,"pValue":0},{"source":"Escherichia coli","target":"KETOGLUCONMET-PWY: ketogluconate metabolism","value":0.9981472205626841,"pValue":0},{"source":"Escherichia coli","target":"METHGLYUT-PWY: superpathway of methylglyoxal degradation","value":0.9331731164439296,"pValue":0},{"source":"Escherichia coli","target":"P105-PWY: TCA cycle IV (2-oxoglutarate decarboxylase)","value":0.9286297629489619,"pValue":0},{"source":"Streptococcus parasanguinis","target":"P125-PWY: superpathway of (R,R)-butanediol biosynthesis","value":0.8417282849625227,"pValue":0},{"source":"Fusobacterium periodonticum","target":"P163-PWY: L-lysine fermentation to acetate and butanoate","value":0.8347776325124552,"pValue":0},{"source":"Escherichia coli","target":"P221-PWY: octane oxidation","value":0.9846559491561279,"pValue":0},{"source":"Escherichia coli","target":"P461-PWY: hexitol fermentation to lactate, formate, ethanol and acetate","value":0.876345100646296,"pValue":0},{"source":"Escherichia coli","target":"POLYAMSYN-PWY: superpathway of polyamine biosynthesis I","value":0.8625820090325145,"pValue":0},{"source":"Escherichia coli","target":"PWY-4702: phytate degradation I","value":0.8638734895545219,"pValue":0},{"source":"Monoglobus pectinilyticus","target":"PWY-5101: L-isoleucine biosynthesis II","value":0.8042956002303102,"pValue":0},{"source":"Escherichia coli","target":"PWY-5136: fatty acid &beta;-oxidation II (peroxisome)","value":0.9979936558219484,"pValue":0},{"source":"Escherichia coli","target":"PWY-5138: unsaturated, even numbered fatty acid &beta;-oxidation","value":0.9847273609610459,"pValue":0},{"source":"Faecalibacterium prausnitzii","target":"PWY-5177: glutaryl-CoA degradation","value":0.8247879574443185,"pValue":0},{"source":"Escherichia coli","target":"PWY-561: superpathway of glyoxylate cycle and fatty acid degradation","value":0.9987553577002238,"pValue":0},{"source":"Escherichia coli","target":"PWY-5675: nitrate reduction V (assimilatory)","value":0.8318549888390029,"pValue":0},{"source":"Anaerotruncus colihominis","target":"PWY-5677: succinate fermentation to butanoate","value":0.8022217216346673,"pValue":0},{"source":"Escherichia coli","target":"PWY-5723: Rubisco shunt","value":0.8895629927733554,"pValue":0},{"source":"Escherichia coli","target":"PWY-5845: superpathway of menaquinol-9 biosynthesis","value":0.8476176423961407,"pValue":0},{"source":"Escherichia coli","target":"PWY-5850: superpathway of menaquinol-6 biosynthesis I","value":0.9939899480637638,"pValue":0},{"source":"Escherichia coli","target":"PWY-5860: superpathway of demethylmenaquinol-6 biosynthesis I","value":0.9962726420841463,"pValue":0},{"source":"Escherichia coli","target":"PWY-5862: superpathway of demethylmenaquinol-9 biosynthesis","value":0.8896245347122579,"pValue":0},{"source":"Escherichia coli","target":"PWY-5896: superpathway of menaquinol-10 biosynthesis","value":0.9939899480637638,"pValue":0},{"source":"Flavonifractor plautii","target":"PWY-6318: L-phenylalanine degradation IV (mammalian, via side chain)","value":0.8839532246569202,"pValue":0},{"source":"Escherichia coli","target":"PWY-6353: purine nucleotides degradation II (aerobic)","value":0.8562775625511659,"pValue":0},{"source":"Bacteroides thetaiotaomicron","target":"PWY-6478: GDP-D-glycero-&alpha;-D-manno-heptose biosynthesis","value":0.8590491526118877,"pValue":0},{"source":"Escherichia coli","target":"PWY-6531: mannitol cycle","value":0.9621812370487759,"pValue":0},{"source":"Escherichia coli","target":"PWY-6606: guanosine nucleotides degradation II","value":0.9222033218345683,"pValue":0},{"source":"Escherichia coli","target":"PWY-6731: starch degradation III","value":0.9088487950979812,"pValue":0},{"source":"Campylobacter concisus","target":"PWY-6748: nitrate reduction VII (denitrification)","value":0.8550507738310021,"pValue":0},{"source":"Escherichia coli","target":"PWY-6891: thiazole biosynthesis II (Bacillus)","value":0.8449065802925679,"pValue":0},{"source":"Campylobacter concisus","target":"PWY-7031: protein N-glycosylation (bacterial)","value":0.8869628763874353,"pValue":0},{"source":"Escherichia coli","target":"PWY-7046: 4-coumarate degradation (anaerobic)","value":0.999714035787891,"pValue":0},{"source":"Prevotella melaninogenica","target":"PWY-7200: superpathway of pyrimidine deoxyribonucleoside salvage","value":0.815383059044164,"pValue":0},{"source":"Escherichia coli","target":"PWY-7204: pyridoxal 5'-phosphate salvage II (plants)","value":0.9978691223964024,"pValue":0},{"source":"Escherichia coli","target":"PWY-7209: superpathway of pyrimidine ribonucleosides degradation","value":0.994736969826856,"pValue":0},{"source":"Escherichia coli","target":"PWY-7269: NAD/NADP-NADH/NADPH mitochondrial interconversion (yeast)","value":0.9985944547961759,"pValue":0},{"source":"Bacteroides stercoris","target":"PWY-7312: dTDP-D-&beta;-fucofuranose biosynthesis","value":0.9133558294091612,"pValue":0},{"source":"Escherichia coli","target":"PWY-7315: dTDP-N-acetylthomosamine biosynthesis","value":0.8014295333907402,"pValue":0},{"source":"Corynebacterium matruchotii","target":"PWY-7384: anaerobic energy metabolism (invertebrates, mitochondrial)","value":0.8150822325597555,"pValue":0},{"source":"Corynebacterium matruchotii","target":"PWY-7389: superpathway of anaerobic energy metabolism (invertebrates)","value":0.815064669530158,"pValue":0},{"source":"Cardiobacterium hominis","target":"PWY-7391: isoprene biosynthesis II (engineered)","value":0.8160642327411342,"pValue":0},{"source":"Corynebacterium matruchotii","target":"PWY1G-0: mycothiol biosynthesis","value":0.8761249033298735,"pValue":0},{"source":"Actinomyces sp. oral taxon 448","target":"PWY490-3: nitrate reduction VI (assimilatory)","value":0.9137060691981583,"pValue":0},{"source":"Flavonifractor plautii","target":"PWY66-391: fatty acid &beta;-oxidation VI (peroxisome)","value":0.8589161407387568,"pValue":0},{"source":"Escherichia coli","target":"SALVADEHYPOX-PWY: adenosine nucleotides degradation II","value":0.9576229243929869,"pValue":0},{"source":"Escherichia coli","target":"TCA-GLYOX-BYPASS: superpathway of glyoxylate bypass and TCA","value":0.8910115638617523,"pValue":0}],"column1NodeIds":["Escherichia coli","Streptococcus parasanguinis","Fusobacterium periodonticum","Monoglobus pectinilyticus","Faecalibacterium prausnitzii","Anaerotruncus colihominis","Flavonifractor plautii","Bacteroides thetaiotaomicron","Campylobacter concisus","Prevotella melaninogenica","Bacteroides stercoris","Corynebacterium matruchotii","Cardiobacterium hominis","Actinomyces sp. oral taxon 448"],"column2NodeIds":["ARG+POLYAMINE-SYN: superpathway of arginine and polyamine biosynthesis","FAO-PWY: fatty acid &beta;-oxidation I","FUC-RHAMCAT-PWY: superpathway of fucose and rhamnose degradation","FUCCAT-PWY: fucose degradation","GALACTARDEG-PWY: D-galactarate degradation I","GLUCARDEG-PWY: D-glucarate degradation I","GLUCARGALACTSUPER-PWY: superpathway of D-glucarate and D-galactarate degradation","GLYCOL-GLYOXDEG-PWY: superpathway of glycol metabolism and degradation","GLYOXYLATE-BYPASS: glyoxylate cycle","KDO-NAGLIPASYN-PWY: superpathway of (Kdo)2-lipid A biosynthesis","KETOGLUCONMET-PWY: ketogluconate metabolism","METHGLYUT-PWY: superpathway of methylglyoxal degradation","P105-PWY: TCA cycle IV (2-oxoglutarate decarboxylase)","P125-PWY: superpathway of (R,R)-butanediol biosynthesis","P163-PWY: L-lysine fermentation to acetate and butanoate","P221-PWY: octane oxidation","P461-PWY: hexitol fermentation to lactate, formate, ethanol and acetate","POLYAMSYN-PWY: superpathway of polyamine biosynthesis I","PWY-4702: phytate degradation I","PWY-5101: L-isoleucine biosynthesis II","PWY-5136: fatty acid &beta;-oxidation II (peroxisome)","PWY-5138: unsaturated, even numbered fatty acid &beta;-oxidation","PWY-5177: glutaryl-CoA degradation","PWY-561: superpathway of glyoxylate cycle and fatty acid degradation","PWY-5675: nitrate reduction V (assimilatory)","PWY-5677: succinate fermentation to butanoate","PWY-5723: Rubisco shunt","PWY-5845: superpathway of menaquinol-9 biosynthesis","PWY-5850: superpathway of menaquinol-6 biosynthesis I","PWY-5860: superpathway of demethylmenaquinol-6 biosynthesis I","PWY-5862: superpathway of demethylmenaquinol-9 biosynthesis","PWY-5896: superpathway of menaquinol-10 biosynthesis","PWY-6318: L-phenylalanine degradation IV (mammalian, via side chain)","PWY-6353: purine nucleotides degradation II (aerobic)","PWY-6478: GDP-D-glycero-&alpha;-D-manno-heptose biosynthesis","PWY-6531: mannitol cycle","PWY-6606: guanosine nucleotides degradation II","PWY-6731: starch degradation III","PWY-6748: nitrate reduction VII (denitrification)","PWY-6891: thiazole biosynthesis II (Bacillus)","PWY-7031: protein N-glycosylation (bacterial)","PWY-7046: 4-coumarate degradation (anaerobic)","PWY-7200: superpathway of pyrimidine deoxyribonucleoside salvage","PWY-7204: pyridoxal 5'-phosphate salvage II (plants)","PWY-7209: superpathway of pyrimidine ribonucleosides degradation","PWY-7269: NAD/NADP-NADH/NADPH mitochondrial interconversion (yeast)","PWY-7312: dTDP-D-&beta;-fucofuranose biosynthesis","PWY-7315: dTDP-N-acetylthomosamine biosynthesis","PWY-7384: anaerobic energy metabolism (invertebrates, mitochondrial)","PWY-7389: superpathway of anaerobic energy metabolism (invertebrates)","PWY-7391: isoprene biosynthesis II (engineered)","PWY1G-0: mycothiol biosynthesis","PWY490-3: nitrate reduction VI (assimilatory)","PWY66-391: fatty acid &beta;-oxidation VI (peroxisome)","SALVADEHYPOX-PWY: adenosine nucleotides degradation II","TCA-GLYOX-BYPASS: superpathway of glyoxylate bypass and TCA"]}},"evals":[],"jsHooks":[]}</script><p>Finally, for more advanced analysis of the network, you can extract
 it as an igraph object:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## if you extract the network as an igraph object, you can get more detailed metrics</span></span>
 <span><span class="va">pathway_vs_species.igraph</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getComputeResult.html">getComputeResult</a></span><span class="op">(</span><span class="va">pathway_vs_species</span>, format <span class="op">=</span> <span class="st">'igraph'</span><span class="op">)</span></span>
 <span><span class="va">degree</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r.igraph.org/reference/degree.html" class="external-link">degree</a></span><span class="op">(</span><span class="va">pathway_vs_species.igraph</span><span class="op">)</span></span>
