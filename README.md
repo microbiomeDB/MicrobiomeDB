@@ -14,7 +14,7 @@ remotes::install_github('microbiomeDB/MicrobiomeDB')
 ```
 
 ## Usage
-This package is intended to be used to explore the curated datasets from MicrobiomeDB.org, as well as your own datasets. It comes pre-packaged with the same functions used to power the analysis tools from the website. It also contains functions to facilitate easily transforming data between our custom objects, phyloseq objects, and .biom files that you can upload to the website.
+This package is intended to be used to explore the curated datasets from MicrobiomeDB.org, as well as (coming soon!) your own datasets. It comes pre-packaged with the same functions used to power the analysis tools from the website. Functions to facilitate easily transforming data between our custom objects, phyloseq objects, TreeSummarizedExperiment objects and .biom files are in development.
 
 This package is paired with a dedicated data package called micribomeData which includes a number of pre-built `MbioDataset` objects representing the curated data from the MicrobiomeDB.org website. You can see their names like:
 
@@ -53,7 +53,9 @@ getMetadataVariableNames(DiabImmune) # will print names of metadata variables yo
 myAlphaDivDT <- getComputeResultWithMetadata(alphaDivResults, DiabImmune, 'host_body_site')
 ```
 
-Or you can take these results as a `data.table` object and use them to build plots and things with ggplot2 or any other tool you like. Let us know if you build something interesting, encounter any bugs, or just wish something were easier to do. We'd love to hear from you!
+Or you can take these results as a `data.table` object and use them to build plots and things with ggplot2 or any other tool you like. 
+
+**Let us know if you build something interesting, encounter any bugs, or just wish something were easier to do. We'd love to hear from you! We consider each new issue filed to be a compliment.**
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
