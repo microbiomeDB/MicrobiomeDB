@@ -77,15 +77,15 @@ non-linear associations.
 ## first lets find some interesting data
 microbiomeData::getCuratedDatasetNames()
 
-getCollectionNames(microbiomeData::HMP_MGX)
+getCollectionNames(microbiomeData::HMP_V3V5)
 
 ## grab a collection of interest
-HMP_MGX_species <- getCollection(microbiomeData::HMP_MGX, "Shotgun metagenomics Species (Relative taxonomic abundance analysis)", continuousMetadataOnly = TRUE)
+HMP_V3V5_species <- getCollection(microbiomeData::HMP_V3V5, "16S (V3-V5) Species (Relative taxonomic abundance analysis)", continuousMetadataOnly = TRUE)
 
 ## get a correlation ComputeResult
 ## this is not necessarily to recommend spearman for metadata. 
 ## it is simply exemplary. Always look at your data!
-species_vs_metadata <- correlation(HMP_MGX_species, method = 'spearman') 
+species_vs_metadata <- correlation(HMP_V3V5_species, method = 'spearman') 
 ```
 
 ### Pearson Correlation
