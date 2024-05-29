@@ -181,38 +181,38 @@ metrics are <code>max</code>, <code>median</code>, <code>q3</code> and
 <span><span class="co">## top 10 taxa by max relative abundance across all samples</span></span>
 <span><span class="va">rankedAbund</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rankedAbundance-methods.html">rankedAbundance</a></span><span class="op">(</span><span class="va">HMP_MGX_species</span>, method <span class="op">=</span> <span class="st">"max"</span>, cutoff <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> </span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 18:23:33.2813 Received df table with 741 samples and 731 taxa.</span></span>
+<span><span class="co">#&gt; 2024-05-29 18:47:32.717946 Received df table with 741 samples and 731 taxa.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 18:23:33.313071 Finished ranking taxa</span></span>
+<span><span class="co">#&gt; 2024-05-29 18:47:32.749635 Finished ranking taxa</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 18:23:33.333129 Ranked abundance computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method = max , cutoff = 10 , naToZero =  TRUE , verbose = TRUE</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-05-29 18:47:32.770607 Ranked abundance computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method = max , cutoff = 10 , naToZero =  TRUE , verbose = TRUE</span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## top 8 taxa by median relative abundance across all samples</span></span>
 <span><span class="va">rankedAbund</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rankedAbundance-methods.html">rankedAbundance</a></span><span class="op">(</span><span class="va">HMP_MGX_species</span>, method <span class="op">=</span> <span class="st">"median"</span>, cutoff <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 18:23:34.052556 Received df table with 741 samples and 731 taxa.</span></span>
+<span><span class="co">#&gt; 2024-05-29 18:47:33.468802 Received df table with 741 samples and 731 taxa.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 18:23:34.074752 Finished ranking taxa</span></span>
+<span><span class="co">#&gt; 2024-05-29 18:47:33.490532 Finished ranking taxa</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 18:23:34.083455 Ranked abundance computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method = median , cutoff = 8 , naToZero =  TRUE , verbose = TRUE</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-05-29 18:47:33.499041 Ranked abundance computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method = median , cutoff = 8 , naToZero =  TRUE , verbose = TRUE</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## top 20 taxa by third quartile relative abundance across all samples</span></span>
 <span><span class="va">rankedAbund</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rankedAbundance-methods.html">rankedAbundance</a></span><span class="op">(</span><span class="va">HMP_MGX_species</span>, method <span class="op">=</span> <span class="st">"q3"</span>, cutoff <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 18:23:34.11053 Received df table with 741 samples and 731 taxa.</span></span>
+<span><span class="co">#&gt; 2024-05-29 18:47:33.536973 Received df table with 741 samples and 731 taxa.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 18:23:34.219635 Finished ranking taxa</span></span>
+<span><span class="co">#&gt; 2024-05-29 18:47:33.644397 Finished ranking taxa</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 18:23:34.225936 Ranked abundance computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method = q3 , cutoff = 20 , naToZero =  TRUE , verbose = TRUE</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-05-29 18:47:33.650765 Ranked abundance computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method = q3 , cutoff = 20 , naToZero =  TRUE , verbose = TRUE</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## top 10 taxa by greatest variance in relative abundance across all samples</span></span>
 <span><span class="va">rankedAbund</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rankedAbundance-methods.html">rankedAbundance</a></span><span class="op">(</span><span class="va">HMP_MGX_species</span>, method <span class="op">=</span> <span class="st">"variance"</span>, cutoff <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 18:23:34.243746 Received df table with 741 samples and 731 taxa.</span></span>
+<span><span class="co">#&gt; 2024-05-29 18:47:33.668298 Received df table with 741 samples and 731 taxa.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 18:23:34.275196 Finished ranking taxa</span></span>
+<span><span class="co">#&gt; 2024-05-29 18:47:33.699403 Finished ranking taxa</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 18:23:34.280351 Ranked abundance computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method = variance , cutoff = 10 , naToZero =  TRUE , verbose = TRUE</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-05-29 18:47:33.704571 Ranked abundance computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method = variance , cutoff = 10 , naToZero =  TRUE , verbose = TRUE</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="visualizing-ranked-relative-abundances">Visualizing Ranked Relative Abundances<a class="anchor" aria-label="anchor" href="#visualizing-ranked-relative-abundances"></a>

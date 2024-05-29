@@ -83,7 +83,7 @@
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
-<p>This package is intended to be used to explore the curated datasets from MicrobiomeDB.org, as well as your own datasets. It comes pre-packaged with the same functions used to power the analysis tools from the website. It also contains functions to facilitate easily transforming data between our custom objects, phyloseq objects, and .biom files that you can upload to the website.</p>
+<p>This package is intended to be used to explore the curated datasets from MicrobiomeDB.org, as well as (coming soon!) your own datasets. It comes pre-packaged with the same functions used to power the analysis tools from the website. Functions to facilitate easily transforming data between our custom objects, phyloseq objects, TreeSummarizedExperiment objects and .biom files are in development.</p>
 <p>This package is paired with a dedicated data package called micribomeData which includes a number of pre-built <code>MbioDataset</code> objects representing the curated data from the MicrobiomeDB.org website. You can see their names like:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">'microbiomeDB/microbiomeData'</span><span class="op">)</span></span>
@@ -110,7 +110,8 @@
 <span></span>
 <span><span class="fu">getMetadataVariableNames</span><span class="op">(</span><span class="va">DiabImmune</span><span class="op">)</span> <span class="co"># will print names of metadata variables you can ask for</span></span>
 <span><span class="va">myAlphaDivDT</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/getComputeResultWithMetadata.html">getComputeResultWithMetadata</a></span><span class="op">(</span><span class="va">alphaDivResults</span>, <span class="va">DiabImmune</span>, <span class="st">'host_body_site'</span><span class="op">)</span></span></code></pre></div>
-<p>Or you can take these results as a <code>data.table</code> object and use them to build plots and things with ggplot2 or any other tool you like. Let us know if you build something interesting, encounter any bugs, or just wish something were easier to do. We’d love to hear from you!</p>
+<p>Or you can take these results as a <code>data.table</code> object and use them to build plots and things with ggplot2 or any other tool you like.</p>
+<p><strong>Let us know if you build something interesting, encounter any bugs, or just wish something were easier to do. We’d love to hear from you! We consider each new issue filed to be a compliment.</strong></p>
 </div>
 <div class="section level2">
 <h2 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
