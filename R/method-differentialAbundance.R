@@ -79,7 +79,7 @@ buildBinaryComparator <- function(covariate, groupAValue, groupBValue) {
 #'        getCollection(
 #'        	microbiomeData::DiabImmune, 
 #'		'16S (V4) Genus (Relative taxonomic abundance analysis)'), 
-#'        "breastfed_duration_days", 
+#'        "breastfed_duration", 
 #'        groupA = function(x) {x<300},
 #'        groupB = function(x) {x>=300},
 #'        method='Maaslin2', 
@@ -91,7 +91,7 @@ buildBinaryComparator <- function(covariate, groupAValue, groupBValue) {
 #'        getCollection(
 #'              microbiomeData::DiabImmune, 
 #'              '16S (V4) Genus (Absolute taxonomic abundance analysis)'), 
-#'        "breastfed_duration_days", 
+#'        "breastfed_duration", 
 #'        groupA = function(x) {x<300},
 #'        groupB = function(x) {x>=300},
 #'        method='DESeq2', 
