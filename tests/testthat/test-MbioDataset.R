@@ -92,7 +92,7 @@ test_that("we can get arbitrary variables", {
     variablesDT <- getVariables(
         mbioDataset, 
         list("metadata" = c("age_months", "sex"),
-            "16S (V4) Genus" = "Bacteroides",
+            "16S (V4) Genus (Relative taxonomic abundance analysis)" = "Bacteroides",
             "Shotgun metagenomics Metagenome enzyme pathway abundance data" = "ANAGLYCOLYSIS-PWY: glycolysis III (from glucose)"
             )
     )
@@ -107,9 +107,9 @@ test_that("we can get arbitrary variables", {
         variablesDT <- getVariables(
             mbioDataset, 
             list("metadata" = c("age_months", "sex"),
-                "16S (V4) Genus" = "Bacteroides",
+                "16S (V4) Genus (Relative taxonomic abundance analysis)" = "Bacteroides",
                 "Shotgun metagenomics Metagenome enzyme pathway abundance data" = "ANAGLYCOLYSIS-PWY: glycolysis III (from glucose)",
-                "Shotgun metagenomics Genus" = "doesntexist"
+                "Shotgun metagenomics Genus (Relative taxonomic abundance analysis)" = "doesntexist"
                 )
         )
     )
@@ -120,7 +120,7 @@ test_that("we can get arbitrary variables", {
         variablesDT <- getVariables(
             mbioDataset, 
             list("metadata" = c("age_months", "sex"),
-                "16S (V4) Genus" = "Bacteroides",
+                "16S (V4) Genus (Relative taxonomic abundance analysis)" = "Bacteroides",
                 "doesntexist" = "ANAGLYCOLYSIS-PWY: glycolysis III (from glucose)"
                 )
         )
@@ -130,19 +130,19 @@ test_that("we can get arbitrary variables", {
     variablesDT <- getVariables(
         mbioDataset, 
         list("metadata" = c("age_months", "sex"),
-            "16S (V4) Genus" = "Bacteroides",
-            "Shotgun metagenomics Genus" = "Bacteroides"
+            "16S (V4) Genus (Relative taxonomic abundance analysis)" = "Bacteroides",
+            "Shotgun metagenomics Genus (Relative taxonomic abundance analysis)" = "Bacteroides"
             )
     )
 
     expect_s3_class(variablesDT, "data.table")
     expect_equal(length(variablesDT), 9) # 4 vars + 5 ids
-    expect_equal(all(c("age_months", "sex", "16S (V4) Genus Bacteroides", "Shotgun metagenomics Genus Bacteroides") %in% names(variablesDT)), TRUE)
+    expect_equal(all(c("age_months", "sex", "16S (V4) Genus (Relative taxonomic abundance analysis) Bacteroides", "Shotgun metagenomics Genus (Relative taxonomic abundance analysis) Bacteroides") %in% names(variablesDT)), TRUE)
     expect_equal(nrow(variablesDT) > 0, TRUE)
 
     # pass something other than a named list
-    expect_error(variablesDT <- getVariables(mbioDataset, "16S (V4) Genus"))
-    expect_error(variablesDT <- getVariables(mbioDataset, list("16S (V4) Genus)")))
+    expect_error(variablesDT <- getVariables(mbioDataset, "16S (V4) Genus (Relative taxonomic abundance analysis)"))
+    expect_error(variablesDT <- getVariables(mbioDataset, list("16S (V4) Genus (Relative taxonomic abundance analysis)")))
 
     # find an ex where assays arent 1:1 w ancestors
 })

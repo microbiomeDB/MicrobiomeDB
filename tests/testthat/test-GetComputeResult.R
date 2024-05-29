@@ -7,7 +7,7 @@ test_that("we can get compute results in different formats", {
     ontologyFile <- test_path('testdata','DiabImmune/DiabImmune_OntologyMetadata.txt')
     mbioDataset <- MbioDataset(list(dataFile1, dataFile2), list(metadataFile2, metadataFile1, metadataFile3), ontologyFile)
 
-    genus <- getCollection(mbioDataset, "16S (V4) Genus", continuousMetadataOnly = TRUE)
+    genus <- getCollection(mbioDataset, "16S (V4) Genus (Relative taxonomic abundance analysis)", continuousMetadataOnly = TRUE)
 
     # make sure metadata dont contain IRIs
     expect_equal(all(grepl('[',names(genus@sampleMetadata@data),fixed=T)), FALSE)
@@ -35,10 +35,10 @@ test_that("we can get compute results in different formats", {
                             )
                         )
     )
-    diffAbundOutput <- microbiomeComputations::internalDiffAbund(getCollection(mbioDataset, "16S (V4) Genus"), comparatorVariable, method='Maaslin2', verbose=FALSE)
+    diffAbundOutput <- microbiomeComputations::internalDiffAbund(getCollection(mbioDataset, "16S (V4) Genus (Relative taxonomic abundance analysis)"), comparatorVariable, method='Maaslin2', verbose=FALSE)
     expect_equal(inherits(diffAbundOutput, "ComputeResult"), TRUE)
 
-    correlationOutput <- MicrobiomeDB::selfCorrelation(getCollection(mbioDataset, "16S (V4) Genus"), method='spearman', verbose=FALSE)
+    correlationOutput <- MicrobiomeDB::selfCorrelation(getCollection(mbioDataset, "16S (V4) Genus (Relative taxonomic abundance analysis)"), method='spearman', verbose=FALSE)
     correlationDT <- getComputeResult(correlationOutput, "data.table")
     expect_equal(inherits(correlationDT, "data.table"), TRUE)
     expect_equal(all(c('data1', 'data2', 'correlationCoef', 'pValue') %in% names(correlationDT)), TRUE)
@@ -60,7 +60,7 @@ test_that("we can get compute results in different formats", {
     expect_equal(inherits(correlationUnipartiteWidget, "unipartitenetwork"), TRUE)
 
     # make sure getComputeResultWithMetadata works
-    alphaDivOutput <- MicrobiomeDB::alphaDiv(getCollection(mbioDataset, "16S (V4) Genus"), method='shannon', verbose=FALSE)
+    alphaDivOutput <- MicrobiomeDB::alphaDiv(getCollection(mbioDataset, "16S (V4) Genus (Relative taxonomic abundance analysis)"), method='shannon', verbose=FALSE)
     expect_equal(inherits(alphaDivOutput, "ComputeResult"), TRUE)
     alphaDivDT <- getComputeResultWithMetadata(alphaDivOutput, mbioDataset, metadataVariables = c('country', 'delivery_mode'))
     expect_equal(inherits(alphaDivDT, "data.table"), TRUE)
