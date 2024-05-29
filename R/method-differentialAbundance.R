@@ -76,7 +76,9 @@ buildBinaryComparator <- function(covariate, groupAValue, groupBValue) {
 #' @examples 
 #' ## a continuous variable
 #' diffAbundOutput <- MicrobiomeDB::differentialAbundance(
-#'        getCollection(microbiomeData::DiabImmune, '16S (V4) Genus'), 
+#'        getCollection(
+#'        	microbiomeData::DiabImmune, 
+#'		'16S (V4) Genus (Relative taxonomic abundance analysis)'), 
 #'        "breastfed_duration_days", 
 #'        groupA = function(x) {x<300},
 #'        groupB = function(x) {x>=300},
@@ -84,9 +86,23 @@ buildBinaryComparator <- function(covariate, groupAValue, groupBValue) {
 #'        verbose=TRUE
 #' )
 #' 
+#' ## same variable, using DESeq2
+#' diffAbundOutput <- MicrobiomeDB::differentialAbundance(
+#'        getCollection(
+#'              microbiomeData::DiabImmune, 
+#'              '16S (V4) Genus (Absolute taxonomic abundance analysis)'), 
+#'        "breastfed_duration_days", 
+#'        groupA = function(x) {x<300},
+#'        groupB = function(x) {x>=300},
+#'        method='DESeq2', 
+#'        verbose=TRUE
+#' )
+#'
 #' ## a categorical variable with 3 values, one of which we exclude
 #' diffAbundOutput <- MicrobiomeDB::differentialAbundance(
-#'        getCollection(microbiomeData::DiabImmune, '16S (V4) Genus'), 
+#'        getCollection(
+#'		microbiomeData::DiabImmune, 
+#'		'16S (V4) Genus (Relative taxonomic abundance analysis)'), 
 #'        "country", 
 #'        groupA = function(x) {x=="Russia"},
 #'        groupB = function(x) {x=="Finland"},
@@ -96,7 +112,9 @@ buildBinaryComparator <- function(covariate, groupAValue, groupBValue) {
 #' 
 #' ## this case of categorical variables also has a 'short cut'
 #' diffAbundOutput <- MicrobiomeDB::differentialAbundance(
-#'        getCollection(microbiomeData::DiabImmune, '16S (V4) Genus'), 
+#'        getCollection(
+#'		microbiomeData::DiabImmune, 
+#'		'16S (V4) Genus (Relative taxonomic abundance analysis)'), 
 #'        "country", 
 #'        groupA = "Russia",
 #'        groupB = c("Finland","Estonia"),
@@ -106,7 +124,9 @@ buildBinaryComparator <- function(covariate, groupAValue, groupBValue) {
 #' 
 #' ## a categorical variable with 2 values
 #' diffAbundOutput <- MicrobiomeDB::differentialAbundance(
-#'        getCollection(microbiomeData::DiabImmune, '16S (V4) Genus'),
+#'        getCollection(
+#'		microbiomeData::DiabImmune, 
+#'		'16S (V4) Genus (Relative taxonomic abundance analysis)'),
 #'        "delivery_mode",
 #'        method='Maaslin2', 
 #'        verbose=FALSE
@@ -254,7 +274,9 @@ function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verb
 #' 
 #' @examples
 #' maaslinOutput <- MicrobiomeDB::Maaslin2(
-#'        data = getCollection(microbiomeData::DiabImmune, '16S (V4) Genus'), 
+#'        data = getCollection(
+#'		microbiomeData::DiabImmune, 
+#'		'16S (V4) Genus (Relative taxonomic abundance analysis)'), 
 #'        output = tempfile("maaslin"),
 #'        #min_prevalence = 0,
 #'        fixed_effects = 'delivery_mode',

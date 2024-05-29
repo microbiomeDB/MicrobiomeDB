@@ -5,7 +5,9 @@
 #' 
 #' @examples 
 #' correlationOutput <- MicrobiomeDB::selfCorrelation(
-#'      getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), 
+#'      getCollection(
+#'		microbiomeData::DiabImmune, 
+#'		"16S (V4) Genus (Relative taxonomic abundance analysis)"), 
 #'      method='spearman', 
 #'      verbose=FALSE
 #' )
@@ -86,7 +88,9 @@ mergeComputeResultAndMetadata <- function(computeResult, dataset, metadataVariab
 #' 
 #' @examples 
 #' alphaDivOutput <- MicrobiomeDB::alphaDiv(
-#'      getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), 
+#'      getCollection(
+#'		microbiomeData::DiabImmune, 
+#'		"16S (V4) Genus (Relative taxonomic abundance analysis)"), 
 #'      method='shannon', 
 #'      verbose=FALSE
 #' )
@@ -145,7 +149,10 @@ function(object, dataset = NULL, format = c("data.table"), metadataVariables = N
 #' 
 #' @examples 
 #' correlationOutput <- MicrobiomeDB::correlation(
-#'      getCollection(microbiomeData::DiabImmune, "16S (V4) Genus", continuousMetadataOnly = TRUE), 
+#'      getCollection(
+#'		microbiomeData::DiabImmune, 
+#'		"16S (V4) Genus (Relative taxonomic abundance analysis)", 
+#'		continuousMetadataOnly = TRUE), 
 #'      method='spearman', 
 #'      verbose=FALSE
 #' )

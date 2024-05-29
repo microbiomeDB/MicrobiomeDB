@@ -112,7 +112,11 @@ setMethod(metadataIdColsGeneric, "MbioDataset", function(object) veupathUtils::g
 #' 
 #' @examples
 #' myCopyOfDiabImmune <- microbiomeData::DiabImmune
-#' myCopyOfDiabImmune <- updateCollectionName(myCopyOfDiabImmune, "16S (V4) Genus", "16S Genus")
+#' myCopyOfDiabImmune <- updateCollectionName(
+#'	myCopyOfDiabImmune, 
+#'	"16S (V4) Genus (Relative taxonomic abundance analysis)", 
+#'	"16S Genus"
+#' )
 #' @param object A Microbiome Dataset
 #' @param oldName The name of the collection to update
 #' @param newName The new name of the collection
@@ -136,26 +140,26 @@ setMethod("updateCollectionName", "MbioDataset", function(object, oldName, newNa
 #' @examples
 #' genus <- getCollection(
 #'      microbiomeData::DiabImmune, 
-#'      "16S (V4) Genus"
+#'      "16S (V4) Genus (Relative taxonomic abundance analysis)"
 #' )
 #' 
 #' genus_phyloseq <- getCollection(
 #'      microbiomeData::DiabImmune, 
-#'      "16S (V4) Genus", 
+#'      "16S (V4) Genus (Relative taxonomic abundance analysis)", 
 #'      format = "phyloseq"
 #' )
 #' 
 #' ## to pass to correlation method, we want only continuous metadata
 #' genus_continuous <- getCollection(
 #'      microbiomeData::DiabImmune, 
-#'      "16S (V4) Genus", 
+#'      "16S (V4) Genus (Relative taxonomic abundance analysis)", 
 #'      continuousMetadataOnly = TRUE
 #' ) 
 #' 
 #' ## with no metadata
 #' genus_collection <- getCollection(
 #'      microbiomeData::DiabImmune, 
-#'      "16S (V4) Genus", 
+#'      "16S (V4) Genus (Relative taxonomic abundance analysis)", 
 #'      format = "Collection"
 #' )
 #' @param object A Microbiome Dataset
@@ -291,7 +295,10 @@ collectionVarNamesGeneric <- getGeneric("getCollectionVariableNames", "veupathUt
 #' Get the variable names in a collection in the Microbiome Dataset.
 #' 
 #' @examples
-#' variableNames <- getCollectionVariableNames(microbiomeData::DiabImmune, "16S (V4) Genus")
+#' variableNames <- getCollectionVariableNames(
+#'	microbiomeData::DiabImmune, 
+#'	"16S (V4) Genus (Relative taxonomic abundance analysis)"
+#' )
 #' @param object A Microbiome Dataset
 #' @param collectionName The name of the collection to return the variable names for
 #' @return a character vector of the variable names in the requested collection
@@ -311,12 +318,16 @@ setMethod(collectionVarNamesGeneric, "MbioDataset", function(object, collectionN
 #' will be printed.
 #' 
 #' @examples
-#' getCollectionVariableNames(microbiomeData::DiabImmune, "16S (V4) Genus")
+#' getCollectionVariableNames(
+#'	microbiomeData::DiabImmune, 
+#'	"16S (V4) Genus (Relative taxonomic abundance analysis)"
+#' )
+#'
 #' getMetadataVariableNames(microbiomeData::DiabImmune)
 #' variablesDT <- getVariables(
 #'      microbiomeData::DiabImmune, 
 #'      list("metadata" = c("age_months", "sex"),
-#'           "16S (V4) Genus" = "Bacteroides", 
+#'           "16S (V4) Genus (Relative taxonomic abundance analysis)" = "Bacteroides", 
 #'           "Shotgun metagenomics Metagenome enzyme pathway abundance data" = "ANAGLYCOLYSIS-PWY: glycolysis III (from glucose)"
 #'      )
 #' )

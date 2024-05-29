@@ -4,7 +4,9 @@
 #' 
 #' @examples
 #' rankedAbundOutput <- rankedAbundance(
-#'      getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), 
+#'      getCollection(
+#'		microbiomeData::DiabImmune, 
+#'		"16S (V4) Genus (Relative taxonomic abundance analysis)"), 
 #'      method = "median"
 #' )
 #' @param data AbundanceData object
@@ -23,7 +25,9 @@ microbiomeComputations::rankedAbundance
 #' 
 #' @examples
 #' alphaDivOutput <- alphaDiv(
-#'      getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), 
+#'      getCollection(
+#'		microbiomeData::DiabImmune, 
+#'		"16S (V4) Genus (Relative taxonomic abundance analysis)"), 
 #'      method = "shannon"
 #' )
 #' @param data AbundanceData object
@@ -41,7 +45,9 @@ microbiomeComputations::alphaDiv
 #' 
 #' @examples 
 #' betaDivOutput <- betaDiv(
-#'      getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), 
+#'      getCollection(
+#'		microbiomeData::DiabImmune, 
+#'		"16S (V4) Genus (Relative taxonomic abundance analysis)"), 
 #'      method = "bray", 
 #'      k = 2
 #' )
@@ -62,7 +68,7 @@ microbiomeComputations::betaDiv
 #' @examples
 #' diabImmune_genus <- getCollection(
 #'      microbiomeData::DiabImmune, 
-#'      "16S (V4) Genus", 
+#'      "16S (V4) Genus (Relative taxonomic abundance analysis)", 
 #'      continuousMetadataOnly = TRUE
 #' )
 #' 
@@ -103,13 +109,17 @@ veupathUtils::correlation
 #' 
 #' @examples
 #' correlationDT <- selfCorrelation(
-#'      getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), 
+#'      getCollection(
+#'		microbiomeData::DiabImmune, 
+#'		"16S (V4) Genus (Relative taxonomic abundance analysis)"), 
 #'      method = 'sparcc', 
 #'      format = 'data.table'
 #' )
 #' 
 #' correlationOutput <- selfCorrelation(
-#'      getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), 
+#'      getCollection(
+#'		microbiomeData::DiabImmune, 
+#'		"16S (V4) Genus (Relative taxonomic abundance analysis)"), 
 #'      method = 'sparcc', 
 #'      format = 'ComputeResult'
 #' )
