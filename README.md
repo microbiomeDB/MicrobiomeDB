@@ -2,7 +2,7 @@
   [![R-CMD-check](https://github.com/microbiomeDB/MicrobiomeDB/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/microbiomeDB/MicrobiomeDB/actions/workflows/R-CMD-check.yaml)
   <!-- badges: end -->
 
-# MicrobiomeDB <a href="https://microbiomedb.github.io/MicrobiomeDB/"><img src="man/figures/MicrobiomeDB_hex.png" align="right" height="138" /></a>
+# MicrobiomeDB <a href="https://microbiomedb.github.io/MicrobiomeDB/"><img src="man/figures/MicrobiomeDB_hex.png" align="right" height="200" style="float:right; height:200px;"/></a>
 An R package containing all of the data from MicrobiomeDB.org, and tools for analyzing and visualizing the same.
 
 ## Installation
