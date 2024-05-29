@@ -83,7 +83,10 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/microbiomeDB/MicrobiomeDB" class="external-link">MicrobiomeDB</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: replacing previous import 'S4Arrays::makeNindexFromArrayViewport' by</span></span>
+<span><span class="co">#&gt; 'DelayedArray::makeNindexFromArrayViewport' when loading 'SummarizedExperiment'</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ── <span style="font-weight: bold;">Attaching core tidyverse packages</span> ──────────────────────── tidyverse 2.0.0 ──</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">dplyr    </span> 1.1.4     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">readr    </span> 2.1.5</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">forcats  </span> 1.0.0     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">stringr  </span> 1.5.1</span></span>
@@ -127,7 +130,7 @@ Simpson and Evenness.</p>
 <p>The Shannon diversity index measures the entropy or uncertainty in
 predicting the identity of a randomly chosen taxon within a sample.</p>
 <p>It can be calculated as follows:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## first lets find some interesting data</span></span>
 <span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="fu"><a href="https://microbiomedb.github.io/microbiomeData/reference/getCuratedDatasetNames.html" class="external-link">getCuratedDatasetNames</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "Anopheles_albimanus"     "BONUS"                  </span></span>
@@ -141,33 +144,33 @@ predicting the identity of a randomly chosen taxon within a sample.</p>
 <span><span class="co">#&gt; [17] "Malaysia_helminth"       "NICU_NEC"               </span></span>
 <span><span class="co">#&gt; [19] "PIH_Uganda"              "PretermInfantResistome1"</span></span>
 <span><span class="co">#&gt; [21] "PretermInfantResistome2" "UgandaMaternal"</span></span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu">getCollectionNames</span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "Shotgun metagenomics 4th level EC metagenome abundance data"              </span></span>
 <span><span class="co">#&gt;  [2] "Shotgun metagenomics Metagenome enzyme pathway abundance data"            </span></span>
 <span><span class="co">#&gt;  [3] "Shotgun metagenomics Metagenome enzyme pathway coverage data"             </span></span>
-<span><span class="co">#&gt;  [4] "Shotgun metagenomics Genus"                                               </span></span>
-<span><span class="co">#&gt;  [5] "Shotgun metagenomics Species"                                             </span></span>
-<span><span class="co">#&gt;  [6] "Shotgun metagenomics Family"                                              </span></span>
-<span><span class="co">#&gt;  [7] "Shotgun metagenomics Order"                                               </span></span>
-<span><span class="co">#&gt;  [8] "Shotgun metagenomics Phylum"                                              </span></span>
-<span><span class="co">#&gt;  [9] "Shotgun metagenomics Class"                                               </span></span>
+<span><span class="co">#&gt;  [4] "Shotgun metagenomics Genus (Relative taxonomic abundance analysis)"       </span></span>
+<span><span class="co">#&gt;  [5] "Shotgun metagenomics Species (Relative taxonomic abundance analysis)"     </span></span>
+<span><span class="co">#&gt;  [6] "Shotgun metagenomics Family (Relative taxonomic abundance analysis)"      </span></span>
+<span><span class="co">#&gt;  [7] "Shotgun metagenomics Order (Relative taxonomic abundance analysis)"       </span></span>
+<span><span class="co">#&gt;  [8] "Shotgun metagenomics Phylum (Relative taxonomic abundance analysis)"      </span></span>
+<span><span class="co">#&gt;  [9] "Shotgun metagenomics Class (Relative taxonomic abundance analysis)"       </span></span>
 <span><span class="co">#&gt; [10] "Shotgun metagenomics Normalized number of taxon-specific sequence matches"</span></span>
-<span><span class="co">#&gt; [11] "Shotgun metagenomics Kingdom"</span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<span><span class="co">#&gt; [11] "Shotgun metagenomics Kingdom (Relative taxonomic abundance analysis)"</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co">## grab a collection we like</span></span>
-<span><span class="va">genus</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span>, <span class="st">'Shotgun metagenomics Genus'</span><span class="op">)</span></span>
+<span><span class="va">genus</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span>, <span class="st">'Shotgun metagenomics Genus (Relative taxonomic abundance analysis)'</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## get an alpha diversity ComputeResult</span></span>
 <span><span class="va">alphaDivOutput</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alphaDiv-methods.html">alphaDiv</a></span><span class="op">(</span><span class="va">genus</span>, method <span class="op">=</span> <span class="st">'shannon'</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-23 16:19:31.471012 Received df table with 741 samples and 226 taxa.</span></span>
+<span><span class="co">#&gt; 2024-05-29 17:33:12.688863 Received df table with 741 samples and 226 taxa.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-23 16:19:31.488647 shannon alpha diversity computation complete.</span></span>
+<span><span class="co">#&gt; 2024-05-29 17:33:12.733321 shannon alpha diversity computation complete.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-23 16:19:31.50324 Alpha diversity computation completed with parameters method= shannon</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-05-29 17:33:12.748415 Alpha diversity computation completed with parameters method= shannon</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="simpson-diversity-index">Simpson Diversity Index<a class="anchor" aria-label="anchor" href="#simpson-diversity-index"></a>
@@ -176,16 +179,16 @@ predicting the identity of a randomly chosen taxon within a sample.</p>
 individuals randomly selected from the sample will belong to different
 taxa.</p>
 <p>It can be calculated as follows:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## get an alpha diversity ComputeResult</span></span>
-<span><span class="va">genus</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span>, <span class="st">'Shotgun metagenomics Genus'</span><span class="op">)</span></span>
+<span><span class="va">genus</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span>, <span class="st">'Shotgun metagenomics Genus (Relative taxonomic abundance analysis)'</span><span class="op">)</span></span>
 <span><span class="va">alphaDivOutput</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alphaDiv-methods.html">alphaDiv</a></span><span class="op">(</span><span class="va">genus</span>, method <span class="op">=</span> <span class="st">'simpson'</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-23 16:19:31.606561 Received df table with 741 samples and 226 taxa.</span></span>
+<span><span class="co">#&gt; 2024-05-29 17:33:12.843115 Received df table with 741 samples and 226 taxa.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-23 16:19:31.615947 simpson alpha diversity computation complete.</span></span>
+<span><span class="co">#&gt; 2024-05-29 17:33:12.866271 simpson alpha diversity computation complete.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-23 16:19:31.621059 Alpha diversity computation completed with parameters method= simpson</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-05-29 17:33:12.871503 Alpha diversity computation completed with parameters method= simpson</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="species-evenness">Species Evenness<a class="anchor" aria-label="anchor" href="#species-evenness"></a>
@@ -194,16 +197,16 @@ taxa.</p>
 species in a sample. Species evenness is highest when all species in a
 sample have the same abundance and approaches zero as relative
 abundances vary.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## get an alpha diversity ComputeResult</span></span>
-<span><span class="va">genus</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span>, <span class="st">'Shotgun metagenomics Genus'</span><span class="op">)</span></span>
+<span><span class="va">genus</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span>, <span class="st">'Shotgun metagenomics Genus (Relative taxonomic abundance analysis)'</span><span class="op">)</span></span>
 <span><span class="va">alphaDivOutput</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alphaDiv-methods.html">alphaDiv</a></span><span class="op">(</span><span class="va">genus</span>, method <span class="op">=</span> <span class="st">'evenness'</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-23 16:19:31.714509 Received df table with 741 samples and 226 taxa.</span></span>
+<span><span class="co">#&gt; 2024-05-29 17:33:12.957034 Received df table with 741 samples and 226 taxa.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-23 16:19:31.732655 evenness alpha diversity computation complete.</span></span>
+<span><span class="co">#&gt; 2024-05-29 17:33:12.986282 evenness alpha diversity computation complete.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-23 16:19:31.73585 Alpha diversity computation completed with parameters method= evenness</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-05-29 17:33:12.989434 Alpha diversity computation completed with parameters method= evenness</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -211,7 +214,7 @@ abundances vary.</p>
 </h2>
 <p>Alpha Diversity is frequently visualized as scatter and box plots.
 Creating these types of plots can be done like the following:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## choose one or more metadata variables to integrate with the compute result</span></span>
 <span><span class="va">alphaDiv_withMetadata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getComputeResultWithMetadata.html">getComputeResultWithMetadata</a></span><span class="op">(</span></span>
 <span>  <span class="va">alphaDivOutput</span>,</span>

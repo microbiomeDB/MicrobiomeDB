@@ -95,19 +95,19 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">getSampleMetadata</span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/DiabImmune.html" class="external-link">DiabImmune</a></span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         Participant_Id Participant_repeated_measure_Id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 &lt;char&gt;                          &lt;char&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    1: E000823 (Source)              E000823_1 (Source)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    2: E000823 (Source)             E000823_10 (Source)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    3: E000823 (Source)             E000823_12 (Source)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    4: E000823 (Source)             E000823_13 (Source)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    5: E000823 (Source)             E000823_15 (Source)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3345: T029922 (Source)             T029922_14 (Source)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3346: T029922 (Source)             T029922_16 (Source)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3347: T029922 (Source)             T029922_19 (Source)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3348: T029922 (Source)             T029922_22 (Source)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3349: T029922 (Source)              T029922_7 (Source)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         Participant_Id participant_repeated_measure_Id age_months</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 &lt;char&gt;                          &lt;char&gt;      &lt;int&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1: E000823 (Source)              E000823_1 (Source)          1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    2: E000823 (Source)             E000823_10 (Source)         10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    3: E000823 (Source)             E000823_12 (Source)         12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    4: E000823 (Source)             E000823_13 (Source)         13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    5: E000823 (Source)             E000823_15 (Source)         15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3345: T029922 (Source)             T029922_14 (Source)         14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3346: T029922 (Source)             T029922_16 (Source)         16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3347: T029922 (Source)             T029922_19 (Source)         19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3348: T029922 (Source)             T029922_22 (Source)         22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3349: T029922 (Source)              T029922_7 (Source)          7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       age_1st_animal_milk_or_solids_given_days age_1st_given_apple_months</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                          &lt;num&gt;                      &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    1:                                        5                          6</span>
@@ -305,188 +305,201 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3349:                                    NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       antibiotics_before_delivery_by_maternal_report</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                               &lt;char&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    1:                                             No</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    2:                                             No</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    3:                                             No</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    4:                                             No</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    5:                                             No</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1:                                          FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    2:                                          FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    3:                                          FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    4:                                          FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    5:                                          FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                               </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3345:                                           &lt;NA&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3346:                                           &lt;NA&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3347:                                           &lt;NA&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3348:                                           &lt;NA&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3349:                                           &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       bmi_minus_for_minus_age_z_minus_score breastfed_duration_days country</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                       &lt;num&gt;                   &lt;int&gt;  &lt;char&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    1:                                  1.62                     397 Finland</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    2:                                  1.62                     397 Finland</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    3:                                  1.62                     397 Finland</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    4:                                  1.62                     397 Finland</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    5:                                  1.62                     397 Finland</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3345:                                  0.63                      83 Estonia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3346:                                  0.63                      83 Estonia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3347:                                  0.63                      83 Estonia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3348:                                  0.63                      83 Estonia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3349:                                  0.63                      83 Estonia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       delivery_mode diet_in_first_three_days exclusive_breastfed_duration_days</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              &lt;char&gt;                   &lt;char&gt;                             &lt;int&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    1:       Vaginal     Mother's breast milk                               150</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    2:       Vaginal     Mother's breast milk                               150</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    3:       Vaginal     Mother's breast milk                               150</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    4:       Vaginal     Mother's breast milk                               150</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    5:       Vaginal     Mother's breast milk                               150</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3345:      Cesarean     Mother's breast milk                                 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3346:      Cesarean     Mother's breast milk                                 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3347:      Cesarean     Mother's breast milk                                 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3348:      Cesarean     Mother's breast milk                                 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3349:      Cesarean     Mother's breast milk                                 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       bmi_minus_for_minus_age_z_minus_score breastfed_duration country</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                       &lt;num&gt;              &lt;int&gt;  &lt;char&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1:                                  1.62                397 Finland</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    2:                                  1.62                397 Finland</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    3:                                  1.62                397 Finland</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    4:                                  1.62                397 Finland</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    5:                                  1.62                397 Finland</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3345:                                  0.63                 83 Estonia</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3346:                                  0.63                 83 Estonia</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3347:                                  0.63                 83 Estonia</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3348:                                  0.63                 83 Estonia</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3349:                                  0.63                 83 Estonia</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       delivery_mode diet_in_first_three_days exclusive_breastfed_duration</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              &lt;char&gt;                   &lt;char&gt;                        &lt;int&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1:       Vaginal     mother's breast milk                          150</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    2:       Vaginal     mother's breast milk                          150</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    3:       Vaginal     mother's breast milk                          150</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    4:       Vaginal     mother's breast milk                          150</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    5:       Vaginal     mother's breast milk                          150</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3345:      Cesarean     mother's breast milk                            1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3346:      Cesarean     mother's breast milk                            1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3347:      Cesarean     mother's breast milk                            1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3348:      Cesarean     mother's breast milk                            1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3349:      Cesarean     mother's breast milk                            1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       gestational_diabetes_by_maternal_report</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                        &lt;char&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    1:                                      No</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    2:                                      No</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    3:                                      No</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    4:                                      No</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    5:                                      No</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1:                                   FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    2:                                   FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    3:                                   FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    4:                                   FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    5:                                   FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3345:                                      No</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3346:                                      No</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3347:                                      No</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3348:                                      No</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3349:                                      No</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       glutamic_acid_decarboxylase_autoantibodies hla_risk_by_hla_haplotyping</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                           &lt;char&gt;                       &lt;int&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    1:                                         No                           2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    2:                                         No                           2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    3:                                         No                           2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    4:                                         No                           2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    5:                                         No                           2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3345:                                         No                           3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3346:                                         No                           3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3347:                                         No                           3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3348:                                         No                           3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3349:                                         No                           3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3345:                                   FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3346:                                   FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3347:                                   FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3348:                                   FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3349:                                   FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       glutamic_acid_decarboxylase_antibodies hla_risk_by_hla_haplotyping</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                       &lt;char&gt;                       &lt;int&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1:                                  FALSE                           2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    2:                                  FALSE                           2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    3:                                  FALSE                           2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    4:                                  FALSE                           2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    5:                                  FALSE                           2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3345:                                  FALSE                           3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3346:                                  FALSE                           3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3347:                                  FALSE                           3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3348:                                  FALSE                           3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3349:                                  FALSE                           3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       height_minus_for_minus_age_z_minus_score insulin_autoantibodies</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                          &lt;num&gt;                 &lt;char&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    1:                                     1.46                     No</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    2:                                     1.46                     No</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    3:                                     1.46                     No</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    4:                                     1.46                     No</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    5:                                     1.46                     No</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1:                                     1.46                  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    2:                                     1.46                  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    3:                                     1.46                  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    4:                                     1.46                  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    5:                                     1.46                  FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3345:                                    -0.25                     No</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3346:                                    -0.25                     No</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3347:                                    -0.25                     No</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3348:                                    -0.25                     No</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3349:                                    -0.25                     No</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3345:                                    -0.25                  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3346:                                    -0.25                  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3347:                                    -0.25                  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3348:                                    -0.25                  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3349:                                    -0.25                  FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       insulinoma_minus_associated_protein_2_autoantibodies</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                     &lt;char&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    1:                                                   No</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    2:                                                   No</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    3:                                                   No</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    4:                                                   No</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    5:                                                   No</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1:                                                FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    2:                                                FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    3:                                                FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    4:                                                FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    5:                                                FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3345:                                                   No</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3346:                                                   No</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3347:                                                   No</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3348:                                                   No</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3349:                                                   No</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3345:                                                FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3346:                                                FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3347:                                                FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3348:                                                FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3349:                                                FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       islet_cell_autoantibodies linear_growth_during_1st_year_cm</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                          &lt;char&gt;                            &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    1:                        No                         29.83651</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    2:                        No                         29.83651</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    3:                        No                         29.83651</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    4:                        No                         29.83651</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    5:                        No                         29.83651</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1:                     FALSE                         29.83651</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    2:                     FALSE                         29.83651</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    3:                     FALSE                         29.83651</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    4:                     FALSE                         29.83651</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    5:                     FALSE                         29.83651</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3345:                        No                         31.48248</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3346:                        No                         31.48248</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3347:                        No                         31.48248</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3348:                        No                         31.48248</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3349:                        No                         31.48248</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       maternal_age_at_birth_months mean_linear_growth_during_1st_3_years</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                              &lt;num&gt;                                 &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    1:                     35.75342                              16.77027</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    2:                     35.75342                              16.77027</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    3:                     35.75342                              16.77027</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    4:                     35.75342                              16.77027</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    5:                     35.75342                              16.77027</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3345:                     36.23288                              16.47863</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3346:                     36.23288                              16.47863</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3347:                     36.23288                              16.47863</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3348:                     36.23288                              16.47863</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3349:                     36.23288                              16.47863</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       mean_weight_gain_during_1st_3_years    sex                    study_group</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                     &lt;num&gt; &lt;char&gt;                         &lt;char&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    1:                            4.876532   Male             Antibiotics cohort</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    2:                            4.876532   Male             Antibiotics cohort</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    3:                            4.876532   Male             Antibiotics cohort</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    4:                            4.876532   Male             Antibiotics cohort</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    5:                            4.876532   Male             Antibiotics cohort</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3345:                            4.059528   Male Three country cohort (Karelia)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3346:                            4.059528   Male Three country cohort (Karelia)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3347:                            4.059528   Male Three country cohort (Karelia)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3348:                            4.059528   Male Three country cohort (Karelia)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3349:                            4.059528   Male Three country cohort (Karelia)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       type_1_diabetes_diagnosed urban_or_rural_site</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                          &lt;char&gt;              &lt;char&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    1:                        No               Rural</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    2:                        No               Rural</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    3:                        No               Rural</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    4:                        No               Rural</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    5:                        No               Rural</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3345:                        No               Urban</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3346:                        No               Urban</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3347:                        No               Urban</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3348:                        No               Urban</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3349:                        No               Urban</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       weight_gain_during_1st_year_kg weight_minus_for_minus_age_z_minus_score</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                &lt;num&gt;                                    &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    1:                       7.886785                                     2.06</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    2:                       7.886785                                     2.06</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    3:                       7.886785                                     2.06</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    4:                       7.886785                                     2.06</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    5:                       7.886785                                     2.06</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3345:                       8.942992                                     0.29</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3346:                       8.942992                                     0.29</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3347:                       8.942992                                     0.29</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3348:                       8.942992                                     0.29</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3349:                       8.942992                                     0.29</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       zinc_transporter_8_autoantibodies age_months Sample_Id habitat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                  &lt;char&gt;      &lt;int&gt;     &lt;int&gt;  &lt;char&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    1:                                No          1   3000150   Human</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    2:                                No         10   3102722   Human</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    3:                                No         12   3106237   Human</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    4:                                No         13   3106238   Human</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    5:                                No         15   3106239   Human</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3345:                                No         14   3117645   Human</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3346:                                No         16   3117647   Human</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3347:                                No         19   3119973   Human</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3348:                                No         22   3119976   Human</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3349:                                No          7   3116926   Human</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       host_body_habitat host_body_product host_body_site sample_type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  &lt;char&gt;            &lt;char&gt;         &lt;char&gt;      &lt;char&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    1:             Colon             Feces          Colon       Stool</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    2:             Colon             Feces          Colon       Stool</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    3:             Colon             Feces          Colon       Stool</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    4:             Colon             Feces          Colon       Stool</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    5:             Colon             Feces          Colon       Stool</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3345:             Colon             Feces          Colon       Stool</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3346:             Colon             Feces          Colon       Stool</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3347:             Colon             Feces          Colon       Stool</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3348:             Colon             Feces          Colon       Stool</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3349:             Colon             Feces          Colon       Stool</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3345:                     FALSE                         31.48248</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3346:                     FALSE                         31.48248</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3347:                     FALSE                         31.48248</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3348:                     FALSE                         31.48248</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3349:                     FALSE                         31.48248</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       maternal_age_at_birth_year mean_linear_growth_during_1st_3_years_cm_year</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           &lt;char&gt;                                         &lt;num&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1:                   35.75342                                      16.77027</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    2:                   35.75342                                      16.77027</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    3:                   35.75342                                      16.77027</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    4:                   35.75342                                      16.77027</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    5:                   35.75342                                      16.77027</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3345:                   36.23288                                      16.47863</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3346:                   36.23288                                      16.47863</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3347:                   36.23288                                      16.47863</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3348:                   36.23288                                      16.47863</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3349:                   36.23288                                      16.47863</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       mean_weight_gain_during_1st_3_years_kg_year    sex</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                             &lt;num&gt; &lt;char&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1:                                    4.876532   male</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    2:                                    4.876532   male</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    3:                                    4.876532   male</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    4:                                    4.876532   male</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    5:                                    4.876532   male</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3345:                                    4.059528   male</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3346:                                    4.059528   male</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3347:                                    4.059528   male</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3348:                                    4.059528   male</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3349:                                    4.059528   male</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          study_group type_1_diabetes_diagnosed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                               &lt;char&gt;                    &lt;char&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1:             Antibiotics cohort                     FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    2:             Antibiotics cohort                     FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    3:             Antibiotics cohort                     FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    4:             Antibiotics cohort                     FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    5:             Antibiotics cohort                     FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3345: Three country cohort (Karelia)                     FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3346: Three country cohort (Karelia)                     FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3347: Three country cohort (Karelia)                     FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3348: Three country cohort (Karelia)                     FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3349: Three country cohort (Karelia)                     FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       urban_or_rural_site weight_gain_during_1st_year_kg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                    &lt;char&gt;                          &lt;num&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1:               Rural                       7.886785</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    2:               Rural                       7.886785</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    3:               Rural                       7.886785</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    4:               Rural                       7.886785</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    5:               Rural                       7.886785</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3345:               urban                       8.942992</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3346:               urban                       8.942992</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3347:               urban                       8.942992</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3348:               urban                       8.942992</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3349:               urban                       8.942992</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       weight_minus_for_minus_age_z_minus_score</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                          &lt;num&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1:                                     2.06</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    2:                                     2.06</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    3:                                     2.06</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    4:                                     2.06</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    5:                                     2.06</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3345:                                     0.29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3346:                                     0.29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3347:                                     0.29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3348:                                     0.29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3349:                                     0.29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       zinc_transporter_8_autoantibodies Sample_Id habitat host_body_habitat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  &lt;char&gt;     &lt;int&gt;  &lt;char&gt;            &lt;char&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1:                             FALSE   3000150   Human             colon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    2:                             FALSE   3102722   Human             colon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    3:                             FALSE   3106237   Human             colon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    4:                             FALSE   3106238   Human             colon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    5:                             FALSE   3106239   Human             colon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                                                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3345:                             FALSE   3117645   Human             colon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3346:                             FALSE   3117647   Human             colon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3347:                             FALSE   3119973   Human             colon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3348:                             FALSE   3119976   Human             colon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3349:                             FALSE   3116926   Human             colon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       host_body_product host_body_site sample_type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  &lt;char&gt;         &lt;char&gt;      &lt;char&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1:      UBERON:feces          colon       Stool</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    2:      UBERON:feces          colon       Stool</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    3:      UBERON:feces          colon       Stool</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    4:      UBERON:feces          colon       Stool</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    5:      UBERON:feces          colon       Stool</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ---                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3345:      UBERON:feces          colon       Stool</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3346:      UBERON:feces          colon       Stool</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3347:      UBERON:feces          colon       Stool</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3348:      UBERON:feces          colon       Stool</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3349:      UBERON:feces          colon       Stool</span>
 <span class="r-in"><span><span class="fu">getSampleMetadata</span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/DiabImmune.html" class="external-link">DiabImmune</a></span>, metadataVariables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"age_months"</span>, <span class="st">"sex"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Sample_Id   Participant_Id Participant_repeated_measure_Id age_months</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Sample_Id   Participant_Id participant_repeated_measure_Id age_months</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;int&gt;           &lt;char&gt;                          &lt;char&gt;      &lt;int&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    1:   3000150 E000823 (Source)              E000823_1 (Source)          1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    2:   3102722 E000823 (Source)             E000823_10 (Source)         10</span>
@@ -501,17 +514,17 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3349:   3116926 T029922 (Source)              T029922_7 (Source)          7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          sex</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;char&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    1:   Male</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    2:   Male</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    3:   Male</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    4:   Male</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    5:   Male</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1:   male</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    2:   male</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    3:   male</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    4:   male</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    5:   male</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ---       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3345:   Male</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3346:   Male</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3347:   Male</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3348:   Male</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3349:   Male</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3345:   male</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3346:   male</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3347:   male</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3348:   male</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3349:   male</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
