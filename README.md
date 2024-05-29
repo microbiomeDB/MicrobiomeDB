@@ -16,7 +16,7 @@ remotes::install_github('microbiomeDB/MicrobiomeDB')
 ## Usage
 This package is intended to be used to explore the curated datasets from MicrobiomeDB.org, as well as (coming soon!) your own datasets. It comes pre-packaged with the same functions used to power the analysis tools from the website. Functions to facilitate easily transforming data between our custom objects, phyloseq objects, TreeSummarizedExperiment objects and .biom files are in development.
 
-This package is paired with a dedicated data package called micribomeData which includes a number of pre-built `MbioDataset` objects representing the curated data from the MicrobiomeDB.org website. You can see their names like:
+This package is paired with a dedicated data package called microbiomeData which includes a number of pre-built `MbioDataset` objects representing the curated data from the MicrobiomeDB.org website. You can see their names like:
 
 ```R
 remotes::install_github('microbiomeDB/microbiomeData')
