@@ -173,13 +173,13 @@ dissimilarity).</p>
 <span><span class="co">## get a betaDiv ComputeResult</span></span>
 <span><span class="va">betaDiv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/betaDiv-methods.html">betaDiv</a></span><span class="op">(</span><span class="va">HMP_MGX_species</span>, method <span class="op">=</span> <span class="st">"bray"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 19:15:53.987558 Received df table with 741 samples and 731 taxa.</span></span>
+<span><span class="co">#&gt; 2024-05-29 19:45:17.810675 Received df table with 741 samples and 731 taxa.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 19:15:54.330892 Computed dissimilarity matrix.</span></span>
+<span><span class="co">#&gt; 2024-05-29 19:45:18.153009 Computed dissimilarity matrix.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 19:15:55.300075 Finished ordination step.</span></span>
+<span><span class="co">#&gt; 2024-05-29 19:45:19.095503 Finished ordination step.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 19:15:55.333184 Beta diversity computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method = bray , k = 2 , verbose = TRUE</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-05-29 19:45:19.125308 Beta diversity computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method = bray , k = 2 , verbose = TRUE</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="jaccard-dissimilarity">Jaccard Dissimilarity<a class="anchor" aria-label="anchor" href="#jaccard-dissimilarity"></a>
@@ -191,13 +191,13 @@ samples.</p>
 <code class="sourceCode R"><span><span class="va">HMP_MGX_species</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span>, <span class="st">'Shotgun metagenomics Species (Relative taxonomic abundance analysis)'</span><span class="op">)</span></span>
 <span><span class="va">betaDiv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/betaDiv-methods.html">betaDiv</a></span><span class="op">(</span><span class="va">HMP_MGX_species</span>, method <span class="op">=</span> <span class="st">"jaccard"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 19:15:55.486934 Received df table with 741 samples and 731 taxa.</span></span>
+<span><span class="co">#&gt; 2024-05-29 19:45:19.278769 Received df table with 741 samples and 731 taxa.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 19:15:55.807774 Computed dissimilarity matrix.</span></span>
+<span><span class="co">#&gt; 2024-05-29 19:45:19.612632 Computed dissimilarity matrix.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 19:15:55.995823 Finished ordination step.</span></span>
+<span><span class="co">#&gt; 2024-05-29 19:45:19.792349 Finished ordination step.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 19:15:56.006563 Beta diversity computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method = jaccard , k = 2 , verbose = TRUE</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-05-29 19:45:19.803358 Beta diversity computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method = jaccard , k = 2 , verbose = TRUE</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="jensen-shannon-divergence-jsd">Jensen-Shannon Divergence (JSD)<a class="anchor" aria-label="anchor" href="#jensen-shannon-divergence-jsd"></a>
@@ -210,13 +210,13 @@ between probability distributions.</p>
 <code class="sourceCode R"><span><span class="va">HMP_MGX_species</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span>, <span class="st">'Shotgun metagenomics Species (Relative taxonomic abundance analysis)'</span><span class="op">)</span></span>
 <span><span class="va">betaDiv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/betaDiv-methods.html">betaDiv</a></span><span class="op">(</span><span class="va">HMP_MGX_species</span>, method <span class="op">=</span> <span class="st">"jsd"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 19:15:56.150185 Received df table with 741 samples and 731 taxa.</span></span>
+<span><span class="co">#&gt; 2024-05-29 19:45:19.94657 Received df table with 741 samples and 731 taxa.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 19:16:03.228924 Computed dissimilarity matrix.</span></span>
+<span><span class="co">#&gt; 2024-05-29 19:45:27.013699 Computed dissimilarity matrix.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 19:16:03.432243 Finished ordination step.</span></span>
+<span><span class="co">#&gt; 2024-05-29 19:45:27.202883 Finished ordination step.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 19:16:03.438457 Beta diversity computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method = jsd , k = 2 , verbose = TRUE</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-05-29 19:45:27.209171 Beta diversity computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method = jsd , k = 2 , verbose = TRUE</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="principal-coordinate-analysis-pcoa">Principal Coordinate Analysis (PCoA):<a class="anchor" aria-label="anchor" href="#principal-coordinate-analysis-pcoa"></a>
