@@ -80,7 +80,7 @@ microbiomeData::getCuratedDatasetNames()
 getCollectionNames(microbiomeData::HMP_MGX)
 
 ## grab a collection of interest
-HMP_MGX_species <- getCollection(microbiomeData::HMP_MGX, "Shotgun metagenomics Species", continuousMetadataOnly = TRUE)
+HMP_MGX_species <- getCollection(microbiomeData::HMP_MGX, "Shotgun metagenomics Species (Relative taxonomic abundance analysis)", continuousMetadataOnly = TRUE)
 
 ## get a correlation ComputeResult
 ## this is not necessarily to recommend spearman for metadata. 
@@ -94,7 +94,7 @@ Use when the relationship between variables is linear. Suitable for assessing li
 
 ```{r}
 ## grab two collections of interest, in this case species level data and pathway abundance data
-HMP_MGX_species <- getCollection(microbiomeData::HMP_MGX, "Shotgun metagenomics Species")
+HMP_MGX_species <- getCollection(microbiomeData::HMP_MGX, "Shotgun metagenomics Species (Relative taxonomic abundance analysis)")
 HMP_MGX_pathways <- getCollection(microbiomeData::HMP_MGX, "Shotgun metagenomics Metagenome enzyme pathway abundance data" )
 
 ## get a correlation ComputeResult

@@ -64,7 +64,7 @@ microbiomeData::getCuratedDatasetNames()
 getCollectionNames(microbiomeData::HMP_MGX)
 
 ## grab a collection of interest
-HMP_MGX_species <- getCollection(microbiomeData::HMP_MGX, "Shotgun metagenomics Species")
+HMP_MGX_species <- getCollection(microbiomeData::HMP_MGX, "Shotgun metagenomics Species (Relative taxonomic abundance analysis)")
 
 ## get a ranked abundance ComputeResult
 ## top 10 taxa by max relative abundance across all samples

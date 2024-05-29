@@ -59,7 +59,7 @@ microbiomeData::getCuratedDatasetNames()
 getCollectionNames(microbiomeData::HMP_MGX)
 
 ## grab a collection we like
-HMP_MGX_species <- getCollection(microbiomeData::HMP_MGX, 'Shotgun metagenomics Species')
+HMP_MGX_species <- getCollection(microbiomeData::HMP_MGX, 'Shotgun metagenomics Species (Relative taxonomic abundance analysis)')
 
 ## get a betaDiv ComputeResult
 betaDiv <- betaDiv(HMP_MGX_species, method = "bray")
@@ -71,7 +71,7 @@ Measures dissimilarity based on the presence-absence of taxa. It quantifies the 
 not shared between two samples.
 
 ```{r}
-HMP_MGX_species <- getCollection(microbiomeData::HMP_MGX, 'Shotgun metagenomics Species')
+HMP_MGX_species <- getCollection(microbiomeData::HMP_MGX, 'Shotgun metagenomics Species (Relative taxonomic abundance analysis)')
 betaDiv <- betaDiv(HMP_MGX_species, method = "jaccard")
 ```
 
@@ -81,7 +81,7 @@ Captures dissimilarity considering both abundance and presence-absence informati
 of the Kullback-Leibler Divergence, providing a measure of dissimilarity between probability distributions.
 
 ```{r}
-HMP_MGX_species <- getCollection(microbiomeData::HMP_MGX, 'Shotgun metagenomics Species')
+HMP_MGX_species <- getCollection(microbiomeData::HMP_MGX, 'Shotgun metagenomics Species (Relative taxonomic abundance analysis)')
 betaDiv <- betaDiv(HMP_MGX_species, method = "jsd")
 ```
 

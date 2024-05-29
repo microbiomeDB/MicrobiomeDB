@@ -50,7 +50,7 @@ microbiomeData::getCuratedDatasetNames()
 getCollectionNames(microbiomeData::HMP_MGX)
 
 ## grab a collection we like
-genus <- getCollection(microbiomeData::HMP_MGX, 'Shotgun metagenomics Genus')
+genus <- getCollection(microbiomeData::HMP_MGX, 'Shotgun metagenomics Genus (Relative taxonomic abundance analysis)')
 
 ## get an alpha diversity ComputeResult
 alphaDivOutput <- alphaDiv(genus, method = 'shannon')
@@ -64,7 +64,7 @@ It can be calculated as follows:
 
 ```{r}
 ## get an alpha diversity ComputeResult
-genus <- getCollection(microbiomeData::HMP_MGX, 'Shotgun metagenomics Genus')
+genus <- getCollection(microbiomeData::HMP_MGX, 'Shotgun metagenomics Genus (Relative taxonomic abundance analysis)')
 alphaDivOutput <- alphaDiv(genus, method = 'simpson')
 ```
 
@@ -75,7 +75,7 @@ Species evenness is highest when all species in a sample have the same abundance
 
 ```{r}
 ## get an alpha diversity ComputeResult
-genus <- getCollection(microbiomeData::HMP_MGX, 'Shotgun metagenomics Genus')
+genus <- getCollection(microbiomeData::HMP_MGX, 'Shotgun metagenomics Genus (Relative taxonomic abundance analysis)')
 alphaDivOutput <- alphaDiv(genus, method = 'evenness')
 ```
 
