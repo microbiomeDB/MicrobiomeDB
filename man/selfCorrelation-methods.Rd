@@ -32,13 +32,17 @@ convenience wrapper around veupathUtils::correlation, with the exception that it
 }
 \examples{
 correlationDT <- selfCorrelation(
-     getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), 
+     getCollection(
+	microbiomeData::DiabImmune, 
+	"16S (V4) Genus (Relative taxonomic abundance analysis)"), 
      method = 'sparcc', 
      format = 'data.table'
 )
 
 correlationOutput <- selfCorrelation(
-     getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), 
+     getCollection(
+	microbiomeData::DiabImmune, 
+	"16S (V4) Genus (Relative taxonomic abundance analysis)"), 
      method = 'sparcc', 
      format = 'ComputeResult'
 )

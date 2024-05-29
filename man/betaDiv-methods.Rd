@@ -28,7 +28,9 @@ This function returns pcoa coordinates calculated from the beta diversity dissim
 }
 \examples{
 betaDivOutput <- betaDiv(
-     getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), 
+     getCollection(
+	microbiomeData::DiabImmune, 
+	"16S (V4) Genus (Relative taxonomic abundance analysis)"), 
      method = "bray", 
      k = 2
 )

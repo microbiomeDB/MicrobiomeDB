@@ -52,7 +52,9 @@ Get the compute result from a Microbiome Dataset in a particular format with met
 }
 \examples{
 alphaDivOutput <- MicrobiomeDB::alphaDiv(
-     getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), 
+     getCollection(
+	microbiomeData::DiabImmune, 
+	"16S (V4) Genus (Relative taxonomic abundance analysis)"), 
      method='shannon', 
      verbose=FALSE
 )

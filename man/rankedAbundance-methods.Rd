@@ -28,7 +28,9 @@ This function returns abundances, ranked by a selected ranking function
 }
 \examples{
 rankedAbundOutput <- rankedAbundance(
-     getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), 
+     getCollection(
+	microbiomeData::DiabImmune, 
+	"16S (V4) Genus (Relative taxonomic abundance analysis)"), 
      method = "median"
 )
 }

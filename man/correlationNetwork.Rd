@@ -44,7 +44,10 @@ Visualize a correlation result as a network
 }
 \examples{
 correlationOutput <- MicrobiomeDB::correlation(
-     getCollection(microbiomeData::DiabImmune, "16S (V4) Genus", continuousMetadataOnly = TRUE), 
+     getCollection(
+	microbiomeData::DiabImmune, 
+	"16S (V4) Genus (Relative taxonomic abundance analysis)", 
+	continuousMetadataOnly = TRUE), 
      method='spearman', 
      verbose=FALSE
 )

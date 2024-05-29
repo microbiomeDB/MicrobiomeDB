@@ -29,12 +29,16 @@ If one of the requested variables cannot be returned, a warning
 will be printed.
 }
 \examples{
-getCollectionVariableNames(microbiomeData::DiabImmune, "16S (V4) Genus")
+getCollectionVariableNames(
+microbiomeData::DiabImmune, 
+"16S (V4) Genus (Relative taxonomic abundance analysis)"
+)
+
 getMetadataVariableNames(microbiomeData::DiabImmune)
 variablesDT <- getVariables(
      microbiomeData::DiabImmune, 
      list("metadata" = c("age_months", "sex"),
-          "16S (V4) Genus" = "Bacteroides", 
+          "16S (V4) Genus (Relative taxonomic abundance analysis)" = "Bacteroides", 
           "Shotgun metagenomics Metagenome enzyme pathway abundance data" = "ANAGLYCOLYSIS-PWY: glycolysis III (from glucose)"
      )
 )

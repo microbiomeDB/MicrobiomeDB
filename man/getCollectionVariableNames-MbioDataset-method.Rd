@@ -18,5 +18,8 @@ a character vector of the variable names in the requested collection
 Get the variable names in a collection in the Microbiome Dataset.
 }
 \examples{
-variableNames <- getCollectionVariableNames(microbiomeData::DiabImmune, "16S (V4) Genus")
+variableNames <- getCollectionVariableNames(
+microbiomeData::DiabImmune, 
+"16S (V4) Genus (Relative taxonomic abundance analysis)"
+)
 }

@@ -37,7 +37,7 @@ This function returns correlation coefficients for variables in one dataset agai
 \examples{
 diabImmune_genus <- getCollection(
      microbiomeData::DiabImmune, 
-     "16S (V4) Genus", 
+     "16S (V4) Genus (Relative taxonomic abundance analysis)", 
      continuousMetadataOnly = TRUE
 )
 

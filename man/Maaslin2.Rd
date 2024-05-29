@@ -29,7 +29,9 @@ has a value of \code{NA} or the empty string ("").
 }
 \examples{
 maaslinOutput <- MicrobiomeDB::Maaslin2(
-       data = getCollection(microbiomeData::DiabImmune, '16S (V4) Genus'), 
+       data = getCollection(
+	microbiomeData::DiabImmune, 
+	'16S (V4) Genus (Relative taxonomic abundance analysis)'), 
        output = tempfile("maaslin"),
        #min_prevalence = 0,
        fixed_effects = 'delivery_mode',

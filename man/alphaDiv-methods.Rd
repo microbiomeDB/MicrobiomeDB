@@ -25,7 +25,9 @@ This function returns alpha diversity values for each sample.
 }
 \examples{
 alphaDivOutput <- alphaDiv(
-     getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), 
+     getCollection(
+	microbiomeData::DiabImmune, 
+	"16S (V4) Genus (Relative taxonomic abundance analysis)"), 
      method = "shannon"
 )
 }

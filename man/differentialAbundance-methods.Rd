@@ -99,7 +99,9 @@ for Maaslin2 (\code{MicrobiomeDB::Maaslin2}) and DESeq2 (\code{DESeqDataSetFromC
 \examples{
 ## a continuous variable
 diffAbundOutput <- MicrobiomeDB::differentialAbundance(
-       getCollection(microbiomeData::DiabImmune, '16S (V4) Genus'), 
+       getCollection(
+       	microbiomeData::DiabImmune, 
+	'16S (V4) Genus (Relative taxonomic abundance analysis)'), 
        "breastfed_duration_days", 
        groupA = function(x) {x<300},
        groupB = function(x) {x>=300},
@@ -107,9 +109,23 @@ diffAbundOutput <- MicrobiomeDB::differentialAbundance(
        verbose=TRUE
 )
 
+## same variable, using DESeq2
+diffAbundOutput <- MicrobiomeDB::differentialAbundance(
+       getCollection(
+             microbiomeData::DiabImmune, 
+             '16S (V4) Genus (Absolute taxonomic abundance analysis)'), 
+       "breastfed_duration_days", 
+       groupA = function(x) {x<300},
+       groupB = function(x) {x>=300},
+       method='DESeq2', 
+       verbose=TRUE
+)
+
 ## a categorical variable with 3 values, one of which we exclude
 diffAbundOutput <- MicrobiomeDB::differentialAbundance(
-       getCollection(microbiomeData::DiabImmune, '16S (V4) Genus'), 
+       getCollection(
+	microbiomeData::DiabImmune, 
+	'16S (V4) Genus (Relative taxonomic abundance analysis)'), 
        "country", 
        groupA = function(x) {x=="Russia"},
        groupB = function(x) {x=="Finland"},
@@ -119,7 +135,9 @@ diffAbundOutput <- MicrobiomeDB::differentialAbundance(
 
 ## this case of categorical variables also has a 'short cut'
 diffAbundOutput <- MicrobiomeDB::differentialAbundance(
-       getCollection(microbiomeData::DiabImmune, '16S (V4) Genus'), 
+       getCollection(
+	microbiomeData::DiabImmune, 
+	'16S (V4) Genus (Relative taxonomic abundance analysis)'), 
        "country", 
        groupA = "Russia",
        groupB = c("Finland","Estonia"),
@@ -129,7 +147,9 @@ diffAbundOutput <- MicrobiomeDB::differentialAbundance(
 
 ## a categorical variable with 2 values
 diffAbundOutput <- MicrobiomeDB::differentialAbundance(
-       getCollection(microbiomeData::DiabImmune, '16S (V4) Genus'),
+       getCollection(
+	microbiomeData::DiabImmune, 
+	'16S (V4) Genus (Relative taxonomic abundance analysis)'),
        "delivery_mode",
        method='Maaslin2', 
        verbose=FALSE

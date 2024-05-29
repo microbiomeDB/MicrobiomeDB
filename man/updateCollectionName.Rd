@@ -25,5 +25,9 @@ Update the name of a collection in the Microbiome Dataset.
 }
 \examples{
 myCopyOfDiabImmune <- microbiomeData::DiabImmune
-myCopyOfDiabImmune <- updateCollectionName(myCopyOfDiabImmune, "16S (V4) Genus", "16S Genus")
+myCopyOfDiabImmune <- updateCollectionName(
+myCopyOfDiabImmune, 
+"16S (V4) Genus (Relative taxonomic abundance analysis)", 
+"16S Genus"
+)
 }

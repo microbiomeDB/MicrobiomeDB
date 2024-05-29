@@ -39,26 +39,26 @@ as an AbundanceData, phyloseq, or Collection object.
 \examples{
 genus <- getCollection(
      microbiomeData::DiabImmune, 
-     "16S (V4) Genus"
+     "16S (V4) Genus (Relative taxonomic abundance analysis)"
 )
 
 genus_phyloseq <- getCollection(
      microbiomeData::DiabImmune, 
-     "16S (V4) Genus", 
+     "16S (V4) Genus (Relative taxonomic abundance analysis)", 
      format = "phyloseq"
 )
 
 ## to pass to correlation method, we want only continuous metadata
 genus_continuous <- getCollection(
      microbiomeData::DiabImmune, 
-     "16S (V4) Genus", 
+     "16S (V4) Genus (Relative taxonomic abundance analysis)", 
      continuousMetadataOnly = TRUE
 ) 
 
 ## with no metadata
 genus_collection <- getCollection(
      microbiomeData::DiabImmune, 
-     "16S (V4) Genus", 
+     "16S (V4) Genus (Relative taxonomic abundance analysis)", 
      format = "Collection"
 )
 }

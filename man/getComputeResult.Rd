@@ -41,7 +41,9 @@ Some formats may not be supported for all compute results.
 }
 \examples{
 correlationOutput <- MicrobiomeDB::selfCorrelation(
-     getCollection(microbiomeData::DiabImmune, "16S (V4) Genus"), 
+     getCollection(
+	microbiomeData::DiabImmune, 
+	"16S (V4) Genus (Relative taxonomic abundance analysis)"), 
      method='spearman', 
      verbose=FALSE
 )
