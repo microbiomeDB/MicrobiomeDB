@@ -231,17 +231,17 @@ necessarily linear. Suitable for non-linear associations.</p>
 <span><span class="co">## it is simply exemplary. Always look at your data!</span></span>
 <span><span class="va">species_vs_metadata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/correlation-methods.html">correlation</a></span><span class="op">(</span><span class="va">HMP_V3V5_species</span>, method <span class="op">=</span> <span class="st">'spearman'</span><span class="op">)</span> </span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 17:57:55.474065 Removed 1 records with no data.</span></span>
+<span><span class="co">#&gt; 2024-05-29 18:23:15.873842 Removed 1 records with no data.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 17:57:55.509139 Removed 1 records with no data.</span></span>
+<span><span class="co">#&gt; 2024-05-29 18:23:15.90934 Removed 1 records with no data.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 17:57:55.543902 Removed 1 records with no data.</span></span>
+<span><span class="co">#&gt; 2024-05-29 18:23:15.944132 Removed 1 records with no data.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 17:57:57.93084 Completed correlation with method=spearman. Formatting results.</span></span>
+<span><span class="co">#&gt; 2024-05-29 18:23:18.333104 Completed correlation with method=spearman. Formatting results.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 17:57:57.931783 Received df table with 5461 samples and 137 features with values.</span></span>
+<span><span class="co">#&gt; 2024-05-29 18:23:18.33406 Received df table with 5461 samples and 137 features with values.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 17:57:57.936247 Correlation computation completed with parameters recordIdColumn= 16S_rRNA_(V3-V5)_assay_Id , method =  spearman</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-05-29 18:23:18.338323 Correlation computation completed with parameters recordIdColumn= 16S_rRNA_(V3-V5)_assay_Id , method =  spearman</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="pearson-correlation">Pearson Correlation<a class="anchor" aria-label="anchor" href="#pearson-correlation"></a>
@@ -258,21 +258,21 @@ assessing linear associations.</p>
 <span><span class="co">## it is simply exemplary. Always look at your data!</span></span>
 <span><span class="va">pathway_vs_species</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/correlation-methods.html">correlation</a></span><span class="op">(</span><span class="va">HMP_MGX_species</span>, <span class="va">HMP_MGX_pathways</span>, method <span class="op">=</span> <span class="st">'pearson'</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 17:57:58.448249 Removed 7 records with no data.</span></span>
+<span><span class="co">#&gt; 2024-05-29 18:23:18.845109 Removed 7 records with no data.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 17:57:58.476513 Removed 7 records with no data.</span></span>
+<span><span class="co">#&gt; 2024-05-29 18:23:18.873853 Removed 7 records with no data.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 17:57:58.612736 Removed 7 records with no data.</span></span>
+<span><span class="co">#&gt; 2024-05-29 18:23:18.997009 Removed 7 records with no data.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 17:57:58.623424 Received first df table with 734 samples and 325 features with values.</span></span>
+<span><span class="co">#&gt; 2024-05-29 18:23:19.007825 Received first df table with 734 samples and 325 features with values.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 17:57:58.6237 Received second df table with 741 samples and 371 features with values.</span></span>
+<span><span class="co">#&gt; 2024-05-29 18:23:19.008098 Received second df table with 741 samples and 371 features with values.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 17:57:58.623944 Found 734 samples in common between data1 and data2. Only these samples will be used.</span></span>
+<span><span class="co">#&gt; 2024-05-29 18:23:19.008344 Found 734 samples in common between data1 and data2. Only these samples will be used.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 17:57:59.040385 Completed correlation with method=pearson. Formatting results.</span></span>
+<span><span class="co">#&gt; 2024-05-29 18:23:19.423368 Completed correlation with method=pearson. Formatting results.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-29 17:57:59.046098 Correlation computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method =  pearson</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-05-29 18:23:19.429143 Correlation computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method =  pearson</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
