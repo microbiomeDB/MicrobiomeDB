@@ -198,7 +198,10 @@ setMethod("getCollection", "MbioDataset", function(object, collectionName = char
     # remove IRI from collection column names. strip everything after and including the last square bracket, and remove trailing spaces
     rawNames <- names(collectionDT)
     names(collectionDT)[! names(collectionDT) %in% collectionIdColumns] <- sub("\\s*\\[([^\\[]*)$", "", names(collectionDT)[! names(collectionDT) %in% collectionIdColumns])
-    names(collectionDT)[names(collectionDT) == 'Incertae Sedis'] <- rawNames[names(collectionDT) == 'Incertae Sedis']
+
+    # provide as much taxonomic resolution as possible for vague cases
+    unclassifiedIndexes <- which(grepl('Incertae Sedis', names(collectionDT), fixed=TRUE))
+    names(collectionDT)[unclassifiedIndexes] <- rawNames[unclassifiedIndexes]
 
     if (!!length(object@metadata@data)) {
 
