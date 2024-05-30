@@ -58,7 +58,9 @@ Or you can take these results as a `data.table` object and use them to build plo
 **Let us know if you build something interesting, encounter any bugs, or just wish something were easier to do. We'd love to hear from you! We consider each new issue filed to be a compliment.**
 
 ## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Pull requests are welcome and should be made to the **dev** branch. 
+
+For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
