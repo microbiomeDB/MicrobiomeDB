@@ -1,9 +1,13 @@
 <!-- badges: start -->
   [![R-CMD-check](https://github.com/microbiomeDB/MicrobiomeDB/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/microbiomeDB/MicrobiomeDB/actions/workflows/R-CMD-check.yaml)
+  [![](https://dcbadge.limes.pink/api/server/DEjNbxgq?style=flat)](https://discord.gg/DEjNbxgq)
   <!-- badges: end -->
 
 # MicrobiomeDB <a href="https://microbiomedb.github.io/MicrobiomeDB/"><img src="man/figures/MicrobiomeDB_hex.png" align="right" height="200" style="float:right; height:200px;"/></a>
+
 A suite of R packages containing all of the data from MicrobiomeDB.org, and tools for analyzing and visualizing the same.
+
+If you have questions or comments of any kind, join us on our [Discord Community Server](https://discord.gg/DEjNbxgq)! We'd love to hear from you.
 
 ## Installation
 
