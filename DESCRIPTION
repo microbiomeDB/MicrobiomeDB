@@ -15,9 +15,11 @@ Imports:
     veupathUtils,
     Maaslin2,
     methods,
+    mia,
     microbiomeComputations,
     phyloseq,
-    purrr
+    purrr,
+    TreeSummarizedExperiment
 Remotes:
     microbiomeDB/veupathUtils,
     microbiomeDB/corGraph,
