@@ -97,7 +97,7 @@ mbioDataset <- importTreeSummarizedExperiment(
 
 First, make sure [phyloseq][] is installed:
 
-```{R}
+```
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
@@ -122,7 +122,7 @@ mbioDataset <- importPhyloseq(
 
 First, make sure [biomformat][] is installed:
 
-```{R}
+```
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
@@ -197,7 +197,7 @@ mbioDataset <- importMothur(
 
 First, make sure [dada2][] is installed:
 
-```{R}
+```
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
