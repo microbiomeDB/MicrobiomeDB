@@ -352,6 +352,8 @@ importBIOM <- function(normalizationMethod = c("TSS", "none"), keepRawValues = c
 
     if (!inherits(..., "biom")) {
         biom <- biomformat::read_biom(...)
+    } else {
+        biom <- ...
     }
     
     treeSE <- mia::makeTreeSEFromBiom(obj=biom)
