@@ -1,0 +1,242 @@
+---
+title: "Importing Data into MicrobiomeDB"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{user-data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(MicrobiomeDB)
+```
+
+## Importing Data
+
+The MicrobiomeDB package supports importing data from the following formats:
+  - [TreeSummarizedExperiment](#treesummarizedexperiment)
+  - [phyloseq](#phyloseq)
+  - [BIOM](#biom)
+  - [QIIME2 output files](#qiime2)
+  - [Mothur output files](#mothur)
+  - [dada2 output files](#dada2)
+  - [HUMAnN output files](#humann)
+
+For formats other than `TreeSummarizedExperiment` the [mia][] package is also required. You can install it like:
+
+```{R}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("mia")
+```
+
+Please note that Linux and MacOS with source-level installations require the 'gsl' system dependency for `mia`. 
+
+On Debian or Ubuntu
+
+```
+sudo apt-get install -y libgsl-dev
+```
+
+On Fedora, CentOS or RHEL
+
+```
+sudo yum install libgsl-devel
+```
+
+On macOS (source installations are not common on macOS, so this step is not usually necessary)
+
+```
+brew install gsl
+```
+
+### TreeSummarizedExperiment
+
+The MicrobiomeDB package natively supports importing `TreeSummarizedExperiment` objects. There is a function `importTreeSummarizedExperiment`
+(as well as the alias `importTreeSE`) which will produce an `MbioDataset` object from a `TreeSummarizedExperiment`. It is used in the following
+way:
+
+```{R}
+data(GlobalPatterns, package="mia")
+tse <- GlobalPatterns
+
+## no normalization, with raw values
+mbioDataset <- importTreeSummarizedExperiment(
+      tse, 
+      normalizationMethod = "none", 
+      keepRawValues = TRUE, 
+      verbose = TRUE
+)
+
+## TSS normalization, drop raw values
+mbioDataset <- importTreeSummarizedExperiment(
+      tse, 
+      normalizationMethod = "TSS", 
+      keepRawValues = FALSE, 
+      verbose = TRUE
+)
+
+## TSS normalization, keep raw values
+mbioDataset <- importTreeSummarizedExperiment(
+      tse, 
+      normalizationMethod = "TSS", 
+      keepRawValues = TRUE, 
+      verbose = TRUE
+)
+```
+
+### Phyloseq
+
+First, make sure [phyloseq][] is installed:
+
+```{R}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("phyloseq")
+```
+
+Then, in order to import phyloseq objects, the [mia][] package is also required. Once that is installed (see [above](#introduction)), 
+you can do the following:
+
+```{R}
+data(GlobalPatterns, package="phyloseq")
+
+mbioDataset <- importPhyloseq(
+      normalizationMethod = "none", 
+      keepRawValues = TRUE, 
+      verbose = TRUE, 
+      GlobalPatterns
+)
+```
+
+### BIOM
+
+First, make sure [biomformat][] is installed:
+
+```{R}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("biomformat")
+```
+
+Then, in order to import biom files and objects, the [mia][] package is also required. Once that is installed (see [above](#introduction)), 
+you can do the following:
+
+```{R}
+## passing the file name directly
+rich_dense_file = system.file("extdata", "rich_dense_otu_table.biom",
+                              package = "biomformat")
+
+mbioDataset <- importBIOM(
+      normalizationMethod = "none", 
+      keepRawValues = TRUE, 
+      verbose = TRUE, 
+      rich_dense_file
+)
+
+## passing a file already read into R as a biom object
+rich_dense_biom = biomformat::read_biom(rich_dense_file)
+
+mbioDataset <- importBIOM(
+      normalizationMethod = "none", 
+      keepRawValues = TRUE, 
+      verbose = TRUE, 
+      rich_dense_biom
+)
+```
+
+### QIIME2
+
+In order to import QIIME2 output files, the [mia][] package is also required. Once that is installed (see [above](#introduction)), 
+you can do the following:
+
+```{R}
+featureTableFile <- system.file("extdata", "table.qza", package = "mia")
+taxonomyTableFile <- system.file("extdata", "taxonomy.qza", package = "mia")
+
+mbioDataset <- importQIIME2(
+      normalizationMethod = "none", 
+      keepRawValues = TRUE, 
+      verbose = TRUE, 
+      featureTableFile, 
+      taxonomyTableFile
+)
+```
+
+### Mothur
+
+In order to import Mother output files, the [mia][] package is also required. Once that is installed (see [above](#introduction)), 
+you can do the following:
+
+```{R}
+counts <- system.file("extdata", "mothur_example.shared", package = "mia")
+taxa <- system.file("extdata", "mothur_example.cons.taxonomy", package = "mia")
+meta <- system.file("extdata", "mothur_example.design", package = "mia")
+
+mbioDataset <- importMothur(
+      normalizationMethod = "none", 
+      keepRawValues = TRUE, 
+      verbose = TRUE, 
+      counts, 
+      taxa, 
+      meta
+)
+```
+
+### dada2
+
+First, make sure [dada2][] is installed:
+
+```{R}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("dada2")
+```
+
+Then, in order to import dada2 output files, the [mia][] package is also required. Once that is installed (see [above](#introduction)), 
+you can do the following:
+
+```{R}
+fnF <- system.file("extdata", "sam1F.fastq.gz", package="dada2")
+fnR = system.file("extdata", "sam1R.fastq.gz", package="dada2")
+dadaF <- dada2::dada(fnF, selfConsist=TRUE)
+dadaR <- dada2::dada(fnR, selfConsist=TRUE)
+
+mbioDataset <- importDADA2(
+      normalizationMethod = "none", 
+      keepRawValues = TRUE, 
+      verbose = TRUE, 
+      dadaF, 
+      fnF, 
+      dadaR, 
+      fnR
+)
+```
+
+### HUMAnN
+
+In order to import HUMAnN output files, the [mia][] package is also required. Once that is installed (see [above](#introduction)), 
+you can do the following:
+
+```{R}
+## this is the merged output file
+file_path <- system.file("extdata", "humann_output.tsv", package = "mia")
+
+mbioDataset <- importHUMAnN(
+      normalizationMethod = "none", 
+      keepRawValues = TRUE, 
+      verbose = TRUE, 
+      file_path
+)
+```
