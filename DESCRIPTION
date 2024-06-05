@@ -16,8 +16,8 @@ Imports:
     Maaslin2,
     methods,
     microbiomeComputations,
-    phyloseq,
-    purrr
+    purrr,
+    TreeSummarizedExperiment
 Remotes:
     microbiomeDB/veupathUtils,
     microbiomeDB/corGraph,
@@ -36,6 +36,10 @@ Suggests:
     microbiomeData,
     knitr,
     rmarkdown,
-    tidyverse
+    tidyverse,
+    mia,
+    dada2,
+    biomformat,
+    phyloseq
 Config/testthat/edition: 3
 VignetteBuilder: knitr
