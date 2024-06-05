@@ -92,9 +92,10 @@ test_that("we can get an MbioDataset from a TreeSummarizedExperiment", {
 
 # most of the important testing is in mia, so 
 # we can test we get the right class back and its populated..
-test_that("the miaverse wrappers work", {
+# TODO add instructions to readme for installing mia, bc of the system level dep
+test_that("the humann miaverse wrapper works", {
+    skip_if_not_installed("mia")
 
-    # humann
     file_path <- system.file("extdata", "humann_output.tsv", package = "mia")
 
     mbioDataset <- importHUMAnN(normalizationMethod = "none", keepRawValues = TRUE, verbose = TRUE, file_path)
@@ -106,7 +107,11 @@ test_that("the miaverse wrappers work", {
     expect_equal(inherits(aCollection, "Collection"), TRUE)
     expect_equal(length(aCollection@data) > 0, TRUE)
 
-    # mothur
+})
+
+test_that("the mothur miaverse wrapper works", {
+    skip_if_not_installed("mia")
+    
     counts <- system.file("extdata", "mothur_example.shared", package = "mia")
     taxa <- system.file("extdata", "mothur_example.cons.taxonomy", package = "mia")
     taxa2 <- system.file("extdata", "mothur_example.taxonomy", package = "mia")
@@ -144,7 +149,11 @@ test_that("the miaverse wrappers work", {
     expect_equal(inherits(aCollection, "Collection"), TRUE)
     expect_equal(length(aCollection@data) > 0, TRUE)
 
-    # qiime2
+})
+
+test_that("the qiime2 miaverse wrapper works", {
+    skip_if_not_installed("mia")
+    
     featureTableFile <- system.file("extdata", "table.qza", package = "mia")
     taxonomyTableFile <- system.file("extdata", "taxonomy.qza", package = "mia")
 
@@ -157,8 +166,12 @@ test_that("the miaverse wrappers work", {
     expect_equal(inherits(aCollection, "Collection"), TRUE)
     expect_equal(length(aCollection@data) > 0, TRUE)
 
-    # biom
-    skip_if_not(require("biomformat", quietly = TRUE))
+})
+
+test_that("the biom miaverse wrapper works", {
+    skip_if_not_installed("mia")
+    skip_if_not_installed("biomformat")
+    
     rich_dense_file  = system.file("extdata", "rich_dense_otu_table.biom",
                                     package = "biomformat")
 
@@ -171,8 +184,12 @@ test_that("the miaverse wrappers work", {
     expect_equal(inherits(aCollection, "Collection"), TRUE)
     expect_equal(length(aCollection@data) > 0, TRUE)
 
-    # dada2
+})
+
+test_that("the dada2 miaverse wrapper works", {
+    skip_if_not_installed("mia")
     skip_if_not_installed("dada2")
+
     fnF <- system.file("extdata", "sam1F.fastq.gz", package="dada2")
     fnR = system.file("extdata", "sam1R.fastq.gz", package="dada2")
     dadaF <- dada2::dada(fnF, selfConsist=TRUE)
@@ -187,10 +204,15 @@ test_that("the miaverse wrappers work", {
     expect_equal(inherits(aCollection, "Collection"), TRUE)
     expect_equal(length(aCollection@data) > 0, TRUE)
 
-    # phyloseq
+})
+
+test_that("the phyloseq miaverse wrapper works", {
+    skip_if_not_installed("mia")
+    skip_if_not_installed("phyloseq")
+
     data(GlobalPatterns, package="phyloseq")
 
-    mbioDataset <- importTreeSummarizedExperiment(normalizationMethod = "none", keepRawValues = TRUE, verbose = TRUE, GlobalPatterns)
+    mbioDataset <- importPhyloseq(normalizationMethod = "none", keepRawValues = TRUE, verbose = TRUE, GlobalPatterns)
 
     expect_equal(inherits(mbioDataset, "MbioDataset"), TRUE)
     expect_equal(length(getCollectionNames(mbioDataset)) > 0, TRUE)
