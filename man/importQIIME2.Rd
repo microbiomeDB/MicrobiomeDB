@@ -31,3 +31,15 @@ in a simpler and more performant object which is compliant
 with the MicrobiomeDB infrastructure. See \code{mia::importQIIME2}
 for documentation.
 }
+\examples{
+featureTableFile <- system.file("extdata", "table.qza", package = "mia")
+taxonomyTableFile <- system.file("extdata", "taxonomy.qza", package = "mia")
+
+mbioDataset <- importQIIME2(
+     normalizationMethod = "none", 
+     keepRawValues = TRUE, 
+     verbose = TRUE, 
+     featureTableFile, 
+     taxonomyTableFile
+)
+}

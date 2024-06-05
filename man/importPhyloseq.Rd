@@ -31,3 +31,13 @@ in a simpler and more performant object which is compliant
 with the MicrobiomeDB infrastructure. See \code{mia::makeTreeSEFromPhyloseq}
 for documentation.
 }
+\examples{
+data(GlobalPatterns, package="phyloseq")
+
+mbioDataset <- importPhyloseq(
+     normalizationMethod = "none", 
+     keepRawValues = TRUE, 
+     verbose = TRUE, 
+     GlobalPatterns
+)
+}

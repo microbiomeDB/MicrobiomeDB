@@ -31,3 +31,12 @@ in a simpler and more performant object which is compliant
 with the MicrobiomeDB infrastructure. See \code{mia::importHUMAnN}
 for documentation.
 }
+\examples{
+file_path <- system.file("extdata", "humann_output.tsv", package = "mia")
+mbioDataset <- importHUMAnN(
+     normalizationMethod = "none", 
+     keepRawValues = TRUE, 
+     verbose = TRUE, 
+     file_path
+)
+}
