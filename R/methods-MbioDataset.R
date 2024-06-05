@@ -259,6 +259,7 @@ setMethod("getCollection", "MbioDataset", function(object, collectionName = char
             )
         }
     } else if (format == "phyloseq") {
+        .require_package("phyloseq")
 
         sampleNames <- collectionDT[[collection@recordIdColumn]]
         keepCols <- names(collectionDT)[! names(collectionDT) %in% collectionIdColumns]

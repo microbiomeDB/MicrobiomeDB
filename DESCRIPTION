@@ -15,9 +15,7 @@ Imports:
     veupathUtils,
     Maaslin2,
     methods,
-    mia,
     microbiomeComputations,
-    phyloseq,
     purrr,
     TreeSummarizedExperiment
 Remotes:
@@ -38,6 +36,10 @@ Suggests:
     microbiomeData,
     knitr,
     rmarkdown,
-    tidyverse
+    tidyverse,
+    mia,
+    dada2,
+    biomformat,
+    phyloseq
 Config/testthat/edition: 3
 VignetteBuilder: knitr

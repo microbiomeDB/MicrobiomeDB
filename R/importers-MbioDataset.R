@@ -169,6 +169,8 @@ importTreeSE <- importTreeSummarizedExperiment
 #' @export
 #' @importFrom mia importHUMAnN
 importHUMAnN <- function(normalizationMethod = c("TSS", "none"), keepRawValues = c(TRUE, FALSE), verbose = c(TRUE, FALSE), ...) {
+    .require_package("mia")
+
     treeSE <- mia::importHUMAnN(...)
 
     mbioDataset <- importTreeSummarizedExperiment(treeSE, normalizationMethod = normalizationMethod, keepRawValues = keepRawValues, verbose = verbose)
@@ -192,6 +194,8 @@ importHUMAnN <- function(normalizationMethod = c("TSS", "none"), keepRawValues =
 #' @export
 #' @importFrom mia importMetaPhlAn
 importMetaPhlAn <- function(normalizationMethod = c("TSS", "none"), keepRawValues = c(TRUE, FALSE), verbose = c(TRUE, FALSE), ...) {
+    .require_package("mia")
+
     treeSE <- mia::importMetaPhlAn(...)
 
     mbioDataset <- importTreeSummarizedExperiment(treeSE, normalizationMethod = normalizationMethod, keepRawValues = keepRawValues, verbose = verbose)
@@ -215,6 +219,8 @@ importMetaPhlAn <- function(normalizationMethod = c("TSS", "none"), keepRawValue
 #' @export
 #' @importFrom mia importMothur
 importMothur <- function(normalizationMethod = c("TSS", "none"), keepRawValues = c(TRUE, FALSE), verbose = c(TRUE, FALSE), ...) {
+    .require_package("mia")
+
     treeSE <- mia::importMothur(...)
 
     mbioDataset <- importTreeSummarizedExperiment(treeSE, normalizationMethod = normalizationMethod, keepRawValues = keepRawValues, verbose = verbose)
@@ -238,6 +244,8 @@ importMothur <- function(normalizationMethod = c("TSS", "none"), keepRawValues =
 #' @export
 #' @importFrom mia importQIIME2
 importQIIME2 <- function(normalizationMethod = c("TSS", "none"), keepRawValues = c(TRUE, FALSE), verbose = c(TRUE, FALSE), ...) {
+    .require_package("mia")
+
     treeSE <- mia::importQIIME2(...)
 
     mbioDataset <- importTreeSummarizedExperiment(treeSE, normalizationMethod = normalizationMethod, keepRawValues = keepRawValues, verbose = verbose)
@@ -261,6 +269,9 @@ importQIIME2 <- function(normalizationMethod = c("TSS", "none"), keepRawValues =
 #' @export
 #' @importFrom mia makeTreeSEFromBiom
 importBIOM <- function(normalizationMethod = c("TSS", "none"), keepRawValues = c(TRUE, FALSE), verbose = c(TRUE, FALSE), ...) {
+    .require_package("mia")
+    .require_package("biomformat")
+
     biom <- biomformat::read_biom(...)
     treeSE <- mia::makeTreeSEFromBiom(obj=biom)
 
@@ -285,6 +296,9 @@ importBIOM <- function(normalizationMethod = c("TSS", "none"), keepRawValues = c
 #' @export
 #' @importFrom mia makeTreeSEFromDADA2
 importDADA2 <- function(normalizationMethod = c("TSS", "none"), keepRawValues = c(TRUE, FALSE), verbose = c(TRUE, FALSE), ...) {
+    .require_package("mia")
+    .require_package("dada2")
+
     treeSE <- mia::makeTreeSEFromDADA2(...)
 
     mbioDataset <- importTreeSummarizedExperiment(treeSE, normalizationMethod = normalizationMethod, keepRawValues = keepRawValues, verbose = verbose)
@@ -308,6 +322,9 @@ importDADA2 <- function(normalizationMethod = c("TSS", "none"), keepRawValues = 
 #' @export
 #' @importFrom mia makeTreeSEFromPhyloseq
 importPhyloseq <- function(normalizationMethod = c("TSS", "none"), keepRawValues = c(TRUE, FALSE), verbose = c(TRUE, FALSE), ...) {
+    .require_package("mia")
+    .require_package("phyloseq")
+    
     treeSE <- mia::makeTreeSEFromPhyloseq(...)
 
     mbioDataset <- importTreeSummarizedExperiment(treeSE, normalizationMethod = normalizationMethod, keepRawValues = keepRawValues, verbose = verbose)
