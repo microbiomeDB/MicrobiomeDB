@@ -63,6 +63,7 @@ buildCollectionFromTreeSE <- function(
 #' @importFrom purrr reduce
 #' @importFrom data.table data.table
 #' @importFrom SummarizedExperiment rowData
+#' @import TreeSummarizedExperiment
 #' @rdname importTreeSummarizedExperiment
 #' @examples 
 #' data(GlobalPatterns, package="mia")
@@ -227,7 +228,6 @@ importHUMAnN <- function(normalizationMethod = c("TSS", "none"), keepRawValues =
 #' @param ... Arguments to pass to mia::importMetaPhlAn
 #' @return A MbioDataset
 #' @export
-#' @importFrom mia importMetaPhlAn
 importMetaPhlAn <- function(normalizationMethod = c("TSS", "none"), keepRawValues = c(TRUE, FALSE), verbose = c(TRUE, FALSE), ...) {
     .require_package("mia")
 
@@ -265,7 +265,6 @@ importMetaPhlAn <- function(normalizationMethod = c("TSS", "none"), keepRawValue
 #'      meta
 #' )
 #' @export
-#' @importFrom mia importMothur
 importMothur <- function(normalizationMethod = c("TSS", "none"), keepRawValues = c(TRUE, FALSE), verbose = c(TRUE, FALSE), ...) {
     .require_package("mia")
 
@@ -301,7 +300,6 @@ importMothur <- function(normalizationMethod = c("TSS", "none"), keepRawValues =
 #'      taxonomyTableFile
 #' )
 #' @export
-#' @importFrom mia importQIIME2
 importQIIME2 <- function(normalizationMethod = c("TSS", "none"), keepRawValues = c(TRUE, FALSE), verbose = c(TRUE, FALSE), ...) {
     .require_package("mia")
 
@@ -345,7 +343,6 @@ importQIIME2 <- function(normalizationMethod = c("TSS", "none"), keepRawValues =
 #'      rich_dense_biom
 #' )
 #' @export
-#' @importFrom mia makeTreeSEFromBiom
 importBIOM <- function(normalizationMethod = c("TSS", "none"), keepRawValues = c(TRUE, FALSE), verbose = c(TRUE, FALSE), ...) {
     .require_package("mia")
     .require_package("biomformat")
@@ -393,7 +390,6 @@ importBIOM <- function(normalizationMethod = c("TSS", "none"), keepRawValues = c
 #'      fnR
 #' )
 #' @export
-#' @importFrom mia makeTreeSEFromDADA2
 importDADA2 <- function(normalizationMethod = c("TSS", "none"), keepRawValues = c(TRUE, FALSE), verbose = c(TRUE, FALSE), ...) {
     .require_package("mia")
     .require_package("dada2")
@@ -428,7 +424,6 @@ importDADA2 <- function(normalizationMethod = c("TSS", "none"), keepRawValues = 
 #'      GlobalPatterns
 #' )
 #' @export
-#' @importFrom mia makeTreeSEFromPhyloseq
 importPhyloseq <- function(normalizationMethod = c("TSS", "none"), keepRawValues = c(TRUE, FALSE), verbose = c(TRUE, FALSE), ...) {
     .require_package("mia")
     .require_package("phyloseq")

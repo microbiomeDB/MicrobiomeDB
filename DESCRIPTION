@@ -17,6 +17,7 @@ Imports:
     methods,
     microbiomeComputations,
     purrr,
+    SummarizedExperiment,
     TreeSummarizedExperiment
 Remotes:
     microbiomeDB/veupathUtils,
