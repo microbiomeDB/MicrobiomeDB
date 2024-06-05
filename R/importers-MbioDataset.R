@@ -203,7 +203,6 @@ importTreeSE <- importTreeSummarizedExperiment
 #'      file_path
 #' )
 #' @export
-#' @importFrom mia importHUMAnN
 importHUMAnN <- function(normalizationMethod = c("TSS", "none"), keepRawValues = c(TRUE, FALSE), verbose = c(TRUE, FALSE), ...) {
     .require_package("mia")
 
