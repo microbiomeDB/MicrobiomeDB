@@ -31,7 +31,7 @@ The MicrobiomeDB package supports importing data from the following formats:
 
 For formats other than `TreeSummarizedExperiment` the [mia][] package is also required. You can install it like:
 
-```{R}
+```
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
