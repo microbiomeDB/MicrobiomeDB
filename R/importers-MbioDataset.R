@@ -352,11 +352,12 @@ importBIOM <- function(normalizationMethod = c("TSS", "none"), keepRawValues = c
 
     if (!inherits(..., "biom")) {
         biom <- biomformat::read_biom(...)
+        treeSE <- mia::makeTreeSEFromBiom(obj=biom)
     } else {
-        biom <- ...
+        treeSE <- mia::makeTreeSEFromBiom(...)
     }
     
-    treeSE <- mia::makeTreeSEFromBiom(obj=biom)
+    
 
     mbioDataset <- importTreeSummarizedExperiment(treeSE, normalizationMethod = normalizationMethod, keepRawValues = keepRawValues, verbose = verbose)
     return(mbioDataset)
