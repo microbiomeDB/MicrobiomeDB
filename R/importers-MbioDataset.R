@@ -1,7 +1,7 @@
 
 buildCollectionFromTreeSE <- function(
     collectionName = list(assayDataName = NULL, rowDataColumnName = NULL), 
-    rowData, 
+    rowData, # this is a data.frame representing the row data/ tree
     assayData,
     normalizationMethod = c("TSS", "none"),
     verbose = c(TRUE, FALSE)
@@ -31,17 +31,17 @@ buildCollectionFromTreeSE <- function(
     dt$recordIDs <- recordIDs
 
     recordIdColumn <- 'recordIDs'
-    ancestorIdColumns <- NULL
+    ancestorIdColumns <- character(0)
     collectionName <- paste0(assayDataName, ": ", rowDataColumnName)
     if (normalizationMethod != "none") {
         collectionName <- paste0(collectionName, " (", normalizationMethod, " normalized)")
     }
 
-    collection <- Collection(
+    collection <- veupathUtils::Collection(
         data = dt,
         recordIdColumn = recordIdColumn,
         ancestorIdColumns = ancestorIdColumns,
-        collectionName = collectionName
+        name = collectionName
     )
 
     return(collection)
@@ -60,6 +60,10 @@ buildCollectionFromTreeSE <- function(
 #' @param keepRawValues Keep the raw assay values as well as the normalized values.
 #' @param verbose Print messages
 #' @return A MbioDataset
+#' @importFrom purrr reduce
+#' @importFrom data.table data.table
+#' @importFrom SummarizedExperiment rowData
+#' @rdname importTreeSummarizedExperiment
 #' @export
 importTreeSummarizedExperiment <- function(data, normalizationMethod = c("TSS", "none"), keepRawValues = c(TRUE, FALSE), verbose = c(TRUE, FALSE)) {
 
@@ -67,58 +71,83 @@ importTreeSummarizedExperiment <- function(data, normalizationMethod = c("TSS", 
     keepRawValues <- veupathUtils::matchArg(keepRawValues)
     verbose <- veupathUtils::matchArg(verbose)
 
+    if (!inherits(data, "SummarizedExperiment")) {
+        stop("data must be or extend a SummarizedExperiment")
+    }
+
     if (keepRawValues == FALSE && normalizationMethod == "none") {
         stop("keepRawValues must be TRUE when normalizationMethod is 'none'")
     }
 
     # figure out what all assays we have, and what data is available per assay
     # these will become collections in the MbioDataset
-    collectionsDTList <- lapply(names(data@assays), function(x) {
-        data.table::data.table(assayDataName = x, rowDataColumnName = row.names(data@assays[[x]]))
+    # TODO it looks like rowData is expected to be same across all assays,
+    # which is odd to me, but probably means we can simplify this logic
+    collectionsDTList <- lapply(names(data@assays@data), function(x) {
+        data.table::data.table(assayDataName = x, rowDataColumnName = colnames(SummarizedExperiment::rowData(data)))
     })
-    collectionsDT <- purrr::reduce(collectionsDT, rbind)
+    collectionsDT <- purrr::reduce(collectionsDTList, rbind)
 
-    if (keepRawValues) {
-        # call buildCollectionFromTreeSE for each column of each assay data, w normalization 'none'
-        collectionsByAssayList <- apply(collectionsDT, 1, function(x) {
-            buildCollectionFromTreeSE(
-                collectionName = as.list(x, keep.names=TRUE), 
-                rowData = data@rowData, 
-                assayData = data@assays[[x$assayDataName]], 
-                normalizationMethod = "none",
-                verbose = verbose
-            )
-        })
-        rawCollectionsList <- purrr::reduce(collectionsByAssayList, c)
-    }
+    if (nrow(collectionsDT) != 0) {
+        rawCollectionsList <- list()
+        if (keepRawValues) {
+            # call buildCollectionFromTreeSE for each column of each assay data, w normalization 'none'
+            collectionsByAssayList <- apply(collectionsDT, 1, function(x) {
+                collectionName = as.list(x, keep.names=TRUE);
 
-    if (normalizationMethod != "none") {
-        collectionsByAssayList <- apply(collectionsDT, 1, function(x) {
-            buildCollectionFromTreeSE(
-                collectionName = as.list(x, keep.names=TRUE), 
-                rowData = data@rowData, 
-                assayData = data@assays[[x$assayDataName]], 
-                normalizationMethod = normalizationMethod, 
-                verbose = verbose
-            )
-        })
-        normalizedCollectionsList <- purrr::reduce(collectionsByAssayList, c)
+                buildCollectionFromTreeSE(
+                    collectionName = collectionName, 
+                    rowData = as.data.frame(SummarizedExperiment::rowData(data)), 
+                    assayData = data@assays@data[[collectionName$assayDataName]], 
+                    normalizationMethod = "none",
+                    verbose = verbose
+                )
+            })
+            rawCollectionsList <- purrr::reduce(collectionsByAssayList, c)
+        }
+
+        normalizedCollectionsList <- list()
+        if (normalizationMethod != "none") {
+            collectionsByAssayList <- apply(collectionsDT, 1, function(x) {
+                collectionName = as.list(x, keep.names=TRUE);
+
+                buildCollectionFromTreeSE(
+                    collectionName = collectionName,
+                    rowData = as.data.frame(SummarizedExperiment::rowData(data)), 
+                    assayData = data@assays@data[[collectionName$assayDataName]], 
+                    normalizationMethod = normalizationMethod, 
+                    verbose = verbose
+                )
+            })
+            normalizedCollectionsList <- purrr::reduce(collectionsByAssayList, c)
+        }
+    
+        collectionsList <- c(rawCollectionsList, normalizedCollectionsList)
+    } else {
+        collectionsList <- veupathUtils::Collections()
     }
     
-    collectionsList <- c(rawCollectionsList, normalizedCollectionsList)
-
-    ## TODO add some sort of check and set this conditionally
-    imputeZero <- FALSE
 
     # build and validate MbioDataset, colData becomes sampleMetadata
+    colData <- SummarizedExperiment::colData(data)
+    metadataDT <- data.table::data.table()
+    if (!!length(colData)) {
+        metadataDT <- data.table::as.data.table(SummarizedExperiment::colData(data))
+        metadataDT$recordIDs <- rownames(SummarizedExperiment::colData(data))
+    }
+    if (length(metadataDT) == 1) metadataDT <- data.table::data.table()
+
     mbioDataset <- MbioDataset(
         collections = collectionsList, 
-        metadata = SampleMetadata(data@colData),
-        imputeZero = imputeZero)
+        metadata = SampleMetadata(data = metadataDT, recordIdColumn = "recordIDs")
+    )
 
     # return a MbioDataset
     return(mbioDataset)
 }
+
+#' @rdname importTreeSummarizedExperiment
+importTreeSE <- importTreeSummarizedExperiment
 
 ## lean on miaverse to import biom, phyloseq, csv, etc
 ## TODO do these also needs args about relative abundances? id think so..
@@ -232,7 +261,8 @@ importQIIME2 <- function(normalizationMethod = c("TSS", "none"), keepRawValues =
 #' @export
 #' @importFrom mia makeTreeSEFromBiom
 importBIOM <- function(normalizationMethod = c("TSS", "none"), keepRawValues = c(TRUE, FALSE), verbose = c(TRUE, FALSE), ...) {
-    treeSE <- mia::makeTreeSEFromBiom(...)
+    biom <- biomformat::read_biom(...)
+    treeSE <- mia::makeTreeSEFromBiom(obj=biom)
 
     mbioDataset <- importTreeSummarizedExperiment(treeSE, normalizationMethod = normalizationMethod, keepRawValues = keepRawValues, verbose = verbose)
     return(mbioDataset)
