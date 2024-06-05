@@ -184,6 +184,16 @@ test_that("the biom miaverse wrapper works", {
     expect_equal(inherits(aCollection, "Collection"), TRUE)
     expect_equal(length(aCollection@data) > 0, TRUE)
 
+    rich_dense_biom = biomformat::read_biom(rich_dense_file)
+
+    mbioDataset <- importBIOM(normalizationMethod = "none", keepRawValues = TRUE, verbose = TRUE, rich_dense_biom)
+
+    expect_equal(inherits(mbioDataset, "MbioDataset"), TRUE)
+    expect_equal(length(getCollectionNames(mbioDataset)) > 0, TRUE)
+    aCollectionName <- getCollectionNames(mbioDataset)[1]
+    aCollection <- getCollection(mbioDataset, aCollectionName)
+    expect_equal(inherits(aCollection, "Collection"), TRUE)
+    expect_equal(length(aCollection@data) > 0, TRUE)
 })
 
 test_that("the dada2 miaverse wrapper works", {
