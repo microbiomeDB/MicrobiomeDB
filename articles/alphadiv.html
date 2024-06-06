@@ -46,6 +46,7 @@
     <a class="dropdown-item" href="../articles/correlation.html">Correlation</a>
     <a class="dropdown-item" href="../articles/ranked-abundance.html">Ranked Relative Abundances</a>
     <a class="dropdown-item" href="../articles/self-correlation.html">Self Correlation</a>
+    <a class="dropdown-item" href="../articles/user-data.html">Importing Data into MicrobiomeDB</a>
   </div>
 </li>
       </ul>
@@ -166,11 +167,11 @@ predicting the identity of a randomly chosen taxon within a sample.</p>
 <span><span class="co">## get an alpha diversity ComputeResult</span></span>
 <span><span class="va">alphaDivOutput</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alphaDiv-methods.html">alphaDiv</a></span><span class="op">(</span><span class="va">genus</span>, method <span class="op">=</span> <span class="st">'shannon'</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-30 16:25:05.377181 Received df table with 741 samples and 226 taxa.</span></span>
+<span><span class="co">#&gt; 2024-06-06 15:46:45.768244 Received df table with 741 samples and 226 taxa.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-30 16:25:05.428943 shannon alpha diversity computation complete.</span></span>
+<span><span class="co">#&gt; 2024-06-06 15:46:45.838156 shannon alpha diversity computation complete.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-30 16:25:05.444072 Alpha diversity computation completed with parameters method= shannon</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-06-06 15:46:45.853228 Alpha diversity computation completed with parameters method= shannon</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="simpson-diversity-index">Simpson Diversity Index<a class="anchor" aria-label="anchor" href="#simpson-diversity-index"></a>
@@ -184,11 +185,11 @@ taxa.</p>
 <span><span class="va">genus</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span>, <span class="st">'Shotgun metagenomics Genus (Relative taxonomic abundance analysis)'</span><span class="op">)</span></span>
 <span><span class="va">alphaDivOutput</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alphaDiv-methods.html">alphaDiv</a></span><span class="op">(</span><span class="va">genus</span>, method <span class="op">=</span> <span class="st">'simpson'</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-30 16:25:05.53672 Received df table with 741 samples and 226 taxa.</span></span>
+<span><span class="co">#&gt; 2024-06-06 15:46:45.949785 Received df table with 741 samples and 226 taxa.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-30 16:25:05.559171 simpson alpha diversity computation complete.</span></span>
+<span><span class="co">#&gt; 2024-06-06 15:46:45.965449 simpson alpha diversity computation complete.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-30 16:25:05.564354 Alpha diversity computation completed with parameters method= simpson</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-06-06 15:46:45.982788 Alpha diversity computation completed with parameters method= simpson</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="species-evenness">Species Evenness<a class="anchor" aria-label="anchor" href="#species-evenness"></a>
@@ -202,11 +203,11 @@ abundances vary.</p>
 <span><span class="va">genus</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span>, <span class="st">'Shotgun metagenomics Genus (Relative taxonomic abundance analysis)'</span><span class="op">)</span></span>
 <span><span class="va">alphaDivOutput</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alphaDiv-methods.html">alphaDiv</a></span><span class="op">(</span><span class="va">genus</span>, method <span class="op">=</span> <span class="st">'evenness'</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-30 16:25:05.649461 Received df table with 741 samples and 226 taxa.</span></span>
+<span><span class="co">#&gt; 2024-06-06 15:46:46.070492 Received df table with 741 samples and 226 taxa.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-30 16:25:05.678772 evenness alpha diversity computation complete.</span></span>
+<span><span class="co">#&gt; 2024-06-06 15:46:46.089543 evenness alpha diversity computation complete.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-05-30 16:25:05.681928 Alpha diversity computation completed with parameters method= evenness</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-06-06 15:46:46.093046 Alpha diversity computation completed with parameters method= evenness</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">

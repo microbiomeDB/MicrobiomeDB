@@ -25,6 +25,9 @@
     <loc>https://microbiomedb.github.io/MicrobiomeDB/articles/self-correlation.html</loc>
   </url>
   <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/articles/user-data.html</loc>
+  </url>
+  <url>
     <loc>https://microbiomedb.github.io/MicrobiomeDB/authors.html</loc>
   </url>
   <url>
@@ -89,6 +92,30 @@
   </url>
   <url>
     <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/getVariables.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/importBIOM.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/importDADA2.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/importHUMAnN.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/importMetaPhlAn.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/importMothur.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/importPhyloseq.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/importQIIME2.html</loc>
+  </url>
+  <url>
+    <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/importTreeSummarizedExperiment.html</loc>
   </url>
   <url>
     <loc>https://microbiomedb.github.io/MicrobiomeDB/reference/index.html</loc>
