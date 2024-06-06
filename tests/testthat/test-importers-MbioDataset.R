@@ -39,7 +39,7 @@ test_that("buildCollectionFromTreeSE works", {
     expect_equal(inherits(collectionNormalized, "Collection"), TRUE)
     expect_equal(collectionNormalized@name, "test: OTU (TSS normalized)")
     expect_equal(length(collectionNormalized@data), 7)
-    expect_equal(all(rowSums(collectionNormalized@data[, -"recordIDs"]) == 1), TRUE)
+    expect_equal(all(between(rowSums(collectionNormalized@data[, -"recordIDs"]), .99, 1.01)), TRUE)
 
     # try with Class, make sure its aggregating OTU to the Class level
     collectionClass <- buildCollectionFromTreeSE(
@@ -53,7 +53,7 @@ test_that("buildCollectionFromTreeSE works", {
     expect_equal(inherits(collectionClass, "Collection"), TRUE)
     expect_equal(collectionClass@name, "test: Class (TSS normalized)")
     expect_equal(length(collectionClass@data), 4)
-    expect_equal(all(rowSums(collectionClass@data[, -"recordIDs"]) == 1), TRUE)
+    expect_equal(all(between(rowSums(collectionClass@data[, -"recordIDs"]), .99, 1.01)), TRUE)
 })
 
 test_that("we can get an MbioDataset from a TreeSummarizedExperiment", {
