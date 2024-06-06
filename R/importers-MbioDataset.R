@@ -63,7 +63,36 @@ buildCollectionFromTreeSE <- function(
 #' @importFrom purrr reduce
 #' @importFrom data.table data.table
 #' @importFrom SummarizedExperiment rowData
+#' @import TreeSummarizedExperiment
 #' @rdname importTreeSummarizedExperiment
+#' @examples 
+#' data(GlobalPatterns, package="mia")
+#' tse <- GlobalPatterns
+#' 
+#' ## no normalization, with raw values
+#' mbioDataset <- importTreeSummarizedExperiment(
+#'      tse, 
+#'      normalizationMethod = "none", 
+#'      keepRawValues = TRUE, 
+#'      verbose = TRUE
+#' )
+#' 
+#' ## TSS normalization, drop raw values
+#' mbioDataset <- importTreeSummarizedExperiment(
+#'      tse, 
+#'      normalizationMethod = "TSS", 
+#'      keepRawValues = FALSE, 
+#'      verbose = TRUE
+#' )
+#' 
+#' ## TSS normalization, keep raw values
+#' mbioDataset <- importTreeSummarizedExperiment(
+#'      tse, 
+#'      normalizationMethod = "TSS", 
+#'      keepRawValues = TRUE, 
+#'      verbose = TRUE
+#' )
+#' 
 #' @export
 importTreeSummarizedExperiment <- function(data, normalizationMethod = c("TSS", "none"), keepRawValues = c(TRUE, FALSE), verbose = c(TRUE, FALSE)) {
 
@@ -150,7 +179,6 @@ importTreeSummarizedExperiment <- function(data, normalizationMethod = c("TSS", 
 importTreeSE <- importTreeSummarizedExperiment
 
 ## lean on miaverse to import biom, phyloseq, csv, etc
-## TODO do these also needs args about relative abundances? id think so..
 
 #' Import HUMAnN data
 #' 
@@ -166,8 +194,15 @@ importTreeSE <- importTreeSummarizedExperiment
 #' @param verbose Print messages
 #' @param ... Arguments to pass to mia::importHUMAnN
 #' @return A MbioDataset
+#' @examples 
+#' file_path <- system.file("extdata", "humann_output.tsv", package = "mia")
+#' mbioDataset <- importHUMAnN(
+#'      normalizationMethod = "none", 
+#'      keepRawValues = TRUE, 
+#'      verbose = TRUE, 
+#'      file_path
+#' )
 #' @export
-#' @importFrom mia importHUMAnN
 importHUMAnN <- function(normalizationMethod = c("TSS", "none"), keepRawValues = c(TRUE, FALSE), verbose = c(TRUE, FALSE), ...) {
     .require_package("mia")
 
@@ -192,7 +227,6 @@ importHUMAnN <- function(normalizationMethod = c("TSS", "none"), keepRawValues =
 #' @param ... Arguments to pass to mia::importMetaPhlAn
 #' @return A MbioDataset
 #' @export
-#' @importFrom mia importMetaPhlAn
 importMetaPhlAn <- function(normalizationMethod = c("TSS", "none"), keepRawValues = c(TRUE, FALSE), verbose = c(TRUE, FALSE), ...) {
     .require_package("mia")
 
@@ -216,8 +250,20 @@ importMetaPhlAn <- function(normalizationMethod = c("TSS", "none"), keepRawValue
 #' @param verbose Print messages
 #' @param ... Arguments to pass to mia::importMothur
 #' @return A MbioDataset
+#' @examples
+#' counts <- system.file("extdata", "mothur_example.shared", package = "mia")
+#' taxa <- system.file("extdata", "mothur_example.cons.taxonomy", package = "mia")
+#' meta <- system.file("extdata", "mothur_example.design", package = "mia")
+#' 
+#' mbioDataset <- importMothur(
+#'      normalizationMethod = "none", 
+#'      keepRawValues = TRUE, 
+#'      verbose = TRUE, 
+#'      counts, 
+#'      taxa, 
+#'      meta
+#' )
 #' @export
-#' @importFrom mia importMothur
 importMothur <- function(normalizationMethod = c("TSS", "none"), keepRawValues = c(TRUE, FALSE), verbose = c(TRUE, FALSE), ...) {
     .require_package("mia")
 
@@ -241,8 +287,18 @@ importMothur <- function(normalizationMethod = c("TSS", "none"), keepRawValues =
 #' @param verbose Print messages
 #' @param ... Arguments to pass to mia::importQIIME2
 #' @return A MbioDataset
+#' @examples
+#' featureTableFile <- system.file("extdata", "table.qza", package = "mia")
+#' taxonomyTableFile <- system.file("extdata", "taxonomy.qza", package = "mia")
+#' 
+#' mbioDataset <- importQIIME2(
+#'      normalizationMethod = "none", 
+#'      keepRawValues = TRUE, 
+#'      verbose = TRUE, 
+#'      featureTableFile, 
+#'      taxonomyTableFile
+#' )
 #' @export
-#' @importFrom mia importQIIME2
 importQIIME2 <- function(normalizationMethod = c("TSS", "none"), keepRawValues = c(TRUE, FALSE), verbose = c(TRUE, FALSE), ...) {
     .require_package("mia")
 
@@ -266,14 +322,38 @@ importQIIME2 <- function(normalizationMethod = c("TSS", "none"), keepRawValues =
 #' @param verbose Print messages
 #' @param ... Arguments to pass to mia::makeTreeSEFromBiom
 #' @return A MbioDataset
+#' @examples
+#' rich_dense_file = system.file("extdata", "rich_dense_otu_table.biom",
+#'                                package = "biomformat")
+#'
+#' mbioDataset <- importBIOM(
+#'      normalizationMethod = "none", 
+#'      keepRawValues = TRUE, 
+#'      verbose = TRUE, 
+#'      rich_dense_file
+#' )
+#' 
+#' rich_dense_biom = biomformat::read_biom(rich_dense_file)
+#' 
+#' mbioDataset <- importBIOM(
+#'      normalizationMethod = "none", 
+#'      keepRawValues = TRUE, 
+#'      verbose = TRUE, 
+#'      rich_dense_biom
+#' )
 #' @export
-#' @importFrom mia makeTreeSEFromBiom
 importBIOM <- function(normalizationMethod = c("TSS", "none"), keepRawValues = c(TRUE, FALSE), verbose = c(TRUE, FALSE), ...) {
     .require_package("mia")
     .require_package("biomformat")
 
-    biom <- biomformat::read_biom(...)
-    treeSE <- mia::makeTreeSEFromBiom(obj=biom)
+    if (!inherits(..., "biom")) {
+        biom <- biomformat::read_biom(...)
+        treeSE <- mia::makeTreeSEFromBiom(obj=biom)
+    } else {
+        treeSE <- mia::makeTreeSEFromBiom(...)
+    }
+    
+    
 
     mbioDataset <- importTreeSummarizedExperiment(treeSE, normalizationMethod = normalizationMethod, keepRawValues = keepRawValues, verbose = verbose)
     return(mbioDataset)
@@ -293,8 +373,22 @@ importBIOM <- function(normalizationMethod = c("TSS", "none"), keepRawValues = c
 #' @param verbose Print messages
 #' @param ... Arguments to pass to mia::makeTreeSEFromDADA2
 #' @return A MbioDataset
+#' @examples
+#' fnF <- system.file("extdata", "sam1F.fastq.gz", package="dada2")
+#' fnR = system.file("extdata", "sam1R.fastq.gz", package="dada2")
+#' dadaF <- dada2::dada(fnF, selfConsist=TRUE)
+#' dadaR <- dada2::dada(fnR, selfConsist=TRUE)
+#' 
+#' mbioDataset <- importDADA2(
+#'      normalizationMethod = "none", 
+#'      keepRawValues = TRUE, 
+#'      verbose = TRUE, 
+#'      dadaF, 
+#'      fnF, 
+#'      dadaR, 
+#'      fnR
+#' )
 #' @export
-#' @importFrom mia makeTreeSEFromDADA2
 importDADA2 <- function(normalizationMethod = c("TSS", "none"), keepRawValues = c(TRUE, FALSE), verbose = c(TRUE, FALSE), ...) {
     .require_package("mia")
     .require_package("dada2")
@@ -319,12 +413,20 @@ importDADA2 <- function(normalizationMethod = c("TSS", "none"), keepRawValues = 
 #' @param verbose Print messages
 #' @param ... Arguments to pass to mia::makeTreeSEFromPhyloseq
 #' @return A MbioDataset
+#' @examples
+#' data(GlobalPatterns, package="phyloseq")
+#' 
+#' mbioDataset <- importPhyloseq(
+#'      normalizationMethod = "none", 
+#'      keepRawValues = TRUE, 
+#'      verbose = TRUE, 
+#'      GlobalPatterns
+#' )
 #' @export
-#' @importFrom mia makeTreeSEFromPhyloseq
 importPhyloseq <- function(normalizationMethod = c("TSS", "none"), keepRawValues = c(TRUE, FALSE), verbose = c(TRUE, FALSE), ...) {
     .require_package("mia")
     .require_package("phyloseq")
-    
+
     treeSE <- mia::makeTreeSEFromPhyloseq(...)
 
     mbioDataset <- importTreeSummarizedExperiment(treeSE, normalizationMethod = normalizationMethod, keepRawValues = keepRawValues, verbose = verbose)

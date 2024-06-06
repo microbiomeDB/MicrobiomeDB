@@ -31,3 +31,17 @@ in a simpler and more performant object which is compliant
 with the MicrobiomeDB infrastructure. See \code{mia::importMothur}
 for documentation.
 }
+\examples{
+counts <- system.file("extdata", "mothur_example.shared", package = "mia")
+taxa <- system.file("extdata", "mothur_example.cons.taxonomy", package = "mia")
+meta <- system.file("extdata", "mothur_example.design", package = "mia")
+
+mbioDataset <- importMothur(
+     normalizationMethod = "none", 
+     keepRawValues = TRUE, 
+     verbose = TRUE, 
+     counts, 
+     taxa, 
+     meta
+)
+}

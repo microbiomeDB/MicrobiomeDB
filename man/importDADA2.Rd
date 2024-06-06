@@ -31,3 +31,19 @@ in a simpler and more performant object which is compliant
 with the MicrobiomeDB infrastructure. See \code{mia::makeTreeSEFromDADA2}
 for documentation.
 }
+\examples{
+fnF <- system.file("extdata", "sam1F.fastq.gz", package="dada2")
+fnR = system.file("extdata", "sam1R.fastq.gz", package="dada2")
+dadaF <- dada2::dada(fnF, selfConsist=TRUE)
+dadaR <- dada2::dada(fnR, selfConsist=TRUE)
+
+mbioDataset <- importDADA2(
+     normalizationMethod = "none", 
+     keepRawValues = TRUE, 
+     verbose = TRUE, 
+     dadaF, 
+     fnF, 
+     dadaR, 
+     fnR
+)
+}

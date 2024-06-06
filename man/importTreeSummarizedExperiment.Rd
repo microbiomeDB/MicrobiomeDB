@@ -38,3 +38,32 @@ There is some loss of granularity in this process. It results
 in a simpler and more performant object which is compliant
 with the MicrobiomeDB infrastructure.
 }
+\examples{
+data(GlobalPatterns, package="mia")
+tse <- GlobalPatterns
+
+## no normalization, with raw values
+mbioDataset <- importTreeSummarizedExperiment(
+     tse, 
+     normalizationMethod = "none", 
+     keepRawValues = TRUE, 
+     verbose = TRUE
+)
+
+## TSS normalization, drop raw values
+mbioDataset <- importTreeSummarizedExperiment(
+     tse, 
+     normalizationMethod = "TSS", 
+     keepRawValues = FALSE, 
+     verbose = TRUE
+)
+
+## TSS normalization, keep raw values
+mbioDataset <- importTreeSummarizedExperiment(
+     tse, 
+     normalizationMethod = "TSS", 
+     keepRawValues = TRUE, 
+     verbose = TRUE
+)
+
+}

@@ -31,3 +31,23 @@ in a simpler and more performant object which is compliant
 with the MicrobiomeDB infrastructure. See \code{mia::makeTreeSEFromBiom}
 for documentation.
 }
+\examples{
+rich_dense_file = system.file("extdata", "rich_dense_otu_table.biom",
+                               package = "biomformat")
+
+mbioDataset <- importBIOM(
+     normalizationMethod = "none", 
+     keepRawValues = TRUE, 
+     verbose = TRUE, 
+     rich_dense_file
+)
+
+rich_dense_biom = biomformat::read_biom(rich_dense_file)
+
+mbioDataset <- importBIOM(
+     normalizationMethod = "none", 
+     keepRawValues = TRUE, 
+     verbose = TRUE, 
+     rich_dense_biom
+)
+}
