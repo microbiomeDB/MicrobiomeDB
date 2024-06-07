@@ -87,13 +87,13 @@
 <span><span class="co">#&gt; Warning: replacing previous import 'S4Arrays::makeNindexFromArrayViewport' by</span></span>
 <span><span class="co">#&gt; 'DelayedArray::makeNindexFromArrayViewport' when loading 'SummarizedExperiment'</span></span></code></pre></div>
 <div class="section level2">
-<h2 id="importing-data">Importing Data<a class="anchor" aria-label="anchor" href="#importing-data"></a>
+<h2 id="introduction">Importing Data<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
 <p>The MicrobiomeDB package supports importing data from the following
-formats: - <a href="#treesummarizedexperiment">TreeSummarizedExperiment</a> - <a href="#phyloseq">phyloseq</a> - <a href="#biom">BIOM</a> - <a href="#qiime2">QIIME2 output files</a> - <a href="#mothur">Mothur output
-files</a> - <a href="#dada2">dada2 output files</a> - <a href="#humann">HUMAnN output files</a></p>
-<p>For formats other than <code>TreeSummarizedExperiment</code> the
-[mia][] package is also required. You can install it like:</p>
+formats: * <a href="#treesummarizedexperiment">TreeSummarizedExperiment</a> * <a href="#phyloseq">phyloseq</a> * <a href="#biom">BIOM</a> * <a href="#qiime2">QIIME2 output files</a> * <a href="#mothur">Mothur output
+files</a> * <a href="#dada2">dada2 output files</a> * <a href="#humann">HUMAnN output files</a></p>
+<p>For formats other than <code>TreeSummarizedExperiment</code> the <a href="https://bioconductor.org/packages/mia" class="external-link">mia</a> package is also
+required. You can install it like:</p>
 <pre><code><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
 <span></span>
@@ -148,13 +148,14 @@ way:</p>
 <div class="section level3">
 <h3 id="phyloseq">Phyloseq<a class="anchor" aria-label="anchor" href="#phyloseq"></a>
 </h3>
-<p>First, make sure <a href="#phyloseq">phyloseq</a> is installed:</p>
+<p>First, make sure <a href="https://bioconductor.org/packages/phyloseq" class="external-link">phyloseq</a> is
+installed:</p>
 <pre><code><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu">install</span><span class="op">(</span><span class="st">"phyloseq"</span><span class="op">)</span></span></code></pre>
-<p>Then, in order to import phyloseq objects, the [mia][] package is
-also required. Once that is installed (see <a href="#introduction">above</a>), you can do the following:</p>
+<p>Then, in order to import phyloseq objects, the <a href="https://bioconductor.org/packages/mia" class="external-link">mia</a> package is also
+required. Once that is installed (see <a href="#introduction">above</a>), you can do the following:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">GlobalPatterns</span>, package<span class="op">=</span><span class="st">"phyloseq"</span><span class="op">)</span></span>
 <span></span>
@@ -168,13 +169,14 @@ also required. Once that is installed (see <a href="#introduction">above</a>), y
 <div class="section level3">
 <h3 id="biom">BIOM<a class="anchor" aria-label="anchor" href="#biom"></a>
 </h3>
-<p>First, make sure [biomformat][] is installed:</p>
+<p>First, make sure <a href="https://bioconductor.org/packages/biomformat" class="external-link">biomformat</a> is
+installed:</p>
 <pre><code><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu">install</span><span class="op">(</span><span class="st">"biomformat"</span><span class="op">)</span></span></code></pre>
-<p>Then, in order to import biom files and objects, the [mia][] package
-is also required. Once that is installed (see <a href="#introduction">above</a>), you can do the following:</p>
+<p>Then, in order to import biom files and objects, the <a href="https://bioconductor.org/packages/mia" class="external-link">mia</a> package is also
+required. Once that is installed (see <a href="#introduction">above</a>), you can do the following:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## passing the file name directly</span></span>
 <span><span class="va">rich_dense_file</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"rich_dense_otu_table.biom"</span>,</span>
@@ -200,7 +202,7 @@ is also required. Once that is installed (see <a href="#introduction">above</a>)
 <div class="section level3">
 <h3 id="qiime2">QIIME2<a class="anchor" aria-label="anchor" href="#qiime2"></a>
 </h3>
-<p>In order to import QIIME2 output files, the [mia][] package is also
+<p>In order to import QIIME2 output files, the <a href="https://bioconductor.org/packages/mia" class="external-link">mia</a> package is also
 required. Once that is installed (see <a href="#introduction">above</a>), you can do the following:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">featureTableFile</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"table.qza"</span>, package <span class="op">=</span> <span class="st">"mia"</span><span class="op">)</span></span>
@@ -217,7 +219,7 @@ required. Once that is installed (see <a href="#introduction">above</a>), you ca
 <div class="section level3">
 <h3 id="mothur">Mothur<a class="anchor" aria-label="anchor" href="#mothur"></a>
 </h3>
-<p>In order to import Mother output files, the [mia][] package is also
+<p>In order to import Mother output files, the <a href="https://bioconductor.org/packages/mia" class="external-link">mia</a> package is also
 required. Once that is installed (see <a href="#introduction">above</a>), you can do the following:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">counts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"mothur_example.shared"</span>, package <span class="op">=</span> <span class="st">"mia"</span><span class="op">)</span></span>
@@ -236,13 +238,14 @@ required. Once that is installed (see <a href="#introduction">above</a>), you ca
 <div class="section level3">
 <h3 id="dada2">dada2<a class="anchor" aria-label="anchor" href="#dada2"></a>
 </h3>
-<p>First, make sure <a href="#dada2">dada2</a> is installed:</p>
+<p>First, make sure <a href="https://bioconductor.org/packages/dada2" class="external-link">dada2</a> is
+installed:</p>
 <pre><code><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu">install</span><span class="op">(</span><span class="st">"dada2"</span><span class="op">)</span></span></code></pre>
-<p>Then, in order to import dada2 output files, the [mia][] package is
-also required. Once that is installed (see <a href="#introduction">above</a>), you can do the following:</p>
+<p>Then, in order to import dada2 output files, the <a href="https://bioconductor.org/packages/mia" class="external-link">mia</a> package is also
+required. Once that is installed (see <a href="#introduction">above</a>), you can do the following:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fnF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"sam1F.fastq.gz"</span>, package<span class="op">=</span><span class="st">"dada2"</span><span class="op">)</span></span>
 <span><span class="va">fnR</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"sam1R.fastq.gz"</span>, package<span class="op">=</span><span class="st">"dada2"</span><span class="op">)</span></span>
@@ -276,7 +279,7 @@ also required. Once that is installed (see <a href="#introduction">above</a>), y
 <div class="section level3">
 <h3 id="humann">HUMAnN<a class="anchor" aria-label="anchor" href="#humann"></a>
 </h3>
-<p>In order to import HUMAnN output files, the [mia][] package is also
+<p>In order to import HUMAnN output files, the <a href="https://bioconductor.org/packages/mia" class="external-link">mia</a> package is also
 required. Once that is installed (see <a href="#introduction">above</a>), you can do the following:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## this is the merged output file</span></span>

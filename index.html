@@ -73,45 +73,42 @@
 <div class="page-header"><h1 id="microbiomedb-">MicrobiomeDB <a href="https://microbiomedb.github.io/MicrobiomeDB/"><img src="reference/figures/MicrobiomeDB_hex.png" align="right" height="200" style="float:right; height:200px;"></a>
 <a class="anchor" aria-label="anchor" href="#microbiomedb-"></a>
 </h1></div>
-<p>A suite of R packages containing all of the data from MicrobiomeDB.org, and tools for analyzing and visualizing the same. It also supports importing data from the following formats: - TreeSummarizedExperiment - phyloseq - BIOM - QIIME2 output files - Mothur output files - dada2 output files - HUMAnN output files</p>
+<p>A suite of R packages containing all of the data from MicrobiomeDB.org, and tools for analyzing and visualizing the same. It also supports importing data from the following formats: * TreeSummarizedExperiment * phyloseq * BIOM * QIIME2 output files * Mothur output files * dada2 output files * HUMAnN output files</p>
 <p>If you have questions or comments of any kind, join us on our <a href="https://discord.gg/DEjNbxgq" class="external-link">Discord Community Server</a>! We’d love to hear from you.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p>Use the R package <a href="https://cran.r-project.org/web/packages/remotes/index.html" class="external-link">remotes</a> to install MicrobiomeDB. From the R command prompt:</p>
-<p><code>{R} remotes::install_github('microbiomeDB/MicrobiomeDB')</code></p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">'microbiomeDB/MicrobiomeDB'</span><span class="op">)</span></span></code></pre></div>
 <p>If you would like to import data from any format other than TreeSummarizedExperiment, you will also need to install [mia][] from [Bioconductor][] with:</p>
-<p>```{R} if (!requireNamespace(“BiocManager”, quietly = TRUE)) install.packages(“BiocManager”)</p>
-<p>BiocManager::install(“mia”)</p>
-<pre><code>
-Please note that Linux and MacOS with source-level installations require the 'gsl' system dependency for `mia`. 
-
-On Debian or Ubuntu
-</code></pre>
-<p>sudo apt-get install -y libgsl-dev</p>
-<pre><code>
-On Fedora, CentOS or RHEL
-</code></pre>
-<p>sudo yum install libgsl-devel</p>
-<pre><code>
-On macOS (source installations are not common on macOS, so this step is not usually necessary)
-</code></pre>
-<p>brew install gsl</p>
-<pre><code>
-## Usage
-This package is intended to be used to explore the curated datasets from MicrobiomeDB.org, as well as your own datasets. It comes pre-packaged with the same functions used to power the analysis tools from the website. Functions to facilitate easily importing data from phyloseq objects, TreeSummarizedExperiment objects and .biom files (among others) are available.
-
-This package is paired with a dedicated data package called microbiomeData which includes a number of pre-built `MbioDataset` objects representing the curated data from the MicrobiomeDB.org website. You can see their names like:
-
-```R
-remotes::install_github('microbiomeDB/microbiomeData')
-microbiomeData::getCuratedDatasetNames()</code></pre>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu">install</span><span class="op">(</span><span class="st">"mia"</span><span class="op">)</span></span></code></pre></div>
+<p>Please note that Linux and MacOS with source-level installations require the ‘gsl’ system dependency for <code>mia</code>.</p>
+<p>On Debian or Ubuntu</p>
+<pre><code>sudo apt-get install -y libgsl-dev</code></pre>
+<p>On Fedora, CentOS or RHEL</p>
+<pre><code>sudo yum install libgsl-devel</code></pre>
+<p>On macOS (source installations are not common on macOS, so this step is not usually necessary)</p>
+<pre><code>brew install gsl</code></pre>
+</div>
+<div class="section level2">
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h2>
+<p>This package is intended to be used to explore the curated datasets from MicrobiomeDB.org, as well as your own datasets. It comes pre-packaged with the same functions used to power the analysis tools from the website. Functions to facilitate easily importing data from phyloseq objects, TreeSummarizedExperiment objects and .biom files (among others) are available.</p>
+<p>This package is paired with a dedicated data package called microbiomeData which includes a number of pre-built <code>MbioDataset</code> objects representing the curated data from the MicrobiomeDB.org website. You can see their names like:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">'microbiomeDB/microbiomeData'</span><span class="op">)</span></span>
+<span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="fu"><a href="https://microbiomedb.github.io/microbiomeData/reference/getCuratedDatasetNames.html" class="external-link">getCuratedDatasetNames</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>This will return a list of names of data objects which were installed with the package. One such dataset is ‘DiabImmune’, which we’ll use in the following example. <code>MbioDataset</code> objects contain two things <code>metadata</code> and <code>collections</code>. Metadata typically include details about samples in the dataset, such as the age of the person they were collected from. Collections can be any group of variables which represent a unified biological concept measured over a consistent or comparable range of values. An example might be relative abundances of various genera.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">getCollectionNames</span><span class="op">(</span><span class="va">DiabImmune</span><span class="op">)</span> <span class="co"># will print the names of collections</span></span>
 <span><span class="va">myCollection</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="va">DiabImmune</span>, <span class="st">'16S Species'</span><span class="op">)</span> <span class="co"># NOTE: you can also use the `format` argument here to get these as phyloseq objects</span></span></code></pre></div>
 <p>Once you have <code>myCollection</code>, you can start using our <code>microbiomeComputations</code> package (which was installed for you when you installed this one) to do fun things like:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">alphaDivResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/alphaDiv-methods.html">alphaDiv</a></span><span class="op">(</span><span class="va">myCollection</span><span class="op">)</span></span>
 <span><span class="va">correlationResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/correlation-methods.html">correlation</a></span><span class="op">(</span><span class="va">myCollection</span><span class="op">)</span></span>
 <span><span class="va">differentialAbundanceResults</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/differentialAbundance-methods.html">differentialAbundance</a></span><span class="op">(</span></span>
@@ -121,7 +118,7 @@ microbiomeData::getCuratedDatasetNames()</code></pre>
 <span>  groupB <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="va">x</span> <span class="op">&gt;=</span> <span class="fl">300</span><span class="op">}</span>,</span>
 <span>  method <span class="op">=</span> <span class="st">'Maaslin2'</span><span class="op">)</span>  </span></code></pre></div>
 <p>This will give you a <code>ComputeResult</code> object, with slots for <code>data</code> and <code>statistics</code> that you can explore. These objects can be difficult to parse, so we’ve added some functions to help format these results in more usable and exciting ways! They are called <code>getComputeResult</code> and <code>getComputeResultWithMetadata</code> which will return data.tables (and sometimes igraph objects) which you can use like this:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">myCorrelationDT</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/getComputeResult.html">getComputeResult</a></span><span class="op">(</span><span class="va">correlationResults</span><span class="op">)</span></span>
 <span><span class="va">myCorrelationGraph</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/getComputeResult.html">getComputeResult</a></span><span class="op">(</span><span class="va">correlationResults</span>, format <span class="op">=</span> <span class="st">'igraph'</span><span class="op">)</span></span>
 <span><span class="fu">MicrobiomeDB</span><span class="fu">::</span><span class="fu"><a href="reference/correlationNetwork.html">correlationNetwork</a></span><span class="op">(</span><span class="va">myCorrelationDT</span><span class="op">)</span> <span class="co"># will render a network visualization of the results using widgets from our own `corGraph` project</span></span>
