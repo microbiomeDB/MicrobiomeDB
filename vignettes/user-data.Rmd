@@ -18,18 +18,18 @@ knitr::opts_chunk$set(
 library(MicrobiomeDB)
 ```
 
-## Importing Data
+## Importing Data {#introduction}
 
 The MicrobiomeDB package supports importing data from the following formats:
-  - [TreeSummarizedExperiment](#treesummarizedexperiment)
-  - [phyloseq](#phyloseq)
-  - [BIOM](#biom)
-  - [QIIME2 output files](#qiime2)
-  - [Mothur output files](#mothur)
-  - [dada2 output files](#dada2)
-  - [HUMAnN output files](#humann)
+  * [TreeSummarizedExperiment](#treesummarizedexperiment)
+  * [phyloseq](#phyloseq)
+  * [BIOM](#biom)
+  * [QIIME2 output files](#qiime2)
+  * [Mothur output files](#mothur)
+  * [dada2 output files](#dada2)
+  * [HUMAnN output files](#humann)
 
-For formats other than `TreeSummarizedExperiment` the [mia][] package is also required. You can install it like:
+For formats other than `TreeSummarizedExperiment` the [mia](https://bioconductor.org/packages/mia) package is also required. You can install it like:
 
 ```
 if (!requireNamespace("BiocManager", quietly = TRUE))
@@ -95,7 +95,7 @@ mbioDataset <- importTreeSummarizedExperiment(
 
 ### Phyloseq
 
-First, make sure [phyloseq][] is installed:
+First, make sure [phyloseq](https://bioconductor.org/packages/phyloseq) is installed:
 
 ```
 if (!requireNamespace("BiocManager", quietly = TRUE))
@@ -104,7 +104,7 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
 BiocManager::install("phyloseq")
 ```
 
-Then, in order to import phyloseq objects, the [mia][] package is also required. Once that is installed (see [above](#introduction)), 
+Then, in order to import phyloseq objects, the [mia](https://bioconductor.org/packages/mia) package is also required. Once that is installed (see [above](#introduction)), 
 you can do the following:
 
 ```{R}
@@ -120,7 +120,7 @@ mbioDataset <- importPhyloseq(
 
 ### BIOM
 
-First, make sure [biomformat][] is installed:
+First, make sure [biomformat](https://bioconductor.org/packages/biomformat) is installed:
 
 ```
 if (!requireNamespace("BiocManager", quietly = TRUE))
@@ -129,7 +129,7 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
 BiocManager::install("biomformat")
 ```
 
-Then, in order to import biom files and objects, the [mia][] package is also required. Once that is installed (see [above](#introduction)), 
+Then, in order to import biom files and objects, the [mia](https://bioconductor.org/packages/mia) package is also required. Once that is installed (see [above](#introduction)), 
 you can do the following:
 
 ```{R}
@@ -157,7 +157,7 @@ mbioDataset <- importBIOM(
 
 ### QIIME2
 
-In order to import QIIME2 output files, the [mia][] package is also required. Once that is installed (see [above](#introduction)), 
+In order to import QIIME2 output files, the [mia](https://bioconductor.org/packages/mia) package is also required. Once that is installed (see [above](#introduction)), 
 you can do the following:
 
 ```{R}
@@ -175,7 +175,7 @@ mbioDataset <- importQIIME2(
 
 ### Mothur
 
-In order to import Mother output files, the [mia][] package is also required. Once that is installed (see [above](#introduction)), 
+In order to import Mother output files, the [mia](https://bioconductor.org/packages/mia) package is also required. Once that is installed (see [above](#introduction)), 
 you can do the following:
 
 ```{R}
@@ -195,7 +195,7 @@ mbioDataset <- importMothur(
 
 ### dada2
 
-First, make sure [dada2][] is installed:
+First, make sure [dada2](https://bioconductor.org/packages/dada2) is installed:
 
 ```
 if (!requireNamespace("BiocManager", quietly = TRUE))
@@ -204,7 +204,7 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
 BiocManager::install("dada2")
 ```
 
-Then, in order to import dada2 output files, the [mia][] package is also required. Once that is installed (see [above](#introduction)), 
+Then, in order to import dada2 output files, the [mia](https://bioconductor.org/packages/mia) package is also required. Once that is installed (see [above](#introduction)), 
 you can do the following:
 
 ```{R}
@@ -226,7 +226,7 @@ mbioDataset <- importDADA2(
 
 ### HUMAnN
 
-In order to import HUMAnN output files, the [mia][] package is also required. Once that is installed (see [above](#introduction)), 
+In order to import HUMAnN output files, the [mia](https://bioconductor.org/packages/mia) package is also required. Once that is installed (see [above](#introduction)), 
 you can do the following:
 
 ```{R}
