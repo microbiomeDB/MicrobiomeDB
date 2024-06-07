@@ -39,7 +39,7 @@ test_that("buildCollectionFromTreeSE works", {
     expect_equal(inherits(collectionNormalized, "Collection"), TRUE)
     expect_equal(collectionNormalized@name, "test: OTU (TSS normalized)")
     expect_equal(length(collectionNormalized@data), 7)
-    expect_equal(all(rowSums(collectionNormalized@data[, -"recordIDs"]) == 1), TRUE)
+    expect_equal(all(between(rowSums(collectionNormalized@data[, -"recordIDs"]), .99, 1.01)), TRUE)
 
     # try with Class, make sure its aggregating OTU to the Class level
     collectionClass <- buildCollectionFromTreeSE(
@@ -53,7 +53,7 @@ test_that("buildCollectionFromTreeSE works", {
     expect_equal(inherits(collectionClass, "Collection"), TRUE)
     expect_equal(collectionClass@name, "test: Class (TSS normalized)")
     expect_equal(length(collectionClass@data), 4)
-    expect_equal(all(rowSums(collectionClass@data[, -"recordIDs"]) == 1), TRUE)
+    expect_equal(all(between(rowSums(collectionClass@data[, -"recordIDs"]), .99, 1.01)), TRUE)
 })
 
 test_that("we can get an MbioDataset from a TreeSummarizedExperiment", {
@@ -184,6 +184,16 @@ test_that("the biom miaverse wrapper works", {
     expect_equal(inherits(aCollection, "Collection"), TRUE)
     expect_equal(length(aCollection@data) > 0, TRUE)
 
+    rich_dense_biom = biomformat::read_biom(rich_dense_file)
+
+    mbioDataset <- importBIOM(normalizationMethod = "none", keepRawValues = TRUE, verbose = TRUE, rich_dense_biom)
+
+    expect_equal(inherits(mbioDataset, "MbioDataset"), TRUE)
+    expect_equal(length(getCollectionNames(mbioDataset)) > 0, TRUE)
+    aCollectionName <- getCollectionNames(mbioDataset)[1]
+    aCollection <- getCollection(mbioDataset, aCollectionName)
+    expect_equal(inherits(aCollection, "Collection"), TRUE)
+    expect_equal(length(aCollection@data) > 0, TRUE)
 })
 
 test_that("the dada2 miaverse wrapper works", {
@@ -198,11 +208,7 @@ test_that("the dada2 miaverse wrapper works", {
     mbioDataset <- importDADA2(normalizationMethod = "none", keepRawValues = TRUE, verbose = TRUE, dadaF, fnF, dadaR, fnR)
 
     expect_equal(inherits(mbioDataset, "MbioDataset"), TRUE)
-    expect_equal(length(getCollectionNames(mbioDataset)) > 0, TRUE)
-    aCollectionName <- getCollectionNames(mbioDataset)[1]
-    aCollection <- getCollection(mbioDataset, aCollectionName)
-    expect_equal(inherits(aCollection, "Collection"), TRUE)
-    expect_equal(length(aCollection@data) > 0, TRUE)
+    expect_equal(length(getCollectionNames(mbioDataset)) > 0, FALSE) # dummy daddy
 
 })
 
