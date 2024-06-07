@@ -21,13 +21,13 @@ library(MicrobiomeDB)
 ## Importing Data {#introduction}
 
 The MicrobiomeDB package supports importing data from the following formats:
-  * [TreeSummarizedExperiment](#treesummarizedexperiment)
-  * [phyloseq](#phyloseq)
-  * [BIOM](#biom)
-  * [QIIME2 output files](#qiime2)
-  * [Mothur output files](#mothur)
-  * [dada2 output files](#dada2)
-  * [HUMAnN output files](#humann)
+* [TreeSummarizedExperiment](#treesummarizedexperiment)
+* [phyloseq](#phyloseq)
+* [BIOM](#biom)
+* [QIIME2 output files](#qiime2)
+* [Mothur output files](#mothur)
+* [dada2 output files](#dada2)
+* [HUMAnN output files](#humann)
 
 For formats other than `TreeSummarizedExperiment` the [mia](https://bioconductor.org/packages/mia) package is also required. You can install it like:
 

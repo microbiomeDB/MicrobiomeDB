@@ -7,13 +7,13 @@
 
 A suite of R packages containing all of the data from MicrobiomeDB.org, and tools for analyzing and visualizing the same. It also supports
 importing data from the following formats:
- * TreeSummarizedExperiment
- * phyloseq
- * BIOM
- * QIIME2 output files
- * Mothur output files
- * dada2 output files
- * HUMAnN output files
+* TreeSummarizedExperiment
+* phyloseq
+* BIOM
+* QIIME2 output files
+* Mothur output files
+* dada2 output files
+* HUMAnN output files
 
 If you have questions or comments of any kind, join us on our [Discord Community Server](https://discord.gg/DEjNbxgq)! We'd love to hear from you.
 
@@ -25,7 +25,8 @@ Use the R package [remotes](https://cran.r-project.org/web/packages/remotes/inde
 remotes::install_github('microbiomeDB/MicrobiomeDB')
 ```
 
-If you would like to import data from any format other than TreeSummarizedExperiment, you will also need to install [mia][] from [Bioconductor][] with:
+If you would like to import data from any format other than TreeSummarizedExperiment, you will also need to install [mia](https://bioconductor.org/packages/mia) 
+from [Bioconductor](https://bioconductor.org) with:
 
 ```R
 if (!requireNamespace("BiocManager", quietly = TRUE))
