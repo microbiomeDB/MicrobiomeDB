@@ -227,3 +227,18 @@ test_that("the phyloseq miaverse wrapper works", {
     expect_equal(inherits(aCollection, "Collection"), TRUE)
     expect_equal(length(aCollection@data) > 0, TRUE)
 })
+
+test_that("We never have duplicate column names within a collection", {
+    tse <- test_path("testdata", "toxo_gut_treeSE.rda")
+    load(tse)
+
+    mbioDataset <- importTreeSummarizedExperiment(tse)
+
+    expect_equal(inherits(mbioDataset, "MbioDataset"), TRUE)
+    expect_equal(length(getCollectionNames(mbioDataset)) > 0, TRUE)
+    aCollectionName <- getCollectionNames(mbioDataset)[1]
+    aCollection <- getCollection(mbioDataset, aCollectionName)
+    expect_equal(inherits(aCollection, "Collection"), TRUE)
+    expect_equal(length(aCollection@data) > 0, TRUE)
+    expect_equal(length(unique(colnames(aCollection@data))) == length(colnames(aCollection@data)), TRUE)
+})
