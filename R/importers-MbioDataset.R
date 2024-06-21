@@ -15,8 +15,37 @@ buildCollectionFromTreeSE <- function(
         stop("Must specify both assayDataName and rowDataColumnName as named elements of the collectionName list argument")
     }
 
+    # get our assay data as a data.frame
     assayDT <- as.data.frame.matrix(assayData, col.names = colnames(assayData), row.names = row.names(assayData))
-    dt <- data.table::as.data.table(merge(assayDT, rowData[rowDataColumnName], by = 0))
+
+    # we remove square brackets from the taxa/ element names in the rowData
+    # this package expects anything within square brackets to be an ontology IRI 
+    # we assume IRIs shouldnt be user facing, and remove anything within square brackets later (see getCollection method)
+    rowData <- as.data.frame.matrix(apply(rowData, 2, function(x){gsub("\\[|\\]", "", x)}))
+    rowDataColumn <- rowData[rowDataColumnName]
+
+    # we want to turn empty taxa names into something meaningful
+    # well ignore cols in rowData which have empty strings where rowDataColumn also has an empty string
+    emptyRowDataColumnIndices <- which(rowDataColumn[[rowDataColumnName]] == '')
+    upstreamTaxaColumns <- !apply(rowData, 2, function(x) { all( emptyRowDataColumnIndices) %in% which(x == '') })
+    upstreamTaxa <- rowData[, which(upstreamTaxaColumns)]
+
+    # well ignore cols in rowData where every entry is unique (these are sequences or OTUs directly)
+    # .. unless that results in no cols remaining in rowData
+    uniqueEntryColumns <- apply(upstreamTaxa, 2, data.table::uniqueN) == nrow(upstreamTaxa)
+    tmp <- upstreamTaxa[, -which(uniqueEntryColumns)]
+    if (length(tmp) != 0) {
+        upstreamTaxa <- tmp
+        rm(tmp)
+    }
+
+    # then well concatenate the values of all other columns (presumably upstream taxonomic levels)
+    # the concatenated value becomes the new value for rowDataColumn
+    lineage <- paste0(apply(upstreamTaxa, 1, paste, collapse="_"), "_Incertae_sedis")
+    rowDataColumn[emptyRowDataColumnIndices, rowDataColumnName] <- lineage[emptyRowDataColumnIndices]
+
+    # get assay and taxonomic info in same table
+    dt <- data.table::as.data.table(merge(assayDT, rowDataColumn, by = 0))
     dt$Row.names <- NULL
 
     recordIDs <- names(dt)[names(dt) != rowDataColumnName]
