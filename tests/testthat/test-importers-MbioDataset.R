@@ -241,4 +241,8 @@ test_that("We never have duplicate column names within a collection", {
     expect_equal(inherits(aCollection, "Collection"), TRUE)
     expect_equal(length(aCollection@data) > 0, TRUE)
     expect_equal(length(unique(colnames(aCollection@data))) == length(colnames(aCollection@data)), TRUE)
+    
+    # also make sure no square brackets in column names
+    expect_equal(all(grepl("\\[", colnames(aCollection@data))), FALSE)
+    expect_equal(all(grepl("\\]", colnames(aCollection@data))), FALSE)
 })
