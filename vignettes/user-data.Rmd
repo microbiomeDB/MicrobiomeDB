@@ -21,6 +21,7 @@ library(MicrobiomeDB)
 ## Importing Data {#introduction}
 
 The MicrobiomeDB package supports importing data from the following formats:
+
 1. [TreeSummarizedExperiment](#treesummarizedexperiment)
 2. [phyloseq](#phyloseq)
 3. [BIOM](#biom)
