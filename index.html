@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="index.html">MicrobiomeDB</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,7 +81,7 @@
 <p>Use the R package <a href="https://cran.r-project.org/web/packages/remotes/index.html" class="external-link">remotes</a> to install MicrobiomeDB. From the R command prompt:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">'microbiomeDB/MicrobiomeDB'</span><span class="op">)</span></span></code></pre></div>
-<p>If you would like to import data from any format other than TreeSummarizedExperiment, you will also need to install [mia][] from [Bioconductor][] with:</p>
+<p>If you would like to import data from any format other than TreeSummarizedExperiment, you will also need to install <a href="https://bioconductor.org/packages/mia" class="external-link">mia</a> from <a href="https://bioconductor.org" class="external-link">Bioconductor</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
