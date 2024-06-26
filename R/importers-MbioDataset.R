@@ -205,6 +205,7 @@ importTreeSummarizedExperiment <- function(data, normalizationMethod = c("TSS", 
 }
 
 #' @rdname importTreeSummarizedExperiment
+#' @export
 importTreeSE <- importTreeSummarizedExperiment
 
 ## lean on miaverse to import biom, phyloseq, csv, etc
