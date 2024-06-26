@@ -7,6 +7,7 @@
 
 A suite of R packages containing all of the data from MicrobiomeDB.org, and tools for analyzing and visualizing the same. It also supports
 importing data from the following formats:
+
 1. TreeSummarizedExperiment
 2. phyloseq
 3. BIOM
