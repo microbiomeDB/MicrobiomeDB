@@ -7,13 +7,13 @@
 
 A suite of R packages containing all of the data from MicrobiomeDB.org, and tools for analyzing and visualizing the same. It also supports
 importing data from the following formats:
-* TreeSummarizedExperiment
-* phyloseq
-* BIOM
-* QIIME2 output files
-* Mothur output files
-* dada2 output files
-* HUMAnN output files
+1. TreeSummarizedExperiment
+2. phyloseq
+3. BIOM
+4. QIIME2 output files
+5. Mothur output files
+6. dada2 output files
+7. HUMAnN output files
 
 If you have questions or comments of any kind, join us on our [Discord Community Server](https://discord.gg/DEjNbxgq)! We'd love to hear from you.
 
