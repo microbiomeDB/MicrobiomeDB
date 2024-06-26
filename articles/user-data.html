@@ -90,8 +90,16 @@
 <h2 id="introduction">Importing Data<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
 <p>The MicrobiomeDB package supports importing data from the following
-formats: 1. <a href="#treesummarizedexperiment">TreeSummarizedExperiment</a> 2. <a href="#phyloseq">phyloseq</a> 3. <a href="#biom">BIOM</a> 4. <a href="#qiime2">QIIME2 output files</a> 5. <a href="#mothur">Mothur
-output files</a> 6. <a href="#dada2">dada2 output files</a> 7. <a href="#humann">HUMAnN output files</a></p>
+formats:</p>
+<ol style="list-style-type: decimal">
+<li><a href="#treesummarizedexperiment">TreeSummarizedExperiment</a></li>
+<li><a href="#phyloseq">phyloseq</a></li>
+<li><a href="#biom">BIOM</a></li>
+<li><a href="#qiime2">QIIME2 output files</a></li>
+<li><a href="#mothur">Mothur output files</a></li>
+<li><a href="#dada2">dada2 output files</a></li>
+<li><a href="#humann">HUMAnN output files</a></li>
+</ol>
 <p>For formats other than <code>TreeSummarizedExperiment</code> the <a href="https://bioconductor.org/packages/mia" class="external-link">mia</a> package is also
 required. You can install it like:</p>
 <pre><code><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
