@@ -84,7 +84,10 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/microbiomeDB/MicrobiomeDB" class="external-link">MicrobiomeDB</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: replacing previous import 'S4Arrays::makeNindexFromArrayViewport' by</span></span>
+<span><span class="co">#&gt; 'DelayedArray::makeNindexFromArrayViewport' when loading 'SummarizedExperiment'</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ── <span style="font-weight: bold;">Attaching core tidyverse packages</span> ──────────────────────── tidyverse 2.0.0 ──</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">dplyr    </span> 1.1.4     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">readr    </span> 2.1.5</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">forcats  </span> 1.0.0     <span style="color: #00BB00;">✔</span> <span style="color: #0000BB;">stringr  </span> 1.5.1</span></span>
@@ -135,7 +138,7 @@ on both the presence and abundance of taxa. It calculates the normalized
 absolute differences in taxon abundance between two samples, providing a
 metric that ranges from 0 (complete similarity) to 1 (complete
 dissimilarity).</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## first lets find some interesting data</span></span>
 <span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="fu"><a href="https://microbiomedb.github.io/microbiomeData/reference/getCuratedDatasetNames.html" class="external-link">getCuratedDatasetNames</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "Anopheles_albimanus"     "BONUS"                  </span></span>
@@ -149,7 +152,7 @@ dissimilarity).</p>
 <span><span class="co">#&gt; [17] "Malaysia_helminth"       "NICU_NEC"               </span></span>
 <span><span class="co">#&gt; [19] "PIH_Uganda"              "PretermInfantResistome1"</span></span>
 <span><span class="co">#&gt; [21] "PretermInfantResistome2" "UgandaMaternal"</span></span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="fu">getCollectionNames</span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "Shotgun metagenomics 4th level EC metagenome abundance data"              </span></span>
@@ -163,7 +166,7 @@ dissimilarity).</p>
 <span><span class="co">#&gt;  [9] "Shotgun metagenomics Class (Relative taxonomic abundance analysis)"       </span></span>
 <span><span class="co">#&gt; [10] "Shotgun metagenomics Normalized number of taxon-specific sequence matches"</span></span>
 <span><span class="co">#&gt; [11] "Shotgun metagenomics Kingdom (Relative taxonomic abundance analysis)"</span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co">## grab a collection we like</span></span>
 <span><span class="va">HMP_MGX_species</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span>, <span class="st">'Shotgun metagenomics Species (Relative taxonomic abundance analysis)'</span><span class="op">)</span></span>
@@ -171,13 +174,13 @@ dissimilarity).</p>
 <span><span class="co">## get a betaDiv ComputeResult</span></span>
 <span><span class="va">betaDiv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/betaDiv-methods.html">betaDiv</a></span><span class="op">(</span><span class="va">HMP_MGX_species</span>, method <span class="op">=</span> <span class="st">"bray"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-06-26 02:20:04.015286 Received df table with 741 samples and 731 taxa.</span></span>
+<span><span class="co">#&gt; 2024-06-26 13:26:50.124298 Received df table with 741 samples and 731 taxa.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-06-26 02:20:04.343498 Computed dissimilarity matrix.</span></span>
+<span><span class="co">#&gt; 2024-06-26 13:26:50.463298 Computed dissimilarity matrix.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-06-26 02:20:04.577566 Finished ordination step.</span></span>
+<span><span class="co">#&gt; 2024-06-26 13:26:51.394411 Finished ordination step.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-06-26 02:20:04.60327 Beta diversity computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method = bray , k = 2 , verbose = TRUE</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-06-26 13:26:51.423734 Beta diversity computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method = bray , k = 2 , verbose = TRUE</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="jaccard-dissimilarity">Jaccard Dissimilarity<a class="anchor" aria-label="anchor" href="#jaccard-dissimilarity"></a>
@@ -185,17 +188,17 @@ dissimilarity).</p>
 <p>Measures dissimilarity based on the presence-absence of taxa. It
 quantifies the proportion of taxa that are not shared between two
 samples.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">HMP_MGX_species</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span>, <span class="st">'Shotgun metagenomics Species (Relative taxonomic abundance analysis)'</span><span class="op">)</span></span>
 <span><span class="va">betaDiv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/betaDiv-methods.html">betaDiv</a></span><span class="op">(</span><span class="va">HMP_MGX_species</span>, method <span class="op">=</span> <span class="st">"jaccard"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-06-26 02:20:04.746518 Received df table with 741 samples and 731 taxa.</span></span>
+<span><span class="co">#&gt; 2024-06-26 13:26:51.576764 Received df table with 741 samples and 731 taxa.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-06-26 02:20:05.067791 Computed dissimilarity matrix.</span></span>
+<span><span class="co">#&gt; 2024-06-26 13:26:51.894997 Computed dissimilarity matrix.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-06-26 02:20:05.257314 Finished ordination step.</span></span>
+<span><span class="co">#&gt; 2024-06-26 13:26:52.078092 Finished ordination step.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-06-26 02:20:05.267905 Beta diversity computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method = jaccard , k = 2 , verbose = TRUE</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-06-26 13:26:52.088827 Beta diversity computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method = jaccard , k = 2 , verbose = TRUE</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="jensen-shannon-divergence-jsd">Jensen-Shannon Divergence (JSD)<a class="anchor" aria-label="anchor" href="#jensen-shannon-divergence-jsd"></a>
@@ -204,17 +207,17 @@ samples.</p>
 presence-absence information. It is a symmetric version of the
 Kullback-Leibler Divergence, providing a measure of dissimilarity
 between probability distributions.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">HMP_MGX_species</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getCollection.html">getCollection</a></span><span class="op">(</span><span class="fu">microbiomeData</span><span class="fu">::</span><span class="va"><a href="https://microbiomedb.github.io/microbiomeData/reference/HMP_MGX.html" class="external-link">HMP_MGX</a></span>, <span class="st">'Shotgun metagenomics Species (Relative taxonomic abundance analysis)'</span><span class="op">)</span></span>
 <span><span class="va">betaDiv</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/betaDiv-methods.html">betaDiv</a></span><span class="op">(</span><span class="va">HMP_MGX_species</span>, method <span class="op">=</span> <span class="st">"jsd"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-06-26 02:20:05.407926 Received df table with 741 samples and 731 taxa.</span></span>
+<span><span class="co">#&gt; 2024-06-26 13:26:52.230397 Received df table with 741 samples and 731 taxa.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-06-26 02:20:12.387987 Computed dissimilarity matrix.</span></span>
+<span><span class="co">#&gt; 2024-06-26 13:26:59.283806 Computed dissimilarity matrix.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-06-26 02:20:12.575421 Finished ordination step.</span></span>
+<span><span class="co">#&gt; 2024-06-26 13:26:59.487307 Finished ordination step.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 2024-06-26 02:20:12.581521 Beta diversity computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method = jsd , k = 2 , verbose = TRUE</span></span></code></pre></div>
+<span><span class="co">#&gt; 2024-06-26 13:26:59.493548 Beta diversity computation completed with parameters recordIdColumn= Metagenomic_sequencing_assay_Id , method = jsd , k = 2 , verbose = TRUE</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="principal-coordinate-analysis-pcoa">Principal Coordinate Analysis (PCoA):<a class="anchor" aria-label="anchor" href="#principal-coordinate-analysis-pcoa"></a>
@@ -234,7 +237,7 @@ samples, aiding in the interpretation of beta diversity. The
 <h2 id="interpreting-pcoa-results">Interpreting PCoA Results<a class="anchor" aria-label="anchor" href="#interpreting-pcoa-results"></a>
 </h2>
 <p>The following code will produce a PCoA plot:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## choose one or more metadata variables to integrate with the compute result</span></span>
 <span><span class="va">betaDiv_withMetadata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getComputeResultWithMetadata.html">getComputeResultWithMetadata</a></span><span class="op">(</span></span>
 <span>  <span class="va">betaDiv</span>, </span>

@@ -83,13 +83,15 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/microbiomeDB/MicrobiomeDB" class="external-link">MicrobiomeDB</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/microbiomeDB/MicrobiomeDB" class="external-link">MicrobiomeDB</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: replacing previous import 'S4Arrays::makeNindexFromArrayViewport' by</span></span>
+<span><span class="co">#&gt; 'DelayedArray::makeNindexFromArrayViewport' when loading 'SummarizedExperiment'</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="introduction">Importing Data<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
 <p>The MicrobiomeDB package supports importing data from the following
-formats: * <a href="#treesummarizedexperiment">TreeSummarizedExperiment</a> * <a href="#phyloseq">phyloseq</a> * <a href="#biom">BIOM</a> * <a href="#qiime2">QIIME2 output files</a> * <a href="#mothur">Mothur output
-files</a> * <a href="#dada2">dada2 output files</a> * <a href="#humann">HUMAnN output files</a></p>
+formats: 1. <a href="#treesummarizedexperiment">TreeSummarizedExperiment</a> 2. <a href="#phyloseq">phyloseq</a> 3. <a href="#biom">BIOM</a> 4. <a href="#qiime2">QIIME2 output files</a> 5. <a href="#mothur">Mothur
+output files</a> 6. <a href="#dada2">dada2 output files</a> 7. <a href="#humann">HUMAnN output files</a></p>
 <p>For formats other than <code>TreeSummarizedExperiment</code> the <a href="https://bioconductor.org/packages/mia" class="external-link">mia</a> package is also
 required. You can install it like:</p>
 <pre><code><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
