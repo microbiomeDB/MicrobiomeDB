@@ -1,6 +1,6 @@
 Package: MicrobiomeDB
 Title: Curated Data and Analysis Tools from MicrobiomeDB.org
-Version: 1.0.2
+Version: 1.1.1
 Authors@R:
     c(person(given = "Danielle",
             family = "Callan",
@@ -16,8 +16,9 @@ Imports:
     Maaslin2,
     methods,
     microbiomeComputations,
-    phyloseq,
-    purrr
+    purrr,
+    SummarizedExperiment,
+    TreeSummarizedExperiment
 Remotes:
     microbiomeDB/veupathUtils,
     microbiomeDB/corGraph,
@@ -36,6 +37,10 @@ Suggests:
     microbiomeData,
     knitr,
     rmarkdown,
-    tidyverse
+    tidyverse,
+    mia,
+    dada2,
+    biomformat,
+    phyloseq
 Config/testthat/edition: 3
 VignetteBuilder: knitr

@@ -167,7 +167,6 @@ setMethod("updateCollectionName", "MbioDataset", function(object, oldName, newNa
 #' @param format The format of the collection to return. Currently supported options are "AbundanceData", "phyloseq" and "Collection".
 #' @param continuousMetadataOnly If TRUE, only continuous metadata will be returned. If FALSE, all metadata will be returned.
 #' @return An AbundanceData, phyloseq, or Collection object representing the collection and any associated study metadata
-#' @importFrom phyloseq phyloseq
 #' @importFrom microbiomeComputations AbundanceData
 #' @rdname getCollection
 #' @export
@@ -259,6 +258,7 @@ setMethod("getCollection", "MbioDataset", function(object, collectionName = char
             )
         }
     } else if (format == "phyloseq") {
+        .require_package("phyloseq")
 
         sampleNames <- collectionDT[[collection@recordIdColumn]]
         keepCols <- names(collectionDT)[! names(collectionDT) %in% collectionIdColumns]
