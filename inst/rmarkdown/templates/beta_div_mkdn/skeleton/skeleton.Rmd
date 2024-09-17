@@ -1,41 +1,44 @@
 ---
 title: "Beta Diversity Output Rmd"
-output: html_document
+output: MicrobiomeDB:::mbiodb_html_format
 ---
+
+<img src="inst/rmarkdown/resources/MicrobiomeDB_hex_final.png" width=95 height=100 style="position:absolute;top:10px;right:38px;" />
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Examine the ComputationResult object
-The `ComputationResult` object contains useful information about the results.
-```{r results, echo=TRUE}
-# A few helpful slots in the ComputationResult object
-
+The `ComputationResult` object contains useful information about the the beta diversity calculation.
+```{r computation_result, echo=TRUE}
 # Input parameters of the computation
-print(data@parameters)
+print(result@parameters)
 
 # The computed variable display names include the percent variance captured by each axis.
-print(paste0(data@computedVariableMetadata[[1]]@displayName, ', ', data@computedVariableMetadata[[2]]@displayName))
+print(paste0(result@computedVariableMetadata[[1]]@displayName, ', ', result@computedVariableMetadata[[2]]@displayName))
 ```
 
 ## Inspect the returned data
 ```{r example_data, echo=TRUE}
-df <- getComputeResult(data)
-head(df)
+# Extract the output of the beta diversity computation
+dt <- getComputeResult(result, format='data.table')
+head(dt)
 ```
 
 ## Example plot
 ```{r example_plot, echo=TRUE}
+# Grab nice names for the axes
+axis1_name <- result@computedVariableMetadata[[1]]@displayName
+axis2_name <- result@computedVariableMetadata[[2]]@displayName
 
-  axis1_name <- data@computedVariableMetadata[[1]]@displayName
-  axis2_name <- data@computedVariableMetadata[[2]]@displayName
-  p <- ggplot2::ggplot(df) +
-    aes(x=Axis1, y=Axis2) + 
-    geom_point() +
-    labs(y= axis2_name, x = axis1_name,
-          title='Beta diversity PCoA plot',
-          caption=paste0('produced on ', Sys.time())) +
-    theme_bw()
-  p
+# Create the PCoA scatterplot
+p <- ggplot2::ggplot(dt) +
+  aes(x=Axis1, y=Axis2) + 
+  geom_point() +
+  labs(y= axis2_name, x = axis1_name,
+        title='Beta diversity PCoA plot',
+        caption=paste0('produced on ', Sys.time())) +
+  theme_bw()
+p
 ```
