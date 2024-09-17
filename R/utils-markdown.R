@@ -11,6 +11,7 @@
 createRMarkdownFromComputeResult <- function(result, rmd_file_name = "tmp.Rmd"){
 
   dt <- getComputeResult(result)
+  plot_list <- list()
 
   if (result@name == 'betaDiv') {
     # We'll create a pcoa scatterplot
@@ -20,12 +21,30 @@ createRMarkdownFromComputeResult <- function(result, rmd_file_name = "tmp.Rmd"){
       aes(x=Axis1, y=Axis2) + 
       geom_point() +
       labs(y= axis2_name, x =axis1_name,
-            title="Beta diversity by body site",
+            title="PCoA plot of beta diversity results",
             caption=paste0("produced on ", Sys.time())) +
       theme_bw()
     
     template <- "inst/rmarkdown/templates/beta_div_mkdn/skeleton/skeleton.Rmd"
-    mylist <- list(plot = p)
+    plot_list[[1]] <- p
+
+  } else if (result@name == 'alphaDiv') {
+
+    # Show the distribution of alpha diversity values with a histogram
+    alpha_div_display_name <- result@computedVariableMetadata[[1]]@displayName
+    breaks <- pretty(range(dt$alphaDiversity),
+              n = nclass.Sturges(dt$alphaDiversity),
+              min.n = 1)
+    p <- ggplot2::ggplot(dt) +
+      aes(x=alphaDiversity) + 
+      geom_histogram(breaks=breaks, color=1, fill='white') +
+      labs(y= "Frequency", x =alpha_div_display_name,
+            title="Distribution of alpha diversity values",
+            caption=paste0("produced on ", Sys.time())) +
+      theme_bw()
+    
+    template <- "inst/rmarkdown/templates/alpha_div_mkdn/skeleton/skeleton.Rmd"
+    plot_list[[1]] <- p
   } else {
     stop(paste0("This function does not support ComputeResult objects with name=", data@name))
   }
@@ -34,7 +53,7 @@ createRMarkdownFromComputeResult <- function(result, rmd_file_name = "tmp.Rmd"){
   file.copy(template, rmd_file_name, overwrite = TRUE)
   rmarkdown::render(rmd_file_name)
   
-  return(mylist)
+  return(plot_list)
   
 }
 
@@ -47,14 +66,14 @@ createRMarkdownFromComputeResult <- function(result, rmd_file_name = "tmp.Rmd"){
 #' @param ... additional arguments provided to \@code{html_document}
 #' @export
 #'
-mbiodb_html_format = function(toc = TRUE, ...) {
+mbiodb_html_format <- function(toc = TRUE, ...) {
 
   # locations of resource files in the package
-  pkg_resource = function(...) {
+  pkg_resource <- function(...) {
     system.file(..., package = "MicrobiomeDB")
   }
 
-  css    = pkg_resource("rmarkdown/resources/styles.css")
+  css <- pkg_resource("rmarkdown/resources/styles.css")
 
   # call the base html_document function
   rmarkdown::html_document(
