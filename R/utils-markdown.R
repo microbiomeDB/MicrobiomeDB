@@ -1,6 +1,7 @@
 # Helper functions for creating the R Markdown files.
 
-createRMarkdownFromComputeResult <- function(data, color){
+
+createRMarkdownFromComputeResult <- function(data, rmd_file_name = "tmp.Rmd"){
 
   df <- getComputeResult(data)
   axis1_name <- data@computedVariableMetadata[[1]]@displayName
@@ -13,49 +14,9 @@ createRMarkdownFromComputeResult <- function(data, color){
           caption=paste0("produced on ", Sys.time())) +
     theme_bw()
   
-  cat("---
-title: \"Beta Diversity Output Rmd\"
-output: html_document
----
-
-\`\`\`{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-\`\`\`
-
-## Examine the ComputationResult object
-The `ComputationResult` object contains useful information about the results.
-\`\`\`{r results, echo=TRUE}
-# A few helpful slots in the ComputationResult object
-
-# Input parameters of the computation
-print(data@parameters)
-
-# The computed variable display names include the percent variance captured by each axis.
-print(paste0(data@computedVariableMetadata[[1]]@displayName, ', ', data@computedVariableMetadata[[2]]@displayName))
-\`\`\` 
-
-## Inspect the returned data
-\`\`\`{r example_data, echo=TRUE}
-df <- getComputeResult(data)
-head(df)
-\`\`\`
-
-## Example plot
-\`\`\`{r example_plot, echo=TRUE}
-
-  axis1_name <- data@computedVariableMetadata[[1]]@displayName
-  axis2_name <- data@computedVariableMetadata[[2]]@displayName
-  p <- ggplot2::ggplot(df) +
-    aes(x=Axis1, y=Axis2) + 
-    geom_point() +
-    labs(y= axis2_name, x = axis1_name,
-          title='Beta diversity PCoA plot',
-          caption=paste0('produced on ', Sys.time())) +
-    theme_bw()
-  p
-\`\`\`", 
-file = "tmp.Rmd")
-  rmarkdown::render("tmp.Rmd")
+  template <- "inst/rmarkdown/templates/beta_div_mkdn/skeleton/skeleton.Rmd"
+  file.copy(template, rmd_file_name, overwrite = TRUE)
+  rmarkdown::render(rmd_file_name)
   
   mylist <- list(plot = p, df = df)
   return(mylist)
