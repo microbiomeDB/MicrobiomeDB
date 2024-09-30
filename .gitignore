@@ -52,3 +52,6 @@ inst/doc
 
 # Mac things
 .DS_Store
+
+# Temporary output files
+tmp.*
