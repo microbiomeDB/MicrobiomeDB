@@ -1,0 +1,64 @@
+---
+title: "Ranked Abundance Output Rmd"
+output: MicrobiomeDB:::mbiodb_html_format
+---
+
+<img src="inst/rmarkdown/resources/MicrobiomeDB_hex_final.png" width=95 height=100 style="position:absolute;top:10px;right:38px;" />
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Examine the ComputationResult object
+The `ComputationResult` object contains useful information about the ranked Abundance calculation.
+```{r computation_result, echo=TRUE}
+# Input parameters of the computation
+print(result@parameters)
+
+# The rankedAbundance function will return only the top n (default n=10) most abundant taxa (pathways, etc.),
+# while ignoring any taxa with {method} = 0 (for example, if method = 'median', we ignore taxa with median = 0).
+# The computationDetails slot lets us know if the rankedAbundance function had to cutoff the list of taxa at n.
+print(result@computationDetails)
+```
+
+## Inspect the returned data
+```{r example_data, echo=TRUE}
+# Extract the output of the ranked abundance computation
+dt <- getComputeResult(result, format='data.table')
+ancestorIdCols <- result@ancestorIdColumns
+
+# Show the names of the top taxa (pathways, etc.) by abundance
+print(names(dt)[(length(ancestorIdCols)+2):ncol(dt)])
+
+# Finally, check out the data
+head(dt)
+```
+
+## Example plot
+```{r example_plot, echo=TRUE, fig.height=9}
+
+# Create a boxplot showing the taxa with the top abundance values.
+# Prep data
+rankedAbund_pivot <- tidyr::pivot_longer(dt, # dataframe to be pivoted
+                                    cols = (length(result@ancestorIdColumns)+2):ncol(dt), # column names to be stored as a SINGLE variable
+                                    names_to = "taxa", # name of that new variable (column)
+                                    values_to = "abundance") # name of new variable (column) storing all the values (data)
+rankedAbund_pivot$taxa <- factor(rankedAbund_pivot$taxa, levels = names(dt)[ncol(dt):(length(result@ancestorIdColumns)+2)])
+method <- gsub(".*method = ([^, ]+).*", "\\1", rabund@parameters)
+
+# Plot
+p <- ggplot2::ggplot(rankedAbund_pivot) +
+      ggplot2::aes(x=taxa, y=abundance) +
+      ggplot2::geom_boxplot() +
+      ggplot2::labs(y= "Abundance", x = "Taxa",
+            title=paste0("Ranked abundance output, decending by ", method),
+            caption=paste0("produced on ", Sys.time())) +
+      ggplot2::coord_flip() +
+      ggplot2::theme_bw()
+p
+```
+
+## Interactive plot
+```{r interactive_plot, echo=TRUE, fig.height=9}
+plotly::ggplotly(p)
+```

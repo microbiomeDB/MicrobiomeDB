@@ -1,0 +1,45 @@
+---
+title: "Alpha Diversity Output Rmd"
+output: MicrobiomeDB:::mbiodb_html_format
+---
+
+<img src="inst/rmarkdown/resources/MicrobiomeDB_hex_final.png" width=95 height=100 style="position:absolute;top:10px;right:38px;" />
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Examine the ComputationResult object
+The `ComputationResult` object contains useful information about the the alpha diversity calculation.
+```{r computation_result, echo=TRUE}
+# Input parameters of the computation
+print(result@parameters)
+
+```
+
+## Inspect the returned data
+```{r example_data, echo=TRUE}
+# Extract the output of the alpha diversity computation
+dt <- getComputeResult(result, format='data.table')
+head(dt)
+```
+
+## Example plot
+```{r example_plot, echo=TRUE}
+# Grab nice names for the axes
+alpha_div_display_name <- result@computedVariableMetadata[[1]]@displayName
+
+# Create histogram
+alpha_div_display_name <- result@computedVariableMetadata[[1]]@displayName
+breaks <- pretty(range(dt$alphaDiversity),
+              n = nclass.Sturges(dt$alphaDiversity),
+              min.n = 1)
+p <- ggplot2::ggplot(dt) +
+  aes(x=alphaDiversity) + 
+  geom_histogram(breaks=breaks, color=1, fill='white') +
+  labs(y= "Frequency", x =alpha_div_display_name,
+        title="Distribution of alpha diversity values",
+        caption=paste0("produced on ", Sys.time())) +
+  theme_bw()
+p
+```
