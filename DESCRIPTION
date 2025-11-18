@@ -23,7 +23,8 @@ Remotes:
     VEuPathDB/veupathUtils,
     microbiomeDB/corGraph,
     microbiomeDB/microbiomeComputations,
-    microbiomeDB/microbiomeData
+    microbiomeDB/microbiomeData,
+    bioc::Maaslin2
 URL: https://github.com/microbiomeDB/MicrobiomeDB, https://microbiomedb.github.io/MicrobiomeDB/
 BugReports: https://github.com/microbiomeDB/MicrobiomeDB/issues
 Description: This package is intended to be used to explore the curated datasets from MicrobiomeDB.org, as well as your own datasets. It comes pre-packaged with the same functions used to power the analysis tools from the website. It also contains functions to facilitate easily transforming data between our custom objects, phyloseq objects, and .biom files that you can upload to the website.
