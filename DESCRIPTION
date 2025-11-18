@@ -1,6 +1,6 @@
 Package: MicrobiomeDB
 Title: Curated Data and Analysis Tools from MicrobiomeDB.org
-Version: 1.1.1
+Version: 1.1.3
 Authors@R:
     c(person(given = "Danielle",
             family = "Callan",
@@ -12,15 +12,15 @@ Imports:
     data.table,
     DESeq2,
     igraph,
-    veupathUtils,
+    veupathUtils (>= 2.7.0),
     Maaslin2,
     methods,
-    microbiomeComputations,
+    microbiomeComputations (>= 5.1.6),
     purrr,
     SummarizedExperiment,
     TreeSummarizedExperiment
 Remotes:
-    microbiomeDB/veupathUtils,
+    VEuPathDB/veupathUtils,
     microbiomeDB/corGraph,
     microbiomeDB/microbiomeComputations,
     microbiomeDB/microbiomeData
