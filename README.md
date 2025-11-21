@@ -56,6 +56,43 @@ On macOS (source installations are not common on macOS, so this step is not usua
 brew install gsl
 ```
 
+### Troubleshooting Installation Issues
+
+#### Maaslin2 Installation
+
+If you encounter difficulties installing `Maaslin2` try installing from GitHub directly:
+
+```R
+remotes::install_github("biobakery/Maaslin2")
+```
+
+#### SpiecEasi and gfortran on macOS
+
+If you encounter errors related to `gfortran` when installing `SpiecEasi`, particularly errors like:
+
+```
+ld: library 'emutls_w' not found
+ld: warning: search path '/opt/gfortran/lib' not found
+```
+
+This typically occurs when gfortran is installed via Homebrew but R expects it in a different location. The recommended solution is to install the official gfortran from the R project:
+
+1. Download and install gfortran from: https://github.com/R-macos/gcc-14-branch/releases
+2. Restart R and try installing again
+
+Alternatively, if you have gfortran installed via Homebrew (`/opt/homebrew/bin/gfortran`), you may need to create symlinks or set appropriate environment variables.
+
+### Important: Dependency Change (v1.1.3+)
+
+Starting with version 1.1.3, this package depends on `mbioUtils` instead of `veupathUtils`. If you're updating from an older version and encounter issues, you may need to:
+
+```R
+# Remove old installation
+remove.packages(c("MicrobiomeDB", "microbiomeComputations", "veupathUtils"))
+# Reinstall fresh
+remotes::install_github('microbiomeDB/MicrobiomeDB')
+```
+
 ## Usage
 This package is intended to be used to explore the curated datasets from MicrobiomeDB.org, as well as your own datasets. It comes pre-packaged with the same functions used to power the analysis tools from the website. Functions to facilitate easily importing data from phyloseq objects, TreeSummarizedExperiment objects and .biom files (among others) are available.
 
