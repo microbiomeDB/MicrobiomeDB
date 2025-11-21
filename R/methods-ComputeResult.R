@@ -17,7 +17,7 @@
 #' @param format The format of the compute result. Currently only "data.table" and "igraph" are supported.
 #' @param ... additional arguments passed to getComputeResult method of the subclasses of ComputeResult
 #' @return The compute result in the specified format
-#' @importFrom veupathUtils matchArg ComputeResult
+#' @importFrom mbioUtils matchArg ComputeResult
 #' @export
 #' @rdname getComputeResult
 setGeneric("getComputeResult", function(object, format = c("data.table"), ...) standardGeneric("getComputeResult"))
@@ -26,7 +26,7 @@ setGeneric("getComputeResult", function(object, format = c("data.table"), ...) s
 #' @rdname getComputeResult
 #' @aliases getComputeResult,ComputeResult-method
 setMethod("getComputeResult", "ComputeResult", function(object, format = c("data.table", "igraph"), ...) {
-    format <- veupathUtils::matchArg(format)
+    format <- mbioUtils::matchArg(format)
 
     if (!!length(object@statistics)) {
         return(getComputeResult(object@statistics, format, ...))
@@ -41,7 +41,7 @@ setMethod("getComputeResult", "ComputeResult", function(object, format = c("data
     return(dt)  
 })
 
-#' @importFrom veupathUtils CorrelationResult
+#' @importFrom mbioUtils CorrelationResult
 #' @rdname getComputeResult
 #' @param correlationCoefThreshold threshold to filter edges by correlation coefficient. 
 #' Edges with correlation coefficients below this threshold will be removed. Default is .5
@@ -49,7 +49,7 @@ setMethod("getComputeResult", "ComputeResult", function(object, format = c("data
 #' @aliases getComputeResult,CorrelationResult-method
 #' @importFrom igraph graph_from_data_frame
 setMethod("getComputeResult", "CorrelationResult", function(object, format = c("data.table", "igraph"), correlationCoefThreshold = .5, pValueThreshold = .05) {
-    format <- veupathUtils::matchArg(format)
+    format <- mbioUtils::matchArg(format)
 
     result <- data.table::setDT(object@statistics)
 
@@ -66,17 +66,17 @@ setMethod("getComputeResult", "CorrelationResult", function(object, format = c("
 #' @rdname getComputeResult
 #' @aliases getComputeResult,DifferentialAbundanceResult-method
 setMethod("getComputeResult", "DifferentialAbundanceResult", function(object, format = c("data.table")) {
-    format <- veupathUtils::matchArg(format) 
+    format <- mbioUtils::matchArg(format) 
     return(data.table::setDT(object@statistics))
 })
 
-#' @importFrom veupathUtils getSampleMetadata
-#' @importFrom veupathUtils getSampleMetadataIdColumns
+#' @importFrom mbioUtils getSampleMetadata
+#' @importFrom mbioUtils getSampleMetadataIdColumns
 mergeComputeResultAndMetadata <- function(computeResult, dataset, metadataVariables) {
     dt <- getComputeResult(computeResult, "data.table")
-    metadata <- veupathUtils::getSampleMetadata(dataset, includeIds = TRUE, metadataVariables = metadataVariables)
+    metadata <- mbioUtils::getSampleMetadata(dataset, includeIds = TRUE, metadataVariables = metadataVariables)
 
-    metadataIdColumns <- veupathUtils::getSampleMetadataIdColumns(dataset)
+    metadataIdColumns <- mbioUtils::getSampleMetadataIdColumns(dataset)
     dt <- merge(dt, metadata, by = metadataIdColumns, all.x = TRUE)
 
     return(dt)
@@ -117,7 +117,7 @@ function(object, dataset, format = c("data.table"), metadataVariables = NULL)
 #' @aliases getComputeResultWithMetadata,ComputeResult,MbioDataset-method
 setMethod("getComputeResultWithMetadata", signature = c("ComputeResult", "MbioDataset"), 
 function(object, dataset = NULL, format = c("data.table"), metadataVariables = NULL) {
-    format <- veupathUtils::matchArg(format)
+    format <- mbioUtils::matchArg(format)
     dt <- mergeComputeResultAndMetadata(object, dataset, metadataVariables)
 
     return(dt)
@@ -127,7 +127,7 @@ function(object, dataset = NULL, format = c("data.table"), metadataVariables = N
 #' @aliases getComputeResultWithMetadata,ComputeResult,Collection-method
 setMethod("getComputeResultWithMetadata", signature = c("ComputeResult", "Collection"), 
 function(object, dataset = NULL, format = c("data.table"), metadataVariables = NULL) {
-    format <- veupathUtils::matchArg(format)
+    format <- mbioUtils::matchArg(format)
     dt <- mergeComputeResultAndMetadata(object, dataset, metadataVariables)
 
     return(dt)
@@ -137,7 +137,7 @@ function(object, dataset = NULL, format = c("data.table"), metadataVariables = N
 #' @aliases getComputeResultWithMetadata,ComputeResult,AbundanceData-method
 setMethod("getComputeResultWithMetadata", signature = c("ComputeResult", "AbundanceData"), 
 function(object, dataset = NULL, format = c("data.table"), metadataVariables = NULL) {
-    format <- veupathUtils::matchArg(format)
+    format <- mbioUtils::matchArg(format)
     dt <- mergeComputeResultAndMetadata(object, dataset, metadataVariables)
 
     return(dt)
@@ -196,7 +196,7 @@ setMethod("correlationNetwork", "data.frame", function(
     pValueThreshold = .05, 
     bipartiteNetwork = c(FALSE, TRUE)
 ) {
-    bipartiteNetwork <- veupathUtils::matchArg(bipartiteNetwork)
+    bipartiteNetwork <- mbioUtils::matchArg(bipartiteNetwork)
 
     warning("data.frame input assumes the columns are in the following order: source, target, correlationCoef, pValue.")
     names(object) <- c("source", "target", "value", "pValue")
