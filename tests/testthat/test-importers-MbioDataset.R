@@ -57,6 +57,8 @@ test_that("buildCollectionFromTreeSE works", {
 })
 
 test_that("we can get an MbioDataset from a TreeSummarizedExperiment", {
+    skip_if_not_installed("mia")
+    
     data(GlobalPatterns, package="mia")
     tse <- GlobalPatterns
 

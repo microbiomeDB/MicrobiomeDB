@@ -6,7 +6,7 @@ buildCollectionFromTreeSE <- function(
     normalizationMethod = c("TSS", "none"),
     verbose = c(TRUE, FALSE)
 ) {
-    verbose <- veupathUtils::matchArg(verbose)
+    verbose <- mbioUtils::matchArg(verbose)
 
     assayDataName <- collectionName$assayDataName
     rowDataColumnName <- collectionName$rowDataColumnName
@@ -66,7 +66,7 @@ buildCollectionFromTreeSE <- function(
         collectionName <- paste0(collectionName, " (", normalizationMethod, " normalized)")
     }
 
-    collection <- veupathUtils::Collection(
+    collection <- mbioUtils::Collection(
         data = dt,
         recordIdColumn = recordIdColumn,
         ancestorIdColumns = ancestorIdColumns,
@@ -125,9 +125,9 @@ buildCollectionFromTreeSE <- function(
 #' @export
 importTreeSummarizedExperiment <- function(data, normalizationMethod = c("TSS", "none"), keepRawValues = c(TRUE, FALSE), verbose = c(TRUE, FALSE)) {
 
-    normalizationMethod <- veupathUtils::matchArg(normalizationMethod)
-    keepRawValues <- veupathUtils::matchArg(keepRawValues)
-    verbose <- veupathUtils::matchArg(verbose)
+    normalizationMethod <- mbioUtils::matchArg(normalizationMethod)
+    keepRawValues <- mbioUtils::matchArg(keepRawValues)
+    verbose <- mbioUtils::matchArg(verbose)
 
     if (!inherits(data, "SummarizedExperiment")) {
         stop("data must be or extend a SummarizedExperiment")
@@ -182,7 +182,7 @@ importTreeSummarizedExperiment <- function(data, normalizationMethod = c("TSS", 
     
         collectionsList <- c(rawCollectionsList, normalizedCollectionsList)
     } else {
-        collectionsList <- veupathUtils::Collections()
+        collectionsList <- mbioUtils::Collections()
     }
     
 

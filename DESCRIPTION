@@ -1,6 +1,6 @@
 Package: MicrobiomeDB
 Title: Curated Data and Analysis Tools from MicrobiomeDB.org
-Version: 1.1.1
+Version: 1.1.2
 Authors@R:
     c(person(given = "Danielle",
             family = "Callan",
@@ -12,15 +12,15 @@ Imports:
     data.table,
     DESeq2,
     igraph,
-    veupathUtils,
+    mbioUtils (>= 0.1.0),
     Maaslin2,
     methods,
-    microbiomeComputations,
+    microbiomeComputations (>= 5.1.7),
     purrr,
     SummarizedExperiment,
     TreeSummarizedExperiment
 Remotes:
-    microbiomeDB/veupathUtils,
+    microbiomeDB/mbioUtils,
     microbiomeDB/corGraph,
     microbiomeDB/microbiomeComputations,
     microbiomeDB/microbiomeData
@@ -30,7 +30,7 @@ Description: This package is intended to be used to explore the curated datasets
 License: Apache License (>= 2)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.3
 Suggests: 
     testthat (>= 3.0.0),
     S4Vectors,

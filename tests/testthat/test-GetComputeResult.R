@@ -13,23 +13,23 @@ test_that("we can get compute results in different formats", {
     expect_equal(all(grepl('[',names(genus@sampleMetadata@data),fixed=T)), FALSE)
     # and that that means diff abund works now
     comparatorVariable <- microbiomeComputations::Comparator(
-                        variable = veupathUtils::VariableMetadata(
-                            variableSpec = veupathUtils::VariableSpec(
+                        variable = mbioUtils::VariableMetadata(
+                            variableSpec = mbioUtils::VariableSpec(
                                 variableId = 'delivery_mode',
                                 entityId = ''
                             ),
-                            dataShape = veupathUtils::DataShape(value="BINARY")
+                            dataShape = mbioUtils::DataShape(value="BINARY")
                         ),
-                        groupA = veupathUtils::BinList(
+                        groupA = mbioUtils::BinList(
                             S4Vectors::SimpleList(
-                                c(veupathUtils::Bin(
+                                c(mbioUtils::Bin(
                                     binLabel="Vaginal"
                                 ))
                             )
                         ),
-                        groupB = veupathUtils::BinList(
+                        groupB = mbioUtils::BinList(
                             S4Vectors::SimpleList(
-                                c(veupathUtils::Bin(
+                                c(mbioUtils::Bin(
                                     binLabel="Cesarean"
                                 ))
                             )

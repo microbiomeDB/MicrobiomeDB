@@ -97,15 +97,15 @@ microbiomeComputations::betaDiv
 #' @param verbose boolean indicating if timed logging is desired
 #' @param ... additional parameters
 #' @return data.frame with correlation coefficients or a ComputeResult object
-#' @importFrom veupathUtils correlation
+#' @importFrom mbioUtils correlation
 #' @export
 #' @rdname correlation-methods
-veupathUtils::correlation
+mbioUtils::correlation
 
 #' Self Correlation
 #'
 #' This function returns correlation coefficients for variables in one AbundanceData object against itself. It generally serves as a 
-#' convenience wrapper around veupathUtils::correlation, with the exception that it additionally supports sparcc.
+#' convenience wrapper around mbioUtils::correlation, with the exception that it additionally supports sparcc.
 #' 
 #' @examples
 #' correlationDT <- selfCorrelation(
@@ -134,8 +134,8 @@ veupathUtils::correlation
 #' @param verbose boolean indicating if timed logging is desired
 #' @param ... additional parameters
 #' @return ComputeResult object
-#' @importFrom veupathUtils selfCorrelation
+#' @importFrom mbioUtils selfCorrelation
 #' @importFrom microbiomeComputations selfCorrelation
 #' @export
 #' @rdname selfCorrelation-methods
-veupathUtils::selfCorrelation
+mbioUtils::selfCorrelation

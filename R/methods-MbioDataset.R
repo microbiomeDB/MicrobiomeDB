@@ -1,4 +1,4 @@
-collectionNamesGeneric <- getGeneric("getCollectionNames", "veupathUtils")
+collectionNamesGeneric <- getGeneric("getCollectionNames", "mbioUtils")
 #' Get Names of Collections
 #' 
 #' Get the names of the collections in a MbioDataset object
@@ -8,10 +8,10 @@ collectionNamesGeneric <- getGeneric("getCollectionNames", "veupathUtils")
 #' @param object An MbioDataset
 #' @return A character vector of collection names
 #' @export
-#' @importFrom veupathUtils getCollectionNames
+#' @importFrom mbioUtils getCollectionNames
 setMethod(collectionNamesGeneric, "MbioDataset", function(object) return(unname(getCollectionNames(object@collections))))
 
-metadataVarNamesGeneric <- getGeneric("getMetadataVariableNames", "veupathUtils")
+metadataVarNamesGeneric <- getGeneric("getMetadataVariableNames", "mbioUtils")
 #' Get Variable Names of Metadata
 #' 
 #' Get the names of the metadata variables in an MbioDataset.
@@ -21,10 +21,10 @@ metadataVarNamesGeneric <- getGeneric("getMetadataVariableNames", "veupathUtils"
 #' @param object An MbioDataset
 #' @return a character vector of metadata variable names
 #' @export
-#' @importFrom veupathUtils getMetadataVariableNames
+#' @importFrom mbioUtils getMetadataVariableNames
 setMethod(metadataVarNamesGeneric, "MbioDataset", function(object) return(names(object@metadata@data)))
 
-metadataVarSummaryGeneric <- getGeneric("getMetadataVariableSummary", "veupathUtils")
+metadataVarSummaryGeneric <- getGeneric("getMetadataVariableSummary", "mbioUtils")
 #' Get Summary of Metadata Variables
 #' 
 #' Get a summary of the requested metadata variable in an MbioDataset.
@@ -37,7 +37,7 @@ metadataVarSummaryGeneric <- getGeneric("getMetadataVariableSummary", "veupathUt
 #' @param variable A character vector representing the name of the metadata variable to summarize
 #' @return a table summarizing the values of the requested metadata variable
 #' @export
-#' @importFrom veupathUtils getMetadataVariableSummary
+#' @importFrom mbioUtils getMetadataVariableSummary
 setMethod(metadataVarSummaryGeneric, "MbioDataset", function(object, variable) {
     if (!variable %in% getMetadataVariableNames(object)) {
         stop("Variable ", variable, " not found in sample metadata. Available variables: ", paste(getMetadataVariableNames(object), collapse = ", "))
@@ -54,7 +54,7 @@ setMethod(metadataVarSummaryGeneric, "MbioDataset", function(object, variable) {
     }
 })
 
-sampleMetadataGeneric <- getGeneric("getSampleMetadata", "veupathUtils")
+sampleMetadataGeneric <- getGeneric("getSampleMetadata", "mbioUtils")
 #' Get data.table of sample metadata from MbioDataset
 #'
 #' Returns a data.table of sample metadata
@@ -69,13 +69,13 @@ sampleMetadataGeneric <- getGeneric("getSampleMetadata", "veupathUtils")
 #' @return data.table of sample metadata
 #' @export
 setMethod(sampleMetadataGeneric, "MbioDataset", function(object, asCopy = c(TRUE, FALSE), includeIds = c(TRUE, FALSE), metadataVariables = NULL) {
-    asCopy <- veupathUtils::matchArg(asCopy)
-    includeIds <- veupathUtils::matchArg(includeIds)
+    asCopy <- mbioUtils::matchArg(asCopy)
+    includeIds <- mbioUtils::matchArg(includeIds)
 
     if (!length(object@metadata@data)) return(NULL)
 
     dt <- object@metadata@data
-    allIdColumns <- veupathUtils::getSampleMetadataIdColumns(object)
+    allIdColumns <- mbioUtils::getSampleMetadataIdColumns(object)
 
     # Check that incoming dt meets requirements
     if (!inherits(dt, 'data.table')) {
@@ -97,13 +97,13 @@ setMethod(sampleMetadataGeneric, "MbioDataset", function(object, asCopy = c(TRUE
     return(dt)
 })
 
-metadataIdColsGeneric <- getGeneric("getSampleMetadataIdColumns", "veupathUtils")
+metadataIdColsGeneric <- getGeneric("getSampleMetadataIdColumns", "mbioUtils")
 #' Get Sample Metadata Id Column Names
 #' 
 #' Get the names of the record and ancestor id columns in the sample metadata of an MbioDataset object.
 #' @param object MbioDataset
 #' @return a character vector of id column names
-setMethod(metadataIdColsGeneric, "MbioDataset", function(object) veupathUtils::getIdColumns(object@metadata))
+setMethod(metadataIdColsGeneric, "MbioDataset", function(object) mbioUtils::getIdColumns(object@metadata))
 
 
 #' Update Microbiome Dataset Collection Name
@@ -175,8 +175,8 @@ setGeneric("getCollection", function(object, collectionName, format = c("Abundan
 #' @rdname getCollection
 #' @aliases getCollection,MbioDataset,character-method
 setMethod("getCollection", "MbioDataset", function(object, collectionName = character(0), format = c("AbundanceData", "phyloseq", "Collection"), continuousMetadataOnly = c(FALSE, TRUE)) {
-    format <- veupathUtils::matchArg(format)
-    continuousMetadataOnly <- veupathUtils::matchArg(continuousMetadataOnly)
+    format <- mbioUtils::matchArg(format)
+    continuousMetadataOnly <- mbioUtils::matchArg(continuousMetadataOnly)
     
     if (length(collectionName) == 0) {
         stop("Must specify a collection name")
@@ -240,7 +240,7 @@ setMethod("getCollection", "MbioDataset", function(object, collectionName = char
 
         collectionDataDT <- collectionDT[, -collectionIdColumns, with = FALSE]
         if (all(collectionDataDT == round(collectionDataDT), na.rm = TRUE)) {
-            veupathUtils::logWithTime("Integer values detected. Converting collection to AbsoluteAbundanceData", verbose = TRUE)
+            mbioUtils::logWithTime("Integer values detected. Converting collection to AbsoluteAbundanceData", verbose = TRUE)
             abundanceData <- AbsoluteAbundanceData(
                 name = collection@name,
                 data = collectionDT, 
@@ -292,7 +292,7 @@ setMethod("getCollection", "MbioDataset", function(object, collectionName = char
     return(abundanceData)
 })
 
-collectionVarNamesGeneric <- getGeneric("getCollectionVariableNames", "veupathUtils")
+collectionVarNamesGeneric <- getGeneric("getCollectionVariableNames", "mbioUtils")
 #' Get Microbiome Dataset Collection Variable Names
 #' 
 #' Get the variable names in a collection in the Microbiome Dataset.
@@ -306,9 +306,9 @@ collectionVarNamesGeneric <- getGeneric("getCollectionVariableNames", "veupathUt
 #' @param collectionName The name of the collection to return the variable names for
 #' @return a character vector of the variable names in the requested collection
 #' @export
-#' @importFrom veupathUtils getCollectionVariableNames
+#' @importFrom mbioUtils getCollectionVariableNames
 setMethod(collectionVarNamesGeneric, "MbioDataset", function(object, collectionName) {
-    return(veupathUtils::getCollectionVariableNames(getCollection(object, collectionName)))
+    return(mbioUtils::getCollectionVariableNames(getCollection(object, collectionName)))
 })
 
 #' Get Microbiome Dataset Variables
@@ -375,11 +375,11 @@ setMethod("getVariables", "MbioDataset", function(object, variables) {
         if (any(variableNames %in% getCollectionVariableNames(object, collectionName))) {
             collection <- getCollection(object, collectionName)
             presentVars <- variableNames[variableNames %in% getCollectionVariableNames(collection)]
-            if (veupathUtils::isOneToManyWithAncestor(collection)) {
+            if (mbioUtils::isOneToManyWithAncestor(collection)) {
                 warning("Unable to return the following variables: ", presentVars)
                 return(data.table::data.table())
             }
-            dt <- veupathUtils::getCollectionData(collection, presentVars)
+            dt <- mbioUtils::getCollectionData(collection, presentVars)
             if (collectionIndex %in% collectionsWithDupsIndexes) {
                 ## rename variables to prepend the collection name
                 names(dt)[names(dt) %in% presentVars] <- paste(collectionName, presentVars)

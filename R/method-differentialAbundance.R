@@ -31,23 +31,23 @@ assignToBinaryGroups <- function(x, groupAPredicate, groupBPredicate = NULL) {
     return(x)
 }
 
-#' @importFrom veupathUtils VariableSpec
-#' @importFrom veupathUtils getIdColumns
+#' @importFrom mbioUtils VariableSpec
+#' @importFrom mbioUtils getIdColumns
 buildBinaryComparator <- function(covariate, groupAValue, groupBValue) {
 
-    binA <- veupathUtils::Bin(binLabel=groupAValue)
-    binB <- veupathUtils::Bin(binLabel=groupBValue)
+    binA <- mbioUtils::Bin(binLabel=groupAValue)
+    binB <- mbioUtils::Bin(binLabel=groupBValue)
 
-    groupABins <- veupathUtils::BinList(S4Vectors::SimpleList(c(binA)))
-    groupBBins <- veupathUtils::BinList(S4Vectors::SimpleList(c(binB)))
+    groupABins <- mbioUtils::BinList(S4Vectors::SimpleList(c(binA)))
+    groupBBins <- mbioUtils::BinList(S4Vectors::SimpleList(c(binB)))
 
     comparatorVariable <- microbiomeComputations::Comparator(
-                            variable = veupathUtils::VariableMetadata(
+                            variable = mbioUtils::VariableMetadata(
                                 variableSpec = VariableSpec(
                                     variableId = covariate,
                                     entityId = ''
                                 ),
-                                dataShape = veupathUtils::DataShape(value="CATEGORICAL")
+                                dataShape = mbioUtils::DataShape(value="CATEGORICAL")
                             ),
                             groupA = groupABins,
                             groupB = groupBBins
@@ -156,8 +156,8 @@ function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verb
 #' @aliases differentialAbundance,CollectionWithMetadata,character,missingOrNULL,missingOrNULL-method
 setMethod("differentialAbundance", signature("CollectionWithMetadata", "character", "missingOrNULL", "missingOrNULL"), 
 function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verbose = c(TRUE, FALSE)) {
-    method <- veupathUtils::matchArg(method)
-    verbose <- veupathUtils::matchArg(verbose)
+    method <- mbioUtils::matchArg(method)
+    verbose <- mbioUtils::matchArg(verbose)
 
     if (data.table::uniqueN(data@sampleMetadata@data[[covariate]]) < 2) {
         stop("Argument 'covariate' must have at least two unique values")
@@ -176,8 +176,8 @@ function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verb
 #' @aliases differentialAbundance,CollectionWithMetadata,character,function,missingOrNULL-method
 setMethod("differentialAbundance", signature("CollectionWithMetadata", "character", "function", "missingOrNULL"),
 function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verbose = c(TRUE, FALSE)) {
-    method <- veupathUtils::matchArg(method)
-    verbose <- veupathUtils::matchArg(verbose)
+    method <- mbioUtils::matchArg(method)
+    verbose <- mbioUtils::matchArg(verbose)
 
     if (data.table::uniqueN(data@sampleMetadata@data[[covariate]]) < 2) {
         stop("Argument 'covariate' must have at least two unique values")
@@ -193,8 +193,8 @@ function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verb
 #' @aliases differentialAbundance,CollectionWithMetadata,character,character,missingOrNULL-method
 setMethod("differentialAbundance", signature("CollectionWithMetadata", "character", "character", "missingOrNULL"),
 function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verbose = c(TRUE, FALSE)) {
-    method <- veupathUtils::matchArg(method)
-    verbose <- veupathUtils::matchArg(verbose)
+    method <- mbioUtils::matchArg(method)
+    verbose <- mbioUtils::matchArg(verbose)
 
     covariateDataType <- class(data@sampleMetadata@data[[covariate]])
     if (!covariateDataType %in% c("factor", "character")) {
@@ -215,8 +215,8 @@ function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verb
 #' @aliases differentialAbundance,CollectionWithMetadata,character,function,function-method
 setMethod("differentialAbundance", signature("CollectionWithMetadata", "character", "function", "function"),
 function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verbose = c(TRUE, FALSE)) {
-    method <- veupathUtils::matchArg(method)
-    verbose <- veupathUtils::matchArg(verbose)
+    method <- mbioUtils::matchArg(method)
+    verbose <- mbioUtils::matchArg(verbose)
     
     if (data.table::uniqueN(data@sampleMetadata@data[[covariate]]) < 2) {
         stop("Argument 'covariate' must have at least two unique values")
@@ -233,8 +233,8 @@ function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verb
 #' @aliases differentialAbundance,CollectionWithMetadata,character,character,character-method
 setMethod("differentialAbundance", signature("CollectionWithMetadata", "character", "character", "character"),
 function(data, covariate, groupA, groupB, method = c("Maaslin2", "DESeq2"), verbose = c(TRUE, FALSE)) {
-    method <- veupathUtils::matchArg(method)
-    verbose <- veupathUtils::matchArg(verbose)
+    method <- mbioUtils::matchArg(method)
+    verbose <- mbioUtils::matchArg(verbose)
 
     covariateDataType <- class(data@sampleMetadata@data[[covariate]])
     if (!covariateDataType %in% c("factor", "character")) {
@@ -297,12 +297,12 @@ setGeneric("Maaslin2", function(data, verbose = c(TRUE,FALSE), ...) standardGene
 #' @rdname Maaslin2
 #' @aliases Maaslin2,CollectionWithMetadata-method
 setMethod("Maaslin2", signature("CollectionWithMetadata"), function(data, verbose = c(TRUE,FALSE), ...) {
-    verbose <- veupathUtils::matchArg(verbose)
+    verbose <- mbioUtils::matchArg(verbose)
     
     recordIdColumn <- data@recordIdColumn
     ancestorIdColumns <- data@ancestorIdColumns
     allIdColumns <- c(recordIdColumn, ancestorIdColumns)
-    sampleMetadata <- veupathUtils::getSampleMetadata(data)
+    sampleMetadata <- mbioUtils::getSampleMetadata(data)
     abundances <- microbiomeComputations::getAbundances(data)
 
     # remove rows in sampleMetadata where covariate is NA or empty string
@@ -353,12 +353,12 @@ setGeneric("DESeqDataSetFromCollection", function(data, verbose = c(TRUE,FALSE),
 #' @rdname DESeqDataSetFromCollection
 #' @aliases DESeqDataSetFromCollection,AbsoluteAbundanceData-method
 setMethod("DESeqDataSetFromCollection", signature("AbsoluteAbundanceData"), function(data, verbose = c(TRUE,FALSE), ...) {
-    verbose <- veupathUtils::matchArg(verbose)
+    verbose <- mbioUtils::matchArg(verbose)
     
     recordIdColumn <- data@recordIdColumn
     ancestorIdColumns <- data@ancestorIdColumns
     allIdColumns <- c(recordIdColumn, ancestorIdColumns)
-    sampleMetadata <- veupathUtils::getSampleMetadata(data)
+    sampleMetadata <- mbioUtils::getSampleMetadata(data)
     abundances <- microbiomeComputations::getAbundances(data, verbose = verbose)
 
     # First, remove id columns and any columns that are all 0s.
@@ -375,7 +375,7 @@ setMethod("DESeqDataSetFromCollection", signature("AbsoluteAbundanceData"), func
     # expects the order to match, and will not perform this check.
     if (!identical(rownames(sampleMetadata), colnames(counts))){
         # Reorder sampleMetadata to match counts
-        veupathUtils::logWithTime("Sample order differs between data and metadata. Reordering data based on the metadata sample order.", verbose)
+        mbioUtils::logWithTime("Sample order differs between data and metadata. Reordering data based on the metadata sample order.", verbose)
         data.table::setcolorder(counts, rownames(sampleMetadata))
     }
 
